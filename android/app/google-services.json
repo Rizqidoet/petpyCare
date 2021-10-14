@@ -1,0 +1,92 @@
+{
+  "project_info": {
+    "project_number": "449298507275",
+    "project_id": "wawapetpy",
+    "storage_bucket": "wawapetpy.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:449298507275:android:7101875c428db688e9890e",
+        "android_client_info": {
+          "package_name": "com.adroady.petpycare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "449298507275-3cqhs7ritkk86dg0jfeipafjalp6lsvf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.adroady.petpycare",
+            "certificate_hash": "138c69ead2a63aeaab8a71e599019e13bc4acbd0"
+          }
+        },
+        {
+          "client_id": "449298507275-45f80kk3mqqikuf5frjru1l4mkh4dqio.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBigiuC85KsSnjrLItv9QgryW2J8MUbd0w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "449298507275-45f80kk3mqqikuf5frjru1l4mkh4dqio.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:449298507275:android:c253f0f4192426d1e9890e",
+        "android_client_info": {
+          "package_name": "com.adroady.wawapetpy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "449298507275-9c892pcoe08cdktr6qd96q48ftd7ior7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.adroady.wawapetpy",
+            "certificate_hash": "012dd4ba9458b4d2363abac8802f65bee8a75590"
+          }
+        },
+        {
+          "client_id": "449298507275-urmd4mp7s8b935666uifc9bcokihfkuk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.adroady.wawapetpy",
+            "certificate_hash": "f2cf93ffd5e1c5467c5adf7c8ad37d4d86aa45ff"
+          }
+        },
+        {
+          "client_id": "449298507275-45f80kk3mqqikuf5frjru1l4mkh4dqio.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBigiuC85KsSnjrLItv9QgryW2J8MUbd0w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "449298507275-45f80kk3mqqikuf5frjru1l4mkh4dqio.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

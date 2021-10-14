@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">petpyCare</string>
+    <string name="title_activity_main">petpyCare</string>
+    <string name="package_name">com.adroady.petpycare</string>
+    <string name="custom_url_scheme">com.adroady.petpycare</string>
+    <string name="server_client_id">753355378760-hplae5vs0865tubgvk15k9v9ulfdg037.apps.googleusercontent.com</string>
+
+</resources>

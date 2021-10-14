@@ -1,0 +1,28 @@
+<ion-header style="background-color: mediumblue">
+  <ion-toolbar>
+    <ion-title> Pilih Metode Pembayaran-mu </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismissModal()" style="color: mediumblue">
+        Tutup
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-item
+    button
+    detail
+    *ngFor="let dataPayment of dataPayments"
+    (click)="tapValue()"
+  >
+    <ion-thumbnail slot="start">
+      <img
+        src="https://img.icons8.com/cotton/64/000000/mobile-payment--v3.png"
+      />
+    </ion-thumbnail>
+    <ion-label class="ion-text-wrap">
+      <h2>{{ dataPayment.name }}</h2>
+      <p style="color: gray">{{ dataPayment.detail }}</p>
+    </ion-label>
+  </ion-item>
+</ion-content>

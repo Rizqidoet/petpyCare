@@ -1,0 +1,7 @@
+{
+  "name": "petpyCare",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
