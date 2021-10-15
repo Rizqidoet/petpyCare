@@ -12,13 +12,13 @@ import { getAnalytics } from 'firebase/analytics';
 import { IonicStorageModule } from '@ionic/storage-angular';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyB8XS8MFVLSmoJ0jiTEzt2-XnMk_mldf1w',
-  authDomain: 'wawapetpy.firebaseapp.com',
-  projectId: 'wawapetpy',
-  storageBucket: 'wawapetpy.appspot.com',
-  messagingSenderId: '449298507275',
-  appId: '1:449298507275:web:b85cac2c2b99f8d4e9890e',
-  measurementId: 'G-MZ5QDPJM4N',
+  apiKey: 'AIzaSyA29cHl697Uvfsd70ioQVZcJB5CgBT9p8U',
+  authDomain: 'petpy-dev.firebaseapp.com',
+  projectId: 'petpy-dev',
+  storageBucket: 'petpy-dev.appspot.com',
+  messagingSenderId: '753355378760',
+  appId: '1:753355378760:web:34f094b57af63b9b56487d',
+  measurementId: 'G-9V38E9DVKD',
 };
 
 const app = initializeApp(firebaseConfig);

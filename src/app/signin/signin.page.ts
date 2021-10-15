@@ -20,10 +20,6 @@ import { Storage } from '@ionic/storage-angular';
   styleUrls: ['./signin.page.scss'],
 })
 export class SigninPage {
-  items: Item[] = [];
-
-  newItem: Item = <Item>{};
-
   isWeb: boolean;
 
   constructor(
@@ -128,8 +124,10 @@ export class SigninPage {
 
   async onSignInGoogle() {
     let googleUser = await GoogleAuth.signIn();
+    console.log('SEKUNDRENDAY', this.userInfo);
     console.log('SIGNIN BERHASIL ---> Ini Isi GoogleUser = ', googleUser);
     this.userInfo = googleUser;
+
     this.signupReg(this.userInfo);
   }
 
@@ -140,6 +138,7 @@ export class SigninPage {
   async signupReg(userInfo) {
     console.log('Pinging Server');
     var url = 'https://qalb.petpy.id/api/method/petpy.api.login';
+    // var url = 'https://google.com';
     var headers = new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded',
     });
@@ -172,6 +171,8 @@ export class SigninPage {
   }
 
   //_______________________________________________________________________________________
+  items: Item[] = [];
+  newItem: Item = <Item>{};
 
   addItem(apiKey, apiSc) {
     this.newItem.apiKey = apiKey;
@@ -197,6 +198,7 @@ export class SigninPage {
     toast.present();
   }
 
+  //_______________________________________________________________________________________
   onSignInFacebook() {
     this.showAlert('INFO', 'this feature will be ready soon');
   }
