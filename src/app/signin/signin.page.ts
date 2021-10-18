@@ -1,11 +1,6 @@
 import { Component } from '@angular/core';
 import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
-import {
-  Platform,
-  ToastController,
-  IonList,
-  AlertController,
-} from '@ionic/angular';
+import { Platform, ToastController, AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { HttpParams, HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
@@ -134,6 +129,7 @@ export class SigninPage {
   //_______________________________________________________________________________________
   apiKey = null;
   apiSc = null;
+  apiPd = [];
 
   async signupReg(userInfo) {
     console.log('Pinging Server');
@@ -159,9 +155,11 @@ export class SigninPage {
         console.log('Data Log :', response);
         this.apiKey = response['message']['api_key'];
         this.apiSc = response['message']['api_secret'];
-        this.addItem(this.apiKey, this.apiSc);
+        this.apiPd = response['message']['products'];
+        console.log('products = ', this.apiPd);
+        this.addItem(this.apiKey, this.apiSc, this.apiPd);
         this.showToast('Login Success, welcome ' + response['full_name']);
-        //this.router.navigateByUrl('/home');
+        this.router.navigateByUrl('/home');
       },
       (error) => {
         console.log('Ene Error', error);
@@ -174,13 +172,18 @@ export class SigninPage {
   items: Item[] = [];
   newItem: Item = <Item>{};
 
-  addItem(apiKey, apiSc) {
+  addItem(apiKey, apiSc, apiPd) {
     this.newItem.apiKey = apiKey;
     this.newItem.apiSc = apiSc;
+    this.newItem.apiPd = apiPd;
 
     this.storageService.addItem(this.newItem).then((item) => {
       this.newItem = <Item>{};
       this.loadItems();
+      // this.showAlert(
+      //   'Login Success',
+      //   'Api key =  ' + apiKey + 'Api Secret ' + apiSc
+      // );
     });
   }
 
@@ -205,6 +208,9 @@ export class SigninPage {
 
   //_______________________________________________________________________________________
   onSignInTelp() {
+    // this.loadItems();
+    // console.log('klik', this.items['0']['apiKey']);
+
     this.showAlert('INFO', 'this feature will be ready soon');
   }
 }

@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage-angular';
 export interface Item {
   apiKey: string;
   apiSc: string;
+  apiPd: [];
 }
 
 const ITEMS_KEY = 'my-items';
@@ -18,7 +19,7 @@ export class StorageService {
     return this.storage.get(ITEMS_KEY).then((items: Item[]) => {
       if (items) {
         items.push(item);
-        return this.storage.set(ITEMS_KEY, items);
+        return this.storage.set(ITEMS_KEY, [item]);
       } else {
         return this.storage.set(ITEMS_KEY, [item]);
       }
