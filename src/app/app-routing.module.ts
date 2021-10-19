@@ -89,7 +89,15 @@ const routes: Routes = [
   {
     path: 'order-success',
     loadChildren: () => import('./order-success/order-success.module').then( m => m.OrderSuccessPageModule)
+  },  {
+    path: 'order-servicecat',
+    loadChildren: () => import('./order-servicecat/order-servicecat.module').then( m => m.OrderServicecatPageModule)
   },
+  {
+    path: 'order-servicedog',
+    loadChildren: () => import('./order-servicedog/order-servicedog.module').then( m => m.OrderServicedogPageModule)
+  },
+
 ];
 
 @NgModule({
