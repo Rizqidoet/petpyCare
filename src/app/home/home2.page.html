@@ -1,0 +1,408 @@
+<ion-content :fullscreen="true">
+  <!-- Start: Pembungkus Content Fixed Posisition -->
+  <div
+    style="
+      background-color: #ffffff;
+      width: 100%;
+      height: 220px;
+      position: relative;
+    "
+  >
+    <!-- Start: Content Fixed Position -->
+    <div
+      style="
+        width: 100%;
+        height: 220px;
+        position: fixed;
+        padding: 10px 10px 10px 10px;
+        background-color: #1a72f8;
+        z-index: 2;
+      "
+    >
+      <!-- Start: Userlogin & Logout Button -->
+      <ion-grid style="margin-bottom: 30px">
+        <ion-row>
+          <ion-col>
+            <div style="float: left">
+              <table style="width: 100%">
+                <tr>
+                  <td>
+                    <ion-img
+                      src="../../assets/icon/tabs-home/tabshome-iconUser.png"
+                      style="width: 30px; height: 30px"
+                    ></ion-img>
+                  </td>
+                  <td>
+                    <a (click)="cekidot()">
+                      <p style="color: #ffffff; margin-left: 15px">
+                        Hallo, Rizqi
+                      </p>
+                    </a>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </ion-col>
+          <ion-col>
+            <div style="float: right">
+              <!-- <ion-button (click)="onLogout()" routerDirection="forward" style="width: 100%; height: 50px; background-color:  #1A72F8;  color:white; font-size: small; border-radius: 10px;">
+             Logout
+             <ion-icon name="log-in"></ion-icon>
+           </ion-button> -->
+
+              <table style="width: 100%">
+                <tr>
+                  <td>
+                    <p>
+                      <a
+                        (click)="onSignOut()"
+                        routerLink="/signin"
+                        routerDirection="forward"
+                        style="
+                          color: #ffffff;
+                          margin-right: 15px;
+                          text-decoration: none;
+                        "
+                      >
+                        Logout
+                      </a>
+                    </p>
+                  </td>
+                  <td>
+                    <a
+                      (click)="onSignOut()"
+                      routerLink="/signin"
+                      routerDirection="forward"
+                    >
+                      <ion-img
+                        src="../../assets/icon/tabs-home/tabshome-iconLogout.png"
+                        style="width: 30px; height: 30px"
+                      ></ion-img>
+                    </a>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <!-- End: Userlogin & Logout Button -->
+
+      <!-- Start: Saldo, Point, & Promo -->
+      <ion-grid>
+        <ion-row>
+          <ion-col style="text-align: center">
+            <ion-img
+              src="../../assets/icon/tabs-home/tabshome-iconSaldo.png"
+              style="
+                width: 25px;
+                height: 25px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-bottom: 10px;
+              "
+            ></ion-img>
+            <ion-label style="color: #ffffff; font-size: small">
+              Saldo </ion-label
+            ><br />
+            <ion-label style="color: #ffffff; font-size: small">
+              <b>Rp. 28.000</b>
+            </ion-label>
+          </ion-col>
+          <ion-col style="text-align: center">
+            <ion-img
+              src="../../assets/icon/tabs-home/tabshome-iconPoint.png"
+              style="
+                width: 25px;
+                height: 25px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-bottom: 10px;
+              "
+            ></ion-img>
+            <ion-label style="color: #ffffff; font-size: small">
+              point </ion-label
+            ><br />
+            <ion-label style="color: #ffffff; font-size: small">
+              <b>3.250</b>
+            </ion-label>
+          </ion-col>
+          <ion-col style="text-align: center">
+            <ion-img
+              src="../../assets/icon/tabs-home/tabshome-iconPromo.png"
+              style="
+                width: 25px;
+                height: 25px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-bottom: 10px;
+              "
+            ></ion-img>
+            <ion-label style="color: #ffffff; font-size: small">
+              Promo
+            </ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <!-- End: Saldo, Point, & Promo -->
+    </div>
+    <!-- End: Content Fixed Position -->
+  </div>
+  <!-- Start: Pembungkus Content Fixed Posisition -->
+
+  <!-- Start: Div Penyambung Antara Header dan Body -->
+  <div style="width: 100%; height: 80px; background-color: #1a72f8"></div>
+  <!-- End: Div Penyambung Antara Content Fixed Position dan Content Inti -->
+
+  <!-- Start: Div Content Inti -->
+  <div
+    style="
+      width: 100%;
+      height: 200px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: -70px;
+    "
+  >
+    <!-- Start: Content Inti | Menu -->
+    <div
+      style="
+        overflow: hidden;
+        margin: 10px 20px 10px 20px;
+        border-radius: 10px;
+        background-color: #ffffff;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+          0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        border-radius: 10px;
+      "
+    >
+      <ion-grid style="padding: 10px 10px 10px 10px">
+        <ion-row style="margin-bottom: 10px">
+          <ion-col style="text-align: center">
+            <a
+              routerLink="/order-grooming"
+              routerDirection="forward"
+              style="text-decoration: none"
+            >
+              <ion-img
+                style="width: 30px; height: 30px; margin: auto"
+                src="../../assets/icon/dashboard-menuItem-grooming-icon.png"
+              ></ion-img>
+              <span style="font-size: 10px; color: #666666">
+                Pet Grooming
+              </span>
+            </a>
+          </ion-col>
+          <ion-col style="text-align: center">
+            <a
+              routerLink="/order-grooming"
+              routerDirection="forward"
+              style="text-decoration: none"
+            >
+              <ion-img
+                style="width: 30px; height: 30px; margin: auto"
+                src="../../assets/icon/dashboard-menuItem-food-icon.png"
+              ></ion-img>
+              <span style="font-size: 10px; color: #666666"> Pet Food </span>
+            </a>
+          </ion-col>
+          <ion-col style="text-align: center">
+            <a
+              routerLink="/order-grooming"
+              routerDirection="forward"
+              style="text-decoration: none"
+            >
+              <ion-img
+                style="width: 30px; height: 30px; margin: auto"
+                src="../../assets/icon/dashboard-menuItem-cagecleaning-icon.png"
+              ></ion-img>
+              <span style="font-size: 10px; color: #666666">
+                Cage Cleaning
+              </span>
+            </a>
+          </ion-col>
+          <ion-col style="text-align: center">
+            <a
+              routerLink="/order-grooming"
+              routerDirection="forward"
+              style="text-decoration: none"
+            >
+              <ion-img
+                style="width: 30px; height: 30px; margin: auto"
+                src="../../assets/icon/dashboard-menuItem-clinic-icon.png"
+              ></ion-img>
+              <span style="font-size: 10px; color: #666666"> Pet Clinic </span>
+            </a>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col style="text-align: center">
+            <a
+              routerLink="/order-grooming"
+              routerDirection="forward"
+              style="text-decoration: none"
+            >
+              <ion-img
+                style="width: 30px; height: 30px; margin: auto"
+                src="../../assets/icon/dashboard-menuItem-pacak-icon.png"
+              ></ion-img>
+              <span style="font-size: 10px; color: #666666"> Pet Pacak </span>
+            </a>
+          </ion-col>
+          <ion-col style="text-align: center">
+            <a
+              routerLink="/order-grooming"
+              routerDirection="forward"
+              style="text-decoration: none"
+            >
+              <ion-img
+                style="width: 30px; height: 30px; margin: auto"
+                src="../../assets/icon/dashboard-menuItem-competition-icon.png"
+              ></ion-img>
+              <span style="font-size: 10px; color: #666666">
+                Pet Competition
+              </span>
+            </a>
+          </ion-col>
+          <ion-col style="text-align: center">
+            <a
+              routerLink="/order-grooming"
+              routerDirection="forward"
+              style="text-decoration: none"
+            >
+              <ion-img
+                style="width: 30px; height: 30px; margin: auto"
+                src="../../assets/icon/dashboard-menuItem-marketplace-icon.png"
+              ></ion-img>
+              <span style="font-size: 10px; color: #666666">
+                Pet Marketplace
+              </span>
+            </a>
+          </ion-col>
+          <ion-col style="text-align: center"> </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <!-- End: Content Inti | Menu -->
+
+    <!-- Start: Content Inti | Berita - 1 -->
+    <div
+      style="width: 100%; overflow: hidden; margin-top: 20px; overflow: hidden"
+    >
+      <div class="ion-padding" style="margin-bottom: 20px">
+        <h3>Promo #MandiKutu</h3>
+        <p style="font-size: small; color: gray; text-align: justify">
+          Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry.
+        </p>
+        <div
+          style="
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+              0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            border-radius: 10px;
+            height: 150px;
+            width: 100%;
+          "
+        >
+          <img
+            src="assets/icon/tabs-home/tabshome-bannerPromo3.png"
+            alt="banner"
+            style="
+              object-fit: contain;
+              width: 95%;
+              height: 100%;
+              margin-left: 5px;
+            "
+          />
+        </div>
+        <p
+          style="
+            font-size: small;
+            color: gray;
+            text-align: justify;
+            float: right;
+          "
+        >
+          <a
+            routerLink="/order-grooming"
+            routerDirection="forward"
+            style="text-decoration: none"
+            >Ambil Promonya</a
+          >
+        </p>
+      </div>
+
+      <div class="ion-padding" style="margin-bottom: 20px">
+        <h3>Promo #SenenKamis</h3>
+        <p style="font-size: small; color: gray; text-align: justify">
+          Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry.
+        </p>
+        <div
+          style="
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+              0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            border-radius: 10px;
+            height: 150px;
+            width: 100%;
+          "
+        >
+          <img
+            src="assets/icon/tabs-home/tabshome-bannerPromo4.png"
+            alt="banner"
+            style="
+              object-fit: contain;
+              width: 95%;
+              height: 100%;
+              margin-left: 5px;
+            "
+          />
+        </div>
+        <p
+          style="
+            font-size: small;
+            color: gray;
+            text-align: justify;
+            float: right;
+          "
+        >
+          <a
+            routerLink="/order-grooming"
+            routerDirection="forward"
+            style="text-decoration: none"
+            >Ambil Promonya</a
+          >
+        </p>
+      </div>
+    </div>
+    <!-- End: Content Inti | Berita - 1 -->
+
+    <!-- Start: Content Inti | Berita - 2 -->
+    <div
+      style="
+        width: 100%;
+        height: 200px;
+        margin-top: 20px;
+        background-color: rgb(245, 245, 245);
+        overflow: hidden;
+      "
+    >
+      <div class="ion-padding" style="margin-bottom: 20px">
+        <h3>Info Terkini</h3>
+        <p style="font-size: medium; color: gray; text-align: justify">
+          Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry. Lorem Ipsum has been the industry's standard dummy text ever
+          since the 1500s, when an unknown printer took a galley of type and
+          scrambled it to make a type specimen book
+        </p>
+      </div>
+    </div>
+    <!-- End: Content Inti | Berita - 2 -->
+    <div style="width: 100%; overflow: hidden; background-color: #ffffff">
+      <p style="font-size: small; color: black; text-align: center">
+        Powered by Wawa-Petpy &copy; 2021
+      </p>
+    </div>
+  </div>
+  <!-- End: Div Content Inti -->
+</ion-content>
