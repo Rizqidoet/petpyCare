@@ -130,6 +130,7 @@ export class SigninPage {
   apiKey = null;
   apiSc = null;
   apiPd = [];
+  userName = null;
 
   async signupReg(userInfo) {
     console.log('Pinging Server');
@@ -156,8 +157,9 @@ export class SigninPage {
         this.apiKey = response['message']['api_key'];
         this.apiSc = response['message']['api_secret'];
         this.apiPd = response['message']['products'];
+        this.userName = response['full_name'];
         console.log('products = ', this.apiPd);
-        this.addItem(this.apiKey, this.apiSc, this.apiPd);
+        this.addItem(this.apiKey, this.apiSc, this.apiPd, this.userName);
         this.showToast('Login Success, welcome ' + response['full_name']);
         this.router.navigateByUrl('/home');
       },
@@ -172,10 +174,11 @@ export class SigninPage {
   items: Item[] = [];
   newItem: Item = <Item>{};
 
-  addItem(apiKey, apiSc, apiPd) {
+  addItem(apiKey, apiSc, apiPd, userName) {
     this.newItem.apiKey = apiKey;
     this.newItem.apiSc = apiSc;
     this.newItem.apiPd = apiPd;
+    this.newItem.userName = userName;
 
     this.storageService.addItem(this.newItem).then((item) => {
       this.newItem = <Item>{};

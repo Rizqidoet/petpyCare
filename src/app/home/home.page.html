@@ -18,7 +18,7 @@
                   <td>
                     <a (click)="cekidot()">
                       <p style="color: #ffffff; margin-left: 15px; font-size: small;">
-                        Hallo, Rizqi
+                        Hallo, {{ userName }}
                       </p>
                     </a>
                   </td>
@@ -182,44 +182,97 @@
       </div> 
 
       <!-- Start: div menu apps -->
-      <div style="display: flex; flex-direction: column; width: 100%; background-color: #1a72f8" class="ion-padding">
-        
-        <!-- Start: sevice dog menu -->
-        <div style="width: 100%; margin-bottom: 10px;">
-          <ion-item
-            style="border-radius: 10px;"
-            button
-            detail
-          >
-            <ion-thumbnail slot="start" style="width: 35px; height: 35px;">
-              <img src="https://img.icons8.com/fluent/48/000000/groomig.png" />
-            </ion-thumbnail>
-            <ion-label class="ion-text-wrap">
-              <h5 style="font-size: small;">Service Dog</h5>
-              <p style="color: gray; font-size: x-small;">take this service now</p>
-            </ion-label>
+      <div style="display: flex; flex-direction: row; justify-content: space-around; width: 100%; background-color: #1a72f8" class="ion-padding">
+                
+        <!-- <div>
+          <ion-item style="border-radius: 10px;" button>
+            <div style="height: 130px; width: 130px; display: flex; justify-content: center; align-items: center;">
+              <ion-thumbnail slot="start" style="object-fit: fill; width: 50px; height: 60%;">
+                <img src="https://img.icons8.com/fluent/48/000000/groomig.png" />
+              </ion-thumbnail>
+            </div>
           </ion-item>
+          <ion-label class="ion-text-wrap" style="text-align: center;">
+            <h5 style="color: white; font-size: small; margin-top: 5px;">Service Dog</h5>
+            <p style="color: white; font-size: x-small; margin-top: -5px;">take this service now</p>
+          </ion-label>
         </div>
-        <!-- End: sevice dog menu -->
 
-        <!-- Start: sevice cat menu -->
-        <div style="width: 100%;">
-          <ion-item
-            style="border-radius: 10px;"
-            button
-            detail
-          >
-            <ion-thumbnail slot="start" style="width: 35px; height: 35px;">
-              <img src="https://img.icons8.com/fluent/48/000000/groomig.png" />
-            </ion-thumbnail>
-            <ion-label class="ion-text-wrap">
-              <h5 style="font-size: small;">Service Cat</h5>
-              <p style="color: gray; font-size: x-small;">take this service now</p>
-            </ion-label>
+        <div>
+          <ion-item style="border-radius: 10px;" button>
+            <div style="height: 130px; width: 130px; display: flex; justify-content: center; align-items: center;">
+              <ion-thumbnail slot="start" style="object-fit: fill; width: 50px; height: 60%;">
+                <img src="https://img.icons8.com/fluent/48/000000/groomig.png" />
+              </ion-thumbnail>
+            </div>
           </ion-item>
-        </div>
-        <!-- End: sevice dog menu -->
+          <ion-label class="ion-text-wrap" style="text-align: center;">
+            <h5 style="color: white; font-size: small; margin-top: 5px;">Service Cat</h5>
+            <p style="color: white; font-size: x-small; margin-top: -5px;">take this service now</p>
+          </ion-label>
+        </div> -->
+        <ion-slides>
+          <ion-slide>
+            <a routerLink="/signin" routerDirection="forward" style="text-decoration: none;">
+              <div style="text-align: left;">
+                <ion-card>
+                  <img src="../../assets/icon/welcome-slider-1.png"/>
+                  <ion-card-header>
+                    <ion-card-title style="font-size: smaller;">Service Dog</ion-card-title>
+                  </ion-card-header>
+                  <ion-card-content style="font-size: x-small;">
+                    take this service now
+                  </ion-card-content>
+                </ion-card>
+              </div>
+            </a>
 
+            <a routerLink="/signin" routerDirection="forward" style="text-decoration: none;">
+              <div style="text-align: left;">
+                <ion-card>
+                  <img src="../../assets/icon/welcome-slider-1.png"/>
+                  <ion-card-header>
+                    <ion-card-title style="font-size: smaller;">Service Dog</ion-card-title>
+                  </ion-card-header>
+                  <ion-card-content style="font-size: x-small;">
+                    take this service now
+                  </ion-card-content>
+                </ion-card>
+              </div>
+            </a>
+          </ion-slide>
+
+          <ion-slide>
+            <a routerLink="/signin" routerDirection="forward" style="text-decoration: none;">
+              <div style="text-align: left;">
+                <ion-card>
+                  <img src="../../assets/icon/welcome-slider-1.png"/>
+                  <ion-card-header>
+                    <ion-card-title style="font-size: smaller;">Service Dog</ion-card-title>
+                  </ion-card-header>
+                  <ion-card-content style="font-size: x-small;">
+                    take this service now
+                  </ion-card-content>
+                </ion-card>
+              </div>
+            </a>
+
+            <a routerLink="/signin" routerDirection="forward" style="text-decoration: none;">
+              <div style="text-align: left;">
+                <ion-card>
+                  <img src="../../assets/icon/welcome-slider-1.png"/>
+                  <ion-card-header>
+                    <ion-card-title style="font-size: smaller;">Service Dog</ion-card-title>
+                  </ion-card-header>
+                  <ion-card-content style="font-size: x-small;">
+                    take this service now
+                  </ion-card-content>
+                </ion-card>
+              </div>
+            </a>
+          </ion-slide>
+          
+        </ion-slides>
       </div>
       <!-- End: div menu apps -->
 
@@ -330,8 +383,8 @@
 
     <!-- Start: footer -->
     <div style="width: 100%; overflow: hidden; background-color: #1a72f8">
-      <p style="font-size: x-small; color: black; text-align: center">
-        Powered by petpy-care &copy; 2021
+      <p style="font-size: x-small; color: white; text-align: center">
+        &copy; powered by petpy-care 2021
       </p>
     </div>
     <!-- End: footer -->

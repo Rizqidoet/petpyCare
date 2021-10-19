@@ -18,6 +18,7 @@ export class HomePage {
   ) {
     this.platform.ready().then(() => {
       this.loadItems();
+
     });
   }
   async showAlert(header: string, message: string) {
@@ -29,28 +30,35 @@ export class HomePage {
 
     await alert.present();
   }
+  items: Item[] = [];
 
+  userName :String="";
   async ngOnInit() {
     // If using a custom driver:
     // await this.storage.defineDriver(MyCustomDriver)
     await this.storage.create();
   }
 
-  items: Item[] = [];
+  
 
   loadItems() {
+    console.log("Loading an items");
     this.storageService.getItems().then((items) => {
+      console.log("getting an items",items['0']['userName']);
       this.items = items;
+      this.userName = items['0']['userName'];
+      //console.log("Isi Username = ", this.userName);
     });
   }
 
   cekidot() {
     this.loadItems();
-    console.log('klik', this.items['0']['apiPd']);
+    console.log('klik', this.items);
+    
     var a = this.items['0']['apiPd'];
     var ab = a['10'];
     console.log(ab);
-
+    
     this.showAlert('Login Success', 'Api Product Ke 10 =  ' + ab['item_code']);
   }
 

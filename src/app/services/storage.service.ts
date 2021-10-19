@@ -5,6 +5,7 @@ export interface Item {
   apiKey: string;
   apiSc: string;
   apiPd: [];
+  userName: string;
 }
 
 const ITEMS_KEY = 'my-items';
