@@ -1,25 +1,33 @@
 import { Component } from '@angular/core';
 import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
-import { Item, StorageService } from '../services/storage.service';
-import { Storage } from '@ionic/storage-angular';
 import { Platform, ToastController, AlertController } from '@ionic/angular';
+import { Storage } from '@capacitor/storage';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
-  constructor(
-    private storage: Storage,
-    private storageService: StorageService,
-    private platform: Platform,
-    public alertController: AlertController
-  ) {
-    this.platform.ready().then(() => {
-      this.loadItems();
 
-    });
+
+export class HomePage {
+
+  apiKey = null;
+  apiSc = null;
+  apiPd = null;
+  userName = null;
+
+  constructor(
+    private platform: Platform,
+    public alertController: AlertController,
+    private router: Router,
+  ) {
+
+    this.getDataLS("apiKey");
+    this.getDataLS("apiSc");
+    this.getDataLS("apiPd");
+    this.getDataLS("userName");
   }
   async showAlert(header: string, message: string) {
     const alert = await this.alertController.create({
@@ -30,40 +38,35 @@ export class HomePage {
 
     await alert.present();
   }
-  items: Item[] = [];
-
-  userName :String="";
-  async ngOnInit() {
-    // If using a custom driver:
-    // await this.storage.defineDriver(MyCustomDriver)
-    await this.storage.create();
-  }
 
   
-
-  loadItems() {
-    console.log("Loading an items");
-    this.storageService.getItems().then((items) => {
-      console.log("getting an items",items['0']['userName']);
-      this.items = items;
-      this.userName = items['0']['userName'];
-      //console.log("Isi Username = ", this.userName);
-    });
+  async getDataLS(dataKey){
+    const { value } = await Storage.get({ key: dataKey });
+    if(dataKey==="apiKey"){
+      this.apiKey = value;
+    }else if(dataKey==="apiSc"){
+      this.apiSc = value;
+    }else if(dataKey==="apiPd"){
+      this.apiPd = value;
+    }else if(dataKey==="userName"){
+      this.userName = value;
+    }
   }
 
-  cekidot() {
-    this.loadItems();
-    console.log('klik', this.items);
-    
-    var a = this.items['0']['apiPd'];
-    var ab = a['10'];
-    console.log(ab);
-    
-    this.showAlert('Login Success', 'Api Product Ke 10 =  ' + ab['item_code']);
-  }
-
-  async onSignOut() {
-    await GoogleAuth.signOut();
+  async logOff() {
+    console.log("Signout ...");
+    await GoogleAuth.signOut;
+    this.removeDataLS("apiKey",this.apiKey);
+    this.removeDataLS("apiSc",this.apiSc);
+    this.removeDataLS("apiPd",this.apiPd);
+    this.removeDataLS("userName", this.userName);
+    this.router.navigateByUrl('/signin');
     //this.username = "";
   }
+
+  async removeDataLS(dataKey,dataValue){
+    await Storage.remove({ 
+      key: dataKey,
+    });
+  };
 }

@@ -1,5 +1,5 @@
 <ion-content>
-  <div style="display: flex; flex-direction: column; position: fixed; height: 250px; width: 100%; z-index: 1; background-color: #1a72f8; border-radius: 10px;">
+  <div style="display: flex; flex-direction: column; position: fixed; height: 280px; width: 100%; z-index: 1; background-color: #1a72f8; border-radius: 20px;">
     <div style="display: flex; flex-direction: row; justify-content: space-between;" class="ion-padding">
       <div style="justify-content: left;">
         <a routerLink="/home" routerDirection="forward">
@@ -9,21 +9,14 @@
       <div></div>
     </div>
 
-    <div style="display: flex; width: 100%; text-align: center; justify-content: center; align-items: center; margin-top: 50px;">
-      <ion-label>
-        <h3 style="font-family: Georgia, 'Times New Roman', Times, serif; font-size: xx-large; color: white;">
-          Order - Service Cat 
-        </h3>
-        <h5 style="font-family: Georgia, 'Times New Roman', Times, serif; font-size: x-small; color: white;">
-          by petpy-care
-        </h5>
-      </ion-label>
+    <div style="display: flex; width: 100%; height: 190px; text-align: center; justify-content: center; align-items: center;">
+      <ion-img src="../../assets/icon/service-header-package.png" style="width: 100%; height: 100%"></ion-img>
     </div>
   </div> 
 
-  <div style="display: flex; flex-direction: column; position: relative; width: 100%; height: 600px; z-index: -1; border-radius: 10px;" class="ion-padding">
-    <div style="margin-top: 250px;">
-      <ion-label>
+  <div style="display: flex; flex-direction: column; position: relative; width: 100%; height: 800px; z-index: -1; border-radius: 20px; background-color: white;" class="ion-padding">
+    <div style="margin-top: 280px;">
+      <ion-label (click)="cekidot()">
         <h5 style="font-family: Georgia, 'Times New Roman', Times, serif; font-size: medium; color: black;">
           Choose your package : 
         </h5>
@@ -36,6 +29,7 @@
         style="border-radius: 10px;"
         button
         detail
+        *ngFor="let item of listProducts"
         routerLink="/order-grooming"
         routerDirection="forward"
       >
@@ -43,128 +37,8 @@
           <img src="https://img.icons8.com/fluent/48/000000/groomig.png" />
         </ion-thumbnail>
         <ion-label class="ion-text-wrap">
-          <h5 style="font-size: small;">Service Cat</h5>
-          <p style="color: gray; font-size: x-small;">take this service now</p>
-        </ion-label>
-      </ion-item>
-    </div>
-    <!-- End: sevice cat menu -->
-
-    <!-- Start: sevice cat menu -->
-    <div style="width: 100%; margin-top: 10px;">
-      <ion-item
-        style="border-radius: 10px;"
-        button
-        detail
-        routerLink="/order-grooming"
-        routerDirection="forward"
-      >
-        <ion-thumbnail slot="start" style="width: 35px; height: 35px;">
-          <img src="https://img.icons8.com/fluent/48/000000/groomig.png" />
-        </ion-thumbnail>
-        <ion-label class="ion-text-wrap">
-          <h5 style="font-size: small;">Service Cat</h5>
-          <p style="color: gray; font-size: x-small;">take this service now</p>
-        </ion-label>
-      </ion-item>
-    </div>
-    <!-- End: sevice cat menu -->
-
-    <!-- Start: sevice cat menu -->
-    <div style="width: 100%; margin-top: 10px;">
-      <ion-item
-        style="border-radius: 10px;"
-        button
-        detail
-        routerLink="/order-grooming"
-        routerDirection="forward"
-      >
-        <ion-thumbnail slot="start" style="width: 35px; height: 35px;">
-          <img src="https://img.icons8.com/fluent/48/000000/groomig.png" />
-        </ion-thumbnail>
-        <ion-label class="ion-text-wrap">
-          <h5 style="font-size: small;">Service Cat</h5>
-          <p style="color: gray; font-size: x-small;">take this service now</p>
-        </ion-label>
-      </ion-item>
-    </div>
-    <!-- End: sevice cat menu -->
-
-    <!-- Start: sevice cat menu -->
-    <div style="width: 100%; margin-top: 10px;">
-      <ion-item
-        style="border-radius: 10px;"
-        button
-        detail
-        routerLink="/order-grooming"
-        routerDirection="forward"
-      >
-        <ion-thumbnail slot="start" style="width: 35px; height: 35px;">
-          <img src="https://img.icons8.com/fluent/48/000000/groomig.png" />
-        </ion-thumbnail>
-        <ion-label class="ion-text-wrap">
-          <h5 style="font-size: small;">Service Cat</h5>
-          <p style="color: gray; font-size: x-small;">take this service now</p>
-        </ion-label>
-      </ion-item>
-    </div>
-    <!-- End: sevice cat menu -->
-
-    <!-- Start: sevice cat menu -->
-    <div style="width: 100%; margin-top: 10px;">
-      <ion-item
-        style="border-radius: 10px;"
-        button
-        detail
-        routerLink="/order-grooming"
-        routerDirection="forward"
-      >
-        <ion-thumbnail slot="start" style="width: 35px; height: 35px;">
-          <img src="https://img.icons8.com/fluent/48/000000/groomig.png" />
-        </ion-thumbnail>
-        <ion-label class="ion-text-wrap">
-          <h5 style="font-size: small;">Service Cat</h5>
-          <p style="color: gray; font-size: x-small;">take this service now</p>
-        </ion-label>
-      </ion-item>
-    </div>
-    <!-- End: sevice cat menu -->
-
-    <!-- Start: sevice cat menu -->
-    <div style="width: 100%; margin-top: 10px;">
-      <ion-item
-        style="border-radius: 10px;"
-        button
-        detail
-        routerLink="/order-grooming"
-        routerDirection="forward"
-      >
-        <ion-thumbnail slot="start" style="width: 35px; height: 35px;">
-          <img src="https://img.icons8.com/fluent/48/000000/groomig.png" />
-        </ion-thumbnail>
-        <ion-label class="ion-text-wrap">
-          <h5 style="font-size: small;">Service Cat</h5>
-          <p style="color: gray; font-size: x-small;">take this service now</p>
-        </ion-label>
-      </ion-item>
-    </div>
-    <!-- End: sevice cat menu -->
-
-    <!-- Start: sevice cat menu -->
-    <div style="width: 100%; margin-top: 10px;">
-      <ion-item
-        style="border-radius: 10px;"
-        button
-        detail
-        routerLink="/order-grooming"
-        routerDirection="forward"
-      >
-        <ion-thumbnail slot="start" style="width: 35px; height: 35px;">
-          <img src="https://img.icons8.com/fluent/48/000000/groomig.png" />
-        </ion-thumbnail>
-        <ion-label class="ion-text-wrap">
-          <h5 style="font-size: small;">Service Cat</h5>
-          <p style="color: gray; font-size: x-small;">take this service now</p>
+          <h5 style="font-size: small;">{{ item.item_name }}</h5>
+          <p style="color: gray; font-size: x-small;">{{ item.description }}</p>
         </ion-label>
       </ion-item>
     </div>
