@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./landing.page.scss'],
 })
 export class LandingPage implements OnInit {
+  slideOpts = {
+    initialSlide: 1,
+    speed: 400,
+  };
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
