@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 import { Platform, ToastController, AlertController } from '@ionic/angular';
-import { Storage } from '@capacitor/storage';
 import { Router } from '@angular/router';
 import { StorageCapService } from '../../app/services/storage-cap.service';
+import { Storage } from '@capacitor/storage';
 
 @Component({
   selector: 'app-home',
@@ -76,20 +76,8 @@ export class HomePage implements OnInit {
   //   }
   // }
 
-  async logOff() {
-    console.log('Signout ...');
-    await GoogleAuth.signOut;
-    this.removeDataLS('apiKey', this.apiKey);
-    this.removeDataLS('apiSc', this.apiSc);
-    //this.removeDataLS('apiPd', this.apiPd);
-    this.removeDataLS('userName', this.userName);
+  clearStorage() {
+    this.storage.clear();
     this.router.navigateByUrl('/signin');
-    //this.username = "";
-  }
-
-  async removeDataLS(dataKey, dataValue) {
-    await Storage.remove({
-      key: dataKey,
-    });
   }
 }

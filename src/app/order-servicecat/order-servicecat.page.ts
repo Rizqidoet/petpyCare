@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Item, StorageService } from '../services/storage.service';
-import { Storage } from '@ionic/storage-angular';
 import { Platform, ToastController, AlertController } from '@ionic/angular';
+import { StorageCapService } from '../../app/services/storage-cap.service';
+import { Storage } from '@capacitor/storage';
 
 
 @Component({
@@ -10,20 +10,29 @@ import { Platform, ToastController, AlertController } from '@ionic/angular';
   styleUrls: ['./order-servicecat.page.scss'],
 })
 export class OrderServicecatPage implements OnInit {
-  items: Item[] = [];
-  listProducts = null;
-  
+  apiProduct = {
+    apiProductCode: '',
+    apiProductName: '',
+    apiProductGroup: '',
+    apiProductDesc: '',
+  };
+  listProducts = [];
+  userName: string;
+  storageName: string;
+  apiKey: string;
+  apiSc: string;
+  apiProductCode: string;
+  apiProductName: string;
+  apiProductGroup: string;
+  apiProductDesc: string;
 
   constructor(
-    private storage: Storage,
-    private storageService: StorageService,
+    
     private platform: Platform,
-    public alertController: AlertController
+    public alertController: AlertController,
+    private storage: StorageCapService
   ) { 
 
-    this.platform.ready().then(() => {
-      this.loadItems();
-    });
   }
 
   async showAlert(header: string, message: string) {
@@ -36,26 +45,17 @@ export class OrderServicecatPage implements OnInit {
     await alert.present();
   }
 
-
-
   async ngOnInit() {
-    await this.storage.create();
-    this.loadItems();
+    this.getStorage();
   }
 
-  loadItems() {
-    this.storageService.getItems().then((items) => {
-      this.items = items;
+  getStorage() {
+    this.storage.getObject('apiProduct').then((data: any) => {
+      this.apiProduct = data;
+      this.listProducts = this.apiProduct['products'];
+      console.log("Malakubdren = ", this.listProducts);
     });
-  }
-  cekidot() {
-    this.loadItems();
-    //console.log('klik', this.items['0']['apiPd']);
-    this.listProducts = this.items['0']['apiPd'];
-    var listCat = this.listProducts ['item_group'];
-    console.log("Iyaaa ", this.listProducts);
-    console.log("Iyaaa ", listCat);
-
+    
   }
 
 }

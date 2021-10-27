@@ -25,7 +25,7 @@
                     ></ion-img>
                   </td>
                   <td>
-                    <a (click)="cekidot()">
+                    <a>
                       <p
                         style="
                           color: #ffffff;
@@ -33,7 +33,7 @@
                           font-size: small;
                         "
                       >
-                        Hallo, {{ userName }} || {{ apiKey }} || {{ apiSc }}
+                        Hallo, {{ userName }}
                       </p>
                     </a>
                   </td>
@@ -54,7 +54,7 @@
                   <td>
                     <p style="font-size: small">
                       <a
-                        (click)="logOff()"
+                        (click)="clearStorage()"
                         style="
                           color: #ffffff;
                           margin-right: 15px;
@@ -66,7 +66,7 @@
                     </p>
                   </td>
                   <td>
-                    <a (click)="logOff()">
+                    <a (click)="clearStorage()">
                       <ion-img
                         src="../../assets/icon/tabs-home/tabshome-iconLogout.png"
                         style="width: 30px; height: 30px"

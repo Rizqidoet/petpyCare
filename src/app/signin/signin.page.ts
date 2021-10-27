@@ -105,33 +105,15 @@ export class SigninPage {
         var a = response['message']['products'].length;
         console.log('lenght a = ', a);
 
-        for (let i = 0; i < a; i++) {
           this.userName = response['full_name'];
           this.apiKey = response['message']['api_key'];
           this.apiSc = response['message']['api_secret'];
-          // this.apiProductCode = response['message']['products'][i]['item_code'];
-          // this.apiProductName = response['message']['products'][i]['item_name'];
-          // this.apiProductGroup =
-          //   response['message']['products'][i]['item_group'];
-          // this.apiProductDesc =
-          //   response['message']['products'][i]['description'];
-
-          //console.log('item code  = ', this.userName);
-          // console.log('item name  = ', this.apiProductName);
-          // console.log('item group  = ', this.apiProductGroup);
-          // console.log('item desc  = ', this.apiProductDesc);
-
-          this.setDataLS(
-            this.userName,
-            this.apiKey,
-            this.apiSc,
-            this.apiProductCode,
-            this.apiProductName,
-            this.apiProductGroup,
-            this.apiProductDesc
-          );
-        }
-
+          this.storage.setString('userName', this.userName);
+          this.storage.setString('apiKey', this.apiKey);
+          this.storage.setString('apiSc', this.apiSc);
+          this.storage.setObject('apiProduct', {
+            products : response['message']['products']
+          });
         this.router.navigate(['/home']);
       },
       (error) => {
@@ -153,12 +135,12 @@ export class SigninPage {
     this.storage.setString('userName', this.userName);
     this.storage.setString('apiKey', this.apiKey);
     this.storage.setString('apiSc', this.apiSc);
-    // this.storage.setObject('apiProduct', {
-    //   apiProductCode: this.apiProductCode,
-    //   apiProductName: this.apiProductName,
-    //   apiProductGroup: this.apiProductGroup,
-    //   apiProductDesc: this.apiProductDesc,
-    // });
+    this.storage.setObject('apiProduct', {
+      apiProductCode: this.apiProductCode,
+      apiProductName: this.apiProductName,
+      apiProductGroup: this.apiProductGroup,
+      apiProductDesc: this.apiProductDesc,
+    });
   }
 
   //_______________________________________________________________________________________

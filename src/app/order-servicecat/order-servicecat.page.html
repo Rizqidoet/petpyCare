@@ -29,17 +29,17 @@
         style="border-radius: 10px;"
         button
         detail
-        *ngFor="let item of listProducts"
+        *ngFor="let listproduct of listProducts"
         routerLink="/order-grooming"
         routerDirection="forward"
       >
-        <ion-thumbnail slot="start" style="width: 35px; height: 35px;">
-          <img src="https://img.icons8.com/fluent/48/000000/groomig.png" />
-        </ion-thumbnail>
-        <ion-label class="ion-text-wrap">
-          <h5 style="font-size: small;">{{ item.item_name }}</h5>
-          <p style="color: gray; font-size: x-small;">{{ item.description }}</p>
-        </ion-label>
+      <ion-thumbnail slot="start" style="width: 35px; height: 35px;">
+        <img src="https://img.icons8.com/fluent/48/000000/groomig.png" />
+      </ion-thumbnail>
+      <ion-label class="ion-text-wrap">
+        <h5 style="font-size: x-small;">{{ listproduct.item_group }}</h5>
+        <p style="color: gray; font-size: x-small;">{{ listproduct.description }}</p>
+      </ion-label>
       </ion-item>
     </div>
     <!-- End: sevice cat menu -->
