@@ -1,8 +1,17 @@
 <ion-content :fullscreen="true">
-  <div style="display: flex; flex-direction: column; width: 100%; overflow: hidden;">
-    
+  <div
+    style="display: flex; flex-direction: column; width: 100%; overflow: hidden"
+  >
     <!-- Start: div header | username and lgout -->
-    <div style=" position: fixed; width: 100%; height: 80px; z-index: 1;background-color: #1a72f8">
+    <div
+      style="
+        position: fixed;
+        width: 100%;
+        height: 80px;
+        z-index: 1;
+        background-color: #1a72f8;
+      "
+    >
       <ion-grid style="margin-bottom: 30px" class="ion-padding">
         <ion-row>
           <ion-col>
@@ -17,13 +26,24 @@
                   </td>
                   <td>
                     <a (click)="cekidot()">
-                      <p style="color: #ffffff; margin-left: 15px; font-size: small;">
-                        Hallo, {{ userName }}
+                      <p
+                        style="
+                          color: #ffffff;
+                          margin-left: 15px;
+                          font-size: small;
+                        "
+                      >
+                        Hallo, {{ userName }} || {{ apiKey }} || {{ apiSc }}
                       </p>
                     </a>
                   </td>
                 </tr>
               </table>
+
+              <!-- <ion-item>
+                Get LocalStorage string name : {{ userName }} || {{ apiKey }} ||
+                {{ apiSc }}
+              </ion-item> -->
             </div>
           </ion-col>
 
@@ -32,7 +52,7 @@
               <table style="width: 100%">
                 <tr>
                   <td>
-                    <p style="font-size: small;">
+                    <p style="font-size: small">
                       <a
                         (click)="logOff()"
                         style="
@@ -46,9 +66,7 @@
                     </p>
                   </td>
                   <td>
-                    <a
-                      (click)="logOff()"
-                    >
+                    <a (click)="logOff()">
                       <ion-img
                         src="../../assets/icon/tabs-home/tabshome-iconLogout.png"
                         style="width: 30px; height: 30px"
@@ -60,25 +78,22 @@
             </div>
           </ion-col>
         </ion-row>
-      </ion-grid> 
+      </ion-grid>
     </div>
     <!-- Start: div header | username and lgout -->
 
     <!-- Start: div body | content -->
-    <div style="width: 100%; overflow: hidden; margin-bottom: 20px; z-index: 0;">
-
+    <div style="width: 100%; overflow: hidden; margin-bottom: 20px; z-index: 0">
       <!-- Start: div image rounded blue & info saldo, point, promo -->
       <div>
-
         <!-- start: div bg image rounded blue -->
-        <div style="width: 100%;margin-top: 70px; position: relative; z-index: -1;">
-          <ion-img
-            src="../../assets/icon/bg-home.png"
-          >
-          </ion-img>
+        <div
+          style="width: 100%; margin-top: 70px; position: relative; z-index: -1"
+        >
+          <ion-img src="../../assets/icon/bg-home.png"> </ion-img>
         </div>
         <!-- start: div bg image rounded blue -->
-        
+
         <!-- Start: div bg putih pembungkus saldo, point, promo -->
         <div
           style="
@@ -97,8 +112,7 @@
         >
           <!-- Start: div saldo -->
           <div>
-            <div style="text-align: center; margin-top: 10px;">
-              
+            <div style="text-align: center; margin-top: 10px">
               <ion-img
                 src="../../assets/icon/tabs-home/tabshome-iconSaldo-blue.png"
                 style="
@@ -121,8 +135,7 @@
 
           <!-- Start: div point -->
           <div>
-            <div style="text-align: center; margin-top: 10px;">
-              
+            <div style="text-align: center; margin-top: 10px">
               <ion-img
                 src="../../assets/icon/tabs-home/tabshome-iconPoint-blue.png"
                 style="
@@ -142,11 +155,10 @@
             </div>
           </div>
           <!-- Start: div point -->
-    
+
           <!-- Start: div promo -->
           <div>
-            <div style="text-align: center; margin-top: 10px;">
-              
+            <div style="text-align: center; margin-top: 10px">
               <ion-img
                 src="../../assets/icon/tabs-home/tabshome-iconPromo-blue.png"
                 style="
@@ -158,28 +170,33 @@
                 "
               ></ion-img>
               <ion-label style="color: #1a72f8; font-size: smaller">
-                Promo </ion-label
-              >
+                Promo
+              </ion-label>
             </div>
           </div>
           <!-- Start: div promo -->
-          
-        </div> 
+        </div>
         <!-- End: div bg putih pembungkus saldo, point, promo -->
-        
-        
       </div>
       <!-- End: div image rounded blue & info saldo, point, promo -->
 
-      <div class="ion-padding" style="margin-top: 20px;">
+      <div class="ion-padding" style="margin-top: 20px">
         <ion-label>
           <h3>available menu</h3>
         </ion-label>
-      </div> 
+      </div>
 
       <!-- Start: div menu apps -->
-      <div style="display: flex; flex-direction: row; justify-content: space-around; width: 100%; background-color: #1a72f8" class="ion-padding">
-                
+      <div
+        style="
+          display: flex;
+          flex-direction: row;
+          justify-content: space-around;
+          width: 100%;
+          background-color: #1a72f8;
+        "
+        class="ion-padding"
+      >
         <!-- <div>
           <ion-item style="border-radius: 10px;" button>
             <div style="height: 130px; width: 130px; display: flex; justify-content: center; align-items: center;">
@@ -240,42 +257,60 @@
           </ion-slide> -->
 
           <ion-slide>
-            <a routerLink="/order-servicecat" routerDirection="forward" style="text-decoration: none;">
-              <div style="text-align: left;">
-                <ion-card style="border-radius: 10px;">
-                  <img src="../../assets/icon/menu-cat.png"/>
+            <a
+              routerLink="/order-servicecat"
+              routerDirection="forward"
+              style="text-decoration: none"
+            >
+              <div style="text-align: left">
+                <ion-card style="border-radius: 10px">
+                  <img src="../../assets/icon/menu-cat.png" />
                   <ion-card-header>
-                    <ion-card-title style="font-size: smaller;">Service Cat</ion-card-title>
+                    <ion-card-title style="font-size: smaller"
+                      >Service Cat</ion-card-title
+                    >
                   </ion-card-header>
-                  <ion-card-content style="font-size: x-small;">
+                  <ion-card-content style="font-size: x-small">
                     take this service now
                   </ion-card-content>
                 </ion-card>
               </div>
             </a>
 
-            <a routerLink="/order-servicedog" routerDirection="forward" style="text-decoration: none;">
-              <div style="text-align: left;">
-                <ion-card style="border-radius: 10px;">
-                  <img src="../../assets/icon/menu-dog.png"/>
+            <a
+              routerLink="/order-servicedog"
+              routerDirection="forward"
+              style="text-decoration: none"
+            >
+              <div style="text-align: left">
+                <ion-card style="border-radius: 10px">
+                  <img src="../../assets/icon/menu-dog.png" />
                   <ion-card-header>
-                    <ion-card-title style="font-size: smaller;">Service Dog</ion-card-title>
+                    <ion-card-title style="font-size: smaller"
+                      >Service Dog</ion-card-title
+                    >
                   </ion-card-header>
-                  <ion-card-content style="font-size: x-small;">
+                  <ion-card-content style="font-size: x-small">
                     take this service now
                   </ion-card-content>
                 </ion-card>
               </div>
             </a>
           </ion-slide>
-          
         </ion-slides>
       </div>
       <!-- End: div menu apps -->
 
       <!-- Start: Content Inti | Berita - 1 -->
-      <div style="width: 100%; overflow: hidden; margin-top: 20px; overflow: hidden" class="ion-padding">
-
+      <div
+        style="
+          width: 100%;
+          overflow: hidden;
+          margin-top: 20px;
+          overflow: hidden;
+        "
+        class="ion-padding"
+      >
         <!-- Start: div mandi kutu -->
         <div>
           <div style="margin-bottom: 20px">
@@ -287,7 +322,7 @@
               </p>
             </ion-label>
           </div>
-  
+
           <div
             style="
               box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
@@ -301,16 +336,27 @@
               src="assets/icon/tabs-home/tabshome-bannerPromo3.png"
               alt="banner"
               style="
-              object-fit: contain;
-              width: 95%;
-              height: 100%;
-              margin-left: 5px;
+                object-fit: contain;
+                width: 95%;
+                height: 100%;
+                margin-left: 5px;
               "
             />
           </div>
 
-          <p style=" font-size: smaller; color: gray; text-align: justify; float: right;">
-            <a routerLink="/order-grooming" routerDirection="forward" style="text-decoration: none">
+          <p
+            style="
+              font-size: smaller;
+              color: gray;
+              text-align: justify;
+              float: right;
+            "
+          >
+            <a
+              routerLink="/order-grooming"
+              routerDirection="forward"
+              style="text-decoration: none"
+            >
               Ambil Promonya
             </a>
           </p>
@@ -318,7 +364,7 @@
         <!-- End: div mandi kutu -->
 
         <!-- Start: div senen kamis -->
-        <div style="margin-top: 50px;">
+        <div style="margin-top: 50px">
           <div style="margin-bottom: 20px">
             <ion-label>
               <h3>#Senen - Kamis</h3>
@@ -328,7 +374,7 @@
               </p>
             </ion-label>
           </div>
-  
+
           <div
             style="
               box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
@@ -342,39 +388,56 @@
               src="assets/icon/tabs-home/tabshome-bannerPromo4.png"
               alt="banner"
               style="
-              object-fit: contain;
-              width: 95%;
-              height: 100%;
-              margin-left: 5px;
+                object-fit: contain;
+                width: 95%;
+                height: 100%;
+                margin-left: 5px;
               "
             />
           </div>
-          
-          <p style=" font-size: smaller; color: gray; text-align: justify; float: right;">
-            <a routerLink="/order-grooming" routerDirection="forward" style="text-decoration: none">
+
+          <p
+            style="
+              font-size: smaller;
+              color: gray;
+              text-align: justify;
+              float: right;
+            "
+          >
+            <a
+              routerLink="/order-grooming"
+              routerDirection="forward"
+              style="text-decoration: none"
+            >
               Ambil Promonya
             </a>
           </p>
         </div>
         <!-- End: div senen kamis -->
-
       </div>
       <!-- End: Content Inti | Berita - 1 -->
 
       <!-- Start: Content Inti | Berita - 2 -->
-      <div style="width: 100%; height: 200px; margin-top: 20px; background-color: rgb(245, 245, 245); overflow: hidden;">
+      <div
+        style="
+          width: 100%;
+          height: 200px;
+          margin-top: 20px;
+          background-color: rgb(245, 245, 245);
+          overflow: hidden;
+        "
+      >
         <div class="ion-padding" style="margin-bottom: 20px">
           <h3>Info Terkini</h3>
           <p style="font-size: medium; color: gray; text-align: justify">
             Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text ever
-            since the 1500s, when an unknown printer took a galley of type and
-            scrambled it to make a type specimen book
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever since the 1500s, when an unknown printer took a galley of type
+            and scrambled it to make a type specimen book
           </p>
         </div>
       </div>
       <!-- End: Content Inti | Berita - 2 -->
-
     </div>
     <!-- End: div body |content -->
 

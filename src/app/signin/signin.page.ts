@@ -6,6 +6,7 @@ import { HttpParams, HttpHeaders, HttpClient } from '@angular/common/http';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 import { Storage } from '@capacitor/storage';
+import { StorageCapService } from '../../app/services/storage-cap.service';
 
 @Component({
   selector: 'app-signin',
@@ -14,6 +15,21 @@ import { Storage } from '@capacitor/storage';
 })
 export class SigninPage {
   isWeb: boolean;
+  userInfo = null;
+  apiProduct = {
+    apiProductCode: '',
+    apiProductName: '',
+    apiProductGroup: '',
+    apiProductDesc: '',
+  };
+  userName: string;
+  storageName: string;
+  apiKey: string;
+  apiSc: string;
+  apiProductCode: string;
+  apiProductName: string;
+  apiProductGroup: string;
+  apiProductDesc: string;
 
   constructor(
     private platform: Platform,
@@ -21,6 +37,7 @@ export class SigninPage {
     private router: Router,
     private http: HttpClient,
     private toastController: ToastController,
+    private storage: StorageCapService
   ) {
     this.isWeb = !this.platform.is('android') && !this.platform.is('ios');
     if (this.isWeb) {
@@ -29,11 +46,10 @@ export class SigninPage {
     } else {
       console.log('Is Web Platform :', this.isWeb);
     }
-
   }
 
   //_______________________________________________________________________________________
-  
+
   async showAlert(header: string, message: string) {
     const alert = await this.alertController.create({
       header,
@@ -59,8 +75,6 @@ export class SigninPage {
 
   //_______________________________________________________________________________________
 
-  userInfo = null;
-
   async onSignInGoogle() {
     let googleUser = await GoogleAuth.signIn();
     console.log('SIGNIN BERHASIL ---> Ini Isi GoogleUser = ', googleUser);
@@ -70,10 +84,6 @@ export class SigninPage {
   }
 
   //_______________________________________________________________________________________
-  apiKey = null;
-  apiSc = null;
-  apiPd = [];
-  userName = null;
 
   async callServer(userInfo) {
     console.log('Pinging Server');
@@ -88,40 +98,41 @@ export class SigninPage {
         //redirect_to: '/me',
       },
     });
-    
 
     this.http.post(url, params, { headers }).subscribe(
       (response) => {
         console.log(' KONEKSI KE SERVER BERHASIL --> Data Log :', response);
-        this.apiKey = response['message']['api_key'];
-        this.apiSc = response['message']['api_secret'];
-        this.apiPd = response['message']['products'];
-        this.userName = response['full_name'];
+        var a = response['message']['products'].length;
+        console.log('lenght a = ', a);
 
-        const a = this.apiPd.length;
-        console.log(this.apiPd,a);
+        for (let i = 0; i < a; i++) {
+          this.userName = response['full_name'];
+          this.apiKey = response['message']['api_key'];
+          this.apiSc = response['message']['api_secret'];
+          // this.apiProductCode = response['message']['products'][i]['item_code'];
+          // this.apiProductName = response['message']['products'][i]['item_name'];
+          // this.apiProductGroup =
+          //   response['message']['products'][i]['item_group'];
+          // this.apiProductDesc =
+          //   response['message']['products'][i]['description'];
 
-        for (let i = 0; i <= this.apiPd.length; i++) {
+          //console.log('item code  = ', this.userName);
+          // console.log('item name  = ', this.apiProductName);
+          // console.log('item group  = ', this.apiProductGroup);
+          // console.log('item desc  = ', this.apiProductDesc);
 
-          console.log("Detail Product Ke", i + "---->");
-          const apiPd_itemCode = this.apiPd[i]['item_code'];
-          const apiPd_itemName = this.apiPd[i]['item_name'];
-          const apiPd_itemGroup= this.apiPd[i]['item_group'];
-          const apiPd_description = this.apiPd[i]['description'];
-
-          console.log(apiPd_itemCode);
-          console.log(apiPd_itemName);
-          console.log(apiPd_itemGroup);
-          console.log(apiPd_description);
-          
+          this.setDataLS(
+            this.userName,
+            this.apiKey,
+            this.apiSc,
+            this.apiProductCode,
+            this.apiProductName,
+            this.apiProductGroup,
+            this.apiProductDesc
+          );
         }
 
-        // this.setDataLS("apiKey",this.apiKey);
-        // this.setDataLS("apiSc",this.apiSc);
-        // this.setDataLS("apiPd",this.apiPd);
-        // this.setDataLS("userName", this.userName);
-        // this.showToast('Login Success, welcome ' + response['full_name']);
-        // this.router.navigateByUrl('/home');
+        this.router.navigate(['/home']);
       },
       (error) => {
         console.log('Ene Error', error);
@@ -130,19 +141,27 @@ export class SigninPage {
     );
   }
 
-  async setDataLS(dataKey,dataValue){
-    console.log("saving a data...");
-    
-    const apiPd = JSON.stringify;
-    await Storage.set({
-      key: dataKey,
-      value: dataValue,
-    });
+  setDataLS(
+    userName,
+    apiKey,
+    apiSc,
+    apiProductCode,
+    apiProductName,
+    apiProductGroup,
+    apiProductDesc
+  ) {
+    this.storage.setString('userName', this.userName);
+    this.storage.setString('apiKey', this.apiKey);
+    this.storage.setString('apiSc', this.apiSc);
+    // this.storage.setObject('apiProduct', {
+    //   apiProductCode: this.apiProductCode,
+    //   apiProductName: this.apiProductName,
+    //   apiProductGroup: this.apiProductGroup,
+    //   apiProductDesc: this.apiProductDesc,
+    // });
   }
 
   //_______________________________________________________________________________________
-
-  
 
   //_______________________________________________________________________________________
 
@@ -207,5 +226,5 @@ export class SigninPage {
       });
   }
 
-  //_______________________________________________________________________________________  
+  //_______________________________________________________________________________________
 }

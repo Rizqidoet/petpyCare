@@ -1,0 +1,160 @@
+<ion-content class="ion-padding">
+  <div style="padding-left: 10px; padding-right: 10px">
+    <ion-grid class="ion-padding" style="margin-top: 130px">
+      <ion-row style="margin-bottom: 50px">
+        <div style="text-align: center; width: 100%">
+          <div
+            style="
+              width: 100px;
+              height: 70px;
+              margin: auto;
+              margin-bottom: 80px;
+            "
+          >
+            <ion-img src="assets/icon/login-logo-icon.png"></ion-img>
+          </div>
+          <span style="font-size: small; color: gray"
+            >Log in to find it easy to take care of your pet</span
+          >
+        </div>
+      </ion-row>
+      <ion-row>
+        <ion-label position="stacked" style="color: gray">Email</ion-label>
+      </ion-row>
+      <ion-row
+        style="
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: medium;
+        "
+      >
+        <ion-icon name="at-outline"></ion-icon>
+        <ion-input
+          name="email"
+          [(ngModel)]="email"
+          class="ion-padding"
+          type="text"
+          placeholder="______________"
+        ></ion-input>
+      </ion-row>
+      <ion-row>
+        <ion-label position="stacked" style="color: gray">Password</ion-label>
+      </ion-row>
+      <ion-row
+        style="
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: medium;
+        "
+      >
+        <ion-icon name="key-outline"></ion-icon>
+        <ion-input
+          name="password"
+          [(ngModel)]="password"
+          class="ion-padding"
+          type="password"
+          placeholder="______________"
+        ></ion-input>
+      </ion-row>
+      <ion-row
+        style="width: 100%; margin-bottom: 50px"
+        class="ion-text-justify"
+      >
+        <ion-button
+          (click)="onSignIn()"
+          style="
+            width: 100%;
+            height: 50px;
+            background-color: rgb(45, 90, 224);
+            color: white;
+            font-size: small;
+            border-radius: 10px;
+          "
+        >
+          Login
+          <ion-icon name="log-in"></ion-icon>
+        </ion-button>
+        <div
+          style="
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            width: 100%;
+          "
+        >
+          <div>
+            <span style="font-size: small; color: gray"
+              >don't have account ?</span
+            >
+            <span
+              routerLink="/signup"
+              style="font-size: small; color: rgb(37, 37, 248)"
+            >
+              register here!</span
+            >
+          </div>
+        </div>
+      </ion-row>
+      <ion-row
+        style="
+          display: flex;
+          justify-content: center;
+          text-align: center;
+          width: 100%;
+          margin-bottom: 40px;
+        "
+      >
+        <span style="font-size: small; color: gray">or login with</span>
+      </ion-row>
+      <ion-row style="margin-top: -10px">
+        <ion-col>
+          <!-- (click)="checker()" -->
+          <a (click)="onSignInFacebook()" routerDirection="forward">
+            <ion-img
+              style="height: 35px; margin-left: 40px"
+              src="assets/icon/login-facebook-icon.png"
+            ></ion-img>
+          </a>
+        </ion-col>
+        <ion-col>
+          <a (click)="onSignInGoogle()" routerDirection="forward">
+            <ion-img
+              style="height: 35px"
+              src="assets/icon/login-google-icon.png"
+            ></ion-img>
+          </a>
+        </ion-col>
+        <ion-col>
+          <a (click)="onSignInTelp()" routerDirection="forward">
+            <ion-img
+              style="height: 35px; margin-left: -40px"
+              src="assets/icon/login-phone-icon.png"
+            ></ion-img>
+          </a>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <ion-card>
+    <ion-card-content>
+      <ion-label>User Info : {{ apiKey | json }} </ion-label>
+      <br />
+
+      <!-- <ion-label>ID : {{ userId }}</ion-label>
+      <br /> -->
+      <!-- <ion-label>Name : {{ userName }}</ion-label>
+      <br />
+      <ion-label>Email : {{ userEmail }}</ion-label>
+      <br /> -->
+      <!-- <ion-label>Photo : {{ userPhoto }}</ion-label>
+      <br />
+      <ion-img
+        src="{{ userPhoto }}"
+        style="height: 200px; width: 200px"
+      ></ion-img> -->
+    </ion-card-content>
+  </ion-card>
+</ion-content>
