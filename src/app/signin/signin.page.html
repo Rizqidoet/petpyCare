@@ -12,7 +12,7 @@
       align-items: center;
     "
   >
-    <ion-img src="../../assets/icon//login/hero.png" style="width: 200px">
+    <ion-img src="../../assets/icon/login/hero.png" style="width: 200px">
     </ion-img>
   </div>
   <!-- End: header -->
@@ -238,15 +238,19 @@
     <div>
       <ion-card>
         <ion-card-content>
-          <ion-label>User Info : {{ apiKey | json }} </ion-label>
+          <ion-label>Username API : {{ apiUsername }}</ion-label>
+          <br />
+          <ion-label>Email API : {{ apiEmail }}</ion-label>
+          <br />
+          <ion-label>ID API : {{ apiID }}</ion-label>
           <br />
 
-          <!-- <ion-label>ID : {{ userId }}</ion-label>
-          <br /> -->
-          <!-- <ion-label>Name : {{ userName }}</ion-label>
+          <ion-label>Username Storage : {{ storageUsername }}</ion-label>
           <br />
-          <ion-label>Email : {{ userEmail }}</ion-label>
-          <br /> -->
+          <ion-label>ApiKey Storage : {{ storageKey }}</ion-label>
+          <br />
+          <ion-label>ApiSecret Storage : {{ storageSc }}</ion-label>
+          <br />
           <!-- <ion-label>Photo : {{ userPhoto }}</ion-label>
           <br />
           <ion-img

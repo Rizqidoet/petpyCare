@@ -11,20 +11,11 @@ import { Storage } from '@capacitor/storage';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
-  apiProduct = {
-    apiProductCode: '',
-    apiProductName: '',
-    apiProductGroup: '',
-    apiProductDesc: '',
-  };
-  userName: string;
-  storageName: string;
-  apiKey: string;
-  apiSc: string;
-  apiProductCode: string;
-  apiProductName: string;
-  apiProductGroup: string;
-  apiProductDesc: string;
+  storageUsername: string;
+  storageEmail: string;
+  storageID: string;
+  storageKey: string;
+  storageSc: string;
 
   constructor(
     private platform: Platform,
@@ -32,6 +23,13 @@ export class HomePage implements OnInit {
     private router: Router,
     private storage: StorageCapService
   ) {}
+
+  ngOnInit() {
+    this.getStorage();
+  }
+
+  //_______________________________________________________________________________________
+
   async showAlert(header: string, message: string) {
     const alert = await this.alertController.create({
       header,
@@ -42,42 +40,45 @@ export class HomePage implements OnInit {
     await alert.present();
   }
 
-  ngOnInit() {
-    this.getStorage();
-  }
+  //_______________________________________________________________________________________
+
   getStorage() {
-    this.storage.getString('userName').then((data: any) => {
-      if (data.value) {
-        this.userName = data.value;
-      }
+    this.storage.getString('storageEmail').then((data: any) => {
+      this.storageEmail = data.value;
+      console.log('Sekundren Email = ', this.storageEmail);
+      this.showAlert('Your email is => ', this.storageEmail);
     });
-    this.storage.getString('apiKey').then((data: any) => {
-      if (data.value) {
-        this.apiKey = data.value;
-      }
+
+    this.storage.getString('storageID').then((data: any) => {
+      this.storageID = data.value;
+      console.log('Sekundren ID = ', this.storageID);
+      this.showAlert('Your ID is => ', this.storageID);
     });
-    this.storage.getString('apiSc').then((data: any) => {
-      if (data.value) {
-        this.apiSc = data.value;
-      }
+    this.storage.getString('storageUsername').then((data: any) => {
+      this.storageUsername = data.value;
+      console.log('Sekundren Username = ', this.storageUsername);
+      this.showAlert('Your Username is => ', this.storageUsername);
     });
   }
 
-  // async getDataLS(dataKey) {
-  //   const { value } = await Storage.get({ key: dataKey });
-  //   if (dataKey === 'apiKey') {
-  //     this.apiKey = value;
-  //   } else if (dataKey === 'apiSc') {
-  //     this.apiSc = value;
-  //   } else if (dataKey === 'apiPd') {
-  //     this.apiPd = value;
-  //   } else if (dataKey === 'userName') {
-  //     this.userName = value;
-  //   }
-  // }
+  //_______________________________________________________________________________________
 
-  clearStorage() {
+  OnSignout() {
     this.storage.clear();
+    GoogleAuth.signOut();
+    this.clearVariable();
     this.router.navigateByUrl('/signin');
   }
+
+  //_______________________________________________________________________________________
+
+  clearVariable() {
+    this.storageUsername = '';
+    this.storageEmail = '';
+    this.storageID = '';
+    this.storageKey = '';
+    this.storageSc = '';
+  }
+
+  //_______________________________________________________________________________________
 }

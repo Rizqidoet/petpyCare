@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 import { Platform, ToastController, AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
@@ -13,23 +13,19 @@ import { StorageCapService } from '../../app/services/storage-cap.service';
   templateUrl: './signin.page.html',
   styleUrls: ['./signin.page.scss'],
 })
-export class SigninPage {
+export class SigninPage implements OnInit {
   isWeb: boolean;
-  userInfo = null;
-  apiProduct = {
-    apiProductCode: '',
-    apiProductName: '',
-    apiProductGroup: '',
-    apiProductDesc: '',
-  };
-  userName: string;
-  storageName: string;
-  apiKey: string;
-  apiSc: string;
-  apiProductCode: string;
-  apiProductName: string;
-  apiProductGroup: string;
-  apiProductDesc: string;
+  apiUserinfo = null;
+  apiUsername: string;
+  apiEmail: string;
+  apiID: string;
+
+  storageUsername: string;
+  storageEmail: string;
+  storageID: string;
+  storageKey: string;
+  storageSc: string;
+  storageProducts: [];
 
   constructor(
     private platform: Platform,
@@ -46,6 +42,10 @@ export class SigninPage {
     } else {
       console.log('Is Web Platform :', this.isWeb);
     }
+  }
+
+  ngOnInit() {
+    this.getStorage();
   }
 
   //_______________________________________________________________________________________
@@ -75,17 +75,37 @@ export class SigninPage {
 
   //_______________________________________________________________________________________
 
-  async onSignInGoogle() {
-    let googleUser = await GoogleAuth.signIn();
-    console.log('SIGNIN BERHASIL ---> Ini Isi GoogleUser = ', googleUser);
-    this.userInfo = googleUser;
+  getStorage() {
+    this.storage.getString('storageUsername').then((data: any) => {
+      this.storageUsername = data.value;
+      console.log('Sekundren Username = ', this.storageUsername);
+    });
 
-    this.callServer(this.userInfo);
+    this.storage.getString('storageKey').then((data: any) => {
+      this.storageKey = data.value;
+      console.log('Sekundren Key = ', this.storageKey);
+    });
+    this.storage.getString('storageSc').then((data: any) => {
+      this.storageSc = data.value;
+      console.log('Sekundren Secret = ', this.storageSc);
+    });
   }
 
   //_______________________________________________________________________________________
 
-  async callServer(userInfo) {
+  async onSignInGoogle() {
+    let googleUser = await GoogleAuth.signIn();
+    console.log('SIGNIN BERHASIL ---> Ini Isi GoogleUser = ', googleUser);
+    this.apiUserinfo = googleUser;
+    this.apiUsername =
+      this.apiUserinfo.givenName + ' ' + this.apiUserinfo.familyName;
+    this.apiEmail = this.apiUserinfo.email;
+    this.apiID = this.apiUserinfo.id;
+
+    this.callServer(this.apiUserinfo);
+  }
+
+  async callServer(apiUserinfo) {
     console.log('Pinging Server');
     var url = 'https://qalb.petpy.id/api/method/petpy.api.login';
     var headers = new HttpHeaders({
@@ -94,7 +114,7 @@ export class SigninPage {
     const params = new HttpParams({
       fromObject: {
         uid: 'SekundrenDay',
-        id_token: userInfo.authentication.idToken,
+        id_token: apiUserinfo.authentication.idToken,
         //redirect_to: '/me',
       },
     });
@@ -105,45 +125,58 @@ export class SigninPage {
         var a = response['message']['products'].length;
         console.log('lenght a = ', a);
 
-          this.userName = response['full_name'];
-          this.apiKey = response['message']['api_key'];
-          this.apiSc = response['message']['api_secret'];
-          this.storage.setString('userName', this.userName);
-          this.storage.setString('apiKey', this.apiKey);
-          this.storage.setString('apiSc', this.apiSc);
-          this.storage.setObject('apiProduct', {
-            products : response['message']['products']
-          });
+        this.storageUsername = this.apiUsername;
+        this.storageEmail = this.apiEmail;
+        this.storageID = this.apiID;
+        this.storageKey = response['message']['api_key'];
+        this.storageSc = response['message']['api_secret'];
+        this.storageProducts = response['message']['products'];
+
+        this.storage.setString('storageUsername', this.storageUsername);
+        this.storage.setString('storageEmail', this.storageEmail);
+        this.storage.setString('storageID', this.storageID);
+        this.storage.setString('storageKey', this.storageKey);
+        this.storage.setString('storageSc', this.storageSc);
+        this.storage.setObject('storageProduct', {
+          products: response['message']['products'],
+        });
+
+        // this.sekundren(
+        //   this.storageUsername,
+        //   this.storageEmail,
+        //   this.storageID,
+        //   this.storageKey,
+        //   this.storageSc,
+        //   this.storageProducts
+        // );
+
+        this.showAlert('Berhasil Login = ', this.storageUsername);
         this.router.navigate(['/home']);
       },
       (error) => {
-        console.log('Ene Error', error);
+        console.log('ada Error', error);
         this.showAlert('ERROR', 'Proses Fail ');
       }
     );
   }
 
-  setDataLS(
-    userName,
-    apiKey,
-    apiSc,
-    apiProductCode,
-    apiProductName,
-    apiProductGroup,
-    apiProductDesc
+  sekundren(
+    storageUsername,
+    storageEmail,
+    storageID,
+    storageKey,
+    storageSc,
+    storageProducts
   ) {
-    this.storage.setString('userName', this.userName);
-    this.storage.setString('apiKey', this.apiKey);
-    this.storage.setString('apiSc', this.apiSc);
-    this.storage.setObject('apiProduct', {
-      apiProductCode: this.apiProductCode,
-      apiProductName: this.apiProductName,
-      apiProductGroup: this.apiProductGroup,
-      apiProductDesc: this.apiProductDesc,
+    this.storage.setString('storageUsername', storageUsername);
+    this.storage.setString('storageEmail', storageEmail);
+    this.storage.setString('storageID', storageID);
+    this.storage.setString('storageKey', storageKey);
+    this.storage.setString('storageSc', storageSc);
+    this.storage.setObject('storageProduct', {
+      products: storageProducts,
     });
   }
-
-  //_______________________________________________________________________________________
 
   //_______________________________________________________________________________________
 

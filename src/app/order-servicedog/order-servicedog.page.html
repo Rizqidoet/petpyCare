@@ -1,48 +1,96 @@
 <ion-content>
-  <div style="display: flex; flex-direction: column; position: fixed; height: 280px; width: 100%; z-index: 1; background-color: #1a72f8; border-radius: 0px 0px 20px 20px;">
-    <div style="display: flex; flex-direction: row; justify-content: space-between;" class="ion-padding">
-      <div style="justify-content: left;">
+  <div
+    style="
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      height: 280px;
+      width: 100%;
+      z-index: 1;
+      background-color: #1a72f8;
+      border-radius: 0px 0px 20px 20px;
+    "
+  >
+    <div
+      style="display: flex; flex-direction: row; justify-content: space-between"
+      class="ion-padding"
+    >
+      <div style="justify-content: left">
         <a routerLink="/home" routerDirection="forward">
-          <ion-icon style="color: white; height: 25px; width: 25px;" name="arrow-back-circle"></ion-icon>
+          <ion-icon
+            style="color: white; height: 25px; width: 25px"
+            name="arrow-back-circle"
+          ></ion-icon>
         </a>
       </div>
       <div></div>
     </div>
 
-    <div style="display: flex; width: 100%; height: 190px; text-align: center; justify-content: center; align-items: center;">
-      <ion-img src="../../assets/icon/service-header-package.png" style="width: 100%; height: 100%"></ion-img>
+    <div
+      style="
+        display: flex;
+        width: 100%;
+        height: 190px;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+      "
+    >
+      <ion-img
+        src="../../assets/icon/service-header-package.png"
+        style="width: 100%; height: 100%"
+      ></ion-img>
     </div>
-  </div> 
+  </div>
 
-  <div style="display: flex; flex-direction: column; position: relative; width: 100%; height: 800px; z-index: -1; border-radius: 20px; background-color: white;" class="ion-padding">
-    <div style="margin-top: 280px;">
-      <ion-label (click)="cekidot()">
-        <h5 style="font-family: Georgia, 'Times New Roman', Times, serif; font-size: medium; color: black;">
-          Choose your package : 
+  <div
+    style="
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      width: 100%;
+      height: 800px;
+      z-index: -1;
+      border-radius: 20px;
+      background-color: white;
+    "
+    class="ion-padding"
+  >
+    <div style="margin-top: 280px">
+      <ion-label>
+        <h5
+          style="
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-size: medium;
+            color: black;
+          "
+        >
+          Choose your package :
         </h5>
       </ion-label>
     </div>
 
     <!-- Start: sevice dog menu -->
-    <div style="width: 100%; margin-top: 10px;">
+    <div style="width: 100%; margin-top: 10px">
       <ion-item
-        style="border-radius: 10px;"
+        style="border-radius: 10px"
         button
         detail
         *ngFor="let listproduct of listProducts"
         routerLink="/order-grooming"
         routerDirection="forward"
       >
-      <ion-thumbnail slot="start" style="width: 35px; height: 35px;">
-        <img src="https://img.icons8.com/fluent/48/000000/groomig.png" />
-      </ion-thumbnail>
-      <ion-label class="ion-text-wrap">
-        <h5 style="font-size: x-small;">{{ listproduct.item_group }}</h5>
-        <p style="color: gray; font-size: x-small;">{{ listproduct.description }}</p>
-      </ion-label>
+        <ion-thumbnail slot="start" style="width: 35px; height: 35px">
+          <img src="https://img.icons8.com/fluent/48/000000/groomig.png" />
+        </ion-thumbnail>
+        <ion-label class="ion-text-wrap">
+          <h5 style="font-size: x-small">{{ listproduct.item_group }}</h5>
+          <p style="color: gray; font-size: x-small">
+            {{ listproduct.description }}
+          </p>
+        </ion-label>
       </ion-item>
     </div>
     <!-- End: sevice dog menu -->
-
   </div>
 </ion-content>
