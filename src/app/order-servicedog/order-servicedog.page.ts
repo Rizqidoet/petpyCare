@@ -9,31 +9,30 @@ import { Storage } from '@capacitor/storage';
   styleUrls: ['./order-servicedog.page.scss'],
 })
 export class OrderServicedogPage implements OnInit {
-  apiProduct = {
-    apiProductCode: '',
-    apiProductName: '',
-    apiProductGroup: '',
-    apiProductDesc: '',
+  storageUsername: string;
+  storageKey: string;
+  storageSc: string;
+
+  storageProduct = {
+    storageProductCode: '',
+    storageProductName: '',
+    storageProductGroup: '',
+    storageProductDesc: '',
   };
+  storageProductCode: string;
+  storageProductName: string;
+  storageProductGroup: string;
+  storageProductDesc: string;
+
   listProducts = [];
-  userName: string;
-  storageName: string;
-  apiKey: string;
-  apiSc: string;
-  apiProductCode: string;
-  apiProductName: string;
-  apiProductGroup: string;
-  apiProductDesc: string;
 
   constructor(
     private platform: Platform,
     public alertController: AlertController,
     private storage: StorageCapService
-  ) {
-    
-   }
+  ) {}
 
-   async showAlert(header: string, message: string) {
+  async showAlert(header: string, message: string) {
     const alert = await this.alertController.create({
       header,
       message,
@@ -48,11 +47,10 @@ export class OrderServicedogPage implements OnInit {
   }
 
   getStorage() {
-    this.storage.getObject('apiProduct').then((data: any) => {
-      this.apiProduct = data;
-      this.listProducts = this.apiProduct['products'];
-      console.log("Malakubdren = ", this.listProducts);
+    this.storage.getObject('storageProduct').then((data: any) => {
+      this.storageProduct = data;
+      this.listProducts = this.storageProduct['products'];
+      console.log('Malakubdren = ', this.listProducts);
     });
-
   }
 }

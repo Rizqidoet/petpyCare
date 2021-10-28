@@ -45,7 +45,8 @@ export class SigninPage implements OnInit {
   }
 
   ngOnInit() {
-    this.getStorage();
+    this.clearVariable();
+    this.clearStorage();
   }
 
   //_______________________________________________________________________________________
@@ -71,6 +72,27 @@ export class SigninPage implements OnInit {
   async refreshToken() {
     let response = await GoogleAuth.refresh();
     console.log('refresh:', response);
+  }
+
+  //_______________________________________________________________________________________
+
+  clearStorage() {
+    this.storage.clear();
+  }
+
+  //_______________________________________________________________________________________
+
+  clearVariable() {
+    this.apiUserinfo = null;
+    this.apiUsername = null;
+    this.apiEmail = null;
+    this.apiID = null;
+
+    this.storageUsername = null;
+    this.storageEmail = null;
+    this.storageID = null;
+    this.storageKey = null;
+    this.storageSc = null;
   }
 
   //_______________________________________________________________________________________
@@ -141,15 +163,6 @@ export class SigninPage implements OnInit {
           products: response['message']['products'],
         });
 
-        // this.sekundren(
-        //   this.storageUsername,
-        //   this.storageEmail,
-        //   this.storageID,
-        //   this.storageKey,
-        //   this.storageSc,
-        //   this.storageProducts
-        // );
-
         this.showAlert('Berhasil Login = ', this.storageUsername);
         this.router.navigate(['/home']);
       },
@@ -158,24 +171,6 @@ export class SigninPage implements OnInit {
         this.showAlert('ERROR', 'Proses Fail ');
       }
     );
-  }
-
-  sekundren(
-    storageUsername,
-    storageEmail,
-    storageID,
-    storageKey,
-    storageSc,
-    storageProducts
-  ) {
-    this.storage.setString('storageUsername', storageUsername);
-    this.storage.setString('storageEmail', storageEmail);
-    this.storage.setString('storageID', storageID);
-    this.storage.setString('storageKey', storageKey);
-    this.storage.setString('storageSc', storageSc);
-    this.storage.setObject('storageProduct', {
-      products: storageProducts,
-    });
   }
 
   //_______________________________________________________________________________________
