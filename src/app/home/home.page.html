@@ -190,113 +190,106 @@
       <div
         style="
           display: flex;
-          flex-direction: row;
+          flex-direction: column;
           width: 100%;
           background-color: #1a72f8;
         "
         class="ion-padding"
       >
-        <!-- <div>
-          <ion-item style="border-radius: 10px;" button>
-            <div style="height: 130px; width: 130px; display: flex; justify-content: center; align-items: center;">
-              <ion-thumbnail slot="start" style="object-fit: fill; width: 50px; height: 60%;">
-                <img src="https://img.icons8.com/fluent/48/000000/groomig.png" />
-              </ion-thumbnail>
-            </div>
-          </ion-item>
-          <ion-label class="ion-text-wrap" style="text-align: center;">
-            <h5 style="color: white; font-size: small; margin-top: 5px;">Service Dog</h5>
-            <p style="color: white; font-size: x-small; margin-top: -5px;">take this service now</p>
-          </ion-label>
-        </div>
-
         <div>
-          <ion-item style="border-radius: 10px;" button>
-            <div style="height: 130px; width: 130px; display: flex; justify-content: center; align-items: center;">
-              <ion-thumbnail slot="start" style="object-fit: fill; width: 50px; height: 60%;">
-                <img src="https://img.icons8.com/fluent/48/000000/groomig.png" />
-              </ion-thumbnail>
-            </div>
-          </ion-item>
-          <ion-label class="ion-text-wrap" style="text-align: center;">
-            <h5 style="color: white; font-size: small; margin-top: 5px;">Service Cat</h5>
-            <p style="color: white; font-size: x-small; margin-top: -5px;">take this service now</p>
-          </ion-label>
-        </div> -->
+          <!-- Start menu kucing -->
+          <ion-slides style="width: 100%">
+            <ion-slide style="width: 100%">
+              <a
+                routerLink="/order-servicecat"
+                routerDirection="forward"
+                style="text-decoration: none"
+              >
+                <div style="text-align: left; width: 100%">
+                  <ion-card style="border-radius: 10px">
+                    <img src="../../assets/icon/menu-cat.png" />
+                    <ion-card-header>
+                      <ion-card-title style="font-size: smaller"
+                        >Service Cat</ion-card-title
+                      >
+                    </ion-card-header>
+                    <ion-card-content style="font-size: x-small">
+                      take this service now
+                    </ion-card-content>
+                  </ion-card>
+                </div>
+              </a>
 
-        <ion-slides style="width: 100%">
-          <!-- <ion-slide>
-            <a routerLink="/signin" routerDirection="forward" style="text-decoration: none;">
-              <div style="text-align: left;">
-                <ion-card style="border-radius: 10px;">
-                  <img src="../../assets/icon/welcome-slider-1.png"/>
-                  <ion-card-header>
-                    <ion-card-title style="font-size: smaller;">Service Dog</ion-card-title>
-                  </ion-card-header>
-                  <ion-card-content style="font-size: x-small;">
-                    take this service now
-                  </ion-card-content>
-                </ion-card>
-              </div>
-            </a>
+              <a
+                routerLink="/order-servicedog"
+                routerDirection="forward"
+                style="text-decoration: none"
+              >
+                <div style="text-align: left; width: 100%">
+                  <ion-card style="border-radius: 10px">
+                    <img src="../../assets/icon/menu-cat.png" />
+                    <ion-card-header>
+                      <ion-card-title style="font-size: smaller"
+                        >Services</ion-card-title
+                      >
+                    </ion-card-header>
+                    <ion-card-content style="font-size: x-small">
+                      take this service now
+                    </ion-card-content>
+                  </ion-card>
+                </div>
+              </a>
+            </ion-slide>
+          </ion-slides>
+          <!-- Start menu kucing -->
+        </div>
+        <div>
+          <!-- Start menu anjing -->
+          <ion-slides style="width: 100%">
+            <ion-slide style="width: 100%">
+              <a
+                routerLink="/order-servicecat"
+                routerDirection="forward"
+                style="text-decoration: none"
+              >
+                <div style="text-align: left; width: 100%">
+                  <ion-card style="border-radius: 10px">
+                    <img src="../../assets/icon/menu-dog.png" />
+                    <ion-card-header>
+                      <ion-card-title style="font-size: smaller"
+                        >Service Anjing Haircut</ion-card-title
+                      >
+                    </ion-card-header>
+                    <ion-card-content style="font-size: x-small">
+                      take this service now
+                    </ion-card-content>
+                  </ion-card>
+                </div>
+              </a>
 
-            <a routerLink="/signin" routerDirection="forward" style="text-decoration: none;">
-              <div style="text-align: left;">
-                <ion-card style="border-radius: 10px;">
-                  <img src="../../assets/icon/welcome-slider-1.png"/>
-                  <ion-card-header>
-                    <ion-card-title style="font-size: smaller;">Service Dog</ion-card-title>
-                  </ion-card-header>
-                  <ion-card-content style="font-size: x-small;">
-                    take this service now
-                  </ion-card-content>
-                </ion-card>
-              </div>
-            </a>
-          </ion-slide> -->
-
-          <ion-slide style="width: 100%">
-            <a
-              routerLink="/order-servicecat"
-              routerDirection="forward"
-              style="text-decoration: none"
-            >
-              <div style="text-align: left; width: 100%">
-                <ion-card style="border-radius: 10px">
-                  <img src="../../assets/icon/menu-cat.png" />
-                  <ion-card-header>
-                    <ion-card-title style="font-size: smaller"
-                      >Service Cat</ion-card-title
-                    >
-                  </ion-card-header>
-                  <ion-card-content style="font-size: x-small">
-                    take this service now
-                  </ion-card-content>
-                </ion-card>
-              </div>
-            </a>
-
-            <a
-              routerLink="/order-servicedog"
-              routerDirection="forward"
-              style="text-decoration: none"
-            >
-              <div style="text-align: left; width: 100%">
-                <ion-card style="border-radius: 10px">
-                  <img src="../../assets/icon/menu-dog.png" />
-                  <ion-card-header>
-                    <ion-card-title style="font-size: smaller"
-                      >Service Dog</ion-card-title
-                    >
-                  </ion-card-header>
-                  <ion-card-content style="font-size: x-small">
-                    take this service now
-                  </ion-card-content>
-                </ion-card>
-              </div>
-            </a>
-          </ion-slide>
-        </ion-slides>
+              <a
+                routerLink="/order-servicedog"
+                routerDirection="forward"
+                style="text-decoration: none"
+              >
+                <div style="text-align: left; width: 100%">
+                  <ion-card style="border-radius: 10px">
+                    <img src="../../assets/icon/menu-dog.png" />
+                    <ion-card-header>
+                      <ion-card-title style="font-size: smaller"
+                        >Service Anjing</ion-card-title
+                      >
+                    </ion-card-header>
+                    <ion-card-content style="font-size: x-small">
+                      take this service now
+                    </ion-card-content>
+                  </ion-card>
+                </div>
+              </a>
+            </ion-slide>
+          </ion-slides>
+          <!-- Start menu anjing -->
+        </div>
       </div>
       <!-- End: div menu apps -->
 

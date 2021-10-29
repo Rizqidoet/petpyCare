@@ -25,6 +25,7 @@ export class OrderServicecatPage implements OnInit {
   storageProductDesc: string;
 
   listProducts = [];
+  listProducts_cat = [];
 
   constructor(
     private platform: Platform,
@@ -49,8 +50,13 @@ export class OrderServicecatPage implements OnInit {
   getStorage() {
     this.storage.getObject('storageProduct').then((data: any) => {
       this.storageProduct = data;
-      this.listProducts = this.storageProduct['products'];
-      console.log('Malakubdren = ', this.listProducts);
+      console.log('Sekundren - 1 = ', this.storageProduct);
+      this.listProducts_cat = this.storageProduct['products'].filter(function (
+        storageProduct
+      ) {
+        return storageProduct.item_group == 'Service Cat';
+      });
+      console.log('Sekundren - 2 = ', this.listProducts_cat);
     });
   }
 }

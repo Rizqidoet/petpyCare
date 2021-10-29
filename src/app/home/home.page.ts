@@ -46,18 +46,18 @@ export class HomePage implements OnInit {
     this.storage.getString('storageEmail').then((data: any) => {
       this.storageEmail = data.value;
       console.log('Sekundren Email = ', this.storageEmail);
-      this.showAlert('Your email is => ', this.storageEmail);
+      // this.showAlert('Your email is => ', this.storageEmail);
     });
 
     this.storage.getString('storageID').then((data: any) => {
       this.storageID = data.value;
       console.log('Sekundren ID = ', this.storageID);
-      this.showAlert('Your ID is => ', this.storageID);
+      // this.showAlert('Your ID is => ', this.storageID);
     });
     this.storage.getString('storageUsername').then((data: any) => {
       this.storageUsername = data.value;
       console.log('Sekundren Username = ', this.storageUsername);
-      this.showAlert('Your Username is => ', this.storageUsername);
+      // this.showAlert('Your Username is => ', this.storageUsername);
     });
   }
 

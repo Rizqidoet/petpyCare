@@ -25,6 +25,7 @@ export class OrderServicedogPage implements OnInit {
   storageProductDesc: string;
 
   listProducts = [];
+  listProducts_dog = [];
 
   constructor(
     private platform: Platform,
@@ -49,8 +50,13 @@ export class OrderServicedogPage implements OnInit {
   getStorage() {
     this.storage.getObject('storageProduct').then((data: any) => {
       this.storageProduct = data;
-      this.listProducts = this.storageProduct['products'];
-      console.log('Malakubdren = ', this.listProducts);
+      console.log('Sekundren - 1 = ', this.storageProduct);
+      this.listProducts_dog = this.storageProduct['products'].filter(function (
+        storageProduct
+      ) {
+        return storageProduct.item_group == 'Service Anjing';
+      });
+      console.log('Sekundren - 2 = ', this.listProducts_dog);
     });
   }
 }
