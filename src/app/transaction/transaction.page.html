@@ -1,0 +1,614 @@
+<ion-content>
+  <div
+    style="
+      background-color: #1a72f8;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    "
+  >
+    <!-- Start: div background putih rounded -->
+    <div
+      style="
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 700px;
+        background-color: white;
+        margin-top: 180px;
+        border-radius: 30px 30px 0 0;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+          0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      "
+      class="ion-padding"
+    >
+      <ion-slides
+        style="height: 100%; width: 100%"
+        [options]="slideOpts"
+        #mySlider
+      >
+        <!-- Start: Slide 1 -->
+        <ion-slide>
+          <div
+            style="
+              display: flex;
+              flex-direction: column;
+              width: 100%;
+              height: 100%;
+              justify-content: space-between;
+            "
+          >
+            <!-- Start: div judul -->
+            <div
+              style="
+                display: flex;
+                flex-direction: row;
+                width: 100%;
+                height: 30px;
+                margin-top: 10px;
+              "
+            >
+              <div style="width: 10%">
+                <ion-icon
+                  routerLink="/home"
+                  style="color: #1a72f8; font-size: large"
+                  name="arrow-back-outline"
+                ></ion-icon>
+              </div>
+              <div
+                style="
+                  width: 90%;
+                  display: flex;
+                  justify-content: center;
+                  font-size: medium;
+                  font-weight: 600;
+                "
+              >
+                <span style="margin-left: -10px"> Choose your package </span>
+              </div>
+            </div>
+            <!-- End: div judul -->
+
+            <!-- Start: div content -->
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                margin-top: 25px;
+              "
+            >
+              <ion-item
+                style="border-radius: 10px; margin-bottom: 10px"
+                button
+                detail
+                (click)="swipeNext()"
+                *ngFor="let listproduct of listProducts_cat"
+                routerDirection="forward"
+              >
+                <ion-thumbnail slot="start" style="width: 35px; height: 35px">
+                  <img
+                    src="https://img.icons8.com/fluent/48/000000/groomig.png"
+                  />
+                </ion-thumbnail>
+                <ion-label class="ion-text-wrap">
+                  <h5 style="font-size: x-small">
+                    Sekundren{{ listproduct.item_group }}
+                  </h5>
+                  <p style="color: gray; font-size: x-small">
+                    {{ listproduct.description }}
+                  </p>
+                </ion-label>
+              </ion-item>
+            </div>
+            <!-- End: div content -->
+
+            <!-- Start: button next -->
+            <div style="padding-left: 10px; padding-right: 10px">
+              <button
+                (click)="swipeNext()"
+                routerDirection="forward"
+                style="
+                  background-color: #1a72f8;
+                  width: 100%;
+                  height: 35px;
+                  color: white;
+                  border-radius: 10px;
+                  margin-top: 25px;
+                "
+              >
+                Next
+                <ion-icon
+                  style="
+                    color: white;
+                    font-size: small;
+                    position: absolute;
+                    margin-left: 160px;
+                  "
+                  name="arrow-forward-outline"
+                ></ion-icon>
+              </button>
+            </div>
+            <!-- End: button next -->
+          </div>
+        </ion-slide>
+        <!-- End: Slide 1 -->
+
+        <!-- Start: Slide 2 -->
+        <ion-slide>
+          <div
+            style="
+              display: flex;
+              flex-direction: column;
+              width: 100%;
+              height: 100%;
+              justify-content: space-between;
+            "
+          >
+            <!-- Start: div judul -->
+            <div
+              style="
+                display: flex;
+                flex-direction: row;
+                width: 100%;
+                height: 30px;
+                margin-top: 10px;
+              "
+            >
+              <div style="width: 10%">
+                <ion-icon
+                  (click)="swipePrev()"
+                  style="color: #1a72f8; font-size: large"
+                  name="arrow-back-outline"
+                ></ion-icon>
+              </div>
+              <div
+                style="
+                  width: 90%;
+                  display: flex;
+                  justify-content: center;
+                  font-size: medium;
+                  font-weight: 600;
+                "
+              >
+                <span style="margin-left: -15px"> Choose your service </span>
+              </div>
+            </div>
+            <!-- End: div judul -->
+
+            <!-- Start: div content -->
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                height: 400px;
+                margin-top: 25px;
+
+                justify-content: center;
+                align-items: center;
+              "
+            >
+              <ion-radio-group>
+                <!-- Start: div home service and on clinic -->
+                <div
+                  style="
+                    display: flex;
+                    flex-direction: row;
+                    width: 100%;
+                    height: 150px;
+                    justify-content: space-evenly;
+                  "
+                >
+                  <!-- Start: div home service -->
+                  <div
+                    style="
+                      display: flex;
+                      flex-direction: column;
+                      width: 180px;
+                      height: 90%;
+                      border-radius: 15px;
+                      align-items: center;
+                      justify-content: center;
+                      border: #1a72f8 2px solid;
+                      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+                        0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                      padding-right: 10px;
+                      padding-left: 10px;
+                      margin-right: 5px;
+                    "
+                  >
+                    <div
+                      style="
+                        margin-top: -80px;
+                        margin-left: -130px;
+                        position: absolute;
+                        z-index: 2;
+                      "
+                    >
+                      <ion-radio slot="start" value="HomeService"></ion-radio>
+                    </div>
+                    <div>
+                      <ion-img
+                        src="../../assets/icon/order-grooming-item1.png"
+                        style="width: 50px"
+                      ></ion-img>
+                    </div>
+                    <div>
+                      <span style="font-size: small">Home Service</span><br />
+                      <span style="font-size: x-small; color: #7f88a8"
+                        >mitra kami akan datang ke rumah mu</span
+                      >
+                    </div>
+                  </div>
+                  <!-- End: div home service -->
+
+                  <!-- Start: div on clinic -->
+                  <div
+                    style="
+                      display: flex;
+                      flex-direction: column;
+                      width: 180px;
+                      height: 90%;
+                      border-radius: 15px;
+                      align-items: center;
+                      justify-content: center;
+                      border: #1a72f8 2px solid;
+                      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+                        0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                      padding-right: 10px;
+                      padding-left: 10px;
+                      margin-left: 5px;
+                    "
+                  >
+                    <div
+                      style="
+                        margin-top: -80px;
+                        margin-left: -130px;
+                        position: absolute;
+                        z-index: 2;
+                      "
+                    >
+                      <ion-radio slot="start" value="OnClinic"></ion-radio>
+                    </div>
+                    <div>
+                      <ion-img
+                        src="../../assets/icon/order-grooming-item2.png"
+                        style="width: 50px"
+                      ></ion-img>
+                    </div>
+                    <div>
+                      <span style="font-size: small">On clinic</span><br />
+                      <span style="font-size: x-small; color: #7f88a8"
+                        >antar sendiri kucing mu ke klinik</span
+                      >
+                    </div>
+                  </div>
+                  <!-- End: div on clinic -->
+                </div>
+                <!-- End: div home service and on clinic -->
+
+                <!-- Start: div delivery -->
+                <div
+                  style="
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+                    height: 150px;
+                    justify-content: center;
+                    align-items: center;
+                  "
+                >
+                  <div
+                    style="
+                      display: flex;
+                      flex-direction: column;
+                      width: 250;
+                      height: 90%;
+                      border-radius: 15px;
+                      align-items: center;
+                      justify-content: center;
+                      border: #1a72f8 2px solid;
+                      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+                        0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                      padding-right: 10px;
+                      padding-left: 10px;
+                    "
+                  >
+                    <div
+                      style="
+                        margin-top: -80px;
+                        margin-left: -300px;
+                        position: absolute;
+                        z-index: 2;
+                      "
+                    >
+                      <ion-radio slot="start" value="Delivery"></ion-radio>
+                    </div>
+                    <div>
+                      <ion-img
+                        src="../../assets/icon/order-grooming-item3.png"
+                        style="width: 50px"
+                      ></ion-img>
+                    </div>
+                    <div>
+                      <span style="font-size: small">Delivery</span><br />
+                      <span style="font-size: x-small; color: #7f88a8"
+                        >Mandi di klinik dengan pelayan kami jemput dan antar
+                        kembali hewan mu</span
+                      >
+                    </div>
+                  </div>
+                </div>
+                <!-- End: div delivery -->
+              </ion-radio-group>
+            </div>
+            <!-- End: div content -->
+
+            <!-- Start: button next -->
+            <div style="padding-left: 10px; padding-right: 10px">
+              <button
+                (click)="swipeNext()"
+                routerDirection="forward"
+                style="
+                  background-color: #1a72f8;
+                  width: 100%;
+                  height: 35px;
+                  color: white;
+                  border-radius: 10px;
+                  margin-top: 25px;
+                "
+              >
+                Next
+                <ion-icon
+                  style="
+                    color: white;
+                    font-size: small;
+                    position: absolute;
+                    margin-left: 160px;
+                  "
+                  name="arrow-forward-outline"
+                ></ion-icon>
+              </button>
+            </div>
+            <!-- End: button next -->
+          </div>
+        </ion-slide>
+        <!-- End: Slide 2 -->
+
+        <!-- Start: Slide 3 -->
+        <ion-slide>
+          <div
+            style="
+              display: flex;
+              flex-direction: column;
+              width: 100%;
+              height: 100%;
+              justify-content: space-between;
+            "
+          >
+            <!-- Start: div judul -->
+            <div
+              style="
+                display: flex;
+                flex-direction: row;
+                width: 100%;
+                height: 30px;
+                margin-top: 10px;
+              "
+            >
+              <div style="width: 10%">
+                <ion-icon
+                  (click)="swipePrev()"
+                  style="color: #1a72f8; font-size: large"
+                  name="arrow-back-outline"
+                ></ion-icon>
+              </div>
+              <div
+                style="
+                  width: 90%;
+                  display: flex;
+                  justify-content: center;
+                  font-size: medium;
+                  font-weight: 600;
+                "
+              >
+                <span style="margin-left: -15px"> Choose your service </span>
+              </div>
+            </div>
+            <!-- End: div judul -->
+
+            <!-- Start: div content -->
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                text-align: left;
+                margin-top: -30px;
+              "
+              class="ion-padding"
+            >
+              <div>
+                <ion-list>
+                  <ion-item
+                    button
+                    detail
+                    (click)="openModal()"
+                    style="margin: 15px 0 15px 0"
+                  >
+                    <div>
+                      <span style="font-size: small">select your pet</span
+                      ><br />
+                      <span style="font-size: x-small; color: #7f88a8"
+                        >your pet</span
+                      >
+                    </div>
+                  </ion-item>
+
+                  <ion-item
+                    button
+                    detail
+                    (click)="openModal()"
+                    style="margin: 15px 0 15px 0"
+                  >
+                    <div>
+                      <span style="font-size: small">select date</span><br />
+                      <span style="font-size: x-small; color: #7f88a8"
+                        >date</span
+                      >
+                    </div>
+                  </ion-item>
+
+                  <ion-item
+                    button
+                    detail
+                    (click)="openModal()"
+                    style="margin: 15px 0 15px 0"
+                  >
+                    <div>
+                      <span style="font-size: small">select time</span><br />
+                      <span style="font-size: x-small; color: #7f88a8"
+                        >time</span
+                      >
+                    </div>
+                  </ion-item>
+
+                  <ion-item
+                    button
+                    detail
+                    (click)="openModal()"
+                    style="margin: 15px 0 15px 0"
+                  >
+                    <div>
+                      <span style="font-size: small">your address</span><br />
+                      <span style="font-size: x-small; color: #7f88a8"
+                        >address</span
+                      >
+                    </div>
+                  </ion-item>
+
+                  <ion-radio-group value="biff">
+                    <ion-list-header>
+                      <span style="font-size: small">payment</span>
+                    </ion-list-header>
+
+                    <ion-item>
+                      <div style="display: flex; flex-direction: row">
+                        <ion-img
+                          src="../../assets/icon/login-icon-polos.png"
+                          style="width: 35px"
+                        ></ion-img>
+                      </div>
+                      <div
+                        style="
+                          display: flex;
+                          flex-direction: column;
+                          margin-left: 20px;
+                        "
+                      >
+                        <div>
+                          <span style="font-size: small">Cash</span>
+                        </div>
+                        <div>
+                          <span style="font-size: x-small; color: #7f88a8"
+                            >pembayaran di toko</span
+                          >
+                        </div>
+                      </div>
+                      <ion-radio slot="start" value="biff"></ion-radio>
+                    </ion-item>
+
+                    <ion-item>
+                      <div style="display: flex; flex-direction: row">
+                        <ion-img
+                          src="../../assets/icon/login-icon-polos.png"
+                          style="width: 35px"
+                        ></ion-img>
+                      </div>
+                      <div
+                        style="
+                          display: flex;
+                          flex-direction: column;
+                          margin-left: 20px;
+                        "
+                      >
+                        <div>
+                          <span style="font-size: small">Cash</span>
+                        </div>
+                        <div>
+                          <span style="font-size: x-small; color: #7f88a8"
+                            >pembayaran di toko</span
+                          >
+                        </div>
+                      </div>
+                      <ion-radio slot="start" value="griff"></ion-radio>
+                    </ion-item>
+
+                    <ion-item>
+                      <div style="display: flex; flex-direction: row">
+                        <ion-img
+                          src="../../assets/icon/login-icon-polos.png"
+                          style="width: 35px"
+                        ></ion-img>
+                      </div>
+                      <div
+                        style="
+                          display: flex;
+                          flex-direction: column;
+                          margin-left: 20px;
+                        "
+                      >
+                        <div>
+                          <span style="font-size: small">Cash</span>
+                        </div>
+                        <div>
+                          <span style="font-size: x-small; color: #7f88a8"
+                            >pembayaran di toko</span
+                          >
+                        </div>
+                      </div>
+                      <ion-radio slot="start" value="buford"></ion-radio>
+                    </ion-item>
+                  </ion-radio-group>
+                </ion-list>
+              </div>
+            </div>
+            <!-- End: div content -->
+
+            <!-- Start: button next -->
+            <div style="padding-left: 10px; padding-right: 10px">
+              <button
+                routerLink="/order-success"
+                routerDirection="forward"
+                style="
+                  background-color: #1a72f8;
+                  width: 100%;
+                  height: 35px;
+                  color: white;
+                  border-radius: 10px;
+                  margin-top: 25px;
+                "
+              >
+                Next
+                <ion-icon
+                  style="
+                    color: white;
+                    font-size: small;
+                    position: absolute;
+                    margin-left: 160px;
+                  "
+                  name="arrow-forward-outline"
+                ></ion-icon>
+              </button>
+            </div>
+            <!-- End: button next -->
+          </div>
+        </ion-slide>
+        <!-- End: Slide 3 -->
+      </ion-slides>
+    </div>
+    <!-- End: div background putih rounded -->
+  </div>
+</ion-content>

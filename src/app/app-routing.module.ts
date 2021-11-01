@@ -101,7 +101,11 @@ const routes: Routes = [
   {
     path: 'landing',
     loadChildren: () => import('./landing/landing.module').then( m => m.LandingPageModule)
+  },  {
+    path: 'transaction',
+    loadChildren: () => import('./transaction/transaction.module').then( m => m.TransactionPageModule)
   },
+
 
 ];
 

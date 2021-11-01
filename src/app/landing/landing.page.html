@@ -70,7 +70,7 @@
         margin-top: 20px;
       "
     >
-      <ion-slides pager="true" [options]="slideOpts">
+      <ion-slides pager="true" [options]="slideOpts" #mySlider>
         <ion-slide>
           <div>
             <h3 style="font-weight: 600">Welcome1</h3>
@@ -121,33 +121,45 @@
         </ion-slide>
       </ion-slides>
 
-      <div style="display: flex; flex-direction: row; width: 100%; background-color: white; justify-content: center; margin-top: 20px;">
-        <div style="width: 34%; margin: 0 5px 0 5px;">
+      <div
+        style="
+          display: flex;
+          flex-direction: row;
+          width: 100%;
+          background-color: white;
+          justify-content: center;
+          margin-top: 20px;
+        "
+      >
+        <div style="width: 34%; margin: 0 5px 0 5px">
           <ion-button
-            routerLink="/signup"
+            (click)="swipeNext()"
             routerDirection="forward"
             color="light"
             style="
               width: 100%;
-              height: 50px;
+              height: 40px;
               border-radius: 50px;
               font-size: medium;
             "
             expand="block"
-          > <span style="color: #1a72f8;">Signup</span></ion-button>
+          >
+            <span style="color: #1a72f8">Signup</span></ion-button
+          >
         </div>
-        <div style="width: 34%; margin: 0 5px 0 5px;">
+        <div style="width: 34%; margin: 0 5px 0 5px">
           <ion-button
             routerLink="/signin"
             routerDirection="forward"
             style="
-            width: 100%;
-              height: 50px;
+              width: 100%;
+              height: 40px;
               border-radius: 50px;
               font-size: medium;
             "
             expand="block"
-          >Signin</ion-button>
+            >Signin</ion-button
+          >
         </div>
       </div>
 
