@@ -163,7 +163,7 @@ export class SigninPage implements OnInit {
           products: response['message']['products'],
         });
 
-        this.showAlert('Berhasil Login = ', this.storageUsername);
+        this.showAlert('Login Success ', this.storageUsername);
         this.router.navigate(['/home']);
       },
       (error) => {
