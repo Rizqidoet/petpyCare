@@ -27,6 +27,8 @@ export class HomePage implements OnInit {
   storageProductName: string;
   storageProductGroup: string;
   storageProductDesc: string;
+  listProducts = [];
+  listProducts_group = [];
 
   constructor(
     private platform: Platform,
@@ -72,8 +74,14 @@ export class HomePage implements OnInit {
     });
 
     this.storage.getObject('storageProduct').then((data: any) => {
-      this.storageProduct = data;
-      console.log('Isi :', this.storageProduct);
+      this.listProducts = data['products'];
+      console.log('Isi :', this.listProducts);
+
+      //this.listProducts = data;
+      this.listProducts_group = [
+        ...new Set(this.listProducts.map((item) => item.item_group)),
+      ];
+      console.log('Cat :', this.listProducts_group);
     });
   }
 
