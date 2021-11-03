@@ -4,11 +4,11 @@ import { Platform, ToastController, AlertController } from '@ionic/angular';
 import { IonSlides } from '@ionic/angular';
 
 @Component({
-  selector: 'app-transaction',
-  templateUrl: './transaction.page.html',
-  styleUrls: ['./transaction.page.scss'],
+  selector: 'app-transaction3',
+  templateUrl: './transaction3.page.html',
+  styleUrls: ['./transaction3.page.scss'],
 })
-export class TransactionPage implements OnInit {
+export class Transaction3Page implements OnInit {
   @ViewChild('mySlider') slides: IonSlides;
 
   storageProduct = {
@@ -52,7 +52,7 @@ export class TransactionPage implements OnInit {
       this.listProducts_cat = this.storageProduct['products'].filter(function (
         storageProduct
       ) {
-        return storageProduct.item_group == 'Services';
+        return storageProduct.item_group == 'Service Anjing Haircut';
       });
       console.log('Sekundren - 2 = ', this.listProducts_cat);
     });

@@ -105,6 +105,18 @@ const routes: Routes = [
     path: 'transaction',
     loadChildren: () => import('./transaction/transaction.module').then( m => m.TransactionPageModule)
   },
+  {
+    path: 'transaction1',
+    loadChildren: () => import('./transaction1/transaction1.module').then( m => m.Transaction1PageModule)
+  },
+  {
+    path: 'transaction2',
+    loadChildren: () => import('./transaction2/transaction2.module').then( m => m.Transaction2PageModule)
+  },
+  {
+    path: 'transaction3',
+    loadChildren: () => import('./transaction3/transaction3.module').then( m => m.Transaction3PageModule)
+  },
 
 
 ];
