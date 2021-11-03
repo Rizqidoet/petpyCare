@@ -49,7 +49,7 @@
         flex-direction: column;
         width: 100%;
         background-color: white;
-        margin-top: 20px;
+        margin-top: 30px;
         border-radius: 30px 30px 0 0;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
           0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -57,64 +57,61 @@
       class="ion-padding"
     >
       <ion-slides style="width: 100%" [options]="slideOpts" #mySlider>
-        <!-- Start: Slide 1 -->
+        <!-- Start: slide 1 -->
         <ion-slide>
           <div
             style="
               display: flex;
               flex-direction: column;
               width: 100%;
-              justify-content: space-between;
+              height: 750px;
+              background-color: white;
             "
           >
-            <!-- Start: div content -->
+            <!-- Start: Div id 1 -->
             <div
+              id="div1"
+              style="
+                display: flex;
+                flex-direction: row;
+                height: 5%;
+                text-align: left;
+                font-size: medium;
+                font-weight: 600;
+                background-color: white;
+              "
+            >
+              <div style="width: 10%">
+                <ion-icon
+                  routerLink="/home"
+                  style="color: #000000; font-size: large"
+                  name="arrow-back-outline"
+                ></ion-icon>
+              </div>
+              <div style="width: 90%">
+                <span style="color: #000000"> Choose your package </span>
+              </div>
+            </div>
+            <!-- End: Div id 1 -->
+
+            <!-- Start: Div id 2 -->
+            <div
+              id="div2"
               style="
                 display: flex;
                 flex-direction: column;
-                width: 100%;
-                height: 650px;
-                margin-top: -40px;
+                height: 85%;
+                margin-top: 20px;
+                background-color: white;
               "
+              class="ion-padding"
             >
-              <!-- Start: div judul -->
-              <div
-                style="
-                  display: flex;
-                  flex-direction: row;
-                  width: 100%;
-                  height: 30px;
-                "
-              >
-                <div style="width: 10%">
-                  <ion-icon
-                    routerLink="/home"
-                    style="color: #000000; font-size: large"
-                    name="arrow-back-outline"
-                  ></ion-icon>
-                </div>
-                <div
-                  style="
-                    width: 90%;
-                    display: flex;
-                    font-size: medium;
-                    font-weight: 600;
-                    margin-left: 20px;
-                  "
-                >
-                  <span style="color: #000000; margin-left: -10px">
-                    Choose your package
-                  </span>
-                </div>
-              </div>
-              <!-- End: div judul -->
-
               <!-- Start: div list product item -->
               <div
                 style="
                   border-radius: 10px;
                   margin-bottom: 10px;
-                  margin-top: 20px;
+                  margin-top: -10px;
                 "
               >
                 <ion-item
@@ -141,52 +138,99 @@
               </div>
               <!-- End: div list product item -->
             </div>
-            <!-- End: div content -->
-          </div>
-        </ion-slide>
-        <!-- End: Slide 1 -->
+            <!-- End: Div id 2 -->
 
-        <!-- Start: Slide 2 -->
-        <ion-slide>
-          <div style="display: flex; flex-direction: column; width: 100%">
-            <!-- Start: div content -->
-            <div style="display: flex; flex-direction: column; width: 100%">
-              <!-- Start: div judul -->
-              <div
+            <!-- Start: Div id 3 -->
+            <div
+              id="div3"
+              style="
+                display: flex;
+                flex-direction: column;
+                height: 5%;
+                background-color: white;
+                padding-right: 10px;
+                padding-left: 10px;
+              "
+            >
+              <button
+                (click)="swipeNext()"
+                routerDirection="forward"
                 style="
-                  display: flex;
-                  flex-direction: row;
+                  background-color: #1a72f8;
                   width: 100%;
-                  height: 20px;
-                  margin-bottom: 30px;
+                  height: 40px;
+                  color: white;
+                  border-radius: 10px;
                 "
               >
-                <div style="width: 10%">
-                  <ion-icon
-                    (click)="swipePrev()"
-                    style="color: #000000; font-size: large"
-                    name="arrow-back-outline"
-                  ></ion-icon>
-                </div>
-                <div
+                Next
+                <ion-icon
                   style="
-                    width: 90%;
-                    display: flex;
-                    font-size: medium;
-                    font-weight: 600;
-                    margin-left: 20px;
+                    color: white;
+                    font-size: small;
+                    position: absolute;
+                    margin-left: 120px;
                   "
-                >
-                  <span style="color: #000000; margin-left: -10px">
-                    Choose your Service
-                  </span>
-                </div>
-              </div>
-              <!-- End: div judul -->
+                  name="arrow-forward-outline"
+                ></ion-icon>
+              </button>
+            </div>
+            <!-- End: Div id 3 -->
+          </div>
+        </ion-slide>
+        <!-- End: slide 1 -->
 
-              <!-- Start: div service item -->
-              <div style="border-radius: 10px" class="ion-padding">
-                <ion-radio-group>
+        <!-- Start: slide 2 -->
+        <ion-slide>
+          <div
+            style="
+              display: flex;
+              flex-direction: column;
+              width: 100%;
+              height: 750px;
+              background-color: white;
+            "
+          >
+            <!-- Start: Div id 1 -->
+            <div
+              id="div1"
+              style="
+                display: flex;
+                flex-direction: row;
+                height: 5%;
+                text-align: left;
+                font-size: medium;
+                font-weight: 600;
+                background-color: white;
+              "
+            >
+              <div style="width: 10%">
+                <ion-icon
+                  (click)="swipePrev()"
+                  style="color: #000000; font-size: large"
+                  name="arrow-back-outline"
+                ></ion-icon>
+              </div>
+              <div style="width: 90%">
+                <span style="color: #000000"> Choose your service </span>
+              </div>
+            </div>
+            <!-- End: Div id 1 -->
+
+            <!-- Start: Div id 2 -->
+            <div
+              id="div2"
+              style="
+                display: flex;
+                flex-direction: column;
+                height: 85%;
+                margin-top: 20px;
+                background-color: white;
+              "
+              class="ion-padding"
+            >
+              <ion-radio-group>
+                <div>
                   <!-- Start: div on clinic service -->
                   <div
                     style="
@@ -258,8 +302,8 @@
                     </div>
                   </div>
                   <!-- End: div on clinic service -->
-
-                  <!-- Start: div home service -->
+                </div>
+                <div>
                   <div
                     style="
                       display: flex;
@@ -303,7 +347,6 @@
                         ></ion-img>
                       </div>
                     </div>
-
                     <div
                       style="
                         display: flex;
@@ -326,9 +369,8 @@
                       </ion-item>
                     </div>
                   </div>
-                  <!-- End: div on home service -->
-
-                  <!-- Start: div delivery service -->
+                </div>
+                <div>
                   <div
                     style="
                       display: flex;
@@ -374,7 +416,6 @@
                         ></ion-img>
                       </div>
                     </div>
-
                     <div
                       style="
                         display: flex;
@@ -397,20 +438,21 @@
                       </ion-item>
                     </div>
                   </div>
-                  <!-- End: div on delivery service -->
-                </ion-radio-group>
-              </div>
-              <!-- End: div div service item -->
+                </div>
+              </ion-radio-group>
             </div>
-            <!-- End: div content -->
+            <!-- End: Div id 2 -->
 
-            <!-- Start: button next -->
+            <!-- Start: Div id 3 -->
             <div
+              id="div3"
               style="
-                padding-left: 10px;
+                display: flex;
+                flex-direction: column;
+                height: 5%;
+                background-color: white;
                 padding-right: 10px;
-                justify-self: self-end;
-                margin-bottom: 50px;
+                padding-left: 10px;
               "
             >
               <button
@@ -422,7 +464,6 @@
                   height: 40px;
                   color: white;
                   border-radius: 10px;
-                  margin-top: 25px;
                 "
               >
                 Next
@@ -431,35 +472,39 @@
                     color: white;
                     font-size: small;
                     position: absolute;
-                    margin-left: 150px;
+                    margin-left: 120px;
                   "
                   name="arrow-forward-outline"
                 ></ion-icon>
               </button>
             </div>
-            <!-- End: button next -->
+            <!-- End: Div id 3 -->
           </div>
         </ion-slide>
-        <!-- End: Slide 2 -->
+        <!-- End: slide 2 -->
 
-        <!-- Start: Slide 3 -->
+        <!-- Start: slide 3 -->
         <ion-slide>
-          <!-- Start: div content -->
           <div
             style="
               display: flex;
               flex-direction: column;
               width: 100%;
-              margin-top: -50px;
+              height: 750px;
+              background-color: white;
             "
           >
-            <!-- Start: div judul -->
+            <!-- Start: Div id 1 -->
             <div
+              id="div1"
               style="
                 display: flex;
                 flex-direction: row;
-                width: 100%;
-                height: 20px;
+                height: 5%;
+                text-align: left;
+                font-size: medium;
+                font-weight: 600;
+                background-color: white;
               "
             >
               <div style="width: 10%">
@@ -469,240 +514,259 @@
                   name="arrow-back-outline"
                 ></ion-icon>
               </div>
-              <div
-                style="
-                  width: 90%;
-                  display: flex;
-                  font-size: medium;
-                  font-weight: 600;
-                  margin-left: 20px;
-                "
-              >
-                <span style="color: #000000; margin-left: -10px">
-                  Choose your Service
-                </span>
+              <div style="width: 90%">
+                <span style="color: #000000"> complete your order data </span>
               </div>
             </div>
-            <!-- End: div judul -->
+            <!-- End: Div id 1 -->
 
-            <div>
-              <ion-list>
+            <!-- Start: Div id 2 -->
+            <div
+              id="div2"
+              style="
+                display: flex;
+                flex-direction: column;
+                height: 85%;
+                margin-top: 20px;
+                background-color: white;
+              "
+            >
+              <ion-list style="margin-top: -10px">
                 <ion-item button detail style="margin: 15px 0 15px 0">
-                  <div>
-                    <span style="font-size: medium">select your pet</span><br />
-                    <span style="font-size: small; color: #8d8c8c"
+                  <div
+                    style="height: 60px; display: flex; flex-direction: column"
+                  >
+                    <span style="font-size: medium">select your pet</span>
+                    <span
+                      style="
+                        font-size: small;
+                        color: #8d8c8c;
+                        margin-left: 20px;
+                        margin-top: 10px;
+                      "
                       >your pet</span
                     >
                   </div>
                 </ion-item>
 
                 <ion-item button detail style="margin: 15px 0 15px 0">
-                  <div>
-                    <span style="font-size: medium">select your pet</span><br />
-                    <span style="font-size: small; color: #8d8c8c"
-                      >your pet</span
-                    >
+                  <div
+                    style="height: 50px; display: flex; flex-direction: column"
+                  >
+                    <span style="font-size: medium">select date</span>
+                    <ion-datetime
+                      style="font-size: small; color: #8d8c8c"
+                      displayFormat="D MMM YYYY"
+                      min="2020"
+                      max="2021"
+                    ></ion-datetime>
                   </div>
                 </ion-item>
 
                 <ion-item button detail style="margin: 15px 0 15px 0">
-                  <div>
-                    <span style="font-size: medium">select your pet</span><br />
-                    <span style="font-size: small; color: #8d8c8c"
-                      >your pet</span
-                    >
+                  <div
+                    style="height: 50px; display: flex; flex-direction: column"
+                  >
+                    <span style="font-size: medium">select time</span>
+                    <ion-datetime
+                      style="font-size: small; color: #8d8c8c"
+                      displayFormat="HH:mm"
+                    ></ion-datetime>
                   </div>
                 </ion-item>
-
-                <ion-radio-group>
-                  <ion-list-header>
-                    <span style="font-size: medium">payment</span>
-                  </ion-list-header>
-                  <!-- Start: div pembayaran cash -->
-                  <div
-                    style="display: flex; flex-direction: row"
-                    class="ion-padding"
-                  >
-                    <div style="width: 10%; margin-top: -10px">
-                      <ion-radio
-                        slot="start"
-                        value="Cash"
-                        style="height: 15px; width: 15px"
-                      ></ion-radio>
-                    </div>
-                    <div style="width: 25%; margin-top: -10px">
-                      <ion-img
-                        src="../../assets/icon/transaction/IconCash.png"
-                        style="width: 80px"
-                      ></ion-img>
-                    </div>
-                    <div
-                      style="
-                        width: 65%;
-                        display: flex;
-                        flex-direction: column;
-                        text-align: left;
-                        justify-content: center;
-                        margin-top: -10px;
-                      "
-                    >
-                      <div>
-                        <span style="font-size: small; font-weight: 600"
-                          >Cash</span
-                        >
-                      </div>
-                      <div>
-                        <span style="font-size: x-small; color: #8d8c8c"
-                          >pembayaran di toko</span
-                        >
-                      </div>
-                    </div>
-                  </div>
-                  <!-- End: div pembayaran cash -->
-
-                  <!-- Start: div pembayaran saldo petpy -->
-                  <div
-                    style="display: flex; flex-direction: row"
-                    class="ion-padding"
-                  >
-                    <div style="width: 10%">
-                      <ion-radio
-                        slot="start"
-                        value="SaldoPetpy"
-                        style="height: 15px; width: 15px"
-                      ></ion-radio>
-                    </div>
-                    <div style="width: 25%">
-                      <ion-img
-                        src="../../assets/icon/transaction/IconSaldoPetpy.png"
-                        style="width: 80px"
-                      ></ion-img>
-                    </div>
-                    <div
-                      style="
-                        width: 65%;
-                        display: flex;
-                        flex-direction: column;
-                        text-align: left;
-                        justify-content: center;
-                      "
-                    >
-                      <div>
-                        <span style="font-size: small; font-weight: 600"
-                          >Saldo Petpy</span
-                        >
-                      </div>
-                      <div>
-                        <span style="font-size: x-small; color: #8d8c8c"
-                          >you saldo Rp. 36.000</span
-                        >
-                        <br />
-                        <span style="font-size: x-small; color: #8d8c8c"
-                          >transaction amount Rp. 80.000</span
-                        >
-                        <br />
-                        <span style="font-size: x-small; color: red"
-                          >your balance is not enough</span
-                        >
-                      </div>
-                    </div>
-                  </div>
-                  <!-- End: div pembayaran saldo petpy -->
-
-                  <!-- Start: div pembayaran transfer bank -->
-                  <div
-                    style="display: flex; flex-direction: row"
-                    class="ion-padding"
-                  >
-                    <div style="width: 10%">
-                      <ion-radio
-                        slot="start"
-                        value="TransferBank"
-                        style="height: 15px; width: 15px"
-                      ></ion-radio>
-                    </div>
-                    <div style="width: 25%">
-                      <ion-img
-                        src="../../assets/icon/transaction/IconTransfer.png"
-                        style="width: 80px"
-                      ></ion-img>
-                    </div>
-                    <div
-                      style="
-                        width: 65%;
-                        display: flex;
-                        flex-direction: column;
-                        text-align: left;
-                        justify-content: center;
-                      "
-                    >
-                      <div>
-                        <span style="font-size: small; font-weight: 600"
-                          >Transfer Bank</span
-                        >
-                      </div>
-                      <div>
-                        <span style="font-size: x-small; color: #8d8c8c"
-                          >BCA - Virtual Account</span
-                        >
-                        <br />
-                        <span style="font-size: x-small; color: #8d8c8c"
-                          >Petpy.id - 1110 2525 331</span
-                        >
-                        <br />
-                        <span style="font-size: x-small; color: #8d8c8c"
-                          >Mandiri - Virtual Account</span
-                        >
-                        <br />
-                        <span style="font-size: x-small; color: #8d8c8c"
-                          >Petpy.id - 7889 6565 123</span
-                        >
-                        <br />
-                      </div>
-                    </div>
-                  </div>
-                  <!-- End: div pembayaran transfer bank -->
-                </ion-radio-group>
               </ion-list>
+
+              <ion-radio-group>
+                <ion-list-header>
+                  <span style="font-size: medium">payment</span>
+                </ion-list-header>
+                <!-- Start: div pembayaran cash -->
+                <div
+                  style="display: flex; flex-direction: row"
+                  class="ion-padding"
+                >
+                  <div style="width: 10%; margin-top: -10px">
+                    <ion-radio
+                      slot="start"
+                      value="Cash"
+                      style="height: 15px; width: 15px"
+                    ></ion-radio>
+                  </div>
+                  <div style="width: 25%; margin-top: -10px">
+                    <ion-img
+                      src="../../assets/icon/transaction/IconCash.png"
+                      style="width: 60px"
+                    ></ion-img>
+                  </div>
+                  <div
+                    style="
+                      width: 65%;
+                      display: flex;
+                      flex-direction: column;
+                      text-align: left;
+                      justify-content: center;
+                      margin-top: -10px;
+                    "
+                  >
+                    <div>
+                      <span style="font-size: small; font-weight: 600"
+                        >Cash</span
+                      >
+                    </div>
+                    <div>
+                      <span style="font-size: x-small; color: #8d8c8c"
+                        >pembayaran di toko</span
+                      >
+                    </div>
+                  </div>
+                </div>
+                <!-- End: div pembayaran cash -->
+
+                <!-- Start: div pembayaran saldo petpy -->
+                <div
+                  style="display: flex; flex-direction: row"
+                  class="ion-padding"
+                >
+                  <div style="width: 10%">
+                    <ion-radio
+                      slot="start"
+                      value="SaldoPetpy"
+                      style="height: 15px; width: 15px"
+                    ></ion-radio>
+                  </div>
+                  <div style="width: 25%">
+                    <ion-img
+                      src="../../assets/icon/transaction/IconSaldoPetpy.png"
+                      style="width: 60px"
+                    ></ion-img>
+                  </div>
+                  <div
+                    style="
+                      width: 65%;
+                      display: flex;
+                      flex-direction: column;
+                      text-align: left;
+                      justify-content: center;
+                    "
+                  >
+                    <div>
+                      <span style="font-size: small; font-weight: 600"
+                        >Saldo Petpy</span
+                      >
+                    </div>
+                    <div>
+                      <span style="font-size: x-small; color: #8d8c8c"
+                        >you saldo Rp. 36.000</span
+                      >
+                      <br />
+                      <span style="font-size: x-small; color: #8d8c8c"
+                        >transaction amount Rp. 80.000</span
+                      >
+                      <br />
+                      <span style="font-size: x-small; color: red"
+                        >your balance is not enough</span
+                      >
+                    </div>
+                  </div>
+                </div>
+                <!-- End: div pembayaran saldo petpy -->
+
+                <!-- Start: div pembayaran transfer bank -->
+                <div
+                  style="display: flex; flex-direction: row"
+                  class="ion-padding"
+                >
+                  <div style="width: 10%">
+                    <ion-radio
+                      slot="start"
+                      value="TransferBank"
+                      style="height: 15px; width: 15px"
+                    ></ion-radio>
+                  </div>
+                  <div style="width: 25%">
+                    <ion-img
+                      src="../../assets/icon/transaction/IconTransfer.png"
+                      style="width: 60px"
+                    ></ion-img>
+                  </div>
+                  <div
+                    style="
+                      width: 65%;
+                      display: flex;
+                      flex-direction: column;
+                      text-align: left;
+                      justify-content: center;
+                    "
+                  >
+                    <div>
+                      <span style="font-size: small; font-weight: 600"
+                        >Transfer Bank</span
+                      >
+                    </div>
+                    <div>
+                      <span style="font-size: x-small; color: #8d8c8c"
+                        >BCA - Virtual Account</span
+                      >
+                      <br />
+                      <span style="font-size: x-small; color: #8d8c8c"
+                        >Petpy.id - 1110 2525 331</span
+                      >
+                      <br />
+                      <span style="font-size: x-small; color: #8d8c8c"
+                        >Mandiri - Virtual Account</span
+                      >
+                      <br />
+                      <span style="font-size: x-small; color: #8d8c8c"
+                        >Petpy.id - 7889 6565 123</span
+                      >
+                      <br />
+                    </div>
+                  </div>
+                </div>
+                <!-- End: div pembayaran transfer bank -->
+              </ion-radio-group>
             </div>
-            <div>
-              <!-- Start: button next -->
-              <div
+            <!-- End: Div id 2 -->
+
+            <!-- Start: Div id 3 -->
+            <div
+              id="div3"
+              style="
+                display: flex;
+                flex-direction: column;
+                height: 5%;
+                background-color: white;
+                padding-right: 10px;
+                padding-left: 10px;
+              "
+            >
+              <button
+                (click)="swipeNext()"
+                routerDirection="forward"
                 style="
-                  padding-left: 10px;
-                  padding-right: 10px;
-                  justify-self: self-end;
+                  background-color: #1a72f8;
+                  width: 100%;
+                  height: 40px;
+                  color: white;
+                  border-radius: 10px;
                 "
               >
-                <button
-                  routerLink="/order-success"
-                  routerDirection="forward"
+                Next
+                <ion-icon
                   style="
-                    background-color: #1a72f8;
-                    width: 100%;
-                    height: 40px;
                     color: white;
-                    border-radius: 10px;
-                    margin-top: 17px;
+                    font-size: small;
+                    position: absolute;
+                    margin-left: 120px;
                   "
-                >
-                  Next
-                  <ion-icon
-                    style="
-                      color: white;
-                      font-size: small;
-                      position: absolute;
-                      margin-left: 150px;
-                    "
-                    name="arrow-forward-outline"
-                  ></ion-icon>
-                </button>
-              </div>
-              <!-- End: button next -->
+                  name="arrow-forward-outline"
+                ></ion-icon>
+              </button>
             </div>
+            <!-- End: Div id 3 -->
           </div>
         </ion-slide>
-        <!-- End: Slide 3 -->
+        <!-- End: slide 3 -->
       </ion-slides>
     </div>
     <!-- End: div background putih rounded -->

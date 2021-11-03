@@ -17,6 +17,17 @@ export class HomePage implements OnInit {
   storageKey: string;
   storageSc: string;
 
+  storageProduct = {
+    storageProductCode: '',
+    storageProductName: '',
+    storageProductGroup: '',
+    storageProductDesc: '',
+  };
+  storageProductCode: string;
+  storageProductName: string;
+  storageProductGroup: string;
+  storageProductDesc: string;
+
   constructor(
     private platform: Platform,
     public alertController: AlertController,
@@ -58,6 +69,11 @@ export class HomePage implements OnInit {
       this.storageUsername = data.value;
       console.log('Sekundren Username = ', this.storageUsername);
       // this.showAlert('Your Username is => ', this.storageUsername);
+    });
+
+    this.storage.getObject('storageProduct').then((data: any) => {
+      this.storageProduct = data;
+      console.log('Isi :', this.storageProduct);
     });
   }
 
