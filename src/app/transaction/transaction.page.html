@@ -192,7 +192,7 @@
               "
               class="ion-padding"
             >
-              <ion-radio-group>
+              <ion-radio-group (ionChange)="Sekundren($event)">
                 <div>
                   <!-- Start: div on clinic service -->
                   <div
@@ -335,13 +335,18 @@
                           margin-top: 10px;
                         "
                       >
-                        <ion-item button detail class="ion-wrap-text">
+                        <ion-item
+                          button
+                          detail
+                          class="ion-wrap-text"
+                          routerLink="/list-address"
+                        >
                           <div>
                             <span style="font-size: medium"
                               >set your address</span
                             ><br />
                             <span style="font-size: small; color: #8d8c8c"
-                              >address</span
+                              >{{ addressHome }}</span
                             >
                           </div>
                         </ion-item>
@@ -414,13 +419,18 @@
                           margin-top: 10px;
                         "
                       >
-                        <ion-item button detail class="ion-wrap-text">
+                        <ion-item
+                          button
+                          detail
+                          class="ion-wrap-text"
+                          (click)="inputCustomAddressDeliveryValue()"
+                        >
                           <div>
                             <span style="font-size: medium"
                               >set your address</span
                             ><br />
                             <span style="font-size: small; color: #8d8c8c"
-                              >address</span
+                              >{{ addressDelivery }}</span
                             >
                           </div>
                         </ion-item>
@@ -522,7 +532,13 @@
               "
             >
               <ion-list style="margin-top: -10px">
-                <ion-item button detail style="margin: 15px 0 15px 0">
+                <ion-item
+                  button
+                  detail
+                  style="margin: 15px 0 15px 0"
+                  routerLink="/order-selectpetmodal"
+                  routerDirection="forward"
+                >
                   <div
                     style="height: 60px; display: flex; flex-direction: column"
                   >
@@ -534,7 +550,7 @@
                         margin-left: 20px;
                         margin-top: 10px;
                       "
-                      >your pet</span
+                      >{{ pet }}</span
                     >
                   </div>
                 </ion-item>
@@ -731,7 +747,7 @@
               "
             >
               <button
-                (click)="swipeNext()"
+                (click)="SekundrenLagi()"
                 routerDirection="forward"
                 style="
                   background-color: #1a72f8;
@@ -835,7 +851,7 @@
                   </div>
                   <div style="width: 75%">
                     <span style="font-size: small; color: #8d8c8c"
-                      >Tn. Muhamad Rizqi Fadila</span
+                      >{{ dataTransaction_name }}</span
                     >
                   </div>
                 </div>
@@ -856,7 +872,7 @@
                   </div>
                   <div style="width: 75%">
                     <span style="font-size: small; color: #8d8c8c"
-                      >muhamadrizqifadila@gmail.com</span
+                      >{{ dataTransaction_email }}</span
                     >
                   </div>
                 </div>
@@ -877,7 +893,7 @@
                   </div>
                   <div style="width: 75%">
                     <span style="font-size: small; color: #8d8c8c"
-                      >087878787878</span
+                      >Contoh No Phone</span
                     >
                   </div>
                 </div>
@@ -900,7 +916,7 @@
                   </div>
                   <div style="width: 75%">
                     <span style="font-size: small; color: #8d8c8c"
-                      >Jl. Sekundren Malakundren RT 01 Rw 01 no 16A</span
+                      >Contoh Address</span
                     >
                   </div>
                 </div>
@@ -939,7 +955,7 @@
                   </div>
                   <div style="width: 75%">
                     <span style="font-size: small; color: #8d8c8c"
-                      >Simba Majalengka</span
+                      >Contoh Pet Name</span
                     >
                   </div>
                 </div>
@@ -962,7 +978,7 @@
                   </div>
                   <div style="width: 75%">
                     <span style="font-size: small; color: #8d8c8c"
-                      >Long Hair</span
+                      >Contoh Pet Type</span
                     >
                   </div>
                 </div>
@@ -985,7 +1001,7 @@
                   </div>
                   <div style="width: 75%">
                     <span style="font-size: small; color: #8d8c8c"
-                      >12 Nov 2021 / 14.00 PM</span
+                      >Contoh DateTime</span
                     >
                   </div>
                 </div>
@@ -1008,7 +1024,7 @@
                   </div>
                   <div style="width: 50%">
                     <span style="font-size: small; color: #8d8c8c"
-                      >Delivery Service</span
+                      >{{ dataTransaction_service }}</span
                     >
                   </div>
                   <div style="width: 25%">
@@ -1035,7 +1051,7 @@
                   </div>
                   <div style="width: 50%">
                     <span style="font-size: small; color: #8d8c8c"
-                      >Mandi Jamur</span
+                      >Contoh Package</span
                     >
                   </div>
                   <div style="width: 25%">
@@ -1111,7 +1127,7 @@
                     color: white;
                     font-size: small;
                     position: absolute;
-                    margin-left: 120px;
+                    margin-left: 105px;
                   "
                   name="checkmark-sharp"
                 ></ion-icon>

@@ -11,12 +11,12 @@
     >
       <div
         style="width: 10%"
-        routerLink="/order-grooming"
+        routerLink="/transaction"
         routerDirection="forward"
       >
         <ion-icon name="arrow-back"></ion-icon>
       </div>
-      <div routerLink="/order-grooming" routerDirection="forward">
+      <div (click)="inputCustomAddressValue()" routerDirection="forward">
         <ion-icon name="add-circle" style="color: #1a72f8"></ion-icon> &nbsp;
         <span style="color: #1a72f8">Tambah Alamat</span>
       </div>
@@ -28,7 +28,7 @@
       </div>
       <ion-item
         button
-        *ngFor="let dataAddress of dataAddresses"
+        *ngFor="let dataAddress of storageAddress"
         (click)="tapValue()"
       >
         <ion-thumbnail
