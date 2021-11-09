@@ -117,6 +117,10 @@ const routes: Routes = [
     path: 'transaction3',
     loadChildren: () => import('./transaction3/transaction3.module').then( m => m.Transaction3PageModule)
   },
+  {
+    path: 'transaction1modal',
+    loadChildren: () => import('./transaction1modal/transaction1modal.module').then( m => m.Transaction1modalPageModule)
+  },
 
 
 ];

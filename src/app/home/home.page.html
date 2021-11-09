@@ -9,7 +9,7 @@
         width: 100%;
         height: 70px;
         z-index: 1;
-        background-color: #1a72f8;
+        background-color: #1e4d94;
       "
     >
       <ion-grid style="margin-bottom: 30px" class="ion-padding">
@@ -118,7 +118,7 @@
                 height: 50px;
                 width: 50px;
                 border-radius: 5px;
-                background-color: #1a72f8;
+                background-color: #1e4d94;
                 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
                   0 6px 20px 0 rgba(0, 0, 0, 0.19);
               "
@@ -244,131 +244,225 @@
         </div>
         <div>
           <ion-slides style="padding-bottom: 10px">
-            <!-- Start: Service Cat -->
-            <div
-              style="
-                height: 150px;
-                width: 120px;
-                background-color: white;
-                display: flex;
-                flex-direction: column;
-                border-radius: 10px;
-                margin-left: 10px;
-                margin-right: 5px;
-                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
-                  0 6px 5px 0 rgba(0, 0, 0, 0.19);
-                padding-left: 10px;
-              "
-            >
+            <!-- Start: Slide 1 -->
+            <ion-slide style="text-align: left; width: 100%">
+              <!-- Start: Cukur Kucing -->
               <div
+                routerLink="/transaction"
+                routerDirection="forward"
                 style="
-                  background-color: white;
-                  height: 40px;
-                  width: 40px;
-                  border-radius: 50%;
+                  height: 150px;
+                  width: 120px;
+                  background-color: #1e4d94;
+                  display: flex;
+                  flex-direction: column;
+                  border-radius: 10px;
+                  margin-left: 10px;
+                  margin-right: 5px;
                   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
-                    0 6px 20px 0 rgba(0, 0, 0, 0.19);
-                  margin-top: 20px;
+                    0 6px 5px 0 rgba(0, 0, 0, 0.19);
+                  padding-left: 10px;
                 "
               >
-                <ion-img
-                  src="../../assets/icon/dashboard-booking-gps-icon.png"
-                ></ion-img>
+                <div
+                  style="
+                    background-color: white;
+                    height: 40px;
+                    width: 40px;
+                    border-radius: 50%;
+                    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+                      0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                    margin-top: 20px;
+                  "
+                >
+                  <ion-img
+                    src="../../assets/icon/dashboard-booking-gps-icon.png"
+                  ></ion-img>
+                </div>
+                <div>
+                  <h3 style="font-size: small; font-weight: 600; color: white">
+                    {{ listProducts_group[0] }}
+                  </h3>
+                </div>
+                <div style="margin-top: -20px">
+                  <h3 style="font-size: x-small; color: white">
+                    take this service now
+                  </h3>
+                </div>
               </div>
-              <div>
-                <h3 style="font-size: small; font-weight: 600">
-                  {{ listProducts_group[2] }}
-                </h3>
-              </div>
-              <div style="margin-top: -20px">
-                <h3 style="font-size: x-small">take this service now</h3>
-              </div>
-            </div>
-            <!-- End: Service Cat -->
+              <!-- End: Cukur Kucing -->
 
-            <!-- Start: Service Dog -->
-            <div
-              style="
-                height: 150px;
-                width: 120px;
-                background-color: white;
-                display: flex;
-                flex-direction: column;
-                border-radius: 10px;
-                margin-left: 10px;
-                margin-right: 5px;
-                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
-                  0 6px 5px 0 rgba(0, 0, 0, 0.19);
-                padding-left: 10px;
-              "
-            >
+              <!-- Start: Service Cat -->
               <div
+                routerLink="/transaction1"
+                routerDirection="forward"
                 style="
-                  background-color: white;
-                  height: 40px;
-                  width: 40px;
-                  border-radius: 50%;
+                  height: 150px;
+                  width: 120px;
+                  background-color: #1e4d94;
+                  display: flex;
+                  flex-direction: column;
+                  border-radius: 10px;
+                  margin-left: 10px;
+                  margin-right: 5px;
                   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
-                    0 6px 20px 0 rgba(0, 0, 0, 0.19);
-                  margin-top: 20px;
+                    0 6px 5px 0 rgba(0, 0, 0, 0.19);
+                  padding-left: 10px;
                 "
               >
-                <ion-img
-                  src="../../assets/icon/dashboard-booking-gps-icon.png"
-                ></ion-img>
+                <div
+                  style="
+                    background-color: white;
+                    height: 40px;
+                    width: 40px;
+                    border-radius: 50%;
+                    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+                      0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                    margin-top: 20px;
+                  "
+                >
+                  <ion-img
+                    src="../../assets/icon/dashboard-booking-gps-icon.png"
+                  ></ion-img>
+                </div>
+                <div>
+                  <h3 style="font-size: small; font-weight: 600; color: white">
+                    {{ listProducts_group[1] }}
+                  </h3>
+                </div>
+                <div style="margin-top: -20px">
+                  <h3 style="font-size: x-small; color: white">
+                    take this service now
+                  </h3>
+                </div>
               </div>
-              <div>
-                <h3 style="font-size: small; font-weight: 600">
-                  {{ listProducts_group[1] }}
-                </h3>
-              </div>
-              <div style="margin-top: -20px">
-                <h3 style="font-size: x-small">take this service now</h3>
-              </div>
-            </div>
-            <!-- End: Service Dog -->
+              <!-- End: Service Cat -->
 
-            <!-- Start: Service Dog Haircut -->
-            <div
-              style="
-                height: 150px;
-                width: 120px;
-                background-color: white;
-                display: flex;
-                flex-direction: column;
-                border-radius: 10px;
-                margin-left: 10px;
-                margin-right: 5px;
-                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
-                  0 6px 5px 0 rgba(0, 0, 0, 0.19);
-                padding-left: 10px;
-              "
-            >
+              <!-- Start: Service Anjing Haircut -->
               <div
+                routerLink="/transaction2"
+                routerDirection="forward"
                 style="
-                  background-color: white;
-                  height: 40px;
-                  width: 40px;
-                  border-radius: 50%;
+                  height: 150px;
+                  width: 120px;
+                  background-color: #1e4d94;
+                  display: flex;
+                  flex-direction: column;
+                  border-radius: 10px;
+                  margin-left: 10px;
+                  margin-right: 5px;
                   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
-                    0 6px 20px 0 rgba(0, 0, 0, 0.19);
-                  margin-top: 20px;
+                    0 6px 5px 0 rgba(0, 0, 0, 0.19);
+                  padding-left: 10px;
                 "
               >
-                <ion-img
-                  src="../../assets/icon/dashboard-booking-gps-icon.png"
-                ></ion-img>
+                <div
+                  style="
+                    background-color: white;
+                    height: 40px;
+                    width: 40px;
+                    border-radius: 50%;
+                    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+                      0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                    margin-top: 20px;
+                  "
+                >
+                  <ion-img
+                    src="../../assets/icon/dashboard-booking-gps-icon.png"
+                  ></ion-img>
+                </div>
+                <div>
+                  <h3 style="font-size: small; font-weight: 600; color: white">
+                    {{ listProducts_group[2] }}
+                  </h3>
+                </div>
+                <div style="margin-top: -20px">
+                  <h3 style="font-size: x-small; color: white">
+                    take this service now
+                  </h3>
+                </div>
               </div>
-              <div>
-                <h3 style="font-size: small; font-weight: 600">
-                  {{ listProducts_group[0] }}
-                </h3>
+              <!-- End: Service Anjing Haircut -->
+            </ion-slide>
+            <!-- End: Slide 1 -->
+
+            <!-- Start: Slide 2 -->
+            <ion-slide style="text-align: left; width: 100%">
+              <!-- Start: Service Anjing -->
+              <div
+                style="
+                  height: 150px;
+                  width: 120px;
+                  background-color: #1e4d94;
+                  display: flex;
+                  flex-direction: column;
+                  border-radius: 10px;
+                  margin-left: 10px;
+                  margin-right: 5px;
+                  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+                    0 6px 5px 0 rgba(0, 0, 0, 0.19);
+                  padding-left: 10px;
+                "
+              >
+                <div
+                  style="
+                    background-color: white;
+                    height: 40px;
+                    width: 40px;
+                    border-radius: 50%;
+                    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+                      0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                    margin-top: 20px;
+                  "
+                >
+                  <ion-img
+                    src="../../assets/icon/dashboard-booking-gps-icon.png"
+                  ></ion-img>
+                </div>
+                <div>
+                  <h3 style="font-size: small; font-weight: 600; color: white">
+                    {{ listProducts_group[3] }}
+                  </h3>
+                </div>
+                <div style="margin-top: -20px">
+                  <h3 style="font-size: x-small; color: white">
+                    take this service now
+                  </h3>
+                </div>
               </div>
-              <div style="margin-top: -20px">
-                <h3 style="font-size: x-small">take this service now</h3>
-              </div>
-            </div>
-            <!-- End: Service Dog Haircut -->
+              <!-- End: Service Anjing -->
+
+              <!-- Start: Service Bayangan 1 -->
+              <div
+                style="
+                  height: 150px;
+                  width: 120px;
+                  display: flex;
+                  flex-direction: column;
+                  border-radius: 10px;
+                  margin-left: 10px;
+                  margin-right: 5px;
+                  padding-left: 10px;
+                "
+              ></div>
+              <!-- End: Service Bayangan 1 -->
+
+              <!-- Start: Service Bayangan 2 -->
+              <div
+                style="
+                  height: 150px;
+                  width: 120px;
+                  display: flex;
+                  flex-direction: column;
+                  border-radius: 10px;
+                  margin-left: 10px;
+                  margin-right: 5px;
+                  padding-left: 10px;
+                "
+              ></div>
+              <!-- End: Service Bayangan 2 -->
+            </ion-slide>
+            <!-- End: Slide 2 -->
           </ion-slides>
         </div>
       </div>

@@ -10,6 +10,24 @@ import { IonSlides } from '@ionic/angular';
 })
 export class TransactionPage implements OnInit {
   @ViewChild('mySlider') slides: IonSlides;
+  constructor(
+    private platform: Platform,
+    public alertController: AlertController,
+    private storage: StorageCapService
+  ) {}
+
+  // ______Function On Load Page_____________________________________________________Start__________
+
+  async ngOnInit() {
+    this.getStorage1();
+    this.getStorage3();
+  }
+
+  // ______Function On Load Page_____________________________________________________End__________
+
+  // ______Slide_1______________________________________________________________Start_______
+
+  listProducts_cat = [];
 
   storageProduct = {
     storageProductCode: '',
@@ -22,14 +40,25 @@ export class TransactionPage implements OnInit {
   storageProductGroup: string;
   storageProductDesc: string;
 
-  listProducts = [];
-  listProducts_cat = [];
-  pets = [];
-  pet: string;
-  addressHome: string;
-  addressDelivery: string;
+  getStorage1() {
+    this.storage.getObject('storageProduct').then((data: any) => {
+      this.storageProduct = data;
+      console.log('Sekundren - 1 = ', this.storageProduct);
+      this.listProducts_cat = this.storageProduct['products'].filter(function (
+        storageProduct
+      ) {
+        return storageProduct.item_group == 'Cukur Kucing';
+      });
+      console.log('Sekundren - 2 = ', this.storageProduct);
+    });
+  }
+
+  // ______Slide_1______________________________________________________________End_______
+
+  // ______Slide_3______________________________________________________________Start_______
 
   transactions = [];
+  pets = [];
   transaction_name: string;
   transaction_email: string;
   transaction_phone: string;
@@ -41,6 +70,41 @@ export class TransactionPage implements OnInit {
   transaction_package: string;
   transaction_payment: string;
   transaction_totalamount: string;
+
+  getStorage3() {
+    this.storage.getString('storageUsername').then((data: any) => {
+      this.transaction_name = data.value;
+    });
+
+    this.storage.getString('storageEmail').then((data: any) => {
+      this.transaction_email = data.value;
+    });
+  }
+
+  onSaveTransaction() {
+    console.log('Transaction Name', this.transaction_name);
+    console.log('Transaction email', this.transaction_email);
+    console.log('Transaction service', this.transaction_service);
+
+    var indexLen = this.pets.length;
+    var newId = 1 + indexLen;
+    var dataTransaction = {
+      id: newId,
+      name: this.transaction_name,
+      email: this.transaction_email,
+      service: this.transaction_service,
+    };
+    this.transactions.push(dataTransaction);
+    this.storage.setObject('storageTransactions', {
+      transactions: this.transactions,
+    });
+    this.getStorage4();
+    this.swipeNext();
+  }
+
+  // ______Slide_3______________________________________________________________End_______
+
+  // ______Slide_4______________________________________________________________Start_______
 
   dataTransaction_name: string;
   dataTransaction_email: string;
@@ -54,38 +118,7 @@ export class TransactionPage implements OnInit {
   dataTransaction_payment: string;
   dataTransaction_totalamount: string;
 
-  constructor(
-    private platform: Platform,
-    public alertController: AlertController,
-    private storage: StorageCapService
-  ) {}
-
-  async showAlert(header: string, message: string) {
-    const alert = await this.alertController.create({
-      header,
-      message,
-      buttons: ['OK'],
-    });
-
-    await alert.present();
-  }
-
-  async ngOnInit() {
-    this.getStorage();
-  }
-
-  getStorage() {
-    this.storage.getObject('storageProduct').then((data: any) => {
-      this.storageProduct = data;
-      console.log('Sekundren - 1 = ', this.storageProduct);
-      this.listProducts_cat = this.storageProduct['products'].filter(function (
-        storageProduct
-      ) {
-        return storageProduct.item_group == 'Services';
-      });
-      console.log('Sekundren - 2 = ', this.storageProduct);
-    });
-
+  getStorage4() {
     this.storage.getObject('storageTransactions').then((data: any) => {
       this.dataTransaction_name = data['transactions'][0]['name'];
       this.dataTransaction_email = data['transactions'][0]['email'];
@@ -97,14 +130,22 @@ export class TransactionPage implements OnInit {
           this.dataTransaction_service
       );
     });
+  }
 
-    this.storage.getString('storageUsername').then((data: any) => {
-      this.transaction_name = data.value;
+  // ______Slide_4______________________________________________________________End_______
+
+  //listProducts = [];
+
+  // ______Function Pendukung___________________________________________________________Start_________
+
+  async showAlert(header: string, message: string) {
+    const alert = await this.alertController.create({
+      header,
+      message,
+      buttons: ['OK'],
     });
 
-    this.storage.getString('storageEmail').then((data: any) => {
-      this.transaction_email = data.value;
-    });
+    await alert.present();
   }
 
   slideOpts = {
@@ -120,123 +161,16 @@ export class TransactionPage implements OnInit {
     this.slides.slidePrev();
   }
 
-  Sekundren(event) {
+  // ______Function Pendukung___________________________________________________________End_________
+
+  // ______Function On Change Radio Button___________________________________________Start____________
+
+  onChangeRadio(event) {
     this.transaction_service = event.detail['value'];
     console.log('radioGroupChange', this.transaction_service);
   }
 
-  async inputCustomPetValue() {
-    console.log('Input async');
-    const inputAlert = await this.alertController.create({
-      header: 'Masukan nama hewan peliharaan mu:',
-      inputs: [
-        { type: 'text', placeholder: 'Nama' },
-        { type: 'text', placeholder: 'Detail' },
-      ],
-      buttons: [
-        { text: 'Cancel' },
-        {
-          text: 'Ok',
-          handler: (valueNewPet) => {
-            var indexLen = this.pets.length;
-            var newId = 1 + indexLen;
-            var dataBaru = {
-              id: newId,
-              name: valueNewPet[0],
-              detail: valueNewPet[1],
-            };
-            console.log(valueNewPet[0]);
-            this.pet = valueNewPet[0];
-            this.pets.push(dataBaru);
-            console.log('Berhasil', this.pet);
-          },
-        },
-      ],
-    });
+  // ______Function On Change Radio Button___________________________________________End____________
 
-    await inputAlert.present();
-  }
-
-  async inputCustomAddressHomeValue() {
-    console.log('Input async');
-    const inputAlert = await this.alertController.create({
-      header: 'Your address:',
-      inputs: [{ type: 'text', placeholder: 'address' }],
-      buttons: [
-        { text: 'Cancel' },
-        {
-          text: 'Ok',
-          handler: (valueNewaddressHome) => {
-            // var indexLen = this.pets.length;
-            // var newId = 1 + indexLen;
-            var dataBaru = {
-              // id: newId,
-              name: valueNewaddressHome,
-            };
-            console.log(valueNewaddressHome);
-            this.addressHome = valueNewaddressHome[0];
-            //this.pets.push(dataBaru);
-            console.log('Berhasil', this.addressHome);
-          },
-        },
-      ],
-    });
-
-    await inputAlert.present();
-  }
-
-  async inputCustomAddressDeliveryValue() {
-    console.log('Input async');
-    const inputAlert = await this.alertController.create({
-      header: 'Your address:',
-      inputs: [{ type: 'text', placeholder: 'address' }],
-      buttons: [
-        { text: 'Cancel' },
-        {
-          text: 'Ok',
-          handler: (valueNewaddressDelivery) => {
-            // var indexLen = this.pets.length;
-            // var newId = 1 + indexLen;
-            var dataBaru = {
-              // id: newId,
-              name: valueNewaddressDelivery,
-            };
-            console.log(valueNewaddressDelivery);
-            this.addressDelivery = valueNewaddressDelivery[0];
-            //this.pets.push(dataBaru);
-            console.log('Berhasil', this.addressDelivery);
-          },
-        },
-      ],
-    });
-
-    await inputAlert.present();
-  }
-
-  SekundrenLagi() {
-    console.log('Transaction Name', this.transaction_name);
-    console.log('Transaction email', this.transaction_email);
-    // console.log('Transaction phone', this.transaction_Transaction);
-    // console.log('Transaction address', this.transaction_Transaction);
-    // console.log('Transaction petname', this.transaction_Transaction);
-    // console.log('Transaction petdetail', this.transaction_Transaction);
-    // console.log('Transaction date', this.transaction_Transaction);
-    console.log('Transaction service', this.transaction_service);
-    // console.log('Transaction package', this.transaction_service);
-
-    var indexLen = this.pets.length;
-    var newId = 1 + indexLen;
-    var dataTransaction = {
-      id: newId,
-      name: this.transaction_name,
-      email: this.transaction_email,
-      service: this.transaction_service,
-    };
-    this.transactions.push(dataTransaction);
-    this.storage.setObject('storageTransactions', {
-      transactions: this.transactions,
-    });
-    this.getStorage();
-    this.swipeNext();
-  }
+  // ______Function On Load Page______________________________________________________End____________
 }

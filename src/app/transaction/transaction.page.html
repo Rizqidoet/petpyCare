@@ -192,7 +192,7 @@
               "
               class="ion-padding"
             >
-              <ion-radio-group (ionChange)="Sekundren($event)">
+              <ion-radio-group (ionChange)="onChangeRadio($event)">
                 <div>
                   <!-- Start: div on clinic service -->
                   <div
@@ -747,7 +747,7 @@
               "
             >
               <button
-                (click)="SekundrenLagi()"
+                (click)="onSaveTransaction()"
                 routerDirection="forward"
                 style="
                   background-color: #1a72f8;
