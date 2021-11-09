@@ -19,10 +19,12 @@ export class SigninPage implements OnInit {
   apiUsername: string;
   apiEmail: string;
   apiID: string;
+  apiImage: string;
 
   storageUsername: string;
   storageEmail: string;
   storageID: string;
+  storageImage: string;
   storageKey: string;
   storageSc: string;
   storageProducts: [];
@@ -123,6 +125,7 @@ export class SigninPage implements OnInit {
       this.apiUserinfo.givenName + ' ' + this.apiUserinfo.familyName;
     this.apiEmail = this.apiUserinfo.email;
     this.apiID = this.apiUserinfo.id;
+    this.apiImage = this.apiUserinfo.imageUrl;
 
     this.callServer(this.apiUserinfo);
   }
@@ -150,6 +153,7 @@ export class SigninPage implements OnInit {
         this.storageUsername = this.apiUsername;
         this.storageEmail = this.apiEmail;
         this.storageID = this.apiID;
+        this.storageImage = this.apiImage;
         this.storageKey = response['message']['api_key'];
         this.storageSc = response['message']['api_secret'];
         this.storageProducts = response['message']['products'];
@@ -157,6 +161,7 @@ export class SigninPage implements OnInit {
         this.storage.setString('storageUsername', this.storageUsername);
         this.storage.setString('storageEmail', this.storageEmail);
         this.storage.setString('storageID', this.storageID);
+        this.storage.setString('storageImage', this.storageImage);
         this.storage.setString('storageKey', this.storageKey);
         this.storage.setString('storageSc', this.storageSc);
         this.storage.setObject('storageProduct', {

@@ -7,7 +7,7 @@
       style="
         position: fixed;
         width: 100%;
-        height: 80px;
+        height: 70px;
         z-index: 1;
         background-color: #1a72f8;
       "
@@ -21,21 +21,8 @@
                   <td>
                     <ion-img
                       src="../../assets/icon/tabs-home/tabshome-iconUser.png"
-                      style="width: 30px; height: 30px"
+                      style="width: 30px; height: 30px; margin-top: 5px"
                     ></ion-img>
-                  </td>
-                  <td>
-                    <a>
-                      <p
-                        style="
-                          color: #ffffff;
-                          margin-left: 15px;
-                          font-size: small;
-                        "
-                      >
-                        Hallo, {{ storageUsername }}
-                      </p>
-                    </a>
                   </td>
                 </tr>
               </table>
@@ -83,108 +70,162 @@
     <!-- Start: div header | username and lgout -->
 
     <!-- Start: div body | content -->
-    <div style="width: 100%; overflow: hidden; margin-bottom: 20px; z-index: 0">
-      <!-- Start: div image rounded blue & info saldo, point, promo -->
-      <div>
-        <!-- start: div bg image rounded blue -->
-        <div
-          style="width: 100%; margin-top: 70px; position: relative; z-index: -1"
-        >
-          <ion-img src="../../assets/icon/bg-home.png"> </ion-img>
-        </div>
-        <!-- start: div bg image rounded blue -->
-
-        <!-- Start: div bg putih pembungkus saldo, point, promo -->
+    <div
+      style="
+        width: 100%;
+        overflow: hidden;
+        margin-bottom: 20px;
+        z-index: 0;
+        background-color: rgb(250, 250, 250);
+      "
+    >
+      <!-- Start: Profile Loged -->
+      <div
+        style="
+          background-color: #ffffff;
+          height: auto;
+          width: 100%;
+          display: flex;
+          margin-top: 72px;
+          align-items: center;
+          padding: 20px 10px 20px 10px;
+        "
+      >
         <div
           style="
-            overflow: hidden;
-            margin: -60px 20px 10px 20px;
-            border-radius: 10px;
-            background-color: #ffffff;
+            background-color: white;
+            height: 200px;
+            width: 100%;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
               0 6px 20px 0 rgba(0, 0, 0, 0.19);
-            border-radius: 10px;
-            height: 100px;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-around;
           "
+          class="ion-padding"
         >
-          <!-- Start: div saldo -->
-          <div>
-            <div style="text-align: center; margin-top: 10px">
+          <!-- Start: Foto Profile, Username, & Email -->
+          <div
+            style="
+              background-color: white;
+              display: flex;
+              flex-direction: row;
+              padding: 10px 0px 10px 10px;
+            "
+          >
+            <div
+              style="
+                height: 50px;
+                width: 50px;
+                border-radius: 5px;
+                background-color: #1a72f8;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+                  0 6px 20px 0 rgba(0, 0, 0, 0.19);
+              "
+            >
               <ion-img
-                src="../../assets/icon/tabs-home/tabshome-iconSaldo-blue.png"
-                style="
-                  width: 25px;
-                  height: 25px;
-                  margin-left: auto;
-                  margin-right: auto;
-                  margin-bottom: 10px;
-                "
+                style="border-radius: 50%"
+                src="{{ storageImage }}"
               ></ion-img>
-              <ion-label style="color: #1a72f8; font-size: smaller">
-                Saldo </ion-label
-              ><br />
-              <ion-label style="color: #1a72f8; font-size: smaller">
-                <b>Rp. 28.000</b>
-              </ion-label>
+            </div>
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                margin-left: 20px;
+              "
+            >
+              <div>
+                <span style="font-size: medium; font-weight: 600">
+                  {{ storageUsername }}
+                </span>
+              </div>
+              <div>
+                <span style="font-size: small; color: darkgray">
+                  {{ storageEmail }}
+                </span>
+              </div>
             </div>
           </div>
-          <!-- End: div saldo -->
+          <!-- End: Foto Profile, Username, & Email -->
 
-          <!-- Start: div point -->
-          <div>
-            <div style="text-align: center; margin-top: 10px">
-              <ion-img
-                src="../../assets/icon/tabs-home/tabshome-iconPoint-blue.png"
-                style="
-                  width: 25px;
-                  height: 25px;
-                  margin-left: auto;
-                  margin-right: auto;
-                  margin-bottom: 10px;
-                "
-              ></ion-img>
-              <ion-label style="color: #1a72f8; font-size: smaller">
-                Point </ion-label
-              ><br />
-              <ion-label style="color: #1a72f8; font-size: smaller">
-                <b>4.200</b>
-              </ion-label>
+          <!-- Start: Saldo Balance $ Saldo Point-->
+          <div
+            style="
+              padding: 10px 0 10px 10px;
+              display: flex;
+              flex-direction: row;
+              width: 100%;
+              justify-content: space-evenly;
+            "
+          >
+            <div
+              style="
+                background-color: white;
+                height: 100px;
+                width: 50%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+              "
+            >
+              <div>
+                <span
+                  style="font-size: large; font-weight: 600; margin-left: 5px"
+                >
+                  Rp. 25.000
+                </span>
+              </div>
+              <div style="display: flex; flex-direction: row; margin-top: 5px">
+                <div style="height: 35px; width: 35px">
+                  <ion-img
+                    src="../../assets/icon/tabs-home/tabshome-iconSaldo-blue.png"
+                  ></ion-img>
+                </div>
+                <div style="display: flex; align-items: center">
+                  <span style="font-size: small; margin-left: 10px">
+                    your balance
+                  </span>
+                </div>
+              </div>
             </div>
-          </div>
-          <!-- Start: div point -->
 
-          <!-- Start: div promo -->
-          <div>
-            <div style="text-align: center; margin-top: 10px">
-              <ion-img
-                src="../../assets/icon/tabs-home/tabshome-iconPromo-blue.png"
-                style="
-                  width: 25px;
-                  height: 25px;
-                  margin-left: auto;
-                  margin-right: auto;
-                  margin-bottom: 10px;
-                "
-              ></ion-img>
-              <ion-label style="color: #1a72f8; font-size: smaller">
-                Promo
-              </ion-label>
+            <div
+              style="
+                background-color: white;
+                height: 100px;
+                width: 50%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+              "
+            >
+              <div>
+                <span
+                  style="font-size: large; font-weight: 600; margin-left: 5px"
+                >
+                  2.780
+                </span>
+              </div>
+              <div style="display: flex; flex-direction: row; margin-top: 5px">
+                <div style="height: 35px; width: 35px">
+                  <ion-img
+                    src="../../assets/icon/tabs-home/tabshome-iconPoint-blue.png"
+                  ></ion-img>
+                </div>
+                <div style="display: flex; align-items: center">
+                  <span style="font-size: small; margin-left: 10px">
+                    your point
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
-          <!-- Start: div promo -->
+          <!-- End: Saldo Balance $ Saldo Point-->
         </div>
-        <!-- End: div bg putih pembungkus saldo, point, promo -->
       </div>
-      <!-- End: div image rounded blue & info saldo, point, promo -->
-
-      <div class="ion-padding" style="margin-top: 20px; margin-left: 20px">
-        <ion-label>
-          <h3>Available menu</h3>
-        </ion-label>
-      </div>
+      <!-- End: Profile Loged -->
 
       <!-- Start: div menu apps -->
       <div
@@ -192,104 +233,143 @@
           display: flex;
           flex-direction: column;
           width: 100%;
-          background-color: #fafafa;
+          background-color: rgb(250, 250, 250);
           padding: 20px 0 20px 0;
         "
       >
-        <div>
-          <!-- Start menu kucing -->
-          <ion-slides style="width: 100%">
-            <ion-slide style="width: 100%">
-              <a
-                routerLink="/transaction"
-                routerDirection="forward"
-                style="text-decoration: none; margin-left: 10px"
-              >
-                <div style="text-align: left; width: 100%">
-                  <ion-card style="border-radius: 10px">
-                    <img src="../../assets/icon/menu-cat.png" />
-                    <ion-card-header>
-                      <ion-card-title style="font-size: smaller"
-                        >{{ listProducts_group[3] }}</ion-card-title
-                      >
-                    </ion-card-header>
-                    <ion-card-content style="font-size: x-small">
-                      take this service now
-                    </ion-card-content>
-                  </ion-card>
-                </div>
-              </a>
-
-              <a
-                routerLink="/transaction1"
-                routerDirection="forward"
-                style="text-decoration: none; margin-right: 10px"
-              >
-                <div style="text-align: left; width: 100%">
-                  <ion-card style="border-radius: 10px">
-                    <img src="../../assets/icon/menu-cat.png" />
-                    <ion-card-header>
-                      <ion-card-title style="font-size: smaller"
-                        >{{ listProducts_group[2] }}</ion-card-title
-                      >
-                    </ion-card-header>
-                    <ion-card-content style="font-size: x-small">
-                      take this service now
-                    </ion-card-content>
-                  </ion-card>
-                </div>
-              </a>
-            </ion-slide>
-          </ion-slides>
-          <!-- Start menu kucing -->
+        <div style="margin-top: 0px; margin-left: 15px; margin-bottom: 10px">
+          <ion-label>
+            <h3>Available Menu</h3>
+          </ion-label>
         </div>
-
         <div>
-          <!-- Start menu anjing -->
-          <ion-slides style="width: 100%">
-            <ion-slide style="width: 100%">
-              <a
-                routerLink="/transaction2"
-                routerDirection="forward"
-                style="text-decoration: none; margin-left: 10px"
+          <ion-slides style="padding-bottom: 10px">
+            <!-- Start: Service Cat -->
+            <div
+              style="
+                height: 150px;
+                width: 120px;
+                background-color: white;
+                display: flex;
+                flex-direction: column;
+                border-radius: 10px;
+                margin-left: 10px;
+                margin-right: 5px;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+                  0 6px 5px 0 rgba(0, 0, 0, 0.19);
+                padding-left: 10px;
+              "
+            >
+              <div
+                style="
+                  background-color: white;
+                  height: 40px;
+                  width: 40px;
+                  border-radius: 50%;
+                  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+                    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                  margin-top: 20px;
+                "
               >
-                <div style="text-align: left; width: 100%">
-                  <ion-card style="border-radius: 10px">
-                    <img src="../../assets/icon/menu-dog.png" />
-                    <ion-card-header>
-                      <ion-card-title style="font-size: smaller"
-                        >{{ listProducts_group[1] }}</ion-card-title
-                      >
-                    </ion-card-header>
-                    <ion-card-content style="font-size: x-small">
-                      take this service now
-                    </ion-card-content>
-                  </ion-card>
-                </div>
-              </a>
+                <ion-img
+                  src="../../assets/icon/dashboard-booking-gps-icon.png"
+                ></ion-img>
+              </div>
+              <div>
+                <h3 style="font-size: small; font-weight: 600">
+                  {{ listProducts_group[2] }}
+                </h3>
+              </div>
+              <div style="margin-top: -20px">
+                <h3 style="font-size: x-small">take this service now</h3>
+              </div>
+            </div>
+            <!-- End: Service Cat -->
 
-              <a
-                routerLink="/transaction3"
-                routerDirection="forward"
-                style="text-decoration: none; margin-right: 10px"
+            <!-- Start: Service Dog -->
+            <div
+              style="
+                height: 150px;
+                width: 120px;
+                background-color: white;
+                display: flex;
+                flex-direction: column;
+                border-radius: 10px;
+                margin-left: 10px;
+                margin-right: 5px;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+                  0 6px 5px 0 rgba(0, 0, 0, 0.19);
+                padding-left: 10px;
+              "
+            >
+              <div
+                style="
+                  background-color: white;
+                  height: 40px;
+                  width: 40px;
+                  border-radius: 50%;
+                  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+                    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                  margin-top: 20px;
+                "
               >
-                <div style="text-align: left; width: 100%">
-                  <ion-card style="border-radius: 10px">
-                    <img src="../../assets/icon/menu-dog.png" />
-                    <ion-card-header>
-                      <ion-card-title style="font-size: smaller"
-                        >{{ listProducts_group[0] }}</ion-card-title
-                      >
-                    </ion-card-header>
-                    <ion-card-content style="font-size: x-small">
-                      take this service now
-                    </ion-card-content>
-                  </ion-card>
-                </div>
-              </a>
-            </ion-slide>
+                <ion-img
+                  src="../../assets/icon/dashboard-booking-gps-icon.png"
+                ></ion-img>
+              </div>
+              <div>
+                <h3 style="font-size: small; font-weight: 600">
+                  {{ listProducts_group[1] }}
+                </h3>
+              </div>
+              <div style="margin-top: -20px">
+                <h3 style="font-size: x-small">take this service now</h3>
+              </div>
+            </div>
+            <!-- End: Service Dog -->
+
+            <!-- Start: Service Dog Haircut -->
+            <div
+              style="
+                height: 150px;
+                width: 120px;
+                background-color: white;
+                display: flex;
+                flex-direction: column;
+                border-radius: 10px;
+                margin-left: 10px;
+                margin-right: 5px;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+                  0 6px 5px 0 rgba(0, 0, 0, 0.19);
+                padding-left: 10px;
+              "
+            >
+              <div
+                style="
+                  background-color: white;
+                  height: 40px;
+                  width: 40px;
+                  border-radius: 50%;
+                  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+                    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                  margin-top: 20px;
+                "
+              >
+                <ion-img
+                  src="../../assets/icon/dashboard-booking-gps-icon.png"
+                ></ion-img>
+              </div>
+              <div>
+                <h3 style="font-size: small; font-weight: 600">
+                  {{ listProducts_group[0] }}
+                </h3>
+              </div>
+              <div style="margin-top: -20px">
+                <h3 style="font-size: x-small">take this service now</h3>
+              </div>
+            </div>
+            <!-- End: Service Dog Haircut -->
           </ion-slides>
-          <!-- Start menu anjing -->
         </div>
       </div>
       <!-- End: div menu apps -->
@@ -301,6 +381,7 @@
           overflow: hidden;
           margin-top: 20px;
           overflow: hidden;
+          background-color: white;
         "
         class="ion-padding"
       >
@@ -416,11 +497,11 @@
           width: 100%;
           height: 200px;
           margin-top: 20px;
-          background-color: #fafafa;
+          background-color: rgb(250, 250, 250);
           overflow: hidden;
         "
       >
-        <div class="ion-padding" style="margin-bottom: 20px">
+        <div class="ion-padding">
           <h3>Info Terkini</h3>
           <p style="font-size: medium; color: gray; text-align: justify">
             Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -435,8 +516,15 @@
     <!-- End: div body |content -->
 
     <!-- Start: footer -->
-    <div style="width: 100%; overflow: hidden; background-color: #1a72f8">
-      <p style="font-size: x-small; color: white; text-align: center">
+    <div
+      style="
+        width: 100%;
+        overflow: hidden;
+        background-color: white;
+        margin-top: -15px;
+      "
+    >
+      <p style="font-size: x-small; color: black; text-align: center">
         &copy; powered by petpy-care 2021
       </p>
     </div>

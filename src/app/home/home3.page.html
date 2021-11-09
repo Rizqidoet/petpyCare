@@ -1,0 +1,445 @@
+<ion-content :fullscreen="true">
+  <div
+    style="display: flex; flex-direction: column; width: 100%; overflow: hidden"
+  >
+    <!-- Start: div header | username and lgout -->
+    <div
+      style="
+        position: fixed;
+        width: 100%;
+        height: 80px;
+        z-index: 1;
+        background-color: #1a72f8;
+      "
+    >
+      <ion-grid style="margin-bottom: 30px" class="ion-padding">
+        <ion-row>
+          <ion-col>
+            <div style="float: left">
+              <table style="width: 100%">
+                <tr>
+                  <td>
+                    <ion-img
+                      src="../../assets/icon/tabs-home/tabshome-iconUser.png"
+                      style="width: 30px; height: 30px"
+                    ></ion-img>
+                  </td>
+                  <td>
+                    <a>
+                      <p
+                        style="
+                          color: #ffffff;
+                          margin-left: 15px;
+                          font-size: small;
+                        "
+                      >
+                        Hallo, {{ storageUsername }}
+                      </p>
+                    </a>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- <ion-item>
+                Get LocalStorage string name : {{ userName }} || {{ apiKey }} ||
+                {{ apiSc }}
+              </ion-item> -->
+            </div>
+          </ion-col>
+
+          <ion-col>
+            <div style="float: right">
+              <table style="width: 100%">
+                <tr>
+                  <td>
+                    <p style="font-size: small">
+                      <a
+                        (click)="OnSignout()"
+                        style="
+                          color: #ffffff;
+                          margin-right: 15px;
+                          text-decoration: none;
+                        "
+                      >
+                        Logout
+                      </a>
+                    </p>
+                  </td>
+                  <td>
+                    <a (click)="OnSignout()">
+                      <ion-img
+                        src="../../assets/icon/tabs-home/tabshome-iconLogout.png"
+                        style="width: 30px; height: 30px"
+                      ></ion-img>
+                    </a>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <!-- Start: div header | username and lgout -->
+
+    <!-- Start: div body | content -->
+    <div style="width: 100%; overflow: hidden; margin-bottom: 20px; z-index: 0">
+      <!-- Start: div image rounded blue & info saldo, point, promo -->
+      <div>
+        <!-- start: div bg image rounded blue -->
+        <div
+          style="width: 100%; margin-top: 70px; position: relative; z-index: -1"
+        >
+          <ion-img src="../../assets/icon/bg-home.png"> </ion-img>
+        </div>
+        <!-- start: div bg image rounded blue -->
+
+        <!-- Start: div bg putih pembungkus saldo, point, promo -->
+        <div
+          style="
+            overflow: hidden;
+            margin: -60px 20px 10px 20px;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+              0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            border-radius: 10px;
+            height: 100px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+          "
+        >
+          <!-- Start: div saldo -->
+          <div>
+            <div style="text-align: center; margin-top: 10px">
+              <ion-img
+                src="../../assets/icon/tabs-home/tabshome-iconSaldo-blue.png"
+                style="
+                  width: 25px;
+                  height: 25px;
+                  margin-left: auto;
+                  margin-right: auto;
+                  margin-bottom: 10px;
+                "
+              ></ion-img>
+              <ion-label style="color: #1a72f8; font-size: smaller">
+                Saldo </ion-label
+              ><br />
+              <ion-label style="color: #1a72f8; font-size: smaller">
+                <b>Rp. 28.000</b>
+              </ion-label>
+            </div>
+          </div>
+          <!-- End: div saldo -->
+
+          <!-- Start: div point -->
+          <div>
+            <div style="text-align: center; margin-top: 10px">
+              <ion-img
+                src="../../assets/icon/tabs-home/tabshome-iconPoint-blue.png"
+                style="
+                  width: 25px;
+                  height: 25px;
+                  margin-left: auto;
+                  margin-right: auto;
+                  margin-bottom: 10px;
+                "
+              ></ion-img>
+              <ion-label style="color: #1a72f8; font-size: smaller">
+                Point </ion-label
+              ><br />
+              <ion-label style="color: #1a72f8; font-size: smaller">
+                <b>4.200</b>
+              </ion-label>
+            </div>
+          </div>
+          <!-- Start: div point -->
+
+          <!-- Start: div promo -->
+          <div>
+            <div style="text-align: center; margin-top: 10px">
+              <ion-img
+                src="../../assets/icon/tabs-home/tabshome-iconPromo-blue.png"
+                style="
+                  width: 25px;
+                  height: 25px;
+                  margin-left: auto;
+                  margin-right: auto;
+                  margin-bottom: 10px;
+                "
+              ></ion-img>
+              <ion-label style="color: #1a72f8; font-size: smaller">
+                Promo
+              </ion-label>
+            </div>
+          </div>
+          <!-- Start: div promo -->
+        </div>
+        <!-- End: div bg putih pembungkus saldo, point, promo -->
+      </div>
+      <!-- End: div image rounded blue & info saldo, point, promo -->
+
+      <div class="ion-padding" style="margin-top: 20px; margin-left: 20px">
+        <ion-label>
+          <h3>Available menu</h3>
+        </ion-label>
+      </div>
+
+      <!-- Start: div menu apps -->
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          background-color: #fafafa;
+          padding: 20px 0 20px 0;
+        "
+      >
+        <div>
+          <!-- Start menu kucing -->
+          <ion-slides style="width: 100%">
+            <ion-slide style="width: 100%">
+              <a
+                routerLink="/transaction"
+                routerDirection="forward"
+                style="text-decoration: none; margin-left: 10px"
+              >
+                <div style="text-align: left; width: 100%">
+                  <ion-card style="border-radius: 10px">
+                    <img src="../../assets/icon/menu-cat.png" />
+                    <ion-card-header>
+                      <ion-card-title style="font-size: smaller"
+                        >{{ listProducts_group[3] }}</ion-card-title
+                      >
+                    </ion-card-header>
+                    <ion-card-content style="font-size: x-small">
+                      take this service now
+                    </ion-card-content>
+                  </ion-card>
+                </div>
+              </a>
+
+              <a
+                routerLink="/transaction1"
+                routerDirection="forward"
+                style="text-decoration: none; margin-right: 10px"
+              >
+                <div style="text-align: left; width: 100%">
+                  <ion-card style="border-radius: 10px">
+                    <img src="../../assets/icon/menu-cat.png" />
+                    <ion-card-header>
+                      <ion-card-title style="font-size: smaller"
+                        >{{ listProducts_group[2] }}</ion-card-title
+                      >
+                    </ion-card-header>
+                    <ion-card-content style="font-size: x-small">
+                      take this service now
+                    </ion-card-content>
+                  </ion-card>
+                </div>
+              </a>
+            </ion-slide>
+          </ion-slides>
+          <!-- Start menu kucing -->
+        </div>
+
+        <div>
+          <!-- Start menu anjing -->
+          <ion-slides style="width: 100%">
+            <ion-slide style="width: 100%">
+              <a
+                routerLink="/transaction2"
+                routerDirection="forward"
+                style="text-decoration: none; margin-left: 10px"
+              >
+                <div style="text-align: left; width: 100%">
+                  <ion-card style="border-radius: 10px">
+                    <img src="../../assets/icon/menu-dog.png" />
+                    <ion-card-header>
+                      <ion-card-title style="font-size: smaller"
+                        >{{ listProducts_group[1] }}</ion-card-title
+                      >
+                    </ion-card-header>
+                    <ion-card-content style="font-size: x-small">
+                      take this service now
+                    </ion-card-content>
+                  </ion-card>
+                </div>
+              </a>
+
+              <a
+                routerLink="/transaction3"
+                routerDirection="forward"
+                style="text-decoration: none; margin-right: 10px"
+              >
+                <div style="text-align: left; width: 100%">
+                  <ion-card style="border-radius: 10px">
+                    <img src="../../assets/icon/menu-dog.png" />
+                    <ion-card-header>
+                      <ion-card-title style="font-size: smaller"
+                        >{{ listProducts_group[0] }}</ion-card-title
+                      >
+                    </ion-card-header>
+                    <ion-card-content style="font-size: x-small">
+                      take this service now
+                    </ion-card-content>
+                  </ion-card>
+                </div>
+              </a>
+            </ion-slide>
+          </ion-slides>
+          <!-- Start menu anjing -->
+        </div>
+      </div>
+      <!-- End: div menu apps -->
+
+      <!-- Start: Content Inti | Berita - 1 -->
+      <div
+        style="
+          width: 100%;
+          overflow: hidden;
+          margin-top: 20px;
+          overflow: hidden;
+        "
+        class="ion-padding"
+      >
+        <!-- Start: div mandi kutu -->
+        <div>
+          <div style="margin-bottom: 20px">
+            <ion-label>
+              <h3>#Mandi Kutu</h3>
+              <p style="font-size: small; color: gray; text-align: justify">
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry.
+              </p>
+            </ion-label>
+          </div>
+
+          <div
+            style="
+              box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+                0 6px 20px 0 rgba(0, 0, 0, 0.19);
+              border-radius: 10px;
+              height: 150px;
+              width: 100%;
+            "
+          >
+            <img
+              src="assets/icon/tabs-home/tabshome-bannerPromo3.png"
+              alt="banner"
+              style="
+                object-fit: contain;
+                width: 95%;
+                height: 100%;
+                margin-left: 5px;
+              "
+            />
+          </div>
+
+          <p
+            style="
+              font-size: smaller;
+              color: gray;
+              text-align: justify;
+              float: right;
+            "
+          >
+            <a
+              routerLink="/order-grooming"
+              routerDirection="forward"
+              style="text-decoration: none"
+            >
+              Ambil Promonya
+            </a>
+          </p>
+        </div>
+        <!-- End: div mandi kutu -->
+
+        <!-- Start: div senen kamis -->
+        <div style="margin-top: 50px">
+          <div style="margin-bottom: 20px">
+            <ion-label>
+              <h3>#Senen - Kamis</h3>
+              <p style="font-size: small; color: gray; text-align: justify">
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry.
+              </p>
+            </ion-label>
+          </div>
+
+          <div
+            style="
+              box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+                0 6px 20px 0 rgba(0, 0, 0, 0.19);
+              border-radius: 10px;
+              height: 150px;
+              width: 100%;
+            "
+          >
+            <img
+              src="assets/icon/tabs-home/tabshome-bannerPromo4.png"
+              alt="banner"
+              style="
+                object-fit: contain;
+                width: 95%;
+                height: 100%;
+                margin-left: 5px;
+              "
+            />
+          </div>
+
+          <p
+            style="
+              font-size: smaller;
+              color: gray;
+              text-align: justify;
+              float: right;
+            "
+          >
+            <a
+              routerLink="/order-grooming"
+              routerDirection="forward"
+              style="text-decoration: none"
+            >
+              Ambil Promonya
+            </a>
+          </p>
+        </div>
+        <!-- End: div senen kamis -->
+      </div>
+      <!-- End: Content Inti | Berita - 1 -->
+
+      <!-- Start: Content Inti | Berita - 2 -->
+      <div
+        style="
+          width: 100%;
+          height: 200px;
+          margin-top: 20px;
+          background-color: #fafafa;
+          overflow: hidden;
+        "
+      >
+        <div class="ion-padding" style="margin-bottom: 20px">
+          <h3>Info Terkini</h3>
+          <p style="font-size: medium; color: gray; text-align: justify">
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever since the 1500s, when an unknown printer took a galley of type
+            and scrambled it to make a type specimen book
+          </p>
+        </div>
+      </div>
+      <!-- End: Content Inti | Berita - 2 -->
+    </div>
+    <!-- End: div body |content -->
+
+    <!-- Start: footer -->
+    <div style="width: 100%; overflow: hidden; background-color: #1a72f8">
+      <p style="font-size: x-small; color: white; text-align: center">
+        &copy; powered by petpy-care 2021
+      </p>
+    </div>
+    <!-- End: footer -->
+  </div>
+</ion-content>

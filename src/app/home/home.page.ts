@@ -14,6 +14,7 @@ export class HomePage implements OnInit {
   storageUsername: string;
   storageEmail: string;
   storageID: string;
+  storageImage: string;
   storageKey: string;
   storageSc: string;
 
@@ -67,6 +68,13 @@ export class HomePage implements OnInit {
       console.log('Sekundren ID = ', this.storageID);
       // this.showAlert('Your ID is => ', this.storageID);
     });
+
+    this.storage.getString('storageImage').then((data: any) => {
+      this.storageImage = data.value;
+      console.log('Sekundren Image = ', this.storageImage);
+      // this.showAlert('Your ID is => ', this.storageID);
+    });
+
     this.storage.getString('storageUsername').then((data: any) => {
       this.storageUsername = data.value;
       console.log('Sekundren Username = ', this.storageUsername);
