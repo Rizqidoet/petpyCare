@@ -11,9 +11,9 @@
     "
   >
     <div
-      style="width: 100%; color: #0f3266; margin-top: 20px; text-align: center"
+      style="width: 100%; color: #0f3266; margin-top: 30px; text-align: center"
     >
-      <span style="font-size: large; font-weight: 600">
+      <span style="font-size: x-large; font-weight: 600">
         Confirm your order
       </span>
     </div>
@@ -39,8 +39,9 @@
         height: auto;
         width: 100%;
         border-radius: 15px;
-        padding-top: 20px;
+        padding-top: 30px;
         padding-bottom: 30px;
+        margin-top: 20px;
       "
       class="ion-padding"
     >
@@ -258,7 +259,7 @@
         height: auto;
         width: 100%;
         border-radius: 15px;
-        padding-top: 20px;
+        padding-top: 30px;
         padding-bottom: 30px;
       "
       class="ion-padding"
@@ -522,7 +523,9 @@
             <span style="font-size: large; font-weight: 600"> CASH </span>
           </div>
           <div style="width: 50%; text-align: center">
-            <span style="font-size: large; font-weight: 600"> Rp. 85.000 </span>
+            <span style="font-size: large; font-weight: 600">
+              Rp. 100.000
+            </span>
           </div>
         </div>
         <!-- End: Cash - Nominal -->
@@ -540,7 +543,7 @@
       background-color: rgb(238, 238, 238);
       width: 100%;
       margin-top: 0px;
-      padding-bottom: 35px;
+      padding-bottom: 50px;
     "
     class="ion-padding"
   >
@@ -551,14 +554,14 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-top: 10px;
+        margin-top: 30px;
       "
     >
       <span style="font-size: medium; font-weight: 600; color: #0f3266">
         back
       </span>
     </div>
-    <div style="width: 70%; margin-top: 10px">
+    <div style="width: 70%; margin-top: 30px">
       <button
         (click)="confirmYes()"
         routerDirection="forward"
@@ -570,7 +573,7 @@
           border-radius: 15px;
         "
       >
-        Finish
+        yes, i'm sure
         <ion-icon
           style="
             color: white;
@@ -578,7 +581,7 @@
             position: absolute;
             margin-left: 65px;
           "
-          name="arrow-forward-outline"
+          name="checkmark-sharp"
         ></ion-icon>
       </button>
     </div>
