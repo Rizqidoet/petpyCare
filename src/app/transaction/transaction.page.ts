@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { StorageCapService } from '../../app/services/storage-cap.service';
 import { Platform, ToastController, AlertController } from '@ionic/angular';
 import { IonSlides } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-transaction',
@@ -13,7 +14,8 @@ export class TransactionPage implements OnInit {
   constructor(
     private platform: Platform,
     public alertController: AlertController,
-    private storage: StorageCapService
+    private storage: StorageCapService,
+    private router: Router
   ) {}
 
   // ______Function On Load Page_____________________________________________________Start__________
@@ -28,7 +30,6 @@ export class TransactionPage implements OnInit {
   // ______Slide_1______________________________________________________________Start_______
 
   listProducts_cat = [];
-
   storageProduct = {
     storageProductCode: '',
     storageProductName: '',
@@ -81,25 +82,49 @@ export class TransactionPage implements OnInit {
     });
   }
 
-  onSaveTransaction() {
-    console.log('Transaction Name', this.transaction_name);
-    console.log('Transaction email', this.transaction_email);
-    console.log('Transaction service', this.transaction_service);
+  async onSaveTransaction() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Confirm',
+      message: 'Make Transaction ?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (cancel) => {
+            console.log('Confirm Cancel');
+          },
+        },
+        {
+          text: 'Okay',
+          handler: () => {
+            console.log('Confirm Okay');
 
-    var indexLen = this.pets.length;
-    var newId = 1 + indexLen;
-    var dataTransaction = {
-      id: newId,
-      name: this.transaction_name,
-      email: this.transaction_email,
-      service: this.transaction_service,
-    };
-    this.transactions.push(dataTransaction);
-    this.storage.setObject('storageTransactions', {
-      transactions: this.transactions,
+            console.log('Transaction Name', this.transaction_name);
+            console.log('Transaction email', this.transaction_email);
+            console.log('Transaction service', this.transaction_service);
+
+            var indexLen = this.pets.length;
+            var newId = 1 + indexLen;
+            var dataTransaction = {
+              id: newId,
+              name: this.transaction_name,
+              email: this.transaction_email,
+              service: this.transaction_service,
+            };
+            this.transactions.push(dataTransaction);
+            this.storage.setObject('storageTransactions', {
+              transactions: this.transactions,
+            });
+            this.getStorage4();
+            this.router.navigateByUrl('/transaction-confirm');
+          },
+        },
+      ],
     });
-    this.getStorage4();
-    this.swipeNext();
+
+    await alert.present();
   }
 
   // ______Slide_3______________________________________________________________End_______
@@ -133,8 +158,6 @@ export class TransactionPage implements OnInit {
   }
 
   // ______Slide_4______________________________________________________________End_______
-
-  //listProducts = [];
 
   // ______Function Pendukung___________________________________________________________Start_________
 
@@ -171,6 +194,4 @@ export class TransactionPage implements OnInit {
   }
 
   // ______Function On Change Radio Button___________________________________________End____________
-
-  // ______Function On Load Page______________________________________________________End____________
 }

@@ -1,0 +1,589 @@
+<ion-content>
+  <div
+    style="
+      display: flex;
+      flex-direction: row;
+      background-color: rgb(238, 238, 238);
+      width: 100%;
+      height: 50px;
+      position: fixed;
+      z-index: 1;
+    "
+  >
+    <div
+      style="width: 100%; color: #0f3266; margin-top: 20px; text-align: center"
+    >
+      <span style="font-size: large; font-weight: 600">
+        Confirm your order
+      </span>
+    </div>
+  </div>
+
+  <!-- Start: body -->
+  <!-- Start: Contact Information -->
+  <div
+    style="
+      display: flex;
+      flex-direction: column;
+      background-color: rgb(238, 238, 238);
+      width: 100%;
+      margin-top: 50px;
+    "
+    class="ion-padding"
+  >
+    <div
+      style="
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        height: auto;
+        width: 100%;
+        border-radius: 15px;
+        padding-top: 20px;
+        padding-bottom: 30px;
+      "
+      class="ion-padding"
+    >
+      <!-- Start: body | div 1 -->
+      <div>
+        <span style="font-size: medium; font-weight: 600">
+          Contact Information
+        </span>
+      </div>
+      <!-- End: body | div 1 -->
+
+      <!-- Start: body | div 2 -->
+      <div
+        style="
+          display: flex;
+          flex-direction: row;
+          width: 100%;
+          margin-top: 20px;
+        "
+      >
+        <div style="width: 10%; background-color: white; margin-right: 5px">
+          <ion-icon
+            style="color: #051d41; height: 30px; width: 30px"
+            name="person-sharp"
+          ></ion-icon>
+        </div>
+
+        <div
+          style="
+            width: 90%;
+            background-color: white;
+            margin-left: 10px;
+            display: flex;
+            flex-direction: column;
+          "
+        >
+          <div>
+            <span style="font-size: small; font-weight: 600; color: black"
+              >{{ dataTransaction_name }}
+            </span>
+          </div>
+          <div>
+            <span
+              style="
+                font-size: small;
+                font-weight: 600;
+                font-style: italic;
+                color: rgb(192, 192, 192);
+              "
+            >
+              Name
+            </span>
+          </div>
+        </div>
+      </div>
+      <!-- End: body | div 2 -->
+
+      <!-- Start: body | div 3 -->
+      <div
+        style="
+          display: flex;
+          flex-direction: row;
+          width: 100%;
+          margin-top: 10px;
+        "
+      >
+        <div style="width: 10%; background-color: white; margin-right: 5px">
+          <ion-icon
+            style="color: #051d41; height: 30px; width: 30px"
+            name="mail-sharp"
+          ></ion-icon>
+        </div>
+
+        <div
+          style="
+            width: 90%;
+            background-color: white;
+            margin-left: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+          "
+        >
+          <div>
+            <span style="font-size: small; font-weight: 600; color: black"
+              >{{ dataTransaction_email }}
+            </span>
+          </div>
+          <div>
+            <span
+              style="
+                font-size: small;
+                font-weight: 600;
+                font-style: italic;
+                color: rgb(192, 192, 192);
+              "
+            >
+              Email
+            </span>
+          </div>
+        </div>
+      </div>
+      <!-- End: body | div 3 -->
+
+      <!-- Start: body | div 4 -->
+      <div
+        style="
+          display: flex;
+          flex-direction: row;
+          width: 100%;
+          margin-top: 10px;
+        "
+      >
+        <div style="width: 10%; background-color: white; margin-right: 5px">
+          <ion-icon
+            style="color: #051d41; height: 30px; width: 30px"
+            name="phone-portrait-sharp"
+          ></ion-icon>
+        </div>
+
+        <div
+          style="
+            width: 90%;
+            background-color: white;
+            margin-left: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+          "
+        >
+          <div>
+            <span style="font-size: small; font-weight: 600; color: black"
+              >087855669988
+            </span>
+          </div>
+          <div>
+            <span
+              style="
+                font-size: small;
+                font-weight: 600;
+                font-style: italic;
+                color: rgb(192, 192, 192);
+              "
+            >
+              Phone
+            </span>
+          </div>
+        </div>
+      </div>
+      <!-- End: body | div 4 -->
+
+      <!-- Start: body | div 5 -->
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          margin-top: 10px;
+        "
+      >
+        <div
+          style="
+            width: 100%;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+          "
+        >
+          <span
+            style="
+              font-size: small;
+              font-weight: 600;
+              font-style: italic;
+              color: rgb(192, 192, 192);
+            "
+          >
+            Address
+          </span>
+        </div>
+        <div
+          style="
+            width: 100%;
+            background-color: white;
+            padding-left: 20px;
+            padding-right: 20px;
+            margin-top: 10px;
+          "
+        >
+          <span style="font-size: small; font-weight: 600; color: black"
+            >Jl. Jalan Dulu Gatau Sampe Kapan - Jalan Dulu Gatau Sampe Kapan
+          </span>
+        </div>
+      </div>
+      <!-- End: body | div 5 -->
+    </div>
+  </div>
+  <!-- End: Contact Information -->
+
+  <!-- Start: Order Information -->
+  <div
+    style="
+      display: flex;
+      flex-direction: column;
+      background-color: rgb(238, 238, 238);
+      width: 100%;
+      margin-top: -20px;
+    "
+    class="ion-padding"
+  >
+    <div
+      style="
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        height: auto;
+        width: 100%;
+        border-radius: 15px;
+        padding-top: 20px;
+        padding-bottom: 30px;
+      "
+      class="ion-padding"
+    >
+      <!-- Start: body | div 1 -->
+      <div>
+        <span style="font-size: medium; font-weight: 600">
+          Order Information
+        </span>
+      </div>
+      <!-- End: body | div 1 -->
+
+      <!-- Start: body | div 2 -->
+      <div
+        style="
+          display: flex;
+          flex-direction: row;
+          width: 100%;
+          margin-top: 20px;
+        "
+      >
+        <div style="width: 10%; background-color: white; margin-right: 5px">
+          <ion-icon
+            style="color: #051d41; height: 30px; width: 30px"
+            name="paw-sharp"
+          ></ion-icon>
+        </div>
+
+        <div
+          style="
+            width: 90%;
+            background-color: white;
+            margin-left: 10px;
+            display: flex;
+            flex-direction: column;
+          "
+        >
+          <div>
+            <span style="font-size: small; font-weight: 600; color: black"
+              >Simba
+            </span>
+          </div>
+          <div>
+            <span
+              style="
+                font-size: small;
+                font-weight: 600;
+                font-style: italic;
+                color: rgb(192, 192, 192);
+              "
+            >
+              Pet Name
+            </span>
+          </div>
+        </div>
+      </div>
+      <!-- End: body | div 2 -->
+
+      <!-- Start: body | div 3 -->
+      <div
+        style="
+          display: flex;
+          flex-direction: row;
+          width: 100%;
+          margin-top: 10px;
+        "
+      >
+        <div style="width: 10%; background-color: white; margin-right: 5px">
+          <ion-icon
+            style="color: #051d41; height: 30px; width: 30px"
+            name="calendar-sharp"
+          ></ion-icon>
+        </div>
+
+        <div
+          style="
+            width: 90%;
+            background-color: white;
+            margin-left: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+          "
+        >
+          <div>
+            <span style="font-size: small; font-weight: 600; color: black"
+              >11 - 10 - 2021 / 13.30
+            </span>
+          </div>
+          <div>
+            <span
+              style="
+                font-size: small;
+                font-weight: 600;
+                font-style: italic;
+                color: rgb(192, 192, 192);
+              "
+            >
+              Date / Time
+            </span>
+          </div>
+        </div>
+      </div>
+      <!-- End: body | div 3 -->
+
+      <!-- Start: body | div 4 -->
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          margin-top: 10px;
+        "
+      >
+        <!-- Start: Detail Transaction -->
+        <div
+          style="
+            width: 100%;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+          "
+        >
+          <span
+            style="
+              font-size: small;
+              font-weight: 600;
+              font-style: italic;
+              color: rgb(192, 192, 192);
+            "
+          >
+            Detail Transaction
+          </span>
+        </div>
+        <!-- End: Detail Transaction -->
+
+        <!-- Start: Mandi Basah -->
+        <div
+          style="
+            width: 100%;
+            background-color: white;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            margin: 10px 0 0 0;
+          "
+        >
+          <div style="width: 50%">
+            <span
+              style="
+                font-size: small;
+                font-weight: 600;
+                color: black;
+                margin-left: 20px;
+              "
+              >Mandi Basah
+            </span>
+          </div>
+          <div style="width: 50%">
+            <span
+              style="
+                font-size: small;
+                font-weight: 600;
+                color: black;
+                margin-left: 70px;
+              "
+              >Rp. 85.000
+            </span>
+          </div>
+        </div>
+        <!-- End: Mandi Basah -->
+
+        <!-- Start: Delivery Service -->
+        <div
+          style="
+            width: 100%;
+            background-color: white;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            border-bottom: rgb(192, 192, 192) 1px solid;
+            padding-bottom: 5px;
+            margin: 5px 0 0 0;
+          "
+        >
+          <div style="width: 50%">
+            <span
+              style="
+                font-size: small;
+                font-weight: 600;
+                color: black;
+                margin-left: 20px;
+              "
+              >{{ dataTransaction_service }}
+            </span>
+          </div>
+          <div style="width: 50%">
+            <span
+              style="
+                font-size: small;
+                font-weight: 600;
+                color: black;
+                margin-left: 70px;
+              "
+              >Rp. 15.000
+            </span>
+          </div>
+        </div>
+        <!-- End: Delivery Service -->
+
+        <!-- Start: Payment - Total Amount -->
+        <div
+          style="
+            width: 100%;
+            background-color: white;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            margin: 10px 0 0 0;
+          "
+        >
+          <div style="width: 50%; text-align: center">
+            <span
+              style="
+                font-size: small;
+                font-weight: 600;
+                font-style: italic;
+                color: rgb(192, 192, 192);
+              "
+            >
+              Payment
+            </span>
+          </div>
+          <div style="width: 50%; text-align: center">
+            <span
+              style="
+                font-size: small;
+                font-weight: 600;
+                font-style: italic;
+                color: rgb(192, 192, 192);
+              "
+            >
+              Total Amount
+            </span>
+          </div>
+        </div>
+        <!-- End: Payment - Total Amount -->
+
+        <!-- Start: Cash - Nominal -->
+        <div
+          style="
+            width: 100%;
+            background-color: white;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            margin: 5px 0 0 0;
+          "
+        >
+          <div style="width: 50%; text-align: center">
+            <span style="font-size: large; font-weight: 600"> CASH </span>
+          </div>
+          <div style="width: 50%; text-align: center">
+            <span style="font-size: large; font-weight: 600"> Rp. 85.000 </span>
+          </div>
+        </div>
+        <!-- End: Cash - Nominal -->
+      </div>
+      <!-- End: body | div 4 -->
+    </div>
+  </div>
+  <!-- End: Order Information -->
+
+  <!-- Start: Button Back - Yes -->
+  <div
+    style="
+      display: flex;
+      flex-direction: row;
+      background-color: rgb(238, 238, 238);
+      width: 100%;
+      margin-top: 0px;
+      padding-bottom: 35px;
+    "
+    class="ion-padding"
+  >
+    <div
+      (click)="confirmNo()"
+      style="
+        width: 30%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 10px;
+      "
+    >
+      <span style="font-size: medium; font-weight: 600; color: #0f3266">
+        back
+      </span>
+    </div>
+    <div style="width: 70%; margin-top: 10px">
+      <button
+        (click)="confirmYes()"
+        routerDirection="forward"
+        style="
+          background-color: #1a72f8;
+          width: 100%;
+          height: 40px;
+          color: white;
+          border-radius: 15px;
+        "
+      >
+        Finish
+        <ion-icon
+          style="
+            color: white;
+            font-size: small;
+            position: absolute;
+            margin-left: 65px;
+          "
+          name="arrow-forward-outline"
+        ></ion-icon>
+      </button>
+    </div>
+  </div>
+  <!-- End: Button Back - Yes -->
+
+  <!-- Start: body -->
+</ion-content>

@@ -121,6 +121,10 @@ const routes: Routes = [
     path: 'transaction1modal',
     loadChildren: () => import('./transaction1modal/transaction1modal.module').then( m => m.Transaction1modalPageModule)
   },
+  {
+    path: 'transaction-confirm',
+    loadChildren: () => import('./transaction-confirm/transaction-confirm.module').then( m => m.TransactionConfirmPageModule)
+  },
 
 
 ];
