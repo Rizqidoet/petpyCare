@@ -125,6 +125,14 @@ const routes: Routes = [
     path: 'transaction-confirm',
     loadChildren: () => import('./transaction-confirm/transaction-confirm.module').then( m => m.TransactionConfirmPageModule)
   },
+  {
+    path: 'transaction-selectaddress',
+    loadChildren: () => import('./transaction-selectaddress/transaction-selectaddress.module').then( m => m.TransactionSelectaddressPageModule)
+  },
+  {
+    path: 'transaction-setaddress',
+    loadChildren: () => import('./transaction-setaddress/transaction-setaddress.module').then( m => m.TransactionSetaddressPageModule)
+  },
 
 
 ];

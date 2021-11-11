@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
 import { IonicStorageModule } from '@ionic/storage-angular';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyA29cHl697Uvfsd70ioQVZcJB5CgBT9p8U',
@@ -34,7 +35,10 @@ const analytics = getAnalytics(app);
     HttpClientModule,
     IonicStorageModule.forRoot(),
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [
+    Geolocation,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,0 +1,166 @@
+<ion-header>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+  <ion-toolbar>
+    <ion-segment>
+      <ion-back-button
+        style="color: rgb(158, 158, 158)"
+        defaultHref="/transaction-selectaddress"
+      ></ion-back-button>
+      <ion-segment-button value="0">
+        <ion-label style="color: rgb(158, 158, 158)"
+          >Set Your Location</ion-label
+        >
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div
+    id="FormDetail"
+    style="
+      display: none;
+      position: absolute;
+      z-index: 5;
+      flex-direction: column;
+      width: 80%;
+      background-color: white;
+      border: rgb(248, 248, 248) 2px solid;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+        0 6px 8px 0 rgba(0, 0, 0, 0.19);
+    "
+    class="ion-padding"
+  >
+    <div style="text-align: left">
+      <ion-icon
+        (click)="Hide()"
+        style="color: rgb(158, 158, 158); font-size: small"
+        name="close"
+      ></ion-icon>
+    </div>
+
+    <div style="display: flex; flex-direction: column" class="ion-padding">
+      <div>
+        <span style="font-size: small; font-weight: 600; margin-left: 10px"
+          >your address</span
+        >
+      </div>
+
+      <div
+        style="
+          display: flex;
+          flex-direction: row;
+          margin-top: 10px;
+          background-color: rgb(243, 243, 243);
+          border-radius: 15px;
+        "
+      >
+        <div
+          style="
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 20%;
+          "
+        >
+          <ion-img
+            style="max-width: 20px"
+            src="assets/icon/dashboard-booking-location-icon.png"
+          ></ion-img>
+        </div>
+
+        <div
+          style="
+            width: 80%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: justify;
+          "
+          class="ion-padding"
+        >
+          {{searchKey}}
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align: left">
+      <span style="font-size: small; font-weight: 600; margin-left: 25px"
+        >give a name for this address</span
+      >
+    </div>
+
+    <div style="text-align: left; padding-left: 25px; padding-right: 25px">
+      <ion-input
+        style="border-bottom: rgb(231, 231, 231) 3px solid"
+        clear-input
+        placeholder="example: Home / Office"
+      ></ion-input>
+    </div>
+
+    <div style="text-align: left; padding-left: 25px; padding-right: 25px">
+      <button
+        (click)="swipeNext()"
+        routerDirection="forward"
+        style="
+          background-color: #1a72f8;
+          width: 100%;
+          height: 40px;
+          color: white;
+          border-radius: 10px;
+          margin-top: 20px;
+        "
+      >
+        Save
+        <ion-icon
+          style="
+            color: white;
+            font-size: small;
+            position: absolute;
+            margin-left: 120px;
+          "
+          name="checkmark-sharp"
+        ></ion-icon>
+      </button>
+    </div>
+  </div>
+
+  <ion-item (click)="centered()">
+    <ion-button fill="clear">
+      <ion-icon slot="start" name="map"></ion-icon>
+      Locate Position
+    </ion-button>
+  </ion-item>
+
+  <ion-slides class="slides-wrapper" #slides style="z-index: 1">
+    <ion-slide>
+      <ion-searchbar
+        id="SearchAlamat"
+        debounce="0"
+        placeholder="Search Here"
+        (ionChange)="search()"
+        (ngModelChange)="keywordChanged($event)"
+        [(ngModel)]="searchKey"
+      ></ion-searchbar>
+      <ion-list
+        *ngIf="places.length > 0"
+        class="autocomplete-address-list common-bg-light"
+        lines="full"
+      >
+        <div class="list autolist">
+          <ion-item
+            tappable
+            (click)="onClickPickAddress(place.lat, place.lon)"
+            class="item"
+            *ngFor="let place of places"
+          >
+            <ion-icon name="location-outline" slot="start"></ion-icon>
+            {{place.display_name}}</ion-item
+          >
+        </div>
+      </ion-list>
+      <div id="map"></div>
+    </ion-slide>
+  </ion-slides>
+</ion-content>
