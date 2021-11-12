@@ -16,14 +16,16 @@ export class TransactionConfirmPage implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit() {
+  ionViewWillEnter() {
     this.getStorage();
   }
+  ngOnInit() {}
 
   dataTransaction_name: string;
   dataTransaction_email: string;
-  dataTransaction_phone: string;
-  dataTransaction_address: string;
+  dataTransaction_addressAddress: string;
+  dataTransaction_addressName: string;
+  dataTransaction_addressPhone: string;
   dataTransaction_petname: string;
   dataTransaction_petdetail: string;
   dataTransaction_date: string;
@@ -36,6 +38,11 @@ export class TransactionConfirmPage implements OnInit {
     this.storage.getObject('storageTransactions').then((data: any) => {
       this.dataTransaction_name = data['transactions'][0]['name'];
       this.dataTransaction_email = data['transactions'][0]['email'];
+      this.dataTransaction_addressAddress =
+        data['transactions'][0]['addressAddress'];
+      this.dataTransaction_addressName = data['transactions'][0]['addressName'];
+      this.dataTransaction_addressPhone =
+        data['transactions'][0]['addressPhone'];
       this.dataTransaction_service = data['transactions'][0]['service'];
       console.log(
         'Isi :',
@@ -47,6 +54,7 @@ export class TransactionConfirmPage implements OnInit {
   }
 
   confirmNo() {
+    this.storage.removeItem('storageTransactions');
     this.router.navigateByUrl('/transaction');
   }
   confirmYes() {

@@ -34,7 +34,7 @@
   >
     <div style="text-align: left">
       <ion-icon
-        (click)="Hide()"
+        (click)="defaultForm()"
         style="color: rgb(158, 158, 158); font-size: small"
         name="close"
       ></ion-icon>
@@ -80,7 +80,7 @@
           "
           class="ion-padding"
         >
-          {{searchKey}}
+          {{ storageAddress }}
         </div>
       </div>
     </div>
@@ -93,15 +93,33 @@
 
     <div style="text-align: left; padding-left: 25px; padding-right: 25px">
       <ion-input
-        style="border-bottom: rgb(231, 231, 231) 3px solid"
+        name="addressName"
+        [(ngModel)]="addressName"
+        style="border-bottom: rgb(231, 231, 231) 2px solid"
         clear-input
         placeholder="example: Home / Office"
       ></ion-input>
     </div>
 
+    <div style="text-align: left; margin-top: 10px">
+      <span style="font-size: small; font-weight: 600; margin-left: 25px"
+        >phone number</span
+      >
+    </div>
+
+    <div style="text-align: left; padding-left: 25px; padding-right: 25px">
+      <ion-input
+        name="addressPhone"
+        [(ngModel)]="addressPhone"
+        style="border-bottom: rgb(231, 231, 231) 2px solid"
+        clear-input
+        placeholder="089566556655"
+      ></ion-input>
+    </div>
+
     <div style="text-align: left; padding-left: 25px; padding-right: 25px">
       <button
-        (click)="swipeNext()"
+        (click)="saveAddress()"
         routerDirection="forward"
         style="
           background-color: #1a72f8;
@@ -118,7 +136,7 @@
             color: white;
             font-size: small;
             position: absolute;
-            margin-left: 120px;
+            margin-left: 100px;
           "
           name="checkmark-sharp"
         ></ion-icon>
@@ -126,14 +144,14 @@
     </div>
   </div>
 
-  <ion-item (click)="centered()">
+  <ion-item (click)="getGps()">
     <ion-button fill="clear">
       <ion-icon slot="start" name="map"></ion-icon>
       Locate Position
     </ion-button>
   </ion-item>
 
-  <ion-slides class="slides-wrapper" #slides style="z-index: 1">
+  <ion-slides class="slides-wrapper" #slides style="z-index: 1; height: 110%">
     <ion-slide>
       <ion-searchbar
         id="SearchAlamat"
@@ -141,7 +159,7 @@
         placeholder="Search Here"
         (ionChange)="search()"
         (ngModelChange)="keywordChanged($event)"
-        [(ngModel)]="searchKey"
+        [(ngModel)]="storageAddress"
       ></ion-searchbar>
       <ion-list
         *ngIf="places.length > 0"

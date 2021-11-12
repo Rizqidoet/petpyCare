@@ -4,6 +4,10 @@ import { HttpClient } from '@angular/common/http';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { IonSlides, Platform } from '@ionic/angular';
 import { antPath } from 'leaflet-ant-path';
+import { StorageCapService } from '../../app/services/storage-cap.service';
+import { Router } from '@angular/router';
+
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-transaction-setaddress',
@@ -14,29 +18,32 @@ export class TransactionSetaddressPage {
   @ViewChild('map', { static: false }) mapContainer: ElementRef;
   @ViewChild('slides', { static: false }) slider: IonSlides;
 
-  map: any;
-  marker: L.Marker;
-  segment = 0;
-  searchKey: string;
-  places = [];
-  isMarkerSet: boolean = false;
-  addressComponent: any;
-
   constructor(
     public http: HttpClient,
     private geolocation: Geolocation,
-    private platform: Platform
+    private platform: Platform,
+    public alertController: AlertController,
+    private storage: StorageCapService,
+    private router: Router
   ) {}
 
   ionViewWillEnter() {
     // console.log(this.marker);
+    this.getStorage();
     this.loadMap();
+    this.mapClick();
   }
 
+  // _____ Onload _________________________________________________ Start ________
+
+  map: any;
+  marker: L.Marker;
+  addressComponent: any;
+  storageAddress: string;
+
   loadMap() {
-    //var map = L.map('map').fitWorld();
     this.map = L.map('map').fitWorld();
-    // console.log("This Map",this.map);
+    // console.log('This Map', this.map);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: 'contributor',
       maxZoom: 15,
@@ -49,63 +56,52 @@ export class TransactionSetaddressPage {
         maxZoom: 15,
       })
       .on('locationfound', (e) => {
-        console.log('Location Found Listener');
-        // console.log(e);
-        if (!this.platform.is('cordova')) {
-          // console.log('Platform is Web')
-          this.setMarkertWithAnimation(e.latitude, e.longitude, true);
-          console.log(e.latitude, e.longitude);
+        this.setMarkertWithAnimation(e.latitude, e.longitude, true);
+        //console.log(e.latitude, e.longitude);
 
-          L.marker([-6.226062, 106.858283])
-            .addTo(this.map)
-            .bindPopup('Wawa Petcare')
-            .openPopup();
+        L.marker([-6.226062, 106.858283])
+          .addTo(this.map)
+          .bindPopup('Wawa Petcare')
+          .openPopup();
 
-          antPath(
-            [
-              [e.latitude, e.longitude],
-              [-6.226062, 106.858283],
-            ],
-            { color: '#FF0000', weight: 5, opacity: 0.6 }
-          ).addTo(this.map);
-        }
+        antPath(
+          [
+            [e.latitude, e.longitude],
+            [-6.226062, 106.858283],
+          ],
+          { color: '#FF0000', weight: 5, opacity: 0.6 }
+        ).addTo(this.map);
       });
-    // For Mobile
-    if (this.platform.is('cordova')) {
-      this.geolocation
-        .getCurrentPosition()
-        .then((resp) => {
-          // console.log('Platform is android/ios')
-          this.setMarkertWithAnimation(
-            resp.coords.latitude,
-            resp.coords.longitude,
-            true
-          );
-        })
-        .catch((error) => {
-          //  console.log('Error getting location', error);
-        });
-    }
 
+    // For Mobile
+    // if (this.platform.is('cordova')) {
+    //   this.geolocation
+    //     .getCurrentPosition()
+    //     .then((resp) => {
+    //       console.log('Platform is android/ios');
+    //       this.setMarkertWithAnimation(
+    //         resp.coords.latitude,
+    //         resp.coords.longitude,
+    //         true
+    //       );
+    //     })
+    //     .catch((error) => {
+    //       //  console.log('Error getting location', error);
+    //     });
+    // }
+  }
+
+  mapClick() {
     // Adding Map Click Event
     this.map.on('click', (e) => {
-      // console.log('Map Clicked')
       this.setMarkertWithAnimation(e.latlng.lat, e.latlng.lng, false);
-      console.log(e.latlng.lat, e.latlng.lng);
     });
   }
 
-  setMarkertWithAnimation(lat, lng, force: boolean) {
-    //console.log(map);
-    //var map =this.map;
-
-    if (!force) {
-      console.log('Sampe Sini');
+  setMarkertWithAnimation(lat, lng, changeLocation: boolean) {
+    if (!changeLocation) {
+      console.log('Lokasi telah diubah', changeLocation);
       if (this.marker !== undefined) {
-        console.log('marker was already there so removing it...');
-        // console.log('before remove', this.marker)
-        // this.map.removeLayer(this.marker);
-        // this.marker = null;
         antPath.pause = true;
         this.marker.remove();
 
@@ -144,18 +140,16 @@ export class TransactionSetaddressPage {
           .subscribe((data: any) => {
             // console.log('Address Data',data)
             this.addressComponent = data.address;
-            this.searchKey = data.display_name;
+            this.storageAddress = data.display_name;
           });
       }
     } else {
-      console.log('Sampe Sini Nih');
+      console.log('Lokasi masih sesuai gps device', changeLocation);
 
       this.marker = L.marker([lat, lng]).on('click', () => {
         // console.log('marker clicked');
       });
       this.map.addLayer(this.marker);
-
-      console.log('marker', this.marker);
 
       this.map.setView({ lat, lng }, this.map.getZoom(), {
         animate: true,
@@ -171,7 +165,7 @@ export class TransactionSetaddressPage {
         .subscribe((data: any) => {
           console.log('Address Data', data);
           this.addressComponent = data.address;
-          this.searchKey = data.display_name;
+          this.storageAddress = data.display_name;
         });
     }
     setTimeout(() => {
@@ -179,7 +173,11 @@ export class TransactionSetaddressPage {
     }, 500);
   }
 
-  centered() {
+  // _____ Onload _________________________________________________ End ________
+
+  // _____ getGps _________________________________________________ Start ________
+
+  getGps() {
     var ini = this;
     navigator.geolocation.getCurrentPosition(
       function (p) {
@@ -199,16 +197,22 @@ export class TransactionSetaddressPage {
     );
   }
 
+  // _____ getGps _________________________________________________ End ________
+
+  // _____ Search address _________________________________________________ Start ________
+
+  places = [];
+
   search() {
-    if (this.searchKey === '') {
+    if (this.storageAddress === '') {
       // console.log("Empty Keyword");
       this.places = [];
-    } else if (this.searchKey.length >= 3) {
+    } else if (this.storageAddress.length >= 3) {
       // console.log("Has a keyword");
-      // console.log(this.searchKey);
+      // console.log(this.storageAddress);
       let url =
         'https://nominatim.openstreetmap.org/search?format=json&q=' +
-        this.searchKey;
+        this.storageAddress;
       this.http.get(url).subscribe((data: any) => {
         // console.log(data);
         this.places = data;
@@ -219,7 +223,7 @@ export class TransactionSetaddressPage {
   keywordChanged(event) {
     setTimeout(() => {
       // console.log('changed', event);
-      this.searchKey = event;
+      this.storageAddress = event;
       //this.search();
     });
   }
@@ -233,11 +237,127 @@ export class TransactionSetaddressPage {
     var x = document.getElementById('FormDetail');
     x.style.display = 'block';
     x.style.animation = 'animatetop 0.8s';
-    x.style.marginTop = '450px';
+    x.style.marginTop = '480px';
     x.style.marginLeft = '25px';
   }
 
-  Hide() {
+  // _____ Search address _________________________________________________ End ________
+
+  // _____ Function Pembantu _________________________________________________ Start ________
+
+  defaultForm() {
     var x = (document.getElementById('FormDetail').style.display = 'none');
+    this.addressName = '';
+    this.addressPhone = '';
   }
+
+  async showAlert(header: string, message: string) {
+    const alert = await this.alertController.create({
+      header,
+      message,
+      buttons: ['OK'],
+    });
+    await alert.present();
+  }
+
+  // _____ Function Pembantu _________________________________________________ End ________
+
+  // _____ Save Address _________________________________________________ Start ________
+
+  addressName: string = '';
+  addressPhone: string = '';
+  storageArrayAddress = [];
+  storageArrayAddress2 = [];
+  jumlahArrayStorage: number;
+
+  getStorage() {
+    this.storage.getObject('storageAddress').then((data: any) => {
+      if (!data) {
+        this.jumlahArrayStorage = 0;
+        this.storageArrayAddress = [];
+        console.log('jumlahArrayStorage kosong', this.jumlahArrayStorage);
+      } else {
+        this.storageArrayAddress = data['address'];
+        this.jumlahArrayStorage = data['address'].length;
+        console.log('jumlahArrayStorage isi', this.jumlahArrayStorage);
+      }
+
+      console.log('jumlah Array Storage OnLoad :', this.jumlahArrayStorage);
+    });
+  }
+
+  async saveAddress() {
+    if (this.addressName === '' || this.addressName.length < 4) {
+      //console.log('Name address is not valid');
+      this.showAlert(
+        'validation failed',
+        'min chararcters for name address : 4'
+      );
+    } else {
+      //console.log('Name Address valid');
+      if (this.addressPhone == '' || this.addressPhone.length < 8) {
+        //console.log('Phone number is not valid', this.addressPhone.length);
+        this.showAlert(
+          'validation failed',
+          'min chararcters for phone number : 9'
+        );
+      } else {
+        //console.log('Phone number valid', this.addressPhone.length);
+
+        const alert = await this.alertController.create({
+          cssClass: 'my-custom-class',
+          header: 'Confirm',
+          message: 'Save address ?',
+          buttons: [
+            {
+              text: 'Cancel',
+              role: 'cancel',
+              cssClass: 'secondary',
+              handler: (cancel) => {
+                console.log('Confirm Cancel');
+              },
+            },
+            {
+              text: 'Okay',
+              handler: () => {
+                console.log('Confirm Okay');
+
+                console.log('address :', this.storageAddress);
+                console.log('name address :', this.addressName);
+                console.log('phone address :', this.addressPhone);
+
+                //var indexLen = this.storageArrayAddress.length;
+                var newId = 1 + this.jumlahArrayStorage;
+                console.log(
+                  'IndexLen : ',
+                  this.jumlahArrayStorage,
+                  'NewId ; ',
+                  newId
+                );
+
+                var dataAddress = {
+                  id: newId,
+                  address: this.storageAddress,
+                  addressName: this.addressName,
+                  addressPhone: this.addressPhone,
+                };
+                this.storageArrayAddress.push(dataAddress);
+                this.storage.setObject('storageAddress', {
+                  address: this.storageArrayAddress,
+                });
+
+                this.defaultForm();
+                this.getStorage();
+                this.router.navigateByUrl('/transaction-selectaddress');
+              },
+            },
+          ],
+        });
+
+        await alert.present();
+      }
+    }
+  }
+
+  // _____ Save Address _________________________________________________ End ________
 }

@@ -20,8 +20,12 @@ export class TransactionPage implements OnInit {
 
   // ______Function On Load Page_____________________________________________________Start__________
 
-  async ngOnInit() {
+  async ngOnInit() {}
+
+  ionViewWillEnter() {
+    // console.log(this.marker);
     this.getStorage1();
+    this.getStorage2();
     this.getStorage3();
   }
 
@@ -56,14 +60,42 @@ export class TransactionPage implements OnInit {
 
   // ______Slide_1______________________________________________________________End_______
 
+  // ______ Slide 2 ______________________________________________________________ Start _______
+
+  addressAddressHome: string;
+  addressNameHome: string;
+  addressPhoneHome: string;
+
+  getStorage2() {
+    this.storage.getObject('pickAddress').then((data: any) => {
+      if (!data) {
+        this.addressAddressHome = 'Set Address';
+      } else {
+        this.addressAddressHome = data['pickAddressAddress'];
+        this.addressNameHome = data['pickAddressName'];
+        this.addressPhoneHome = data['pickAddressPhone'];
+      }
+
+      console.log('Isi :', this.addressAddressHome);
+    });
+  }
+
+  selectAddress() {
+    this.storage.removeItem('pickAddress');
+    this.router.navigateByUrl('/transaction-selectaddress');
+  }
+
+  // ______ Slide 2 ______________________________________________________________ End _______
+
   // ______Slide_3______________________________________________________________Start_______
 
   transactions = [];
   pets = [];
   transaction_name: string;
   transaction_email: string;
-  transaction_phone: string;
-  transaction_address: string;
+  transaction_addressAddress: string;
+  transaction_addressName: string;
+  transaction_addressPhone: string;
   transaction_petname: string;
   transaction_petdetail: string;
   transaction_date: string;
@@ -101,8 +133,24 @@ export class TransactionPage implements OnInit {
           handler: () => {
             console.log('Confirm Okay');
 
+            this.transaction_addressAddress = this.addressAddressHome;
+            this.transaction_addressName = this.addressNameHome;
+            this.transaction_addressPhone = this.addressPhoneHome;
+
             console.log('Transaction Name', this.transaction_name);
             console.log('Transaction email', this.transaction_email);
+            console.log(
+              'Transaction Address Address',
+              this.transaction_addressAddress
+            );
+            console.log(
+              'Transaction Address Name',
+              this.transaction_addressName
+            );
+            console.log(
+              'Transaction Address Phone',
+              this.transaction_addressPhone
+            );
             console.log('Transaction service', this.transaction_service);
 
             var indexLen = this.pets.length;
@@ -111,6 +159,9 @@ export class TransactionPage implements OnInit {
               id: newId,
               name: this.transaction_name,
               email: this.transaction_email,
+              addressAddress: this.transaction_addressAddress,
+              addressName: this.transaction_addressName,
+              addressPhone: this.transaction_addressPhone,
               service: this.transaction_service,
             };
             this.transactions.push(dataTransaction);

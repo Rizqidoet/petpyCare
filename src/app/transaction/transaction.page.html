@@ -170,9 +170,16 @@
                 "
                 class="ion-padding"
               >
-                <div style="font-size: medium">Petpy address</div>
+                <div style="font-size: medium; margin-left: 20px">
+                  Petpy address
+                </div>
                 <div
-                  style="font-size: small; color: #8d8c8c; margin-top: 5px"
+                  style="
+                    font-size: small;
+                    color: #8d8c8c;
+                    margin-top: 5px;
+                    margin-left: 20px;
+                  "
                   class="ion-text-wrap"
                 >
                   Jl. Bukit duri salatan no 67 - RT RW gatau gatau gatau gatau
@@ -241,14 +248,35 @@
                     button
                     detail
                     class="ion-wrap-text"
-                    routerLink="/transaction-selectaddress"
+                    (click)="selectAddress()"
                   >
-                    <div>
-                      <span style="font-size: medium">set your address</span
-                      ><br />
-                      <span style="font-size: small; color: #8d8c8c"
-                        >{{ addressHome }}</span
+                    <div
+                      class="ion-padding"
+                      style="width: 100%; display: flex; flex-direction: column"
+                    >
+                      <div>
+                        <span style="font-size: medium">set your address</span>
+                      </div>
+                      <div
+                        style="
+                          margin-top: 15px;
+                          font-size: small;
+                          color: #8d8c8c;
+                          text-align: justify;
+                        "
+                        class="ion-wrap-text"
                       >
+                        <span>{{ addressNameHome }}</span>
+                        -
+                        <span>{{ addressPhoneHome }}</span>
+                      </div>
+                      <div style="margin-top: 5px">
+                        <span
+                          class="ion-wrap-text"
+                          style="font-size: small; color: #8d8c8c"
+                          >{{ addressAddressHome }}</span
+                        >
+                      </div>
                     </div>
                   </ion-item>
                 </div>
@@ -319,12 +347,34 @@
                     class="ion-wrap-text"
                     (click)="inputCustomAddressDeliveryValue()"
                   >
-                    <div>
-                      <span style="font-size: medium">set your address</span
-                      ><br />
-                      <span style="font-size: small; color: #8d8c8c"
-                        >{{ addressDelivery }}</span
+                    <div
+                      class="ion-padding"
+                      style="width: 100%; display: flex; flex-direction: column"
+                    >
+                      <div>
+                        <span style="font-size: medium">set your address</span>
+                      </div>
+                      <div
+                        style="
+                          margin-top: 15px;
+
+                          font-size: small;
+                          color: #8d8c8c;
+                          text-align: justify;
+                        "
+                        class="ion-wrap-text"
                       >
+                        <span>{{ addressNameDelivery }}</span>
+                        -
+                        <span>{{ addressPhoneDelivery }}</span>
+                      </div>
+                      <div style="margin-top: 5px">
+                        <span
+                          class="ion-wrap-text"
+                          style="font-size: small; color: #8d8c8c"
+                          >{{ addressAddressDelivery }}</span
+                        >
+                      </div>
                     </div>
                   </ion-item>
                 </div>

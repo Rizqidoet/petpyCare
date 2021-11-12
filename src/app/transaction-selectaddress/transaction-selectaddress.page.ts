@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class TransactionSelectaddressPage implements OnInit {
   storageAddress = [];
+  keys: string;
 
   constructor(
     public alertController: AlertController,
@@ -18,18 +19,44 @@ export class TransactionSelectaddressPage implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  ionViewWillEnter() {
+    // console.log(this.marker);
     this.getStorage();
   }
 
   getStorage() {
     this.storage.getObject('storageAddress').then((data: any) => {
-      this.storageAddress = data['address'];
+      if (!data) {
+        this.storageAddress = null;
+      } else {
+        this.storageAddress = data['address'];
+      }
+
       console.log('Isi :', this.storageAddress);
     });
   }
 
-  tapValue() {
+  address: string;
+  addressName: string;
+  addressPhone: string;
+
+  tapValue(dataAddress) {
+    this.storage.removeItem('pickAddress');
+    this.address = dataAddress.address;
+    this.addressName = dataAddress.addressName;
+    this.addressPhone = dataAddress.addressPhone;
+    console.log('address :', this.address);
+    console.log('address name :', this.addressName);
+    console.log('address phone :', this.addressPhone);
+
+    this.storage.setObject('pickAddress', {
+      pickAddressAddress: this.address,
+      pickAddressName: this.addressName,
+      pickAddressPhone: this.addressPhone,
+    });
+
     this.router.navigateByUrl('/transaction');
   }
 }

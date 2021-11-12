@@ -28,8 +28,8 @@
       </div>
       <ion-item
         button
-        *ngFor="let dataAddress of storageAddress"
-        (click)="tapValue()"
+        *ngFor="let dataAddress of storageAddress;"
+        (click)="tapValue(dataAddress)"
       >
         <ion-thumbnail
           slot="start"
@@ -40,8 +40,17 @@
           </h3>
         </ion-thumbnail>
         <ion-label class="ion-text-wrap">
-          <h2>{{ dataAddress.name }}</h2>
-          <p style="color: gray">{{ dataAddress.detail }}</p>
+          <h2 style="font-weight: 600">{{ dataAddress.addressName }}</h2>
+          <p
+            style="
+              color: gray;
+              font-size: small;
+              text-align: justify;
+              padding: 5px 5px 5px 5px;
+            "
+          >
+            {{ dataAddress.address }}
+          </p>
         </ion-label>
       </ion-item>
     </div>
