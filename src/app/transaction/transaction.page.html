@@ -74,8 +74,8 @@
         <ion-item
           button
           detail
-          (click)="swipeNext()"
           *ngFor="let listproduct of listProducts_cat"
+          (click)="taplistProduct(listproduct)"
           routerDirection="forward"
           style="z-index: 0; margin-top: 10px"
         >
@@ -450,6 +450,8 @@
             <div style="height: 50px; display: flex; flex-direction: column">
               <span style="font-size: medium">select date</span>
               <ion-datetime
+                [(ngModel)]="myDate"
+                (ionChange)="setDate()"
                 style="font-size: small; color: #8d8c8c"
                 displayFormat="D MMM YYYY"
                 min="2020"
@@ -462,6 +464,8 @@
             <div style="height: 50px; display: flex; flex-direction: column">
               <span style="font-size: medium">select time</span>
               <ion-datetime
+                [(ngModel)]="myTime"
+                (ionChange)="setTime()"
                 style="font-size: small; color: #8d8c8c"
                 displayFormat="HH:mm"
               ></ion-datetime>

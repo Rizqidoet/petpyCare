@@ -29,7 +29,10 @@ export class HomePage implements OnInit {
   storageProductGroup: string;
   storageProductDesc: string;
   listProducts = [];
-  listProducts_group = [];
+  listGroup_1 = [];
+  listGroup_2 = [];
+  listGroup_3 = [];
+  listGroup_4 = [];
 
   constructor(
     private platform: Platform,
@@ -82,14 +85,34 @@ export class HomePage implements OnInit {
     });
 
     this.storage.getObject('storageProduct').then((data: any) => {
-      this.listProducts = data['products'];
-      console.log('Isi :', this.listProducts);
+      this.storageProduct = data;
+      console.log('Sekundren - 1 = ', this.storageProduct);
+      var a = this.storageProduct['products'].filter(function (storageProduct) {
+        return storageProduct.item_group == 'Cukur Kucing';
+      });
 
-      //this.listProducts = data;
-      this.listProducts_group = [
-        ...new Set(this.listProducts.map((item) => item.item_group)),
-      ];
-      console.log('Cat :', this.listProducts_group);
+      var b = this.storageProduct['products'].filter(function (storageProduct) {
+        return storageProduct.item_group == 'Service Cat';
+      });
+
+      var c = this.storageProduct['products'].filter(function (storageProduct) {
+        return storageProduct.item_group == 'Service Anjing';
+      });
+
+      var d = this.storageProduct['products'].filter(function (storageProduct) {
+        return storageProduct.item_group == 'Service Anjing Haircut';
+      });
+      this.listGroup_1 = a[0]['item_group'];
+      this.listGroup_2 = b[0]['item_group'];
+      this.listGroup_3 = c[0]['item_group'];
+      this.listGroup_4 = d[0]['item_group'];
+      console.log(
+        'Sekundren - 2 = ',
+        this.listGroup_1,
+        this.listGroup_2,
+        this.listGroup_3,
+        this.listGroup_4
+      );
     });
   }
 

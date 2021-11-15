@@ -3,6 +3,7 @@ import { StorageCapService } from '../../app/services/storage-cap.service';
 import { Platform, ToastController, AlertController } from '@ionic/angular';
 import { IonSlides } from '@ionic/angular';
 import { Router } from '@angular/router';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-transaction',
@@ -45,6 +46,8 @@ export class TransactionPage implements OnInit {
   storageProductGroup: string;
   storageProductDesc: string;
 
+  listProductName: string;
+
   getStorage1() {
     this.storage.getObject('storageProduct').then((data: any) => {
       this.storageProduct = data;
@@ -54,8 +57,16 @@ export class TransactionPage implements OnInit {
       ) {
         return storageProduct.item_group == 'Cukur Kucing';
       });
-      console.log('Sekundren - 2 = ', this.storageProduct);
     });
+  }
+
+  taplistProduct(listproduct) {
+    //this.storage.removeItem('pickAddress');
+
+    console.log('Detail Listproduct :', listproduct);
+    this.listProductName = listproduct['item_name'];
+    console.log('Detail Listproduct :', this.listProductName);
+    this.swipeNext();
   }
 
   // ______Slide_1______________________________________________________________End_______
@@ -80,6 +91,11 @@ export class TransactionPage implements OnInit {
     });
   }
 
+  onChangeRadio(event) {
+    this.transaction_service = event.detail['value'];
+    console.log('radioGroupChange', this.transaction_service);
+  }
+
   selectAddress() {
     this.storage.removeItem('pickAddress');
     this.router.navigateByUrl('/transaction-selectaddress');
@@ -99,6 +115,7 @@ export class TransactionPage implements OnInit {
   transaction_petname: string;
   transaction_petdetail: string;
   transaction_date: string;
+  transaction_time: string;
   transaction_service: string;
   transaction_package: string;
   transaction_payment: string;
@@ -112,6 +129,16 @@ export class TransactionPage implements OnInit {
     this.storage.getString('storageEmail').then((data: any) => {
       this.transaction_email = data.value;
     });
+  }
+
+  setDate(date) {
+    this.transaction_date = moment(date).format('MMM DD YYYY');
+    console.log('date', this.transaction_date);
+  }
+
+  setTime(time) {
+    this.transaction_time = moment(time).format('HH:mm');
+    console.log('time', this.transaction_time);
   }
 
   async onSaveTransaction() {
@@ -136,6 +163,7 @@ export class TransactionPage implements OnInit {
             this.transaction_addressAddress = this.addressAddressHome;
             this.transaction_addressName = this.addressNameHome;
             this.transaction_addressPhone = this.addressPhoneHome;
+            this.transaction_package = this.listProductName;
 
             console.log('Transaction Name', this.transaction_name);
             console.log('Transaction email', this.transaction_email);
@@ -151,7 +179,10 @@ export class TransactionPage implements OnInit {
               'Transaction Address Phone',
               this.transaction_addressPhone
             );
+            console.log('Transaction package', this.transaction_package);
             console.log('Transaction service', this.transaction_service);
+            console.log('Transaction date', this.transaction_date);
+            console.log('Transaction time', this.transaction_time);
 
             var indexLen = this.pets.length;
             var newId = 1 + indexLen;
@@ -162,7 +193,12 @@ export class TransactionPage implements OnInit {
               addressAddress: this.transaction_addressAddress,
               addressName: this.transaction_addressName,
               addressPhone: this.transaction_addressPhone,
+              date: this.transaction_date,
+              time: this.transaction_time,
+              package: this.transaction_package,
               service: this.transaction_service,
+              packagePayment: 85000,
+              servicePayment: 15000,
             };
             this.transactions.push(dataTransaction);
             this.storage.setObject('storageTransactions', {
@@ -198,11 +234,13 @@ export class TransactionPage implements OnInit {
     this.storage.getObject('storageTransactions').then((data: any) => {
       this.dataTransaction_name = data['transactions'][0]['name'];
       this.dataTransaction_email = data['transactions'][0]['email'];
+      this.dataTransaction_package = data['transactions'][0]['package'];
       this.dataTransaction_service = data['transactions'][0]['service'];
       console.log(
         'Isi :',
         this.dataTransaction_name +
           this.dataTransaction_email +
+          this.dataTransaction_package +
           this.dataTransaction_service
       );
     });
@@ -238,11 +276,6 @@ export class TransactionPage implements OnInit {
   // ______Function Pendukung___________________________________________________________End_________
 
   // ______Function On Change Radio Button___________________________________________Start____________
-
-  onChangeRadio(event) {
-    this.transaction_service = event.detail['value'];
-    console.log('radioGroupChange', this.transaction_service);
-  }
 
   // ______Function On Change Radio Button___________________________________________End____________
 }

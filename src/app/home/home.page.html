@@ -232,6 +232,7 @@
         style="
           display: flex;
           flex-direction: column;
+
           width: 100%;
           background-color: rgb(250, 250, 250);
           padding: 20px 0 20px 0;
@@ -242,232 +243,94 @@
             <h3>Available Menu</h3>
           </ion-label>
         </div>
-        <div>
-          <ion-slides pager="true" style="padding-bottom: 10px">
-            <!-- Start: Slide 1 -->
-            <ion-slide
-              style="text-align: left; width: 100%; margin-bottom: 20px"
+        <div style="display: flex; flex-direction: row; flex-wrap: wrap">
+          <div style="width: 50%">
+            <a
+              routerLink="/transaction"
+              routerDirection="forward"
+              style="text-decoration: none; margin-left: 10px"
             >
-              <!-- Start: Cukur Kucing -->
-              <div
-                routerLink="/transaction"
-                routerDirection="forward"
-                style="
-                  height: 150px;
-                  width: 120px;
-                  background-color: #ffffff;
-                  display: flex;
-                  flex-direction: column;
-                  border-radius: 10px;
-                  margin-left: 10px;
-                  margin-right: 5px;
-                  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
-                    0 6px 5px 0 rgba(0, 0, 0, 0.19);
-                  padding-left: 10px;
-                "
-              >
-                <div
-                  style="
-                    background-color: white;
-                    height: 40px;
-                    width: 40px;
-                    border-radius: 50%;
-                    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
-                      0 6px 20px 0 rgba(0, 0, 0, 0.19);
-                    margin-top: 20px;
-                  "
-                >
-                  <ion-img
-                    src="../../assets/icon/dashboard-booking-gps-icon.png"
-                  ></ion-img>
-                </div>
-                <div>
-                  <h3 style="font-size: small; font-weight: 600; color: black">
-                    {{ listProducts_group[0] }}
-                  </h3>
-                </div>
-                <div style="margin-top: -20px">
-                  <h3 style="font-size: x-small; color: rgb(156, 156, 156)">
+              <div style="text-align: left; width: 100%">
+                <ion-card style="border-radius: 10px">
+                  <img src="../../assets/icon/menu-cat.png" />
+                  <ion-card-header>
+                    <ion-card-title style="font-size: smaller"
+                      >{{ listGroup_1 }}</ion-card-title
+                    >
+                  </ion-card-header>
+                  <ion-card-content style="font-size: x-small">
                     take this service now
-                  </h3>
-                </div>
+                  </ion-card-content>
+                </ion-card>
               </div>
-              <!-- End: Cukur Kucing -->
+            </a>
+          </div>
 
-              <!-- Start: Service Cat -->
-              <div
-                routerLink="/transaction1"
-                routerDirection="forward"
-                style="
-                  height: 150px;
-                  width: 120px;
-                  background-color: #ffffff;
-                  display: flex;
-                  flex-direction: column;
-                  border-radius: 10px;
-                  margin-left: 10px;
-                  margin-right: 5px;
-                  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
-                    0 6px 5px 0 rgba(0, 0, 0, 0.19);
-                  padding-left: 10px;
-                "
-              >
-                <div
-                  style="
-                    background-color: white;
-                    height: 40px;
-                    width: 40px;
-                    border-radius: 50%;
-                    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
-                      0 6px 20px 0 rgba(0, 0, 0, 0.19);
-                    margin-top: 20px;
-                  "
-                >
-                  <ion-img
-                    src="../../assets/icon/dashboard-booking-gps-icon.png"
-                  ></ion-img>
-                </div>
-                <div>
-                  <h3 style="font-size: small; font-weight: 600; color: black">
-                    {{ listProducts_group[1] }}
-                  </h3>
-                </div>
-                <div style="margin-top: -20px">
-                  <h3 style="font-size: x-small; color: rgb(156, 156, 156)">
-                    take this service now
-                  </h3>
-                </div>
-              </div>
-              <!-- End: Service Cat -->
-
-              <!-- Start: Service Anjing Haircut -->
-              <div
-                routerLink="/transaction2"
-                routerDirection="forward"
-                style="
-                  height: 150px;
-                  width: 120px;
-                  background-color: #ffffff;
-                  display: flex;
-                  flex-direction: column;
-                  border-radius: 10px;
-                  margin-left: 10px;
-                  margin-right: 5px;
-                  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
-                    0 6px 5px 0 rgba(0, 0, 0, 0.19);
-                  padding-left: 10px;
-                "
-              >
-                <div
-                  style="
-                    background-color: white;
-                    height: 40px;
-                    width: 40px;
-                    border-radius: 50%;
-                    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
-                      0 6px 20px 0 rgba(0, 0, 0, 0.19);
-                    margin-top: 20px;
-                  "
-                >
-                  <ion-img
-                    src="../../assets/icon/dashboard-booking-gps-icon.png"
-                  ></ion-img>
-                </div>
-                <div>
-                  <h3 style="font-size: small; font-weight: 600; color: black">
-                    {{ listProducts_group[2] }}
-                  </h3>
-                </div>
-                <div style="margin-top: -20px">
-                  <h3 style="font-size: x-small; color: rgb(156, 156, 156)">
-                    take this service now
-                  </h3>
-                </div>
-              </div>
-              <!-- End: Service Anjing Haircut -->
-            </ion-slide>
-            <!-- End: Slide 1 -->
-
-            <!-- Start: Slide 2 -->
-            <ion-slide
-              style="text-align: left; width: 100%; margin-bottom: 20px"
+          <div style="width: 50%">
+            <a
+              routerLink="/transaction1"
+              routerDirection="forward"
+              style="text-decoration: none; margin-left: 10px"
             >
-              <!-- Start: Service Anjing -->
-              <div
-                style="
-                  height: 150px;
-                  width: 120px;
-                  background-color: #ffffff;
-                  display: flex;
-                  flex-direction: column;
-                  border-radius: 10px;
-                  margin-left: 10px;
-                  margin-right: 5px;
-                  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
-                    0 6px 5px 0 rgba(0, 0, 0, 0.19);
-                  padding-left: 10px;
-                "
-              >
-                <div
-                  style="
-                    background-color: white;
-                    height: 40px;
-                    width: 40px;
-                    border-radius: 50%;
-                    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
-                      0 6px 20px 0 rgba(0, 0, 0, 0.19);
-                    margin-top: 20px;
-                  "
-                >
-                  <ion-img
-                    src="../../assets/icon/dashboard-booking-gps-icon.png"
-                  ></ion-img>
-                </div>
-                <div>
-                  <h3 style="font-size: small; font-weight: 600; color: black">
-                    {{ listProducts_group[3] }}
-                  </h3>
-                </div>
-                <div style="margin-top: -20px">
-                  <h3 style="font-size: x-small; color: rgb(156, 156, 156)">
+              <div style="text-align: left; width: 100%">
+                <ion-card style="border-radius: 10px">
+                  <img src="../../assets/icon/menu-cat.png" />
+                  <ion-card-header>
+                    <ion-card-title style="font-size: smaller"
+                      >{{ listGroup_2 }}</ion-card-title
+                    >
+                  </ion-card-header>
+                  <ion-card-content style="font-size: x-small">
                     take this service now
-                  </h3>
-                </div>
+                  </ion-card-content>
+                </ion-card>
               </div>
-              <!-- End: Service Anjing -->
+            </a>
+          </div>
 
-              <!-- Start: Service Bayangan 1 -->
-              <div
-                style="
-                  height: 150px;
-                  width: 120px;
-                  display: flex;
-                  flex-direction: column;
-                  border-radius: 10px;
-                  margin-left: 10px;
-                  margin-right: 5px;
-                  padding-left: 10px;
-                "
-              ></div>
-              <!-- End: Service Bayangan 1 -->
+          <div style="width: 50%">
+            <a
+              routerLink="/transaction2"
+              routerDirection="forward"
+              style="text-decoration: none; margin-left: 10px"
+            >
+              <div style="text-align: left; width: 100%">
+                <ion-card style="border-radius: 10px">
+                  <img src="../../assets/icon/menu-dog.png" />
+                  <ion-card-header>
+                    <ion-card-title style="font-size: smaller"
+                      >{{ listGroup_3 }}</ion-card-title
+                    >
+                  </ion-card-header>
+                  <ion-card-content style="font-size: x-small">
+                    take this service now
+                  </ion-card-content>
+                </ion-card>
+              </div>
+            </a>
+          </div>
 
-              <!-- Start: Service Bayangan 2 -->
-              <div
-                style="
-                  height: 150px;
-                  width: 120px;
-                  display: flex;
-                  flex-direction: column;
-                  border-radius: 10px;
-                  margin-left: 10px;
-                  margin-right: 5px;
-                  padding-left: 10px;
-                "
-              ></div>
-              <!-- End: Service Bayangan 2 -->
-            </ion-slide>
-            <!-- End: Slide 2 -->
-          </ion-slides>
+          <div style="width: 50%">
+            <a
+              routerLink="/transaction3"
+              routerDirection="forward"
+              style="text-decoration: none; margin-left: 10px"
+            >
+              <div style="text-align: left; width: 100%">
+                <ion-card style="border-radius: 10px">
+                  <img src="../../assets/icon/menu-dog.png" />
+                  <ion-card-header>
+                    <ion-card-title style="font-size: smaller"
+                      >{{ listGroup_4 }}</ion-card-title
+                    >
+                  </ion-card-header>
+                  <ion-card-content style="font-size: x-small">
+                    take this service now
+                  </ion-card-content>
+                </ion-card>
+              </div>
+            </a>
+          </div>
         </div>
       </div>
       <!-- End: div menu apps -->

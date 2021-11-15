@@ -57,100 +57,16 @@ export class TransactionSetaddressPage {
       })
       .on('locationfound', (e) => {
         this.setMarkertWithAnimation(e.latitude, e.longitude, true);
-        //console.log(e.latitude, e.longitude);
-
-        L.marker([-6.226062, 106.858283])
-          .addTo(this.map)
-          .bindPopup('Wawa Petcare')
-          .openPopup();
-
-        antPath(
-          [
-            [e.latitude, e.longitude],
-            [-6.226062, 106.858283],
-          ],
-          { color: '#FF0000', weight: 5, opacity: 0.6 }
-        ).addTo(this.map);
       });
-
-    // For Mobile
-    // if (this.platform.is('cordova')) {
-    //   this.geolocation
-    //     .getCurrentPosition()
-    //     .then((resp) => {
-    //       console.log('Platform is android/ios');
-    //       this.setMarkertWithAnimation(
-    //         resp.coords.latitude,
-    //         resp.coords.longitude,
-    //         true
-    //       );
-    //     })
-    //     .catch((error) => {
-    //       //  console.log('Error getting location', error);
-    //     });
-    // }
-  }
-
-  mapClick() {
-    // Adding Map Click Event
-    this.map.on('click', (e) => {
-      this.setMarkertWithAnimation(e.latlng.lat, e.latlng.lng, false);
-    });
   }
 
   setMarkertWithAnimation(lat, lng, changeLocation: boolean) {
-    if (!changeLocation) {
-      console.log('Lokasi telah diubah', changeLocation);
-      if (this.marker !== undefined) {
-        antPath.pause = true;
-        this.marker.remove();
-
-        this.marker = L.marker([lat, lng])
-          .addTo(this.map)
-          .bindPopup('Your Location')
-          .openPopup();
-        antPath(
-          [
-            [lat, lng],
-            [-6.226062, 106.858283],
-          ],
-          {
-            color: '#FF0000',
-            weight: 5,
-            opacity: 0.6,
-          }
-        ).addTo(this.map);
-        this.marker.on('click', () => {
-          console.log('marker clicked');
-        });
-
-        this.map.addLayer(this.marker);
-
-        // console.log('after remove', this.marker)
-        this.map.setView({ lat, lng }, this.map.getZoom(), {
-          animate: true,
-          pan: {
-            duration: 4,
-          },
-        });
-        this.http
-          .get(
-            `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&addressdetails=1`
-          )
-          .subscribe((data: any) => {
-            // console.log('Address Data',data)
-            this.addressComponent = data.address;
-            this.storageAddress = data.display_name;
-          });
-      }
-    } else {
+    if (changeLocation) {
       console.log('Lokasi masih sesuai gps device', changeLocation);
 
-      this.marker = L.marker([lat, lng]).on('click', () => {
-        // console.log('marker clicked');
-      });
-      this.map.addLayer(this.marker);
-
+      this.marker = L.marker([lat, lng]);
+      console.log('Marker first load:', this.marker);
+      // this.map.addLayer(this.marker);
       this.map.setView({ lat, lng }, this.map.getZoom(), {
         animate: true,
         pan: {
@@ -163,14 +79,64 @@ export class TransactionSetaddressPage {
           `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&addressdetails=1`
         )
         .subscribe((data: any) => {
-          console.log('Address Data', data);
+          //console.log('Address Data', data);
           this.addressComponent = data.address;
           this.storageAddress = data.display_name;
+
+          this.marker = L.marker([lat, lng])
+            .addTo(this.map)
+            .bindPopup(data.display_name)
+            .openPopup();
         });
+
+      this.marker = L.marker([lat, lng]).on('click', () => {
+        console.log('marker clicked');
+        this.enableForm();
+      });
+    } else {
+      console.log('Lokasi telah diubah', this.marker);
+      this.marker.remove();
+      console.log('Marker Has Updated:', this.marker);
+      this.map.addLayer(this.marker);
+
+      this.map.setView({ lat, lng }, this.map.getZoom(), {
+        animate: true,
+        pan: {
+          duration: 4,
+        },
+      });
+      this.http
+        .get(
+          `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&addressdetails=1`
+        )
+        .subscribe((data: any) => {
+          this.marker.remove();
+          // console.log('Address Data',data)
+          this.addressComponent = data.address;
+          this.storageAddress = data.display_name;
+
+          this.marker = L.marker([lat, lng])
+            .addTo(this.map)
+            .bindPopup(data.display_name)
+            .openPopup();
+        });
+
+      this.marker.on('click', () => {
+        console.log('marker clicked');
+        this.enableForm();
+      });
     }
     setTimeout(() => {
       this.map.invalidateSize();
     }, 500);
+  }
+
+  mapClick() {
+    // Adding Map Click Event
+    this.map.on('click', (e) => {
+      this.marker.remove();
+      this.setMarkertWithAnimation(e.latlng.lat, e.latlng.lng, false);
+    });
   }
 
   // _____ Onload _________________________________________________ End ________
@@ -230,15 +196,10 @@ export class TransactionSetaddressPage {
 
   onClickPickAddress(lat, lng) {
     this.places = [];
-    // console.log('0')
 
     this.setMarkertWithAnimation(lat, lng, false);
     console.log(lat, lng);
-    var x = document.getElementById('FormDetail');
-    x.style.display = 'block';
-    x.style.animation = 'animatetop 0.8s';
-    x.style.marginTop = '480px';
-    x.style.marginLeft = '25px';
+    this.enableForm();
   }
 
   // _____ Search address _________________________________________________ End ________
@@ -249,6 +210,14 @@ export class TransactionSetaddressPage {
     var x = (document.getElementById('FormDetail').style.display = 'none');
     this.addressName = '';
     this.addressPhone = '';
+  }
+
+  enableForm() {
+    var x = document.getElementById('FormDetail');
+    x.style.display = 'block';
+    x.style.animation = 'animatetop 0.8s';
+    x.style.marginTop = '480px';
+    x.style.marginLeft = '25px';
   }
 
   async showAlert(header: string, message: string) {

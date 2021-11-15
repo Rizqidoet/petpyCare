@@ -221,6 +221,7 @@
             Address
           </span>
         </div>
+
         <div
           style="
             width: 100%;
@@ -229,34 +230,72 @@
             padding-right: 20px;
             margin-top: 10px;
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             border-radius: 10px;
           "
           class="ion-padding"
         >
           <div
             style="
-              width: 20%;
               display: flex;
-              justify-content: center;
-              align-items: center;
+              flex-direction: row;
+              padding-bottom: 10px;
+              border-bottom: rgb(192, 192, 192) 1px solid;
             "
           >
-            <span style="font-size: small; font-weight: 600; color: black"
-              >{{ dataTransaction_addressName }}
-            </span>
+            <div style="width: 40%; display: flex; justify-content: center">
+              <span
+                style="
+                  font-size: small;
+                  font-weight: 600;
+                  font-style: italic;
+                  color: rgb(192, 192, 192);
+                "
+              >
+                Name
+              </span>
+            </div>
+            <div
+              style="
+                width: 60%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding-left: 10px;
+              "
+            >
+              <span
+                style="
+                  font-size: small;
+                  font-weight: 600;
+                  font-style: italic;
+                  color: rgb(192, 192, 192);
+                "
+              >
+                Detail
+              </span>
+            </div>
           </div>
-          <div
-            style="
-              width: 80%;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-            "
-          >
-            <span style="font-size: small; font-weight: 600; color: black"
-              >{{ dataTransaction_addressAddress }}
-            </span>
+
+          <div style="display: flex; flex-direction: row; padding-top: 10px">
+            <div style="width: 40%; display: flex; justify-content: center">
+              <span style="font-size: small; font-weight: 600; color: black"
+                >{{ dataTransaction_addressName }}
+              </span>
+            </div>
+            <div
+              style="
+                width: 60%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding-left: 10px;
+              "
+            >
+              <span style="font-size: small; font-weight: 600; color: black"
+                >{{ dataTransaction_addressAddress }}
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -371,7 +410,7 @@
         >
           <div>
             <span style="font-size: small; font-weight: 600; color: black"
-              >11 - 10 - 2021 / 13.30
+              >{{ dataTransaction_date }} / {{ dataTransaction_time }}
             </span>
           </div>
           <div>
@@ -396,7 +435,7 @@
           display: flex;
           flex-direction: column;
           width: 100%;
-          margin-top: 10px;
+          margin-top: 30px;
         "
       >
         <!-- Start: Detail Transaction -->
@@ -429,10 +468,10 @@
             display: flex;
             flex-direction: row;
             justify-content: center;
-            margin: 10px 0 0 0;
+            margin: 20px 0 0 0;
           "
         >
-          <div style="width: 50%">
+          <div style="width: 50%; text-align: justify">
             <span
               style="
                 font-size: small;
@@ -440,7 +479,7 @@
                 color: black;
                 margin-left: 20px;
               "
-              >Mandi Basah
+              >{{ dataTransaction_package }}
             </span>
           </div>
           <div style="width: 50%">
@@ -451,7 +490,7 @@
                 color: black;
                 margin-left: 70px;
               "
-              >Rp. 85.000
+              >Rp. {{ dataTransaction_packagePayment }}
             </span>
           </div>
         </div>
@@ -466,7 +505,7 @@
             flex-direction: row;
             justify-content: center;
             border-bottom: rgb(192, 192, 192) 1px solid;
-            padding-bottom: 5px;
+            padding-bottom: 10px;
             margin: 5px 0 0 0;
           "
         >
@@ -489,7 +528,7 @@
                 color: black;
                 margin-left: 70px;
               "
-              >Rp. 15.000
+              >Rp. {{ dataTransaction_servicePayment }}
             </span>
           </div>
         </div>
@@ -549,7 +588,7 @@
           </div>
           <div style="width: 50%; text-align: center">
             <span style="font-size: large; font-weight: 600">
-              Rp. 100.000
+              Rp. {{ dataTransaction_totalamount }}
             </span>
           </div>
         </div>

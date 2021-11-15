@@ -29,10 +29,13 @@ export class TransactionConfirmPage implements OnInit {
   dataTransaction_petname: string;
   dataTransaction_petdetail: string;
   dataTransaction_date: string;
+  dataTransaction_time: string;
   dataTransaction_service: string;
   dataTransaction_package: string;
   dataTransaction_payment: string;
-  dataTransaction_totalamount: string;
+  dataTransaction_packagePayment: number;
+  dataTransaction_servicePayment: number;
+  dataTransaction_totalamount: number;
 
   getStorage() {
     this.storage.getObject('storageTransactions').then((data: any) => {
@@ -43,11 +46,23 @@ export class TransactionConfirmPage implements OnInit {
       this.dataTransaction_addressName = data['transactions'][0]['addressName'];
       this.dataTransaction_addressPhone =
         data['transactions'][0]['addressPhone'];
+      this.dataTransaction_time = data['transactions'][0]['time'];
+      this.dataTransaction_date = data['transactions'][0]['date'];
+      this.dataTransaction_package = data['transactions'][0]['package'];
       this.dataTransaction_service = data['transactions'][0]['service'];
+      this.dataTransaction_packagePayment =
+        data['transactions'][0]['packagePayment'];
+      this.dataTransaction_servicePayment =
+        data['transactions'][0]['servicePayment'];
+      let amount =
+        this.dataTransaction_packagePayment +
+        this.dataTransaction_servicePayment;
+      this.dataTransaction_totalamount = amount;
       console.log(
         'Isi :',
         this.dataTransaction_name +
           this.dataTransaction_email +
+          this.dataTransaction_package +
           this.dataTransaction_service
       );
     });
