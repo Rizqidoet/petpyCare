@@ -18,6 +18,7 @@ export class TransactionSelectpetPage implements OnInit {
 
   ionViewWillEnter() {
     // console.log(this.marker);
+    this.storage.removeItem('storagePetPick');
     this.getStorage();
   }
 
@@ -86,12 +87,12 @@ export class TransactionSelectpetPage implements OnInit {
     this.petName = storagePet.name;
     this.petType = storagePet.type;
 
-    console.log('address :', this.petName);
-    console.log('address name :', this.petType);
+    console.log('pet pick name :', this.petName);
+    console.log('pet pick type :', this.petType);
 
-    this.storage.setObject('pickPet', {
-      pickPetName: this.petName,
-      pickPetType: this.petType,
+    this.storage.setObject('storagePetPick', {
+      storagePetPickName: this.petName,
+      storagePetPickType: this.petType,
     });
 
     this.router.navigateByUrl('/transaction');

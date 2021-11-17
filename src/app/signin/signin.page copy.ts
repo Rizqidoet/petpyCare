@@ -27,9 +27,8 @@ export class SigninPage implements OnInit {
   storageImage: string;
   storageKey: string;
   storageSc: string;
-  storageUsers = [];
-  storageProducts = [];
-  //storageAll = [];
+  storageUsers: [];
+  storageProducts: [];
 
   constructor(
     private platform: Platform,
@@ -107,16 +106,16 @@ export class SigninPage implements OnInit {
   getStorage() {
     this.storage.getString('storageUsername').then((data: any) => {
       this.storageUsername = data.value;
-      //console.log('Sekundren Username = ', this.storageUsername);
+      console.log('Sekundren Username = ', this.storageUsername);
     });
 
     this.storage.getString('storageKey').then((data: any) => {
       this.storageKey = data.value;
-      //console.log('Sekundren Key = ', this.storageKey);
+      console.log('Sekundren Key = ', this.storageKey);
     });
     this.storage.getString('storageSc').then((data: any) => {
       this.storageSc = data.value;
-      //console.log('Sekundren Secret = ', this.storageSc);
+      console.log('Sekundren Secret = ', this.storageSc);
     });
   }
 
@@ -165,31 +164,18 @@ export class SigninPage implements OnInit {
         this.storageSc = response['message']['api_secret'];
         this.storageProducts = response['message']['products'];
 
-        var dataUsers = {
-          userID: this.storageID,
-          userUsername: this.storageUsername,
-          userEmail: this.storageEmail,
-          userImage: this.storageImage,
-          userApiKey: this.storageKey,
-          userApiSc: this.storageSc,
-        };
-        this.storageUsers.push(dataUsers);
+        this.storage.setString('storageUsername', this.storageUsername);
+        this.storage.setString('storageEmail', this.storageEmail);
+        this.storage.setString('storageID', this.storageID);
+        this.storage.setString('storageImage', this.storageImage);
+        this.storage.setString('storageKey', this.storageKey);
+        this.storage.setString('storageSc', this.storageSc);
         this.storage.setObject('storageUsers', {
-          User: this.storageUsers,
+          products: response['message']['products'],
         });
-
-        this.storage.setObject('storageProducts', {
-          product: response['message']['products'],
+        this.storage.setObject('storageProduct', {
+          products: response['message']['products'],
         });
-
-        // var dataAll = {
-        //   User: this.storageUsers,
-        //   product: response['message']['products'],
-        // };
-        // this.storageAll.push(dataAll);
-        // this.storage.setObject(this.storageKey, {
-        //   dataAll: this.storageAll,
-        // });
 
         this.showAlert('Login Success ', this.storageUsername);
         this.router.navigate(['/home']);
@@ -272,4 +258,5 @@ export class SigninPage implements OnInit {
   }
 
   //_______ login Email _______________________________________________ End ____________
+  ________________;
 }

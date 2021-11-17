@@ -49,14 +49,14 @@ export class TransactionPage implements OnInit {
   listProductName: string;
 
   getStorage1() {
-    this.storage.getObject('storageProduct').then((data: any) => {
+    this.storage.getObject('storageProducts').then((data: any) => {
       this.storageProduct = data;
-      console.log('Sekundren - 1 = ', this.storageProduct);
-      this.listProducts_cat = this.storageProduct['products'].filter(function (
+      this.listProducts_cat = this.storageProduct['product'].filter(function (
         storageProduct
       ) {
         return storageProduct.item_group == 'Cukur Kucing';
       });
+      console.log('Array Product Cukur Kucing = ', this.listProducts_cat);
     });
   }
 
@@ -65,7 +65,6 @@ export class TransactionPage implements OnInit {
 
     console.log('Detail Listproduct :', listproduct);
     this.listProductName = listproduct['item_name'];
-    console.log('Detail Listproduct :', this.listProductName);
     this.swipeNext();
   }
 
@@ -73,21 +72,28 @@ export class TransactionPage implements OnInit {
 
   // ______ Slide 2 ______________________________________________________________ Start _______
 
-  addressAddressHome: string;
-  addressNameHome: string;
-  addressPhoneHome: string;
+  addressPickAddress: string;
+  addressPickName: string;
+  addressPickPhone: string;
 
   getStorage2() {
-    this.storage.getObject('pickAddress').then((data: any) => {
+    this.storage.getObject('storageAddressPick').then((data: any) => {
       if (!data) {
-        this.addressAddressHome = 'Set Address';
+        this.addressPickAddress = 'Set Address';
       } else {
-        this.addressAddressHome = data['pickAddressAddress'];
-        this.addressNameHome = data['pickAddressName'];
-        this.addressPhoneHome = data['pickAddressPhone'];
+        this.addressPickAddress = data['storageAddressPickAddress'];
+        this.addressPickName = data['storageAddressPickName'];
+        this.addressPickPhone = data['storageAddressPickPhone'];
       }
 
-      console.log('Isi :', this.addressAddressHome);
+      console.log(
+        'Isi :',
+        this.addressPickAddress +
+          ' - ' +
+          this.addressPickName +
+          ' - ' +
+          this.addressPickPhone
+      );
     });
   }
 
@@ -97,7 +103,7 @@ export class TransactionPage implements OnInit {
   }
 
   selectAddress() {
-    this.storage.removeItem('pickAddress');
+    this.storage.removeItem('storageAddressPick');
     this.router.navigateByUrl('/transaction-selectaddress');
   }
 
@@ -120,27 +126,26 @@ export class TransactionPage implements OnInit {
   transaction_package: string;
   transaction_payment: string;
   transaction_totalamount: string;
-  petNameHome: string;
-  petTypeHome: string;
+  transaction_petpickname: string;
+  transaction_petpicktype: string;
 
   getStorage3() {
-    this.storage.getString('storageUsername').then((data: any) => {
-      this.transaction_name = data.value;
+    this.storage.getObject('storageUsers').then((data: any) => {
+      this.transaction_name = data['User'][0]['userUsername'];
+      this.transaction_email = data['User'][0]['userEmail'];
+      console.log('Sekundren  = ', data['User'][0]);
+      // this.showAlert('Your email is => ', this.storageEmail);
     });
 
-    this.storage.getString('storageEmail').then((data: any) => {
-      this.transaction_email = data.value;
-    });
-
-    this.storage.getObject('pickPet').then((data: any) => {
+    this.storage.getObject('storagePetPick').then((data: any) => {
       if (!data) {
-        this.petNameHome = '- set pet';
+        this.transaction_petpickname = '- set pet';
       } else {
-        this.petNameHome = data['pickPetName'];
-        this.petTypeHome = data['pickPetType'];
+        this.transaction_petpickname = data['storagePetPickName'];
+        this.transaction_petpicktype = data['storagePetPickType'];
       }
 
-      console.log('Isi :', this.addressAddressHome);
+      console.log('Isi :', this.addressPickAddress);
     });
   }
 
@@ -173,12 +178,12 @@ export class TransactionPage implements OnInit {
           handler: () => {
             console.log('Confirm Okay');
 
-            this.transaction_addressAddress = this.addressAddressHome;
-            this.transaction_addressName = this.addressNameHome;
-            this.transaction_addressPhone = this.addressPhoneHome;
+            this.transaction_addressAddress = this.addressPickAddress;
+            this.transaction_addressName = this.addressPickName;
+            this.transaction_addressPhone = this.addressPickPhone;
             this.transaction_package = this.listProductName;
-            this.transaction_petname = this.petNameHome;
-            this.transaction_pettype = this.petTypeHome;
+            this.transaction_petname = this.transaction_petpickname;
+            this.transaction_pettype = this.transaction_petpicktype;
 
             console.log('Transaction Name', this.transaction_name);
             console.log('Transaction email', this.transaction_email);

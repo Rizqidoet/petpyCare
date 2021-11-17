@@ -1,27 +1,34 @@
-<ion-content>
+<ion-content style="background-color: #0a387e">
   <!-- Start: Header -->
   <div
     style="
       display: flex;
       flex-direction: row;
-      background-color: rgb(238, 238, 238);
+      background-color: #f7f7f7;
       width: 100%;
-      height: 80px;
+      height: 120px;
       position: fixed;
       z-index: 1;
     "
   >
-    <div style="width: 10%; margin-top: 20px; text-align: right">
+    <div style="width: 10%; margin-top: 20px; text-align: center">
       <ion-icon
         routerLink="/home"
-        style="color: #0f3266; font-size: large"
+        style="color: #000000; font-size: 20px"
         name="close"
       ></ion-icon>
     </div>
     <div
-      style="width: 90%; color: #0f3266; margin-top: 20px; text-align: center"
+      style="width: 90%; color: #000000; margin-top: 20px; text-align: center"
     >
-      <span style="font-size: large; font-weight: 600">
+      <span
+        style="
+          font-size: 25px;
+          font-weight: 600;
+          font-family: 'Lobster', cursive;
+          margin-left: -10px;
+        "
+      >
         Order - Cukur Kucing
       </span>
     </div>
@@ -31,26 +38,32 @@
     style="
       display: flex;
       flex-direction: row;
-      background-color: white;
+      background-color: #ffffff;
       width: 100%;
       height: 50px;
-      margin-top: 60px;
-      border-radius: 15px 15px 0 0;
+      margin-top: 80px;
+      border-radius: 18px 18px 0 0;
       position: fixed;
       z-index: 2;
     "
     class="ion-padding"
   >
-    <div style="width: 10%; text-align: right">
+    <div style="width: 10%; text-align: center">
       <ion-icon
         (click)="swipePrev()"
-        style="color: #000000; font-size: large"
+        style="color: #000000; font-size: 16px; margin-top: 3px"
         name="arrow-back-outline"
       ></ion-icon>
     </div>
     <div style="width: 90%; text-align: left; margin-left: 10px">
-      <span style="color: #000000; font-size: medium">
-        complete your order
+      <span
+        style="
+          color: #000000;
+          font-size: 18px;
+          font-family: 'Source Sans Pro', sans-serif;
+        "
+      >
+        <b> complete your order </b>
       </span>
     </div>
   </div>
@@ -67,7 +80,9 @@
           width: 100%;
           height: auto;
           background-color: white;
-          margin-top: 100px;
+          margin-top: 130px;
+          padding-bottom: 20px;
+          border-radius: 18px 18px 0 0;
         "
         class="ion-padding"
       >
@@ -79,15 +94,51 @@
           routerDirection="forward"
           style="z-index: 0; margin-top: 10px"
         >
-          <ion-thumbnail slot="start" style="width: 35px; height: 35px">
-            <img src="https://img.icons8.com/fluent/48/000000/groomig.png" />
-          </ion-thumbnail>
-          <ion-label class="ion-text-wrap">
-            <h5 style="font-size: small">{{ listproduct.item_name }}</h5>
-            <p style="color: gray; font-size: x-small">
-              {{ listproduct.description }}
-            </p>
-          </ion-label>
+          <div style="display: flex; flex-direction: row; width: 100%">
+            <div style="width: 20%; display: flex; justify-content: center">
+              <ion-thumbnail
+                slot="start"
+                style="width: 35px; height: 35px; margin-top: 2px"
+              >
+                <img
+                  src="https://img.icons8.com/fluent/48/000000/groomig.png"
+                />
+              </ion-thumbnail>
+            </div>
+            <div
+              style="
+                width: 80%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                padding-right: 20px;
+              "
+              class="ion-text-wrap"
+            >
+              <div>
+                <span
+                  style="
+                    font-size: 16px;
+                    font-family: 'Source Sans Pro', sans-serif;
+                  "
+                >
+                  {{ listproduct.item_name }}
+                </span>
+              </div>
+              <div>
+                <p
+                  style="
+                    color: #686868;
+                    font-size: 14px;
+                    font-family: 'Montserrat', sans-serif;
+                    text-align: justify;
+                  "
+                >
+                  {{ listproduct.description }}
+                </p>
+              </div>
+            </div>
+          </div>
         </ion-item>
       </div>
     </ion-slide>
@@ -100,8 +151,9 @@
           display: flex;
           flex-direction: column;
           height: auto;
-          margin-top: 120px;
+          margin-top: 140px;
           background-color: white;
+          border-radius: 18px 18px 0 0;
         "
         class="ion-padding"
       >
@@ -144,10 +196,23 @@
                     margin-left: 10px;
                   "
                 >
-                  <span style="font-size: medium">On Clinic</span><br />
-                  <span style="font-size: small; color: #8d8c8c"
-                    >take your cat to the clinic yourself</span
+                  <span
+                    style="
+                      font-family: 'Source Sans Pro', sans-serif;
+                      font-size: 20px;
+                    "
                   >
+                    <b> On Clinic </b> </span
+                  ><br />
+                  <span
+                    style="
+                      font-family: 'Montserrat', sans-serif;
+                      font-size: 14px;
+                      color: #686868; ;
+                    "
+                  >
+                    take your cat to the clinic yourself
+                  </span>
                 </div>
                 <div style="width: 20%">
                   <ion-img
@@ -170,15 +235,23 @@
                 "
                 class="ion-padding"
               >
-                <div style="font-size: medium; margin-left: 20px">
+                <div
+                  style="
+                    font-family: 'Source Sans Pro', sans-serif;
+                    font-size: 16px;
+                    margin-left: 20px;
+                  "
+                >
                   Petpy address
                 </div>
                 <div
                   style="
-                    font-size: small;
-                    color: #8d8c8c;
+                    font-family: 'Montserrat', sans-serif;
+                    font-size: 12px;
+                    color: #686868;
                     margin-top: 5px;
                     margin-left: 20px;
+                    padding-right: 30px;
                   "
                   class="ion-text-wrap"
                 >
@@ -220,9 +293,27 @@
                       style="width: 50px"
                     ></ion-img>
                   </div>
-                  <div style="text-align: left; width: 80%; margin-left: 10px">
-                    <span style="font-size: medium">Home Service</span><br />
-                    <span style="font-size: small; color: #8d8c8c"
+                  <div
+                    style="
+                      text-align: left;
+                      width: 80%;
+                      margin-left: 10px;
+                      padding-right: 10px;
+                    "
+                  >
+                    <span
+                      style="
+                        font-family: 'Source Sans Pro', sans-serif;
+                        font-size: 20px;
+                      "
+                      ><b> Home Service </b></span
+                    ><br />
+                    <span
+                      style="
+                        font-family: 'Montserrat', sans-serif;
+                        font-size: 14px;
+                        color: #686868; ;
+                      "
                       >our partners will come to your house</span
                     >
                   </div>
@@ -255,26 +346,39 @@
                       style="width: 100%; display: flex; flex-direction: column"
                     >
                       <div>
-                        <span style="font-size: medium">set your address</span>
+                        <span
+                          style="
+                            font-family: 'Source Sans Pro', sans-serif;
+                            font-size: 16px;
+                          "
+                          >Set your address</span
+                        >
                       </div>
                       <div
                         style="
-                          margin-top: 15px;
+                          margin-top: 10px;
                           font-size: small;
-                          color: #8d8c8c;
+                          color: #686868;
                           text-align: justify;
+                          font-family: 'Montserrat', sans-serif;
+                          font-size: 12px;
+                          display: flex;
+                          flex-direction: row;
                         "
                         class="ion-wrap-text"
                       >
-                        <span>{{ addressNameHome }}</span>
-                        -
-                        <span>{{ addressPhoneHome }}</span>
+                        <div>
+                          <span>{{ addressPickName }}</span>
+                        </div>
+                        <div>
+                          <span>- {{ addressPickPhone }}</span>
+                        </div>
                       </div>
                       <div style="margin-top: 5px">
                         <span
                           class="ion-wrap-text"
-                          style="font-size: small; color: #8d8c8c"
-                          >{{ addressAddressHome }}</span
+                          style="font-size: small; color: #686868"
+                          >{{ addressPickAddress }}</span
                         >
                       </div>
                     </div>
@@ -315,10 +419,27 @@
                       style="width: 50px"
                     ></ion-img>
                   </div>
-                  <div style="text-align: left; width: 80%; margin-left: 10px">
-                    <span style="font-size: medium">Delivery Service</span
+                  <div
+                    style="
+                      text-align: left;
+                      width: 80%;
+                      margin-left: 10px;
+                      padding-right: 10px;
+                    "
+                  >
+                    <span
+                      style="
+                        font-family: 'Source Sans Pro', sans-serif;
+                        font-size: 20px;
+                      "
+                      ><b> Delivery Service </b> </span
                     ><br />
-                    <span style="font-size: small; color: #8d8c8c"
+                    <span
+                      style="
+                        font-family: 'Montserrat', sans-serif;
+                        font-size: 14px;
+                        color: #686868;
+                      "
                       >grooming at the clinic with our service pick up and
                       return your pet</span
                     >
@@ -345,34 +466,40 @@
                     button
                     detail
                     class="ion-wrap-text"
-                    (click)="inputCustomAddressDeliveryValue()"
+                    (click)="selectAddress()"
                   >
                     <div
                       class="ion-padding"
                       style="width: 100%; display: flex; flex-direction: column"
                     >
                       <div>
-                        <span style="font-size: medium">set your address</span>
+                        <span
+                          style="
+                            font-family: 'Source Sans Pro', sans-serif;
+                            font-size: 16px;
+                          "
+                          >Set your address</span
+                        >
                       </div>
                       <div
                         style="
                           margin-top: 15px;
-
-                          font-size: small;
-                          color: #8d8c8c;
+                          font-size: 12px;
+                          color: #686868;
                           text-align: justify;
+                          font-family: 'Montserrat', sans-serif;
                         "
                         class="ion-wrap-text"
                       >
-                        <span>{{ addressNameDelivery }}</span>
+                        <span>{{ addressPickName }}</span>
                         -
-                        <span>{{ addressPhoneDelivery }}</span>
+                        <span>{{ addressPickPhone }}</span>
                       </div>
                       <div style="margin-top: 5px">
                         <span
                           class="ion-wrap-text"
-                          style="font-size: small; color: #8d8c8c"
-                          >{{ addressAddressDelivery }}</span
+                          style="font-size: small; color: #686868"
+                          >{{ addressPickAddress }}</span
                         >
                       </div>
                     </div>
@@ -392,20 +519,13 @@
             width: 100%;
             height: 40px;
             color: white;
-            border-radius: 10px;
+            border-radius: 18px;
             margin-top: 20px;
+            font-family: 'Libre Baskerville', serif;
+            font-size: 14px;
           "
         >
           Next
-          <ion-icon
-            style="
-              color: white;
-              font-size: small;
-              position: absolute;
-              margin-left: 120px;
-            "
-            name="arrow-forward-outline"
-          ></ion-icon>
         </button>
       </div>
     </ion-slide>
@@ -419,7 +539,7 @@
           flex-direction: column;
           height: auto;
           width: 100%;
-          margin-top: 110px;
+          margin-top: 120px;
           background-color: white;
         "
         class="ion-padding"
@@ -434,30 +554,54 @@
           >
             <div style="height: 60px; display: flex; flex-direction: column">
               <div>
-                <span style="font-size: medium">select your pet</span>
+                <span
+                  style="
+                    font-family: 'Source Sans Pro', sans-serif;
+                    font-size: 18px;
+                  "
+                  >select your pet</span
+                >
               </div>
               <div
                 style="
-                  font-size: small;
-                  color: #8d8c8c;
+                  font-family: 'Montserrat', sans-serif;
+                  font-size: 14px;
+                  color: #686868;
                   text-align: justify;
-                  margin: 18px 0 0 15px;
+                  margin: 10px 0 0 15px;
                 "
               >
-                <span>{{ petNameHome }}</span>
+                <span>{{ transaction_petpickname }}</span>
                 -
-                <span>{{ petTypeHome }}</span>
+                <span>{{ transaction_petpicktype }}</span>
               </div>
             </div>
           </ion-item>
 
           <ion-item button detail style="margin: 15px 0 15px 0">
-            <div style="height: 50px; display: flex; flex-direction: column">
-              <span style="font-size: medium">select date</span>
+            <div
+              style="
+                height: 50px;
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 10px;
+              "
+            >
+              <span
+                style="
+                  font-family: 'Source Sans Pro', sans-serif;
+                  font-size: 18px;
+                "
+                >select date</span
+              >
               <ion-datetime
                 [(ngModel)]="myDate"
                 (ionChange)="setDate()"
-                style="font-size: small; color: #8d8c8c"
+                style="
+                  font-family: 'Montserrat', sans-serif;
+                  font-size: 14px;
+                  color: #686868;
+                "
                 displayFormat="D MMM YYYY"
                 min="2020"
                 max="2021"
@@ -467,12 +611,29 @@
           </ion-item>
 
           <ion-item button detail style="margin: 15px 0 15px 0">
-            <div style="height: 50px; display: flex; flex-direction: column">
-              <span style="font-size: medium">select time</span>
+            <div
+              style="
+                height: 50px;
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 10px;
+              "
+            >
+              <span
+                style="
+                  font-family: 'Source Sans Pro', sans-serif;
+                  font-size: 18px;
+                "
+                >select time</span
+              >
               <ion-datetime
                 [(ngModel)]="myTime"
                 (ionChange)="setTime()"
-                style="font-size: small; color: #8d8c8c"
+                style="
+                  font-family: 'Montserrat', sans-serif;
+                  font-size: 14px;
+                  color: #686868;
+                "
                 displayFormat="HH:mm"
                 placeholder="- set time -"
               ></ion-datetime>
@@ -482,10 +643,23 @@
 
         <ion-radio-group>
           <ion-list-header style="margin-bottom: 15px; margin-top: -20px">
-            <span style="font-size: medium">payment</span>
+            <span
+              style="
+                font-family: 'Source Sans Pro', sans-serif;
+                font-size: 18px;
+              "
+              >payment</span
+            >
           </ion-list-header>
           <!-- Start: div pembayaran cash -->
-          <div style="display: flex; flex-direction: row; margin-bottom: 15px">
+          <div
+            style="
+              display: flex;
+              flex-direction: row;
+              margin-bottom: 20px;
+              margin-top: 20px;
+            "
+          >
             <div style="width: 10%; margin-top: -10px">
               <ion-radio
                 slot="start"
@@ -510,10 +684,22 @@
               "
             >
               <div>
-                <span style="font-size: small; font-weight: 600">Cash</span>
+                <span
+                  style="
+                    font-family: 'Source Sans Pro', sans-serif;
+                    font-size: 14px;
+                    font-weight: 600;
+                  "
+                  >Cash</span
+                >
               </div>
               <div>
-                <span style="font-size: x-small; color: #8d8c8c"
+                <span
+                  style="
+                    font-family: 'Montserrat', sans-serif;
+                    font-size: 11px;
+                    color: #686868;
+                  "
                   >pembayaran di toko</span
                 >
               </div>
@@ -522,7 +708,14 @@
           <!-- End: div pembayaran cash -->
 
           <!-- Start: div pembayaran saldo petpy -->
-          <div style="display: flex; flex-direction: row; margin-bottom: 15px">
+          <div
+            style="
+              display: flex;
+              flex-direction: row;
+              margin-bottom: 20px;
+              margin-top: 20px;
+            "
+          >
             <div style="width: 10%">
               <ion-radio
                 slot="start"
@@ -546,20 +739,40 @@
               "
             >
               <div>
-                <span style="font-size: small; font-weight: 600"
+                <span
+                  style="
+                    font-family: 'Source Sans Pro', sans-serif;
+                    font-size: 14px;
+                    font-weight: 600;
+                  "
                   >Saldo Petpy</span
                 >
               </div>
               <div>
-                <span style="font-size: x-small; color: #8d8c8c"
+                <span
+                  style="
+                    font-family: 'Montserrat', sans-serif;
+                    font-size: 11px;
+                    color: #686868;
+                  "
                   >you saldo Rp. 36.000</span
                 >
                 <br />
-                <span style="font-size: x-small; color: #8d8c8c"
+                <span
+                  style="
+                    font-family: 'Montserrat', sans-serif;
+                    font-size: 11px;
+                    color: #686868;
+                  "
                   >transaction amount Rp. 80.000</span
                 >
                 <br />
-                <span style="font-size: x-small; color: red"
+                <span
+                  style="
+                    font-family: 'Montserrat', sans-serif;
+                    font-size: 11px;
+                    color: #d11313;
+                  "
                   >your balance is not enough</span
                 >
               </div>
@@ -568,7 +781,14 @@
           <!-- End: div pembayaran saldo petpy -->
 
           <!-- Start: div pembayaran transfer bank -->
-          <div style="display: flex; flex-direction: row; margin-bottom: 15px">
+          <div
+            style="
+              display: flex;
+              flex-direction: row;
+              margin-bottom: 20px;
+              margin-top: 20px;
+            "
+          >
             <div style="width: 10%">
               <ion-radio
                 slot="start"
@@ -592,24 +812,49 @@
               "
             >
               <div>
-                <span style="font-size: small; font-weight: 600"
+                <span
+                  style="
+                    font-family: 'Source Sans Pro', sans-serif;
+                    font-size: 14px;
+                    font-weight: 600;
+                  "
                   >Transfer Bank</span
                 >
               </div>
               <div>
-                <span style="font-size: x-small; color: #8d8c8c"
+                <span
+                  style="
+                    font-family: 'Montserrat', sans-serif;
+                    font-size: 11px;
+                    color: #686868;
+                  "
                   >BCA - Virtual Account</span
                 >
                 <br />
-                <span style="font-size: x-small; color: #8d8c8c"
+                <span
+                  style="
+                    font-family: 'Montserrat', sans-serif;
+                    font-size: 11px;
+                    color: #686868;
+                  "
                   >Petpy.id - 1110 2525 331</span
                 >
                 <br />
-                <span style="font-size: x-small; color: #8d8c8c"
+                <span
+                  style="
+                    font-family: 'Montserrat', sans-serif;
+                    font-size: 11px;
+                    color: #686868;
+                  "
                   >Mandiri - Virtual Account</span
                 >
                 <br />
-                <span style="font-size: x-small; color: #8d8c8c"
+                <span
+                  style="
+                    font-family: 'Montserrat', sans-serif;
+                    font-size: 11px;
+                    color: #686868;
+                  "
                   >Petpy.id - 7889 6565 123</span
                 >
                 <br />
@@ -627,8 +872,10 @@
             width: 100%;
             height: 40px;
             color: white;
-            border-radius: 10px;
-            margin-top: 58px;
+            border-radius: 18px;
+            margin-top: 130px;
+            font-family: 'Libre Baskerville', serif;
+            font-size: 14px;
           "
         >
           Finish

@@ -75,6 +75,8 @@ export class TransactionConfirmPage implements OnInit {
     this.router.navigateByUrl('/transaction');
   }
   confirmYes() {
+    this.storage.removeItem('storageAddressPick');
+    this.storage.removeItem('storagePetPick');
     this.router.navigateByUrl('/order-success');
   }
 }

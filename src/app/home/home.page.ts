@@ -11,6 +11,47 @@ import { Storage } from '@capacitor/storage';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
+  constructor(
+    private platform: Platform,
+    public alertController: AlertController,
+    private router: Router,
+    private storage: StorageCapService
+  ) {}
+
+  //_________ onload Page _______________________________________ Start _____________
+
+  ionViewWillEnter() {
+    this.getStorage();
+  }
+
+  ngOnInit() {}
+
+  //_________ onload Page _______________________________________ End _____________
+
+  //_________ Function Pembantu _______________________________________ Start _____________
+
+  async showAlert(header: string, message: string) {
+    const alert = await this.alertController.create({
+      header,
+      message,
+      buttons: ['OK'],
+    });
+
+    await alert.present();
+  }
+
+  clearVariable() {
+    this.storageUsername = '';
+    this.storageEmail = '';
+    this.storageID = '';
+    this.storageKey = '';
+    this.storageSc = '';
+  }
+
+  //_________ Function Pembantu _______________________________________ End _____________
+
+  //_________ load local storage _______________________________________ Start _____________
+
   storageUsername: string;
   storageEmail: string;
   storageID: string;
@@ -24,82 +65,38 @@ export class HomePage implements OnInit {
     storageProductGroup: '',
     storageProductDesc: '',
   };
-  storageProductCode: string;
-  storageProductName: string;
-  storageProductGroup: string;
-  storageProductDesc: string;
+
   listProducts = [];
   listGroup_1 = [];
   listGroup_2 = [];
   listGroup_3 = [];
   listGroup_4 = [];
 
-  constructor(
-    private platform: Platform,
-    public alertController: AlertController,
-    private router: Router,
-    private storage: StorageCapService
-  ) {}
-
-  ngOnInit() {
-    this.getStorage();
-  }
-
-  //_______________________________________________________________________________________
-
-  async showAlert(header: string, message: string) {
-    const alert = await this.alertController.create({
-      header,
-      message,
-      buttons: ['OK'],
-    });
-
-    await alert.present();
-  }
-
-  //_______________________________________________________________________________________
-
   getStorage() {
-    this.storage.getString('storageEmail').then((data: any) => {
-      this.storageEmail = data.value;
-      console.log('Sekundren Email = ', this.storageEmail);
+    this.storage.getObject('storageUsers').then((data: any) => {
+      this.storageUsername = data['User'][0]['userUsername'];
+      this.storageEmail = data['User'][0]['userEmail'];
+      this.storageImage = data['User'][0]['userImage'];
+      console.log('Sekundren  = ', data['User'][0]);
       // this.showAlert('Your email is => ', this.storageEmail);
     });
 
-    this.storage.getString('storageID').then((data: any) => {
-      this.storageID = data.value;
-      console.log('Sekundren ID = ', this.storageID);
-      // this.showAlert('Your ID is => ', this.storageID);
-    });
-
-    this.storage.getString('storageImage').then((data: any) => {
-      this.storageImage = data.value;
-      console.log('Sekundren Image = ', this.storageImage);
-      // this.showAlert('Your ID is => ', this.storageID);
-    });
-
-    this.storage.getString('storageUsername').then((data: any) => {
-      this.storageUsername = data.value;
-      console.log('Sekundren Username = ', this.storageUsername);
-      // this.showAlert('Your Username is => ', this.storageUsername);
-    });
-
-    this.storage.getObject('storageProduct').then((data: any) => {
+    this.storage.getObject('storageProducts').then((data: any) => {
       this.storageProduct = data;
-      console.log('Sekundren - 1 = ', this.storageProduct);
-      var a = this.storageProduct['products'].filter(function (storageProduct) {
+      console.log('Array Product = ', this.storageProduct);
+      var a = this.storageProduct['product'].filter(function (storageProduct) {
         return storageProduct.item_group == 'Cukur Kucing';
       });
 
-      var b = this.storageProduct['products'].filter(function (storageProduct) {
+      var b = this.storageProduct['product'].filter(function (storageProduct) {
         return storageProduct.item_group == 'Service Cat';
       });
 
-      var c = this.storageProduct['products'].filter(function (storageProduct) {
+      var c = this.storageProduct['product'].filter(function (storageProduct) {
         return storageProduct.item_group == 'Service Anjing';
       });
 
-      var d = this.storageProduct['products'].filter(function (storageProduct) {
+      var d = this.storageProduct['product'].filter(function (storageProduct) {
         return storageProduct.item_group == 'Service Anjing Haircut';
       });
       this.listGroup_1 = a[0]['item_group'];
@@ -107,16 +104,18 @@ export class HomePage implements OnInit {
       this.listGroup_3 = c[0]['item_group'];
       this.listGroup_4 = d[0]['item_group'];
       console.log(
-        'Sekundren - 2 = ',
+        'List groupName = ',
         this.listGroup_1,
-        this.listGroup_2,
-        this.listGroup_3,
-        this.listGroup_4
+        ' - ' + this.listGroup_2,
+        ' - ' + this.listGroup_3,
+        ' - ' + this.listGroup_4
       );
     });
   }
 
-  //_______________________________________________________________________________________
+  //_________ load local storage _______________________________________ End _____________
+
+  //_________ Sign out _______________________________________ Start _____________
 
   OnSignout() {
     this.storage.clear();
@@ -125,15 +124,5 @@ export class HomePage implements OnInit {
     this.router.navigateByUrl('/signin');
   }
 
-  //_______________________________________________________________________________________
-
-  clearVariable() {
-    this.storageUsername = '';
-    this.storageEmail = '';
-    this.storageID = '';
-    this.storageKey = '';
-    this.storageSc = '';
-  }
-
-  //_______________________________________________________________________________________
+  //_________ Sign out _______________________________________ End _____________
 }
