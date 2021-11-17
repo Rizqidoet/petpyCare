@@ -73,13 +73,17 @@
       <ion-slides pager="true" [options]="slideOpts" #mySlider>
         <ion-slide>
           <div>
-            <h3 style="font-weight: 600">Welcome1</h3>
+            <h3 style="font-weight: 600; font-family: 'Lobster', cursive">
+              Welcome1
+            </h3>
             <p
               style="
                 font-size: medium;
                 padding-right: 30px;
                 padding-left: 30px;
                 margin-bottom: 30px;
+                font-family: 'Montserrat', sans-serif;
+                text-align: justify;
               "
             >
               The <b>ionic conference app</b> is a practical preview of the
@@ -89,13 +93,17 @@
         </ion-slide>
         <ion-slide>
           <div>
-            <h3 style="font-weight: 600">Welcome2</h3>
+            <h3 style="font-weight: 600; font-family: 'Lobster', cursive">
+              Welcome2
+            </h3>
             <p
               style="
                 font-size: medium;
                 padding-right: 30px;
                 padding-left: 30px;
                 margin-bottom: 30px;
+                font-family: 'Montserrat', sans-serif;
+                text-align: justify;
               "
             >
               The <b>ionic conference app</b> is a practical preview of the
@@ -105,13 +113,17 @@
         </ion-slide>
         <ion-slide>
           <div>
-            <h3 style="font-weight: 600">Welcome3</h3>
+            <h3 style="font-weight: 600; font-family: 'Lobster', cursive">
+              Welcome3
+            </h3>
             <p
               style="
                 font-size: medium;
                 padding-right: 30px;
                 padding-left: 30px;
                 margin-bottom: 30px;
+                font-family: 'Montserrat', sans-serif;
+                text-align: justify;
               "
             >
               The <b>ionic conference app</b> is a practical preview of the
@@ -129,52 +141,44 @@
           background-color: white;
           justify-content: center;
           margin-top: 40px;
+          padding: 0 40px 0 40px;
         "
       >
-        <div style="width: 34%; margin: 0 5px 0 5px">
-          <ion-button
-            (click)="swipeNext()"
+        <div
+          style="
+            width: 20%;
+            margin: 0 5px 0 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          "
+        >
+          <span
+            routerLink="/signup"
             routerDirection="forward"
-            color="light"
-            style="
-              width: 100%;
-              height: 40px;
-              border-radius: 50px;
-              font-size: medium;
-            "
-            expand="block"
-          >
-            <span style="color: #1a72f8">Signup</span></ion-button
+            style="color: #9a9da0; font-family: 'Libre Baskerville', serif"
+            >Signup</span
           >
         </div>
-        <div style="width: 34%; margin: 0 5px 0 5px">
-          <ion-button
+        <div style="width: 80%; margin: 0 5px 0 5px">
+          <button
             routerLink="/signin"
             routerDirection="forward"
             style="
+              background-color: #1a72f8;
+              color: #ffffff;
               width: 100%;
               height: 40px;
-              border-radius: 50px;
+              border-radius: 18px;
               font-size: medium;
+              font-family: 'Libre Baskerville', serif;
             "
             expand="block"
-            >Signin</ion-button
           >
+            Signin
+          </button>
         </div>
       </div>
-
-      <!-- <ion-button
-        routerLink="/signin"
-        routerDirection="forward"
-        style="
-          margin: 30px 35px 10px 35px;
-          height: 50px;
-          border-radius: 50px;
-          font-size: medium;
-        "
-        expand="block"
-        >Get started</ion-button
-      > -->
     </div>
   </div>
 </ion-content>

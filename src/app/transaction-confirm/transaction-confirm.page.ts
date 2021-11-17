@@ -27,7 +27,7 @@ export class TransactionConfirmPage implements OnInit {
   dataTransaction_addressName: string;
   dataTransaction_addressPhone: string;
   dataTransaction_petname: string;
-  dataTransaction_petdetail: string;
+  dataTransaction_pettype: string;
   dataTransaction_date: string;
   dataTransaction_time: string;
   dataTransaction_service: string;
@@ -50,6 +50,8 @@ export class TransactionConfirmPage implements OnInit {
       this.dataTransaction_date = data['transactions'][0]['date'];
       this.dataTransaction_package = data['transactions'][0]['package'];
       this.dataTransaction_service = data['transactions'][0]['service'];
+      this.dataTransaction_petname = data['transactions'][0]['petname'];
+      this.dataTransaction_pettype = data['transactions'][0]['pettype'];
       this.dataTransaction_packagePayment =
         data['transactions'][0]['packagePayment'];
       this.dataTransaction_servicePayment =

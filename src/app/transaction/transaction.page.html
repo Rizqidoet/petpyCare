@@ -429,20 +429,25 @@
             button
             detail
             style="margin: 15px 0 15px 0"
-            routerLink="/order-selectpetmodal"
+            routerLink="/transaction-selectpet"
             routerDirection="forward"
           >
             <div style="height: 60px; display: flex; flex-direction: column">
-              <span style="font-size: medium">select your pet</span>
-              <span
+              <div>
+                <span style="font-size: medium">select your pet</span>
+              </div>
+              <div
                 style="
                   font-size: small;
                   color: #8d8c8c;
-                  margin-left: 20px;
-                  margin-top: 10px;
+                  text-align: justify;
+                  margin: 18px 0 0 15px;
                 "
-                >{{ pet }}</span
               >
+                <span>{{ petNameHome }}</span>
+                -
+                <span>{{ petTypeHome }}</span>
+              </div>
             </div>
           </ion-item>
 
@@ -456,6 +461,7 @@
                 displayFormat="D MMM YYYY"
                 min="2020"
                 max="2021"
+                placeholder="- set date -"
               ></ion-datetime>
             </div>
           </ion-item>
@@ -468,6 +474,7 @@
                 (ionChange)="setTime()"
                 style="font-size: small; color: #8d8c8c"
                 displayFormat="HH:mm"
+                placeholder="- set time -"
               ></ion-datetime>
             </div>
           </ion-item>

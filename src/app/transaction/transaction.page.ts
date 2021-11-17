@@ -113,13 +113,15 @@ export class TransactionPage implements OnInit {
   transaction_addressName: string;
   transaction_addressPhone: string;
   transaction_petname: string;
-  transaction_petdetail: string;
+  transaction_pettype: string;
   transaction_date: string;
   transaction_time: string;
   transaction_service: string;
   transaction_package: string;
   transaction_payment: string;
   transaction_totalamount: string;
+  petNameHome: string;
+  petTypeHome: string;
 
   getStorage3() {
     this.storage.getString('storageUsername').then((data: any) => {
@@ -128,6 +130,17 @@ export class TransactionPage implements OnInit {
 
     this.storage.getString('storageEmail').then((data: any) => {
       this.transaction_email = data.value;
+    });
+
+    this.storage.getObject('pickPet').then((data: any) => {
+      if (!data) {
+        this.petNameHome = '- set pet';
+      } else {
+        this.petNameHome = data['pickPetName'];
+        this.petTypeHome = data['pickPetType'];
+      }
+
+      console.log('Isi :', this.addressAddressHome);
     });
   }
 
@@ -164,6 +177,8 @@ export class TransactionPage implements OnInit {
             this.transaction_addressName = this.addressNameHome;
             this.transaction_addressPhone = this.addressPhoneHome;
             this.transaction_package = this.listProductName;
+            this.transaction_petname = this.petNameHome;
+            this.transaction_pettype = this.petTypeHome;
 
             console.log('Transaction Name', this.transaction_name);
             console.log('Transaction email', this.transaction_email);
@@ -181,6 +196,8 @@ export class TransactionPage implements OnInit {
             );
             console.log('Transaction package', this.transaction_package);
             console.log('Transaction service', this.transaction_service);
+            console.log('Transaction petname', this.transaction_petname);
+            console.log('Transaction pettype', this.transaction_pettype);
             console.log('Transaction date', this.transaction_date);
             console.log('Transaction time', this.transaction_time);
 
@@ -193,6 +210,8 @@ export class TransactionPage implements OnInit {
               addressAddress: this.transaction_addressAddress,
               addressName: this.transaction_addressName,
               addressPhone: this.transaction_addressPhone,
+              petname: this.transaction_petname,
+              pettype: this.transaction_pettype,
               date: this.transaction_date,
               time: this.transaction_time,
               package: this.transaction_package,
@@ -223,7 +242,7 @@ export class TransactionPage implements OnInit {
   dataTransaction_phone: string;
   dataTransaction_address: string;
   dataTransaction_petname: string;
-  dataTransaction_petdetail: string;
+  dataTransaction_pettype: string;
   dataTransaction_date: string;
   dataTransaction_service: string;
   dataTransaction_package: string;
@@ -236,12 +255,16 @@ export class TransactionPage implements OnInit {
       this.dataTransaction_email = data['transactions'][0]['email'];
       this.dataTransaction_package = data['transactions'][0]['package'];
       this.dataTransaction_service = data['transactions'][0]['service'];
+      this.dataTransaction_petname = data['transactions'][0]['petname'];
+      this.dataTransaction_pettype = data['transactions'][0]['pettype'];
       console.log(
         'Isi :',
         this.dataTransaction_name +
           this.dataTransaction_email +
           this.dataTransaction_package +
-          this.dataTransaction_service
+          this.dataTransaction_service +
+          this.dataTransaction_petname +
+          this.dataTransaction_pettype
       );
     });
   }

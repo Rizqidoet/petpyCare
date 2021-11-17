@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
-import { AlertController } from '@ionic/angular';
+import { ModalController, AlertController } from '@ionic/angular';
 import { Storage } from '@capacitor/storage';
 import { StorageCapService } from '../../app/services/storage-cap.service';
 import { Router } from '@angular/router';

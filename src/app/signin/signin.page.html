@@ -7,7 +7,7 @@
       width: 100%;
       padding-top: 120px;
       padding-bottom: 80px;
-      background-color: white;
+      background-color: #ffffff;
       justify-content: center;
       align-items: center;
     "
@@ -25,7 +25,7 @@
       flex-direction: column;
       width: 100%;
       height: 300px;
-      background-color: white;
+      background-color: #ffffff;
     "
   >
     <!-- Start: Judul -->
@@ -36,10 +36,11 @@
           font-weight: 600;
           margin-left: 20px;
           margin-bottom: 20px;
-          color: rgb(0, 0, 78);
+          color: #000000;
+          font-family: 'Lobster', cursive;
         "
       >
-        Login
+        Signin
       </h3>
     </div>
     <!-- End: Judul -->
@@ -52,14 +53,14 @@
         align-items: center;
         padding-right: 10px;
         margin-bottom: 15px;
-        border-bottom: rgb(0, 0, 78) 1px solid;
+        border-bottom: #9a9da0 1px solid;
         margin-right: 20px;
         margin-left: 20px;
       "
     >
       <div>
         <ion-icon
-          style="font-size: large; color: gray"
+          style="font-size: large; color: #9a9da0"
           name="at-outline"
         ></ion-icon>
       </div>
@@ -70,7 +71,7 @@
           class="ion-padding"
           type="text"
           placeholder="Email ID"
-          style="font-size: smaller"
+          style="font-size: smaller; font-family: 'Montserrat', sans-serif"
         ></ion-input>
       </div>
     </div>
@@ -84,14 +85,14 @@
         align-items: center;
         padding-right: 10px;
         margin-bottom: 15px;
-        border-bottom: rgb(0, 0, 78) 1px solid;
+        border-bottom: #9a9da0 1px solid;
         margin-right: 20px;
         margin-left: 20px;
       "
     >
       <div>
         <ion-icon
-          style="font-size: large; color: gray"
+          style="font-size: large; color: #9a9da0"
           name="key-outline"
         ></ion-icon>
       </div>
@@ -102,7 +103,7 @@
           class="ion-padding"
           type="password"
           placeholder="Password"
-          style="font-size: smaller"
+          style="font-size: smaller; font-family: 'Montserrat', sans-serif"
         ></ion-input>
       </div>
     </div>
@@ -119,20 +120,21 @@
         margin-bottom: 25px;
       "
     >
-      <ion-button
+      <button
         (click)="onSignIn()"
         style="
           width: 100%;
           height: 50px;
-          background-color: rgb(45, 90, 224);
-          color: white;
+          background-color: #1a72f8;
+          color: #ffffff;
           font-size: small;
           border-radius: 10px;
+          font-family: 'Libre Baskerville', serif;
         "
       >
         Login
         <ion-icon name="log-in"></ion-icon>
-      </ion-button>
+      </button>
     </div>
     <!-- End: Button Login -->
 
@@ -142,9 +144,10 @@
         display: flex;
         justify-content: center;
         font-size: small;
-        color: lightgray;
+        color: #9a9da0;
         font-weight: 700;
         margin-bottom: 25px;
+        font-family: 'Montserrat', sans-serif;
       "
     >
       <span> or continue with </span>
@@ -160,7 +163,7 @@
           display: flex;
           height: 45px;
           width: 70px;
-          background-color: white;
+          background-color: #ffffff;
           justify-content: right;
           border-radius: 10px;
 
@@ -180,7 +183,7 @@
           display: flex;
           height: 45px;
           width: 70px;
-          background-color: white;
+          background-color: #ffffff;
           justify-content: center;
           border-radius: 10px;
         "
@@ -198,7 +201,7 @@
           display: flex;
           height: 45px;
           width: 70px;
-          background-color: white;
+          background-color: #ffffff;
           justify-content: left;
           border-radius: 10px;
         "
@@ -219,12 +222,13 @@
         display: flex;
         justify-content: center;
         font-size: small;
-        color: gray;
+        color: #9a9da0;
         margin-bottom: 25px;
+        font-family: 'Montserrat', sans-serif;
       "
     >
       <span>
-        new to <b>Petpy</b> ?
+        new in <b>Petpy</b> app ?
         <a
           routerDirection="forward"
           routerLink="/signup"

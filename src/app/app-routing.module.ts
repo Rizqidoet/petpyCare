@@ -133,6 +133,10 @@ const routes: Routes = [
     path: 'transaction-setaddress',
     loadChildren: () => import('./transaction-setaddress/transaction-setaddress.module').then( m => m.TransactionSetaddressPageModule)
   },
+  {
+    path: 'transaction-selectpet',
+    loadChildren: () => import('./transaction-selectpet/transaction-selectpet.module').then( m => m.TransactionSelectpetPageModule)
+  },
 
 
 ];

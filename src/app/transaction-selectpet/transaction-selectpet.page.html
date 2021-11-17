@@ -1,0 +1,69 @@
+<ion-content class="ion-padding">
+  <div style="margin-top: 30px; border-radius: 10px 10px 0px 0">
+    <div
+      style="
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 15px;
+      "
+    >
+      <div
+        style="width: 10%"
+        routerLink="/transaction"
+        routerDirection="forward"
+      >
+        <ion-icon name="arrow-back"></ion-icon>
+      </div>
+      <div (click)="addPet()" routerDirection="forward">
+        <ion-icon name="add-circle" style="color: #1a72f8"></ion-icon> &nbsp;
+        <span style="color: #1a72f8">add pet</span>
+      </div>
+    </div>
+
+    <div>
+      <div class="ion-padding">
+        <h5>your lovely pet</h5>
+      </div>
+      <ion-item
+        button
+        *ngFor="let storagePet of storageArrayPet;"
+        (click)="tapValue(storagePet)"
+      >
+        <ion-label class="ion-text-wrap">
+          <div style="display: flex; flex-direction: row">
+            <div style="width: 15%">
+              <ion-thumbnail
+                style="
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  width: 100%;
+                "
+              >
+                <ion-icon
+                  name="paw"
+                  style="height: 30px; width: 30px"
+                ></ion-icon>
+              </ion-thumbnail>
+            </div>
+            <div style="width: 85%">
+              <h2 style="font-weight: 600">{{ storagePet.name }}</h2>
+              <p
+                style="
+                  color: gray;
+                  font-size: small;
+                  text-align: justify;
+                  padding: 5px 5px 5px 5px;
+                "
+              >
+                {{ storagePet.type }}
+              </p>
+            </div>
+          </div>
+        </ion-label>
+      </ion-item>
+    </div>
+  </div>
+</ion-content>

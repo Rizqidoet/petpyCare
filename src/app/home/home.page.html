@@ -46,6 +46,7 @@
                           color: #ffffff;
                           margin-right: 15px;
                           text-decoration: none;
+                          font-family: 'Libre Baskerville', sans-serif;
                         "
                       >
                         Logout
@@ -76,7 +77,7 @@
         overflow: hidden;
         margin-bottom: 20px;
         z-index: 0;
-        background-color: rgb(250, 250, 250);
+        background-color: #ffffff;
       "
     >
       <!-- Start: Profile Loged -->
@@ -137,12 +138,25 @@
               "
             >
               <div>
-                <span style="font-size: medium; font-weight: 600">
+                <span
+                  style="
+                    font-size: medium;
+                    font-weight: 600;
+                    font-family: 'Montserrat', sans-serif;
+                  "
+                >
                   {{ storageUsername }}
                 </span>
               </div>
               <div>
-                <span style="font-size: small; color: darkgray">
+                <span
+                  style="
+                    font-size: small;
+                    color: #9c9999;
+                    font-family: 'Montserrat', sans-serif;
+                    font-style: italic;
+                  "
+                >
                   {{ storageEmail }}
                 </span>
               </div>
@@ -172,7 +186,13 @@
             >
               <div>
                 <span
-                  style="font-size: large; font-weight: 600; margin-left: 5px"
+                  style="
+                    font-size: large;
+                    font-weight: 600;
+                    margin-left: 5px;
+                    font-family: 'font-family: ' Montserrat ', sans-serif',
+                      serif;
+                  "
                 >
                   Rp. 25.000
                 </span>
@@ -184,7 +204,14 @@
                   ></ion-img>
                 </div>
                 <div style="display: flex; align-items: center">
-                  <span style="font-size: small; margin-left: 10px">
+                  <span
+                    style="
+                      font-size: small;
+                      margin-left: 10px;
+                      font-family: 'font-family: ' Montserrat ', sans-serif',
+                        sans-serif;
+                    "
+                  >
                     your balance
                   </span>
                 </div>
@@ -203,7 +230,12 @@
             >
               <div>
                 <span
-                  style="font-size: large; font-weight: 600; margin-left: 5px"
+                  style="
+                    font-size: large;
+                    font-weight: 600;
+                    margin-left: 5px;
+                    font-family: 'Montserrat', sans-serif;
+                  "
                 >
                   2.780
                 </span>
@@ -215,7 +247,13 @@
                   ></ion-img>
                 </div>
                 <div style="display: flex; align-items: center">
-                  <span style="font-size: small; margin-left: 10px">
+                  <span
+                    style="
+                      font-size: small;
+                      margin-left: 10px;
+                      font-family: 'Montserrat', sans-serif;
+                    "
+                  >
                     your point
                   </span>
                 </div>
@@ -232,15 +270,22 @@
         style="
           display: flex;
           flex-direction: column;
-
+          margin-top: 15px;
           width: 100%;
-          background-color: rgb(250, 250, 250);
+          background-color: #f7f7f7;
           padding: 20px 0 20px 0;
         "
       >
-        <div style="margin-top: 0px; margin-left: 15px; margin-bottom: 10px">
+        <div
+          style="
+            margin-top: 0px;
+            margin-left: 15px;
+            margin-bottom: 10px;
+            font-family: 'Source Sans Pro', sans-serif;
+          "
+        >
           <ion-label>
-            <h3>Available Menu</h3>
+            <h3 style="font-size: 20px"><b>Available Menu</b></h3>
           </ion-label>
         </div>
         <div style="display: flex; flex-direction: row; flex-wrap: wrap">
@@ -254,11 +299,21 @@
                 <ion-card style="border-radius: 10px">
                   <img src="../../assets/icon/menu-cat.png" />
                   <ion-card-header>
-                    <ion-card-title style="font-size: smaller"
+                    <ion-card-title
+                      style="
+                        font-size: 16px;
+                        font-family: 'Libre Baskerville', serif;
+                      "
                       >{{ listGroup_1 }}</ion-card-title
                     >
                   </ion-card-header>
-                  <ion-card-content style="font-size: x-small">
+                  <ion-card-content
+                    style="
+                      font-size: 11px;
+                      font-family: 'Montserrat', sans-serif;
+                      margin-top: -10px;
+                    "
+                  >
                     take this service now
                   </ion-card-content>
                 </ion-card>
@@ -268,7 +323,7 @@
 
           <div style="width: 50%">
             <a
-              routerLink="/transaction1"
+              routerLink="/transaction"
               routerDirection="forward"
               style="text-decoration: none; margin-left: 10px"
             >
@@ -276,11 +331,21 @@
                 <ion-card style="border-radius: 10px">
                   <img src="../../assets/icon/menu-cat.png" />
                   <ion-card-header>
-                    <ion-card-title style="font-size: smaller"
+                    <ion-card-title
+                      style="
+                        font-size: 16px;
+                        font-family: 'Libre Baskerville', serif;
+                      "
                       >{{ listGroup_2 }}</ion-card-title
                     >
                   </ion-card-header>
-                  <ion-card-content style="font-size: x-small">
+                  <ion-card-content
+                    style="
+                      font-size: 11px;
+                      font-family: 'Montserrat', sans-serif;
+                      margin-top: -10px;
+                    "
+                  >
                     take this service now
                   </ion-card-content>
                 </ion-card>
@@ -290,19 +355,29 @@
 
           <div style="width: 50%">
             <a
-              routerLink="/transaction2"
+              routerLink="/transaction"
               routerDirection="forward"
               style="text-decoration: none; margin-left: 10px"
             >
               <div style="text-align: left; width: 100%">
                 <ion-card style="border-radius: 10px">
-                  <img src="../../assets/icon/menu-dog.png" />
+                  <img src="../../assets/icon/menu-cat.png" />
                   <ion-card-header>
-                    <ion-card-title style="font-size: smaller"
+                    <ion-card-title
+                      style="
+                        font-size: 16px;
+                        font-family: 'Libre Baskerville', serif;
+                      "
                       >{{ listGroup_3 }}</ion-card-title
                     >
                   </ion-card-header>
-                  <ion-card-content style="font-size: x-small">
+                  <ion-card-content
+                    style="
+                      font-size: 11px;
+                      font-family: 'Montserrat', sans-serif;
+                      margin-top: -10px;
+                    "
+                  >
                     take this service now
                   </ion-card-content>
                 </ion-card>
@@ -312,19 +387,29 @@
 
           <div style="width: 50%">
             <a
-              routerLink="/transaction3"
+              routerLink="/transaction"
               routerDirection="forward"
               style="text-decoration: none; margin-left: 10px"
             >
               <div style="text-align: left; width: 100%">
                 <ion-card style="border-radius: 10px">
-                  <img src="../../assets/icon/menu-dog.png" />
+                  <img src="../../assets/icon/menu-cat.png" />
                   <ion-card-header>
-                    <ion-card-title style="font-size: smaller"
+                    <ion-card-title
+                      style="
+                        font-size: 16px;
+                        font-family: 'Libre Baskerville', serif;
+                      "
                       >{{ listGroup_4 }}</ion-card-title
                     >
                   </ion-card-header>
-                  <ion-card-content style="font-size: x-small">
+                  <ion-card-content
+                    style="
+                      font-size: 11px;
+                      font-family: 'Montserrat', sans-serif;
+                      margin-top: -10px;
+                    "
+                  >
                     take this service now
                   </ion-card-content>
                 </ion-card>
@@ -346,12 +431,32 @@
         "
         class="ion-padding"
       >
+        <div style="font-family: 'Source Sans Pro', sans-serif">
+          <ion-label>
+            <h3 style="font-size: 20px"><b>Good Deals</b></h3>
+          </ion-label>
+        </div>
+
         <!-- Start: div mandi kutu -->
-        <div>
-          <div style="margin-bottom: 20px">
+        <div style="margin-top: 30px; margin-bottom: 30px">
+          <div>
             <ion-label>
-              <h3>#Mandi Kutu</h3>
-              <p style="font-size: small; color: gray; text-align: justify">
+              <h3
+                style="font-family: 'Montserrat', sans-serif; font-size: 16px"
+              >
+                #Mandi Kutu
+              </h3>
+              <p
+                style="
+                  font-size: 11px;
+                  margin-top: 5px;
+                  color: #9c9999;
+                  text-align: justify;
+                  font-family: 'Montserrat', sans-serif;
+                  font-size: 14px;
+                  padding-right: 20px;
+                "
+              >
                 Lorem Ipsum is simply dummy text of the printing and typesetting
                 industry.
               </p>
@@ -365,6 +470,7 @@
               border-radius: 10px;
               height: 150px;
               width: 100%;
+              margin-top: 20px;
             "
           >
             <img
@@ -379,31 +485,44 @@
             />
           </div>
 
-          <p
-            style="
-              font-size: smaller;
-              color: gray;
-              text-align: justify;
-              float: right;
-            "
-          >
+          <div style="margin-top: 20px; text-align: right">
             <a
               routerLink="/order-grooming"
               routerDirection="forward"
-              style="text-decoration: none"
+              style="
+                text-decoration: none;
+                margin-right: 10px;
+                font-family: 'Libre Baskerville', serif;
+                font-size: 14px;
+                color: #0a387e;
+              "
             >
-              Ambil Promonya
+              <b> grab it now </b>
             </a>
-          </p>
+          </div>
         </div>
         <!-- End: div mandi kutu -->
 
         <!-- Start: div senen kamis -->
-        <div style="margin-top: 50px">
-          <div style="margin-bottom: 20px">
+        <div style="margin-top: 30px; margin-bottom: 30px">
+          <div>
             <ion-label>
-              <h3>#Senen - Kamis</h3>
-              <p style="font-size: small; color: gray; text-align: justify">
+              <h3
+                style="font-family: 'Montserrat', sans-serif; font-size: 16px"
+              >
+                #Senin - Kamis
+              </h3>
+              <p
+                style="
+                  font-size: 11px;
+                  margin-top: 5px;
+                  color: #9c9999;
+                  text-align: justify;
+                  font-family: 'Montserrat', sans-serif;
+                  font-size: 14px;
+                  padding-right: 20px;
+                "
+              >
                 Lorem Ipsum is simply dummy text of the printing and typesetting
                 industry.
               </p>
@@ -417,6 +536,7 @@
               border-radius: 10px;
               height: 150px;
               width: 100%;
+              margin-top: 20px;
             "
           >
             <img
@@ -431,22 +551,21 @@
             />
           </div>
 
-          <p
-            style="
-              font-size: smaller;
-              color: gray;
-              text-align: justify;
-              float: right;
-            "
-          >
+          <div style="margin-top: 20px; text-align: right">
             <a
               routerLink="/order-grooming"
               routerDirection="forward"
-              style="text-decoration: none"
+              style="
+                text-decoration: none;
+                margin-right: 10px;
+                font-family: 'Libre Baskerville', serif;
+                font-size: 14px;
+                color: #0a387e;
+              "
             >
-              Ambil Promonya
+              <b> grab it now </b>
             </a>
-          </p>
+          </div>
         </div>
         <!-- End: div senen kamis -->
       </div>
@@ -456,15 +575,30 @@
       <div
         style="
           width: 100%;
-          height: 200px;
-          margin-top: 20px;
-          background-color: rgb(250, 250, 250);
           overflow: hidden;
+          overflow: hidden;
+          background-color: #f7f7f7;
         "
+        class="ion-padding"
       >
-        <div class="ion-padding">
-          <h3>Info Terkini</h3>
-          <p style="font-size: medium; color: gray; text-align: justify">
+        <div style="font-family: 'Source Sans Pro', sans-serif">
+          <ion-label>
+            <h3 style="font-size: 20px"><b>Latest info</b></h3>
+          </ion-label>
+        </div>
+
+        <div>
+          <p
+            style="
+              font-size: 11px;
+              margin-top: 20px;
+              color: #9c9999;
+              text-align: justify;
+              font-family: 'Montserrat', sans-serif;
+              font-size: 14px;
+              padding-right: 20px;
+            "
+          >
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industry's standard dummy text
             ever since the 1500s, when an unknown printer took a galley of type
@@ -485,8 +619,15 @@
         margin-top: -15px;
       "
     >
-      <p style="font-size: x-small; color: black; text-align: center">
-        &copy; powered by petpy-care 2021
+      <p
+        style="
+          font-family: 'Libre Baskerville', serif;
+          font-size: 11px;
+          color: #0a387e;
+          text-align: center;
+        "
+      >
+        <b> &copy; powered by petpy-care 2021 </b>
       </p>
     </div>
     <!-- End: footer -->
