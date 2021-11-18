@@ -91,7 +91,7 @@ export class TransactionSetaddressPage {
 
       this.marker = L.marker([lat, lng]).on('click', () => {
         console.log('marker clicked');
-        this.enableForm();
+        // this.enableForm();
       });
     } else {
       console.log('Lokasi telah diubah', this.marker);
@@ -123,7 +123,7 @@ export class TransactionSetaddressPage {
 
       this.marker.on('click', () => {
         console.log('marker clicked');
-        this.enableForm();
+        // this.enableForm();
       });
     }
     setTimeout(() => {

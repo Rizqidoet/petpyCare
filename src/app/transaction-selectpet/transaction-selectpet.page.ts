@@ -87,8 +87,8 @@ export class TransactionSelectpetPage implements OnInit {
     this.petName = storagePet.name;
     this.petType = storagePet.type;
 
-    console.log('pet pick name :', this.petName);
-    console.log('pet pick type :', this.petType);
+    // console.log('pet pick name :', this.petName);
+    // console.log('pet pick type :', this.petType);
 
     this.storage.setObject('storagePetPick', {
       storagePetPickName: this.petName,

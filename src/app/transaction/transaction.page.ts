@@ -28,6 +28,8 @@ export class TransactionPage implements OnInit {
     this.getStorage1();
     this.getStorage2();
     this.getStorage3();
+    this.defaultForm();
+    console.log('Service pas Load : ', this.transaction_service);
   }
 
   // ______Function On Load Page_____________________________________________________End__________
@@ -72,9 +74,15 @@ export class TransactionPage implements OnInit {
 
   // ______ Slide 2 ______________________________________________________________ Start _______
 
+  addressPickAddress2: string;
+  addressPickName2: string;
+  addressPickPhone2: string;
   addressPickAddress: string;
   addressPickName: string;
   addressPickPhone: string;
+  isShownCS: boolean = false;
+  isShownHS: boolean = false;
+  isShownDS: boolean = false;
 
   getStorage2() {
     this.storage.getObject('storageAddressPick').then((data: any) => {
@@ -99,7 +107,7 @@ export class TransactionPage implements OnInit {
 
   onChangeRadio(event) {
     this.transaction_service = event.detail['value'];
-    console.log('radioGroupChange', this.transaction_service);
+    console.log('Service Diset Menjadi : ', this.transaction_service);
   }
 
   selectAddress() {
@@ -107,6 +115,53 @@ export class TransactionPage implements OnInit {
     this.router.navigateByUrl('/transaction-selectaddress');
   }
 
+  enabledCS() {
+    console.log('Clinic Service Clicked');
+    this.addressPickAddress2 = 'Jl. Bukit duri salatan RT 8 RW 03 no 87';
+    this.addressPickName2 = 'Clinic';
+    this.addressPickPhone2 = '081280675738 (admin petpy)';
+    this.isShownCS = true;
+    this.isShownHS = false;
+    this.isShownDS = false;
+    // console.log('Status HS :', this.isShownHS);
+    // console.log('Status DS :', this.isShownDS);
+    var z = document.getElementById('btnSlide2');
+    z.style.marginTop = '135px';
+  }
+
+  enabledHS() {
+    console.log('Home Service Clicked');
+    this.isShownCS = false;
+    this.isShownHS = true;
+    this.isShownDS = false;
+    // console.log('Status HS :', this.isShownHS);
+    // console.log('Status DS :', this.isShownDS);
+    var z = document.getElementById('btnSlide2');
+    if (this.addressPickAddress == 'Set Address') {
+      // console.log('Kosong');
+      z.style.marginTop = '97px';
+    } else {
+      // console.log('Isi');
+      z.style.marginTop = '42px';
+    }
+  }
+
+  enabledDS() {
+    console.log('Delivery Service Clicked');
+    this.isShownCS = false;
+    this.isShownHS = false;
+    this.isShownDS = true;
+    // console.log('Status HS :', this.isShownHS);
+    // console.log('Status DS :', this.isShownDS);
+    var z = document.getElementById('btnSlide2');
+    if (this.addressPickAddress == 'Set Address') {
+      // console.log('Kosong');
+      z.style.marginTop = '90px';
+    } else {
+      // console.log('Isi');
+      z.style.marginTop = '37px';
+    }
+  }
   // ______ Slide 2 ______________________________________________________________ End _______
 
   // ______Slide_3______________________________________________________________Start_______
@@ -159,6 +214,76 @@ export class TransactionPage implements OnInit {
     console.log('time', this.transaction_time);
   }
 
+  CekValidasi() {
+    this.listProductName = 'Sekundren';
+
+    if (!this.listProductName) {
+      console.log('Package masih Kosong', this.listProductName);
+      // this.showAlert('Info', 'Package masih Kosong');
+    } else {
+      if (!this.transaction_service || this.transaction_service === '') {
+        console.log('Service Kosong = ', this.transaction_service);
+        // this.showAlert('Info', 'Service masih Kosong');
+      } else if (this.transaction_service == 'OnClinic') {
+        console.log('Service Onclinic = ', this.transaction_service);
+
+        if (this.transaction_petpickname == '- set pet') {
+          console.log('Pet masih Kosong', this.transaction_petpickname);
+          // this.showAlert('Info', 'Pet masih Kosong');
+        } else {
+          if (!this.transaction_date) {
+            console.log('Date masih Kosong', this.transaction_date);
+            // this.showAlert('Info', 'Date masih Kosong');
+          } else {
+            if (!this.transaction_time) {
+              console.log('Time masih Kosong', this.transaction_time);
+              // this.showAlert('Info', 'Time masih Kosong');
+            } else {
+              this.transaction_addressAddress = this.addressPickAddress2;
+              this.transaction_addressName = this.addressPickName2;
+              this.transaction_addressPhone = this.addressPickPhone2;
+              this.transaction_package = this.listProductName;
+              this.transaction_petname = this.transaction_petpickname;
+              this.transaction_pettype = this.transaction_petpicktype;
+
+              this.onSaveTransaction();
+            }
+          }
+        }
+      } else {
+        console.log('Service Home Delivery = ', this.transaction_service);
+
+        if (this.addressPickAddress == 'Set Address') {
+          console.log('Address masih Kosong', this.addressPickAddress);
+          this.showAlert('Info', 'Address masih Kosong');
+        } else {
+          if (this.transaction_petpickname == '- set pet') {
+            console.log('Pet masih Kosong', this.transaction_petpickname);
+            this.showAlert('Info', 'Pet masih Kosong');
+          } else {
+            if (!this.transaction_date) {
+              console.log('Date masih Kosong', this.transaction_date);
+              this.showAlert('Info', 'Date masih Kosong');
+            } else {
+              if (!this.transaction_time) {
+                console.log('Time masih Kosong', this.transaction_time);
+                this.showAlert('Info', 'Time masih Kosong');
+              } else {
+                this.transaction_addressAddress = this.addressPickAddress;
+                this.transaction_addressName = this.addressPickName;
+                this.transaction_addressPhone = this.addressPickPhone;
+                this.transaction_package = this.listProductName;
+                this.transaction_petname = this.transaction_petpickname;
+                this.transaction_pettype = this.transaction_petpicktype;
+                this.onSaveTransaction();
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
   async onSaveTransaction() {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
@@ -177,13 +302,6 @@ export class TransactionPage implements OnInit {
           text: 'Okay',
           handler: () => {
             console.log('Confirm Okay');
-
-            this.transaction_addressAddress = this.addressPickAddress;
-            this.transaction_addressName = this.addressPickName;
-            this.transaction_addressPhone = this.addressPickPhone;
-            this.transaction_package = this.listProductName;
-            this.transaction_petname = this.transaction_petpickname;
-            this.transaction_pettype = this.transaction_petpicktype;
 
             console.log('Transaction Name', this.transaction_name);
             console.log('Transaction email', this.transaction_email);
@@ -228,7 +346,6 @@ export class TransactionPage implements OnInit {
             this.storage.setObject('storageTransactions', {
               transactions: this.transactions,
             });
-            this.getStorage4();
             this.router.navigateByUrl('/transaction-confirm');
           },
         },
@@ -239,42 +356,6 @@ export class TransactionPage implements OnInit {
   }
 
   // ______Slide_3______________________________________________________________End_______
-
-  // ______Slide_4______________________________________________________________Start_______
-
-  dataTransaction_name: string;
-  dataTransaction_email: string;
-  dataTransaction_phone: string;
-  dataTransaction_address: string;
-  dataTransaction_petname: string;
-  dataTransaction_pettype: string;
-  dataTransaction_date: string;
-  dataTransaction_service: string;
-  dataTransaction_package: string;
-  dataTransaction_payment: string;
-  dataTransaction_totalamount: string;
-
-  getStorage4() {
-    this.storage.getObject('storageTransactions').then((data: any) => {
-      this.dataTransaction_name = data['transactions'][0]['name'];
-      this.dataTransaction_email = data['transactions'][0]['email'];
-      this.dataTransaction_package = data['transactions'][0]['package'];
-      this.dataTransaction_service = data['transactions'][0]['service'];
-      this.dataTransaction_petname = data['transactions'][0]['petname'];
-      this.dataTransaction_pettype = data['transactions'][0]['pettype'];
-      console.log(
-        'Isi :',
-        this.dataTransaction_name +
-          this.dataTransaction_email +
-          this.dataTransaction_package +
-          this.dataTransaction_service +
-          this.dataTransaction_petname +
-          this.dataTransaction_pettype
-      );
-    });
-  }
-
-  // ______Slide_4______________________________________________________________End_______
 
   // ______Function Pendukung___________________________________________________________Start_________
 
@@ -299,6 +380,18 @@ export class TransactionPage implements OnInit {
 
   swipePrev() {
     this.slides.slidePrev();
+  }
+
+  defaultForm() {
+    this.listProductName = '';
+    this.addressPickAddress = 'Set Address';
+    this.addressPickName = '';
+    this.addressPickPhone = '';
+    //this.transaction_service = '';
+    this.transaction_petpickname = '- set pet';
+    this.transaction_petpicktype = '';
+    this.transaction_date = '';
+    this.transaction_time = '';
   }
 
   // ______Function Pendukung___________________________________________________________End_________

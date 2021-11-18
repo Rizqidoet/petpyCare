@@ -144,12 +144,30 @@
     </div>
   </div>
 
-  <ion-item (click)="getGps()">
-    <ion-button fill="clear">
-      <ion-icon slot="start" name="map"></ion-icon>
-      Locate Position
-    </ion-button>
-  </ion-item>
+  <div
+    style="
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      background-color: brown;
+      justify-content: space-between;
+    "
+  >
+    <ion-item style="width: 100%">
+      <div style="width: 50%">
+        <ion-button (click)="getGps()" fill="clear">
+          <ion-icon slot="start" name="map"></ion-icon>
+          Get my position
+        </ion-button>
+      </div>
+      <div style="width: 50%; text-align: right">
+        <ion-button (click)="enableForm()" fill="clear">
+          <ion-icon slot="end" name="clipboard"></ion-icon>
+          Show form
+        </ion-button>
+      </div>
+    </ion-item>
+  </div>
 
   <ion-slides class="slides-wrapper" #slides style="z-index: 1; height: 110%">
     <ion-slide>

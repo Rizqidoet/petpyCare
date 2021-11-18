@@ -157,8 +157,9 @@
         "
         class="ion-padding"
       >
-        <ion-radio-group (ionChange)="onChangeRadio($event)">
-          <div>
+        <!-- Start: Radio Input -->
+        <div>
+          <ion-radio-group (ionChange)="onChangeRadio($event)">
             <!-- Start: div on clinic service -->
             <div
               style="
@@ -173,7 +174,8 @@
               "
               class="ion-padding"
             >
-              <ion-radio slot="start" value="OnCLinic"> </ion-radio>
+              <ion-radio (click)="enabledCS()" slot="start" value="OnClinic">
+              </ion-radio>
               <div
                 style="
                   display: flex;
@@ -234,6 +236,8 @@
                   padding-right: 15px;
                 "
                 class="ion-padding"
+                *ngIf="isShownCS"
+                id="divCS"
               >
                 <div
                   style="
@@ -255,8 +259,7 @@
                   "
                   class="ion-text-wrap"
                 >
-                  Jl. Bukit duri salatan no 67 - RT RW gatau gatau gatau gatau
-                  gatau gatau gatau
+                  Jl. Bukit duri salatan RT 8 RW 03 no 87
                 </div>
               </div>
             </div>
@@ -278,7 +281,12 @@
                 "
                 class="ion-padding"
               >
-                <ion-radio slot="start" value="HomeService"> </ion-radio>
+                <ion-radio
+                  (click)="enabledHS()"
+                  slot="start"
+                  value="HomeService"
+                >
+                </ion-radio>
                 <div
                   style="
                     display: flex;
@@ -324,16 +332,18 @@
                     ></ion-img>
                   </div>
                 </div>
+
                 <div
                   style="
                     display: flex;
                     flex-direction: column;
                     width: 100%;
                     text-align: left;
-                    padding-left: 15px;
-                    padding-right: 15px;
+                    padding: 0px 15px 0px 15px;
                     margin-top: 10px;
                   "
+                  *ngIf="isShownHS"
+                  id="divHS"
                 >
                   <ion-item
                     button
@@ -404,7 +414,12 @@
                 "
                 class="ion-padding"
               >
-                <ion-radio slot="start" value="DeliveryService"> </ion-radio>
+                <ion-radio
+                  (click)="enabledDS()"
+                  slot="start"
+                  value="DeliveryService"
+                >
+                </ion-radio>
                 <div
                   style="
                     display: flex;
@@ -451,6 +466,7 @@
                     ></ion-img>
                   </div>
                 </div>
+
                 <div
                   style="
                     display: flex;
@@ -461,6 +477,8 @@
                     padding-right: 15px;
                     margin-top: 10px;
                   "
+                  *ngIf="isShownDS"
+                  id="divDS"
                 >
                   <ion-item
                     button
@@ -508,25 +526,29 @@
               </div>
             </div>
             <!-- End: div on delivery service -->
-          </div>
-        </ion-radio-group>
+          </ion-radio-group>
+        </div>
+        <!-- End: Radio Input -->
 
-        <button
-          (click)="swipeNext()"
-          routerDirection="forward"
-          style="
-            background-color: #1a72f8;
-            width: 100%;
-            height: 40px;
-            color: white;
-            border-radius: 18px;
-            margin-top: 20px;
-            font-family: 'Libre Baskerville', serif;
-            font-size: 14px;
-          "
-        >
-          Next
-        </button>
+        <!-- Start: Button Next -->
+        <div style="margin-top: 207px" id="btnSlide2">
+          <button
+            (click)="swipeNext()"
+            routerDirection="forward"
+            style="
+              background-color: #1a72f8;
+              width: 100%;
+              height: 40px;
+              color: white;
+              border-radius: 18px;
+              font-family: 'Libre Baskerville', serif;
+              font-size: 14px;
+            "
+          >
+            Next
+          </button>
+        </div>
+        <!-- End: Button Next -->
       </div>
     </ion-slide>
     <!-- End: Slide 2 -->
@@ -544,351 +566,364 @@
         "
         class="ion-padding"
       >
-        <ion-list style="margin-top: -10px">
-          <ion-item
-            button
-            detail
-            style="margin: 15px 0 15px 0"
-            routerLink="/transaction-selectpet"
-            routerDirection="forward"
-          >
-            <div style="height: 60px; display: flex; flex-direction: column">
-              <div>
+        <!-- Start: List Input -->
+        <div>
+          <ion-list style="margin-top: -10px">
+            <ion-item
+              button
+              detail
+              style="margin: 15px 0 15px 0"
+              routerLink="/transaction-selectpet"
+              routerDirection="forward"
+            >
+              <div style="height: 60px; display: flex; flex-direction: column">
+                <div>
+                  <span
+                    style="
+                      font-family: 'Source Sans Pro', sans-serif;
+                      font-size: 18px;
+                    "
+                    >select your pet</span
+                  >
+                </div>
+                <div
+                  style="
+                    font-family: 'Montserrat', sans-serif;
+                    font-size: 14px;
+                    color: #686868;
+                    text-align: justify;
+                    margin: 10px 0 0 15px;
+                  "
+                >
+                  <span>{{ transaction_petpickname }}</span>
+                  -
+                  <span>{{ transaction_petpicktype }}</span>
+                </div>
+              </div>
+            </ion-item>
+
+            <ion-item button detail style="margin: 15px 0 15px 0">
+              <div
+                style="
+                  height: 50px;
+                  display: flex;
+                  flex-direction: column;
+                  margin-bottom: 10px;
+                "
+              >
                 <span
                   style="
                     font-family: 'Source Sans Pro', sans-serif;
                     font-size: 18px;
                   "
-                  >select your pet</span
+                  >select date</span
                 >
+                <ion-datetime
+                  [(ngModel)]="myDate"
+                  (ionChange)="setDate()"
+                  style="
+                    font-family: 'Montserrat', sans-serif;
+                    font-size: 14px;
+                    color: #686868;
+                  "
+                  displayFormat="D MMM YYYY"
+                  min="2020"
+                  max="2021"
+                  placeholder="- set date -"
+                  id="myDate"
+                ></ion-datetime>
+              </div>
+            </ion-item>
+
+            <ion-item button detail style="margin: 15px 0 15px 0">
+              <div
+                style="
+                  height: 50px;
+                  display: flex;
+                  flex-direction: column;
+                  margin-bottom: 10px;
+                "
+              >
+                <span
+                  style="
+                    font-family: 'Source Sans Pro', sans-serif;
+                    font-size: 18px;
+                  "
+                  >select time</span
+                >
+                <ion-datetime
+                  [(ngModel)]="myTime"
+                  (ionChange)="setTime()"
+                  style="
+                    font-family: 'Montserrat', sans-serif;
+                    font-size: 14px;
+                    color: #686868;
+                  "
+                  displayFormat="HH:mm"
+                  placeholder="- set time -"
+                  id="myTime"
+                ></ion-datetime>
+              </div>
+            </ion-item>
+          </ion-list>
+        </div>
+        <!-- End: List Input -->
+
+        <!-- Start: Radio Input -->
+        <div>
+          <ion-radio-group>
+            <ion-list-header style="margin-bottom: 15px; margin-top: -20px">
+              <span
+                style="
+                  font-family: 'Source Sans Pro', sans-serif;
+                  font-size: 18px;
+                "
+                >payment</span
+              >
+            </ion-list-header>
+            <!-- Start: div pembayaran cash -->
+            <div
+              style="
+                display: flex;
+                flex-direction: row;
+                margin-bottom: 20px;
+                margin-top: 20px;
+              "
+            >
+              <div style="width: 10%; margin-top: -10px">
+                <ion-radio
+                  slot="start"
+                  value="Cash"
+                  style="height: 15px; width: 15px"
+                ></ion-radio>
+              </div>
+              <div style="width: 25%; margin-top: -10px">
+                <ion-img
+                  src="../../assets/icon/transaction/IconCash.png"
+                  style="width: 60px"
+                ></ion-img>
               </div>
               <div
                 style="
-                  font-family: 'Montserrat', sans-serif;
-                  font-size: 14px;
-                  color: #686868;
-                  text-align: justify;
-                  margin: 10px 0 0 15px;
+                  width: 65%;
+                  display: flex;
+                  flex-direction: column;
+                  text-align: left;
+                  justify-content: center;
+                  margin-top: -10px;
                 "
               >
-                <span>{{ transaction_petpickname }}</span>
-                -
-                <span>{{ transaction_petpicktype }}</span>
+                <div>
+                  <span
+                    style="
+                      font-family: 'Source Sans Pro', sans-serif;
+                      font-size: 14px;
+                      font-weight: 600;
+                    "
+                    >Cash</span
+                  >
+                </div>
+                <div>
+                  <span
+                    style="
+                      font-family: 'Montserrat', sans-serif;
+                      font-size: 11px;
+                      color: #686868;
+                    "
+                    >pembayaran di toko</span
+                  >
+                </div>
               </div>
             </div>
-          </ion-item>
+            <!-- End: div pembayaran cash -->
 
-          <ion-item button detail style="margin: 15px 0 15px 0">
+            <!-- Start: div pembayaran saldo petpy -->
             <div
               style="
-                height: 50px;
                 display: flex;
-                flex-direction: column;
-                margin-bottom: 10px;
+                flex-direction: row;
+                margin-bottom: 20px;
+                margin-top: 20px;
               "
             >
-              <span
+              <div style="width: 10%">
+                <ion-radio
+                  slot="start"
+                  value="SaldoPetpy"
+                  style="height: 15px; width: 15px"
+                ></ion-radio>
+              </div>
+              <div style="width: 25%">
+                <ion-img
+                  src="../../assets/icon/transaction/IconSaldoPetpy.png"
+                  style="width: 60px"
+                ></ion-img>
+              </div>
+              <div
                 style="
-                  font-family: 'Source Sans Pro', sans-serif;
-                  font-size: 18px;
+                  width: 65%;
+                  display: flex;
+                  flex-direction: column;
+                  text-align: left;
+                  justify-content: center;
                 "
-                >select date</span
               >
-              <ion-datetime
-                [(ngModel)]="myDate"
-                (ionChange)="setDate()"
-                style="
-                  font-family: 'Montserrat', sans-serif;
-                  font-size: 14px;
-                  color: #686868;
-                "
-                displayFormat="D MMM YYYY"
-                min="2020"
-                max="2021"
-                placeholder="- set date -"
-              ></ion-datetime>
+                <div>
+                  <span
+                    style="
+                      font-family: 'Source Sans Pro', sans-serif;
+                      font-size: 14px;
+                      font-weight: 600;
+                    "
+                    >Saldo Petpy</span
+                  >
+                </div>
+                <div>
+                  <span
+                    style="
+                      font-family: 'Montserrat', sans-serif;
+                      font-size: 11px;
+                      color: #686868;
+                    "
+                    >you saldo Rp. 36.000</span
+                  >
+                  <br />
+                  <span
+                    style="
+                      font-family: 'Montserrat', sans-serif;
+                      font-size: 11px;
+                      color: #686868;
+                    "
+                    >transaction amount Rp. 80.000</span
+                  >
+                  <br />
+                  <span
+                    style="
+                      font-family: 'Montserrat', sans-serif;
+                      font-size: 11px;
+                      color: #d11313;
+                    "
+                    >your balance is not enough</span
+                  >
+                </div>
+              </div>
             </div>
-          </ion-item>
+            <!-- End: div pembayaran saldo petpy -->
 
-          <ion-item button detail style="margin: 15px 0 15px 0">
+            <!-- Start: div pembayaran transfer bank -->
             <div
               style="
-                height: 50px;
                 display: flex;
-                flex-direction: column;
-                margin-bottom: 10px;
+                flex-direction: row;
+                margin-bottom: 20px;
+                margin-top: 20px;
               "
             >
-              <span
+              <div style="width: 10%">
+                <ion-radio
+                  slot="start"
+                  value="TransferBank"
+                  style="height: 15px; width: 15px"
+                ></ion-radio>
+              </div>
+              <div style="width: 25%">
+                <ion-img
+                  src="../../assets/icon/transaction/IconTransfer.png"
+                  style="width: 60px"
+                ></ion-img>
+              </div>
+              <div
                 style="
-                  font-family: 'Source Sans Pro', sans-serif;
-                  font-size: 18px;
+                  width: 65%;
+                  display: flex;
+                  flex-direction: column;
+                  text-align: left;
+                  justify-content: center;
                 "
-                >select time</span
               >
-              <ion-datetime
-                [(ngModel)]="myTime"
-                (ionChange)="setTime()"
-                style="
-                  font-family: 'Montserrat', sans-serif;
-                  font-size: 14px;
-                  color: #686868;
-                "
-                displayFormat="HH:mm"
-                placeholder="- set time -"
-              ></ion-datetime>
+                <div>
+                  <span
+                    style="
+                      font-family: 'Source Sans Pro', sans-serif;
+                      font-size: 14px;
+                      font-weight: 600;
+                    "
+                    >Transfer Bank</span
+                  >
+                </div>
+                <div>
+                  <span
+                    style="
+                      font-family: 'Montserrat', sans-serif;
+                      font-size: 11px;
+                      color: #686868;
+                    "
+                    >BCA - Virtual Account</span
+                  >
+                  <br />
+                  <span
+                    style="
+                      font-family: 'Montserrat', sans-serif;
+                      font-size: 11px;
+                      color: #686868;
+                    "
+                    >Petpy.id - 1110 2525 331</span
+                  >
+                  <br />
+                  <span
+                    style="
+                      font-family: 'Montserrat', sans-serif;
+                      font-size: 11px;
+                      color: #686868;
+                    "
+                    >Mandiri - Virtual Account</span
+                  >
+                  <br />
+                  <span
+                    style="
+                      font-family: 'Montserrat', sans-serif;
+                      font-size: 11px;
+                      color: #686868;
+                    "
+                    >Petpy.id - 7889 6565 123</span
+                  >
+                  <br />
+                </div>
+              </div>
             </div>
-          </ion-item>
-        </ion-list>
+            <!-- End: div pembayaran transfer bank -->
+          </ion-radio-group>
+        </div>
+        <!-- End: Radio Input -->
 
-        <ion-radio-group>
-          <ion-list-header style="margin-bottom: 15px; margin-top: -20px">
-            <span
-              style="
-                font-family: 'Source Sans Pro', sans-serif;
-                font-size: 18px;
-              "
-              >payment</span
-            >
-          </ion-list-header>
-          <!-- Start: div pembayaran cash -->
-          <div
+        <!-- Start: Button Finish -->
+        <div>
+          <button
+            (click)="CekValidasi()"
+            routerDirection="forward"
             style="
-              display: flex;
-              flex-direction: row;
-              margin-bottom: 20px;
-              margin-top: 20px;
-            "
-          >
-            <div style="width: 10%; margin-top: -10px">
-              <ion-radio
-                slot="start"
-                value="Cash"
-                style="height: 15px; width: 15px"
-              ></ion-radio>
-            </div>
-            <div style="width: 25%; margin-top: -10px">
-              <ion-img
-                src="../../assets/icon/transaction/IconCash.png"
-                style="width: 60px"
-              ></ion-img>
-            </div>
-            <div
-              style="
-                width: 65%;
-                display: flex;
-                flex-direction: column;
-                text-align: left;
-                justify-content: center;
-                margin-top: -10px;
-              "
-            >
-              <div>
-                <span
-                  style="
-                    font-family: 'Source Sans Pro', sans-serif;
-                    font-size: 14px;
-                    font-weight: 600;
-                  "
-                  >Cash</span
-                >
-              </div>
-              <div>
-                <span
-                  style="
-                    font-family: 'Montserrat', sans-serif;
-                    font-size: 11px;
-                    color: #686868;
-                  "
-                  >pembayaran di toko</span
-                >
-              </div>
-            </div>
-          </div>
-          <!-- End: div pembayaran cash -->
-
-          <!-- Start: div pembayaran saldo petpy -->
-          <div
-            style="
-              display: flex;
-              flex-direction: row;
-              margin-bottom: 20px;
-              margin-top: 20px;
-            "
-          >
-            <div style="width: 10%">
-              <ion-radio
-                slot="start"
-                value="SaldoPetpy"
-                style="height: 15px; width: 15px"
-              ></ion-radio>
-            </div>
-            <div style="width: 25%">
-              <ion-img
-                src="../../assets/icon/transaction/IconSaldoPetpy.png"
-                style="width: 60px"
-              ></ion-img>
-            </div>
-            <div
-              style="
-                width: 65%;
-                display: flex;
-                flex-direction: column;
-                text-align: left;
-                justify-content: center;
-              "
-            >
-              <div>
-                <span
-                  style="
-                    font-family: 'Source Sans Pro', sans-serif;
-                    font-size: 14px;
-                    font-weight: 600;
-                  "
-                  >Saldo Petpy</span
-                >
-              </div>
-              <div>
-                <span
-                  style="
-                    font-family: 'Montserrat', sans-serif;
-                    font-size: 11px;
-                    color: #686868;
-                  "
-                  >you saldo Rp. 36.000</span
-                >
-                <br />
-                <span
-                  style="
-                    font-family: 'Montserrat', sans-serif;
-                    font-size: 11px;
-                    color: #686868;
-                  "
-                  >transaction amount Rp. 80.000</span
-                >
-                <br />
-                <span
-                  style="
-                    font-family: 'Montserrat', sans-serif;
-                    font-size: 11px;
-                    color: #d11313;
-                  "
-                  >your balance is not enough</span
-                >
-              </div>
-            </div>
-          </div>
-          <!-- End: div pembayaran saldo petpy -->
-
-          <!-- Start: div pembayaran transfer bank -->
-          <div
-            style="
-              display: flex;
-              flex-direction: row;
-              margin-bottom: 20px;
-              margin-top: 20px;
-            "
-          >
-            <div style="width: 10%">
-              <ion-radio
-                slot="start"
-                value="TransferBank"
-                style="height: 15px; width: 15px"
-              ></ion-radio>
-            </div>
-            <div style="width: 25%">
-              <ion-img
-                src="../../assets/icon/transaction/IconTransfer.png"
-                style="width: 60px"
-              ></ion-img>
-            </div>
-            <div
-              style="
-                width: 65%;
-                display: flex;
-                flex-direction: column;
-                text-align: left;
-                justify-content: center;
-              "
-            >
-              <div>
-                <span
-                  style="
-                    font-family: 'Source Sans Pro', sans-serif;
-                    font-size: 14px;
-                    font-weight: 600;
-                  "
-                  >Transfer Bank</span
-                >
-              </div>
-              <div>
-                <span
-                  style="
-                    font-family: 'Montserrat', sans-serif;
-                    font-size: 11px;
-                    color: #686868;
-                  "
-                  >BCA - Virtual Account</span
-                >
-                <br />
-                <span
-                  style="
-                    font-family: 'Montserrat', sans-serif;
-                    font-size: 11px;
-                    color: #686868;
-                  "
-                  >Petpy.id - 1110 2525 331</span
-                >
-                <br />
-                <span
-                  style="
-                    font-family: 'Montserrat', sans-serif;
-                    font-size: 11px;
-                    color: #686868;
-                  "
-                  >Mandiri - Virtual Account</span
-                >
-                <br />
-                <span
-                  style="
-                    font-family: 'Montserrat', sans-serif;
-                    font-size: 11px;
-                    color: #686868;
-                  "
-                  >Petpy.id - 7889 6565 123</span
-                >
-                <br />
-              </div>
-            </div>
-          </div>
-          <!-- End: div pembayaran transfer bank -->
-        </ion-radio-group>
-
-        <button
-          (click)="onSaveTransaction()"
-          routerDirection="forward"
-          style="
-            background-color: #1a72f8;
-            width: 100%;
-            height: 40px;
-            color: white;
-            border-radius: 18px;
-            margin-top: 130px;
-            font-family: 'Libre Baskerville', serif;
-            font-size: 14px;
-          "
-        >
-          Finish
-          <ion-icon
-            style="
+              background-color: #1a72f8;
+              width: 100%;
+              height: 40px;
               color: white;
-              font-size: small;
-              position: absolute;
-              margin-left: 120px;
+              border-radius: 18px;
+              font-family: 'Libre Baskerville', serif;
+              font-size: 14px;
             "
-            name="arrow-forward-outline"
-          ></ion-icon>
-        </button>
+          >
+            Finish
+            <ion-icon
+              style="
+                color: white;
+                font-size: small;
+                position: absolute;
+                margin-left: 120px;
+              "
+              name="arrow-forward-outline"
+            ></ion-icon>
+          </button>
+        </div>
+        <!-- End: Button Finish -->
       </div>
     </ion-slide>
     <!-- End: Slide 3 -->
