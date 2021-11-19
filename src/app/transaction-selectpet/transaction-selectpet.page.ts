@@ -33,19 +33,19 @@ export class TransactionSelectpetPage implements OnInit {
       if (!data) {
         this.jumlahArrayStorage = 0;
         this.storageArrayPet = [];
-        console.log('jumlahArrayStorage kosong', this.jumlahArrayStorage);
+        //console.log('jumlahArrayStorage kosong', this.jumlahArrayStorage);
       } else {
         this.storageArrayPet = data['Pets'];
         this.jumlahArrayStorage = this.storageArrayPet.length;
-        console.log('jumlahArrayStorage isi', this.jumlahArrayStorage);
+        //console.log('jumlahArrayStorage isi', this.jumlahArrayStorage);
       }
 
-      console.log('jumlah Array Storage OnLoad :', this.jumlahArrayStorage);
+      //console.log('jumlah Array Storage OnLoad :', this.jumlahArrayStorage);
     });
   }
 
   async addPet() {
-    console.log('Add Pet Function Async');
+    //console.log('Add Pet Function Async');
     const inputAlert = await this.alertController.create({
       header: 'type your pet here',
       inputs: [
@@ -66,17 +66,17 @@ export class TransactionSelectpetPage implements OnInit {
               type: valueNewPet[1],
             };
 
-            console.log(this.storageArrayPet);
             this.storageArrayPet.push(dataBaru);
             this.storage.setObject('storagePet', {
               Pets: this.storageArrayPet,
             });
-            this.getStorage();
+            // console.log(this.storageArrayPet);
+            //this.getStorage();
           },
         },
       ],
     });
-    console.log('Berhasil', inputAlert);
+    //console.log('Berhasil', inputAlert);
     await inputAlert.present();
   }
 

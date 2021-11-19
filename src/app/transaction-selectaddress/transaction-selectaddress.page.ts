@@ -24,7 +24,7 @@ export class TransactionSelectaddressPage implements OnInit {
   ionViewWillEnter() {
     // console.log(this.marker);
     this.getStorage();
-    this.storage.removeItem('storageAddressPick');
+    //this.storage.removeItem('storageAddressPick');
   }
 
   getStorage() {
@@ -35,7 +35,7 @@ export class TransactionSelectaddressPage implements OnInit {
         this.storageAddress = data['address'];
       }
 
-      console.log('Isi :', this.storageAddress);
+      // console.log('Isi :', this.storageAddress);
     });
   }
 
@@ -47,9 +47,9 @@ export class TransactionSelectaddressPage implements OnInit {
     this.addressPickaddress = dataAddress.address;
     this.addressPickName = dataAddress.addressName;
     this.addressPickPhone = dataAddress.addressPhone;
-    console.log('address :', this.addressPickaddress);
-    console.log('address name :', this.addressPickName);
-    console.log('address phone :', this.addressPickPhone);
+    // console.log('address :', this.addressPickaddress);
+    // console.log('address name :', this.addressPickName);
+    // console.log('address phone :', this.addressPickPhone);
 
     this.storage.setObject('storageAddressPick', {
       storageAddressPickAddress: this.addressPickaddress,

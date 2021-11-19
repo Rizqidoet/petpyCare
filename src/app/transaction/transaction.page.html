@@ -89,7 +89,7 @@
         <ion-item
           button
           detail
-          *ngFor="let listproduct of listProducts_cat"
+          *ngFor="let listproduct of listProducts_category"
           (click)="taplistProduct(listproduct)"
           routerDirection="forward"
           style="z-index: 0; margin-top: 10px"
@@ -159,7 +159,7 @@
       >
         <!-- Start: Radio Input -->
         <div>
-          <ion-radio-group (ionChange)="onChangeRadio($event)">
+          <ion-radio-group>
             <!-- Start: div on clinic service -->
             <div
               style="
@@ -378,17 +378,17 @@
                         class="ion-wrap-text"
                       >
                         <div>
-                          <span>{{ addressPickName }}</span>
+                          <span>{{ pickAddressName }}</span>
                         </div>
                         <div>
-                          <span>- {{ addressPickPhone }}</span>
+                          <span>- {{ pickAddressPhone }}</span>
                         </div>
                       </div>
                       <div style="margin-top: 5px">
                         <span
                           class="ion-wrap-text"
                           style="font-size: small; color: #686868"
-                          >{{ addressPickAddress }}</span
+                          >{{ pickAddressAddress }}</span
                         >
                       </div>
                     </div>
@@ -509,15 +509,15 @@
                         "
                         class="ion-wrap-text"
                       >
-                        <span>{{ addressPickName }}</span>
+                        <span>{{ pickAddressName }}</span>
                         -
-                        <span>{{ addressPickPhone }}</span>
+                        <span>{{ pickAddressPhone }}</span>
                       </div>
                       <div style="margin-top: 5px">
                         <span
                           class="ion-wrap-text"
                           style="font-size: small; color: #686868"
-                          >{{ addressPickAddress }}</span
+                          >{{ pickAddressAddress }}</span
                         >
                       </div>
                     </div>
@@ -595,9 +595,9 @@
                     margin: 10px 0 0 15px;
                   "
                 >
-                  <span>{{ transaction_petpickname }}</span>
+                  <span>{{ pickPetName }}</span>
                   -
-                  <span>{{ transaction_petpicktype }}</span>
+                  <span>{{ pickPetType }}</span>
                 </div>
               </div>
             </ion-item>
@@ -899,7 +899,7 @@
         <!-- Start: Button Finish -->
         <div>
           <button
-            (click)="CekValidasi()"
+            (click)="onSaveTransaction()"
             routerDirection="forward"
             style="
               background-color: #1a72f8;
@@ -912,15 +912,6 @@
             "
           >
             Finish
-            <ion-icon
-              style="
-                color: white;
-                font-size: small;
-                position: absolute;
-                margin-left: 120px;
-              "
-              name="arrow-forward-outline"
-            ></ion-icon>
           </button>
         </div>
         <!-- End: Button Finish -->

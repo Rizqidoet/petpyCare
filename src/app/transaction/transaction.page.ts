@@ -24,338 +24,14 @@ export class TransactionPage implements OnInit {
   async ngOnInit() {}
 
   ionViewWillEnter() {
-    // console.log(this.marker);
+    //this.defaultForm();
+
     this.getStorage1();
     this.getStorage2();
     this.getStorage3();
-    this.defaultForm();
-    console.log('Service pas Load : ', this.transaction_service);
   }
 
   // ______Function On Load Page_____________________________________________________End__________
-
-  // ______Slide_1______________________________________________________________Start_______
-
-  listProducts_cat = [];
-  storageProduct = {
-    storageProductCode: '',
-    storageProductName: '',
-    storageProductGroup: '',
-    storageProductDesc: '',
-  };
-  storageProductCode: string;
-  storageProductName: string;
-  storageProductGroup: string;
-  storageProductDesc: string;
-
-  listProductName: string;
-
-  getStorage1() {
-    this.storage.getObject('storageProducts').then((data: any) => {
-      this.storageProduct = data;
-      this.listProducts_cat = this.storageProduct['product'].filter(function (
-        storageProduct
-      ) {
-        return storageProduct.item_group == 'Cukur Kucing';
-      });
-      console.log('Array Product Cukur Kucing = ', this.listProducts_cat);
-    });
-  }
-
-  taplistProduct(listproduct) {
-    //this.storage.removeItem('pickAddress');
-
-    console.log('Detail Listproduct :', listproduct);
-    this.listProductName = listproduct['item_name'];
-    this.swipeNext();
-  }
-
-  // ______Slide_1______________________________________________________________End_______
-
-  // ______ Slide 2 ______________________________________________________________ Start _______
-
-  addressPickAddress2: string;
-  addressPickName2: string;
-  addressPickPhone2: string;
-  addressPickAddress: string;
-  addressPickName: string;
-  addressPickPhone: string;
-  isShownCS: boolean = false;
-  isShownHS: boolean = false;
-  isShownDS: boolean = false;
-
-  getStorage2() {
-    this.storage.getObject('storageAddressPick').then((data: any) => {
-      if (!data) {
-        this.addressPickAddress = 'Set Address';
-      } else {
-        this.addressPickAddress = data['storageAddressPickAddress'];
-        this.addressPickName = data['storageAddressPickName'];
-        this.addressPickPhone = data['storageAddressPickPhone'];
-      }
-
-      console.log(
-        'Isi :',
-        this.addressPickAddress +
-          ' - ' +
-          this.addressPickName +
-          ' - ' +
-          this.addressPickPhone
-      );
-    });
-  }
-
-  onChangeRadio(event) {
-    this.transaction_service = event.detail['value'];
-    console.log('Service Diset Menjadi : ', this.transaction_service);
-  }
-
-  selectAddress() {
-    this.storage.removeItem('storageAddressPick');
-    this.router.navigateByUrl('/transaction-selectaddress');
-  }
-
-  enabledCS() {
-    console.log('Clinic Service Clicked');
-    this.addressPickAddress2 = 'Jl. Bukit duri salatan RT 8 RW 03 no 87';
-    this.addressPickName2 = 'Clinic';
-    this.addressPickPhone2 = '081280675738 (admin petpy)';
-    this.isShownCS = true;
-    this.isShownHS = false;
-    this.isShownDS = false;
-    // console.log('Status HS :', this.isShownHS);
-    // console.log('Status DS :', this.isShownDS);
-    var z = document.getElementById('btnSlide2');
-    z.style.marginTop = '135px';
-  }
-
-  enabledHS() {
-    console.log('Home Service Clicked');
-    this.isShownCS = false;
-    this.isShownHS = true;
-    this.isShownDS = false;
-    // console.log('Status HS :', this.isShownHS);
-    // console.log('Status DS :', this.isShownDS);
-    var z = document.getElementById('btnSlide2');
-    if (this.addressPickAddress == 'Set Address') {
-      // console.log('Kosong');
-      z.style.marginTop = '97px';
-    } else {
-      // console.log('Isi');
-      z.style.marginTop = '42px';
-    }
-  }
-
-  enabledDS() {
-    console.log('Delivery Service Clicked');
-    this.isShownCS = false;
-    this.isShownHS = false;
-    this.isShownDS = true;
-    // console.log('Status HS :', this.isShownHS);
-    // console.log('Status DS :', this.isShownDS);
-    var z = document.getElementById('btnSlide2');
-    if (this.addressPickAddress == 'Set Address') {
-      // console.log('Kosong');
-      z.style.marginTop = '90px';
-    } else {
-      // console.log('Isi');
-      z.style.marginTop = '37px';
-    }
-  }
-  // ______ Slide 2 ______________________________________________________________ End _______
-
-  // ______Slide_3______________________________________________________________Start_______
-
-  transactions = [];
-  pets = [];
-  transaction_name: string;
-  transaction_email: string;
-  transaction_addressAddress: string;
-  transaction_addressName: string;
-  transaction_addressPhone: string;
-  transaction_petname: string;
-  transaction_pettype: string;
-  transaction_date: string;
-  transaction_time: string;
-  transaction_service: string;
-  transaction_package: string;
-  transaction_payment: string;
-  transaction_totalamount: string;
-  transaction_petpickname: string;
-  transaction_petpicktype: string;
-
-  getStorage3() {
-    this.storage.getObject('storageUsers').then((data: any) => {
-      this.transaction_name = data['User'][0]['userUsername'];
-      this.transaction_email = data['User'][0]['userEmail'];
-      console.log('Sekundren  = ', data['User'][0]);
-      // this.showAlert('Your email is => ', this.storageEmail);
-    });
-
-    this.storage.getObject('storagePetPick').then((data: any) => {
-      if (!data) {
-        this.transaction_petpickname = '- set pet';
-      } else {
-        this.transaction_petpickname = data['storagePetPickName'];
-        this.transaction_petpicktype = data['storagePetPickType'];
-      }
-
-      console.log('Isi :', this.addressPickAddress);
-    });
-  }
-
-  setDate(date) {
-    this.transaction_date = moment(date).format('MMM DD YYYY');
-    console.log('date', this.transaction_date);
-  }
-
-  setTime(time) {
-    this.transaction_time = moment(time).format('HH:mm');
-    console.log('time', this.transaction_time);
-  }
-
-  CekValidasi() {
-    this.listProductName = 'Sekundren';
-
-    if (!this.listProductName) {
-      console.log('Package masih Kosong', this.listProductName);
-      // this.showAlert('Info', 'Package masih Kosong');
-    } else {
-      if (!this.transaction_service || this.transaction_service === '') {
-        console.log('Service Kosong = ', this.transaction_service);
-        // this.showAlert('Info', 'Service masih Kosong');
-      } else if (this.transaction_service == 'OnClinic') {
-        console.log('Service Onclinic = ', this.transaction_service);
-
-        if (this.transaction_petpickname == '- set pet') {
-          console.log('Pet masih Kosong', this.transaction_petpickname);
-          // this.showAlert('Info', 'Pet masih Kosong');
-        } else {
-          if (!this.transaction_date) {
-            console.log('Date masih Kosong', this.transaction_date);
-            // this.showAlert('Info', 'Date masih Kosong');
-          } else {
-            if (!this.transaction_time) {
-              console.log('Time masih Kosong', this.transaction_time);
-              // this.showAlert('Info', 'Time masih Kosong');
-            } else {
-              this.transaction_addressAddress = this.addressPickAddress2;
-              this.transaction_addressName = this.addressPickName2;
-              this.transaction_addressPhone = this.addressPickPhone2;
-              this.transaction_package = this.listProductName;
-              this.transaction_petname = this.transaction_petpickname;
-              this.transaction_pettype = this.transaction_petpicktype;
-
-              this.onSaveTransaction();
-            }
-          }
-        }
-      } else {
-        console.log('Service Home Delivery = ', this.transaction_service);
-
-        if (this.addressPickAddress == 'Set Address') {
-          console.log('Address masih Kosong', this.addressPickAddress);
-          this.showAlert('Info', 'Address masih Kosong');
-        } else {
-          if (this.transaction_petpickname == '- set pet') {
-            console.log('Pet masih Kosong', this.transaction_petpickname);
-            this.showAlert('Info', 'Pet masih Kosong');
-          } else {
-            if (!this.transaction_date) {
-              console.log('Date masih Kosong', this.transaction_date);
-              this.showAlert('Info', 'Date masih Kosong');
-            } else {
-              if (!this.transaction_time) {
-                console.log('Time masih Kosong', this.transaction_time);
-                this.showAlert('Info', 'Time masih Kosong');
-              } else {
-                this.transaction_addressAddress = this.addressPickAddress;
-                this.transaction_addressName = this.addressPickName;
-                this.transaction_addressPhone = this.addressPickPhone;
-                this.transaction_package = this.listProductName;
-                this.transaction_petname = this.transaction_petpickname;
-                this.transaction_pettype = this.transaction_petpicktype;
-                this.onSaveTransaction();
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-
-  async onSaveTransaction() {
-    const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
-      header: 'Confirm',
-      message: 'Make Transaction ?',
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: (cancel) => {
-            console.log('Confirm Cancel');
-          },
-        },
-        {
-          text: 'Okay',
-          handler: () => {
-            console.log('Confirm Okay');
-
-            console.log('Transaction Name', this.transaction_name);
-            console.log('Transaction email', this.transaction_email);
-            console.log(
-              'Transaction Address Address',
-              this.transaction_addressAddress
-            );
-            console.log(
-              'Transaction Address Name',
-              this.transaction_addressName
-            );
-            console.log(
-              'Transaction Address Phone',
-              this.transaction_addressPhone
-            );
-            console.log('Transaction package', this.transaction_package);
-            console.log('Transaction service', this.transaction_service);
-            console.log('Transaction petname', this.transaction_petname);
-            console.log('Transaction pettype', this.transaction_pettype);
-            console.log('Transaction date', this.transaction_date);
-            console.log('Transaction time', this.transaction_time);
-
-            var indexLen = this.pets.length;
-            var newId = 1 + indexLen;
-            var dataTransaction = {
-              id: newId,
-              name: this.transaction_name,
-              email: this.transaction_email,
-              addressAddress: this.transaction_addressAddress,
-              addressName: this.transaction_addressName,
-              addressPhone: this.transaction_addressPhone,
-              petname: this.transaction_petname,
-              pettype: this.transaction_pettype,
-              date: this.transaction_date,
-              time: this.transaction_time,
-              package: this.transaction_package,
-              service: this.transaction_service,
-              packagePayment: 85000,
-              servicePayment: 15000,
-            };
-            this.transactions.push(dataTransaction);
-            this.storage.setObject('storageTransactions', {
-              transactions: this.transactions,
-            });
-            this.router.navigateByUrl('/transaction-confirm');
-          },
-        },
-      ],
-    });
-
-    await alert.present();
-  }
-
-  // ______Slide_3______________________________________________________________End_______
 
   // ______Function Pendukung___________________________________________________________Start_________
 
@@ -383,18 +59,370 @@ export class TransactionPage implements OnInit {
   }
 
   defaultForm() {
-    this.listProductName = '';
-    this.addressPickAddress = 'Set Address';
-    this.addressPickName = '';
-    this.addressPickPhone = '';
-    //this.transaction_service = '';
-    this.transaction_petpickname = '- set pet';
-    this.transaction_petpicktype = '';
-    this.transaction_date = '';
-    this.transaction_time = '';
+    this.pickPackage = '';
+    this.pickService = '';
+    this.pickAddressAddress = 'Set Address';
+    this.pickAddressName = '';
+    this.pickAddressPhone = '';
+    this.pickPetName = '- set pet';
+    this.pickPetType = '';
+    this.pickPetDate = '';
+    this.pickPetTime = '';
   }
 
   // ______Function Pendukung___________________________________________________________End_________
+
+  // ______Slide_1______________________________________________________________Start_______
+
+  // storageProduct = {
+  //   storageProductCode: '',
+  //   storageProductName: '',
+  //   storageProductGroup: '',
+  //   storageProductDesc: '',
+  // };
+  // storageProductCode: string;
+  // storageProductGroup: string;
+  // storageProductDesc: string;
+  listProducts_category = [];
+  storageProduct = [];
+  pickPackage: string;
+  pickUsername: string;
+  pickEmail: string;
+
+  getStorage1() {
+    this.storage.getObject('storageProducts').then((data: any) => {
+      this.storageProduct = data;
+      this.listProducts_category = this.storageProduct['product'].filter(
+        function (storageProduct) {
+          return storageProduct.item_group == 'Cukur Kucing';
+        }
+      );
+      // console.log('Array Product Cukur Kucing = ', this.listProducts_category);
+    });
+
+    this.storage.getObject('storageUsers').then((data: any) => {
+      this.pickUsername = data['User'][0]['userUsername'];
+      this.pickEmail = data['User'][0]['userEmail'];
+      //console.log('Sekundren  = ', this.pickUsername);
+    });
+  }
+
+  taplistProduct(listproduct) {
+    //this.storage.removeItem('pickAddress');
+
+    //console.log('Detail Listproduct :', listproduct);
+    this.pickPackage = listproduct['item_name'];
+
+    this.swipeNext();
+  }
+
+  // ______Slide_1______________________________________________________________End_______
+
+  // ______ Slide 2 ______________________________________________________________ Start _______
+
+  pickService: string;
+  pickAddressAddress: string;
+  pickAddressName: string;
+  pickAddressPhone: string;
+  pickAddressAddress2: string;
+  pickAddressName2: string;
+  pickAddressPhone2: string;
+  isShownCS: boolean = false;
+  isShownHS: boolean = false;
+  isShownDS: boolean = false;
+
+  enabledCS() {
+    // console.log('Clinic Service Clicked');
+    this.pickService = 'OnClinic';
+    this.pickAddressAddress2 = 'Jl. Bukit duri salatan RT 8 RW 03 no 87';
+    this.pickAddressName2 = 'Clinic';
+    this.pickAddressPhone2 = '081280675738 (admin petpy)';
+    //console.log('varibale service = :', this.pickService);
+    //console.log('varibale address address :', this.pickAddressAddress2);
+    //console.log('varibale address name :', this.pickAddressName2);
+    //console.log('varibale address phone = :', this.pickAddressPhone2);
+
+    this.isShownCS = true;
+    this.isShownHS = false;
+    this.isShownDS = false;
+
+    var z = document.getElementById('btnSlide2');
+    z.style.marginTop = '135px';
+  }
+
+  enabledHS() {
+    // console.log('Home Service Clicked');
+    this.pickService = 'HomeService';
+    //console.log('varibale service = :', this.pickService);
+
+    this.isShownCS = false;
+    this.isShownHS = true;
+    this.isShownDS = false;
+
+    // console.log('Status DS :', this.isShownDS);
+    var z = document.getElementById('btnSlide2');
+    if (this.pickAddressAddress == 'Set Address') {
+      // console.log('Kosong');
+      z.style.marginTop = '97px';
+    } else {
+      // console.log('Isi');
+      z.style.marginTop = '42px';
+    }
+  }
+
+  enabledDS() {
+    // console.log('Delivery Service Clicked');
+    this.pickService = 'DeliveryService';
+    //console.log('varibale service = :', this.pickService);
+    this.isShownCS = false;
+    this.isShownHS = false;
+    this.isShownDS = true;
+
+    // console.log('Status DS :', this.isShownDS);
+    var z = document.getElementById('btnSlide2');
+    if (this.pickAddressAddress == 'Set Address') {
+      // console.log('Kosong');
+      z.style.marginTop = '90px';
+    } else {
+      // console.log('Isi');
+      z.style.marginTop = '37px';
+    }
+  }
+
+  selectAddress() {
+    this.storage.removeItem('storageAddressPick');
+    this.router.navigateByUrl('/transaction-selectaddress');
+  }
+
+  getStorage2() {
+    this.storage.getObject('storageAddressPick').then((data: any) => {
+      if (!data) {
+        this.pickAddressAddress = 'Set Address';
+      } else {
+        this.pickAddressAddress = data['storageAddressPickAddress'];
+        this.pickAddressName = data['storageAddressPickName'];
+        this.pickAddressPhone = data['storageAddressPickPhone'];
+      }
+
+      //console.log('variabel address address :', this.pickAddressAddress);
+      //console.log('variabel address name :', this.pickAddressName);
+      //console.log('variabel address phone :', this.pickAddressPhone);
+    });
+  }
+
+  // ______ Slide 2 ______________________________________________________________ End _______
+
+  // ______ Slide 3 ______________________________________________________________ Start _______
+
+  pickPetName: string;
+  pickPetType: string;
+  pickPetDate: string;
+  pickPetTime: string;
+  pets = [];
+  transactions = [];
+
+  getStorage3() {
+    this.storage.getObject('storagePetPick').then((data: any) => {
+      if (!data) {
+        this.pickPetName = '- set pet';
+      } else {
+        this.pickPetName = data['storagePetPickName'];
+        this.pickPetType = data['storagePetPickType'];
+      }
+
+      //console.log('variabel petpick name :', this.pickPetName);
+      //console.log('variabel petpick type :', this.pickPetType);
+    });
+  }
+
+  setDate(date) {
+    this.pickPetDate = moment(date).format('MMM DD YYYY');
+    //console.log('date', this.pickPetDate);
+  }
+
+  setTime(time) {
+    this.pickPetTime = moment(time).format('HH:mm');
+    //console.log('time', this.pickPetTime);
+  }
+
+  async onSaveTransaction() {
+    // console.log('Package : ', this.pickPackage);
+    // console.log('Service : ', this.pickService);
+    if (this.pickPackage == '') {
+      this.showAlert('Warning', 'Package Kosong ' + this.pickPackage);
+    } else {
+      if (this.pickService == '') {
+        this.showAlert('Warning', 'Service Kosong ' + this.pickService);
+      } else if (this.pickService == 'OnClinic') {
+        if (this.pickPetName == '- set pet') {
+          this.showAlert('Warning', 'Petname Kosong ' + this.pickPetName);
+        } else {
+          if (this.pickPetDate == '') {
+            this.showAlert('Warning', 'Date Kosong ' + this.pickPetDate);
+          } else {
+            if (this.pickPetTime == '') {
+              this.showAlert('Warning', 'Time Kosong ' + this.pickPetTime);
+            } else {
+              // this.onSaveTransaction();
+
+              console.log('_________________HASIL___________');
+              console.log('Name : ', this.pickUsername);
+              console.log('Email : ', this.pickEmail);
+              console.log('Package : ', this.pickPackage);
+              console.log('Service : ', this.pickService);
+              console.log('Address : ', this.pickAddressAddress2);
+              console.log('Name Address : ', this.pickAddressName2);
+              console.log('Phone Address : ', this.pickAddressPhone2);
+              console.log('Pet Name : ', this.pickPetName);
+              console.log('Pet Type : ', this.pickPetType);
+              console.log('Date : ', this.pickPetDate);
+              console.log('Time : ', this.pickPetTime);
+              console.log('_________________________________');
+
+              const alert = await this.alertController.create({
+                cssClass: 'my-custom-class',
+                header: 'Confirm',
+                message: 'Make Transaction ?',
+                buttons: [
+                  {
+                    text: 'Cancel',
+                    role: 'cancel',
+                    cssClass: 'secondary',
+                    handler: (cancel) => {
+                      console.log('Confirm Cancel');
+                    },
+                  },
+                  {
+                    text: 'Okay',
+                    handler: () => {
+                      console.log('Confirm Okay');
+
+                      var indexLen = this.pets.length;
+                      var newId = 1 + indexLen;
+                      var dataTransaction = {
+                        id: newId,
+                        name: this.pickUsername,
+                        package: this.pickPackage,
+                        service: this.pickService,
+                        email: this.pickEmail,
+                        addressAddress: this.pickAddressAddress2,
+                        addressName: this.pickAddressName2,
+                        addressPhone: this.pickAddressPhone2,
+                        petname: this.pickPetName,
+                        pettype: this.pickPetType,
+                        date: this.pickPetDate,
+                        time: this.pickPetTime,
+                        packagePayment: 85000,
+                        servicePayment: 15000,
+                      };
+                      if (this.transactions.length > 0) {
+                        this.transactions.length = 0;
+                      }
+                      this.transactions.push(dataTransaction);
+                      console.log('panjang data', this.transactions.length);
+                      this.storage.setObject('storageTransactions', {
+                        transactions: this.transactions,
+                      });
+                      this.router.navigateByUrl('/transaction-confirm');
+                    },
+                  },
+                ],
+              });
+              await alert.present();
+            }
+          }
+        }
+      } else {
+        if (this.pickAddressAddress == 'Set Address') {
+          this.showAlert(
+            'Warning',
+            'Address Kosong ' + this.pickAddressAddress
+          );
+        } else {
+          if (this.pickPetName == '- set pet') {
+            this.showAlert('Warning', 'Petname Kosong ' + this.pickPetName);
+          } else {
+            if (this.pickPetDate == '') {
+              this.showAlert('Warning', 'Date Kosong ' + this.pickPetDate);
+            } else {
+              if (this.pickPetTime == '') {
+                this.showAlert('Warning', 'Time Kosong ' + this.pickPetTime);
+              } else {
+                // this.onSaveTransaction();
+
+                console.log('_________________HASIL___________');
+                console.log('Name : ', this.pickUsername);
+                console.log('Email : ', this.pickEmail);
+                console.log('Package : ', this.pickPackage);
+                console.log('Service : ', this.pickService);
+                console.log('Address : ', this.pickAddressAddress);
+                console.log('Name Address : ', this.pickAddressName);
+                console.log('Phone Address : ', this.pickAddressPhone);
+                console.log('Pet Name : ', this.pickPetName);
+                console.log('Pet Type : ', this.pickPetType);
+                console.log('Date : ', this.pickPetDate);
+                console.log('Time : ', this.pickPetTime);
+                console.log('_________________________________');
+
+                const alert = await this.alertController.create({
+                  cssClass: 'my-custom-class',
+                  header: 'Confirm',
+                  message: 'Make Transaction ?',
+                  buttons: [
+                    {
+                      text: 'Cancel',
+                      role: 'cancel',
+                      cssClass: 'secondary',
+                      handler: (cancel) => {
+                        console.log('Confirm Cancel');
+                      },
+                    },
+                    {
+                      text: 'Okay',
+                      handler: () => {
+                        console.log('Confirm Okay');
+
+                        var indexLen = this.pets.length;
+                        var newId = 1 + indexLen;
+                        var dataTransaction = {
+                          id: newId,
+                          name: this.pickUsername,
+                          package: this.pickPackage,
+                          service: this.pickService,
+                          email: this.pickEmail,
+                          addressAddress: this.pickAddressAddress,
+                          addressName: this.pickAddressName,
+                          addressPhone: this.pickAddressPhone,
+                          petname: this.pickPetName,
+                          pettype: this.pickPetType,
+                          date: this.pickPetDate,
+                          time: this.pickPetTime,
+                          packagePayment: 85000,
+                          servicePayment: 15000,
+                        };
+                        //sebelum push check ada data di this.transactions
+                        if (this.transactions.length > 0) {
+                          this.transactions.length = 0;
+                        }
+                        this.transactions.push(dataTransaction);
+                        this.storage.setObject('storageTransactions', {
+                          transactions: this.transactions,
+                        });
+                        this.router.navigateByUrl('/transaction-confirm');
+                      },
+                    },
+                  ],
+                });
+                await alert.present();
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // ______ Slide 3 ______________________________________________________________ End _______
 
   // ______Function On Change Radio Button___________________________________________Start____________
 

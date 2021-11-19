@@ -115,6 +115,33 @@ export class HomePage implements OnInit {
 
   //_________ load local storage _______________________________________ End _____________
 
+  //_________ RouterLink _______________________________________ Start _____________
+
+  gotoCukurKucing() {
+    this.storage.removeItem('storageAddressPick');
+    this.storage.removeItem('storagePetPick');
+    this.router.navigateByUrl('/transaction');
+  }
+
+  gotoServiceCat() {
+    this.storage.removeItem('storageAddressPick');
+    this.storage.removeItem('storagePetPick');
+    this.router.navigateByUrl('/transaction');
+  }
+
+  gotoServiceAnjing() {
+    this.storage.removeItem('storageAddressPick');
+    this.storage.removeItem('storagePetPick');
+    this.router.navigateByUrl('/transaction');
+  }
+
+  gotoServiceAnjingLonghair() {
+    this.storage.removeItem('storageAddressPick');
+    this.storage.removeItem('storagePetPick');
+    this.router.navigateByUrl('/transaction');
+  }
+  //_________ RouterLink _______________________________________ End _____________
+
   //_________ Sign out _______________________________________ Start _____________
 
   OnSignout() {

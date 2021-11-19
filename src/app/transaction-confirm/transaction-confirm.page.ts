@@ -72,8 +72,8 @@ export class TransactionConfirmPage implements OnInit {
 
   confirmNo() {
     this.storage.removeItem('storageTransactions');
-    this.storage.removeItem('storagePetPick');
-    this.storage.removeItem('storageAddressPick');
+    //this.storage.removeItem('storagePetPick');
+    //this.storage.removeItem('storageAddressPick');
     this.router.navigateByUrl('/transaction');
   }
   confirmYes() {
