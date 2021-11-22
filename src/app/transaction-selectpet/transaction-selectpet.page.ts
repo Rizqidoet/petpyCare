@@ -70,11 +70,17 @@ export class TransactionSelectpetPage implements OnInit {
               name: valueNewPet[0],
               type: valueNewPet[1],
             };
+            this.storage.setObject('storagePetPick', {
+              storagePetPickName: valueNewPet[0],
+              storagePetPickType: valueNewPet[1],
+            });
 
             this.storageArrayPet.push(dataBaru);
             this.storage.setObject('storagePet', {
               Pets: this.storageArrayPet,
             });
+
+            this.router.navigateByUrl('/transaction-' + this.pickMenu);
             // console.log(this.storageArrayPet);
             //this.getStorage();
           },

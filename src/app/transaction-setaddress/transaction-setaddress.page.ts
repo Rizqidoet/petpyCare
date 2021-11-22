@@ -235,6 +235,7 @@ export class TransactionSetaddressPage {
 
   addressName: string = '';
   addressPhone: string = '';
+  pickMenu: String;
   storageArrayAddress = [];
   storageArrayAddress2 = [];
   jumlahArrayStorage: number;
@@ -252,6 +253,9 @@ export class TransactionSetaddressPage {
       }
 
       console.log('jumlah Array Storage OnLoad :', this.jumlahArrayStorage);
+    });
+    this.storage.getString('storagePickMenu').then((data: any) => {
+      this.pickMenu = data.value;
     });
   }
 
@@ -310,6 +314,11 @@ export class TransactionSetaddressPage {
                   addressName: this.addressName,
                   addressPhone: this.addressPhone,
                 };
+                this.storage.setObject('storageAddressPick', {
+                  storageAddressPickAddress: this.storageAddress,
+                  storageAddressPickName: this.addressName,
+                  storageAddressPickPhone: this.addressPhone,
+                });
                 this.storageArrayAddress.push(dataAddress);
                 this.storage.setObject('storageAddress', {
                   address: this.storageArrayAddress,
@@ -317,7 +326,7 @@ export class TransactionSetaddressPage {
 
                 this.defaultForm();
                 this.getStorage();
-                this.router.navigateByUrl('/transaction-selectaddress');
+                this.router.navigateByUrl('/transaction-' + this.pickMenu);
               },
             },
           ],
