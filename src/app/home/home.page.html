@@ -288,9 +288,10 @@
           </ion-label>
         </div>
         <div style="display: flex; flex-direction: row; flex-wrap: wrap">
+          <!-- Start: Menu Cukur Kucing -->
           <div style="width: 50%">
             <a
-              (click)="gotoCukurKucing()"
+              (click)="dynamicMenu('cukur-kucing')"
               routerDirection="forward"
               style="text-decoration: none; margin-left: 10px"
             >
@@ -303,7 +304,7 @@
                         font-size: 14px;
                         font-family: 'Libre Baskerville', serif;
                       "
-                      >{{ listGroup_1 }}</ion-card-title
+                      >{{ pickMenu_1 }}</ion-card-title
                     >
                   </ion-card-header>
                   <ion-card-content
@@ -319,10 +320,12 @@
               </div>
             </a>
           </div>
+          <!-- End: Menu Cukur Kucing -->
 
+          <!-- Start: Menu Service Cat -->
           <div style="width: 50%">
             <a
-              (click)="gotoServiceKucing()"
+              (click)="dynamicMenu('service-cat')"
               routerDirection="forward"
               style="text-decoration: none; margin-left: 10px"
             >
@@ -335,7 +338,7 @@
                         font-size: 14px;
                         font-family: 'Libre Baskerville', serif;
                       "
-                      >{{ listGroup_2 }}</ion-card-title
+                      >{{ pickMenu_2 }}</ion-card-title
                     >
                   </ion-card-header>
                   <ion-card-content
@@ -351,10 +354,12 @@
               </div>
             </a>
           </div>
+          <!-- End: Menu Service Cat -->
 
+          <!-- Start: Menu Service Anjing -->
           <div style="width: 50%">
             <a
-              (click)="gotoServiceAnjing()"
+              (click)="dynamicMenu('service-anjing')"
               routerDirection="forward"
               style="text-decoration: none; margin-left: 10px"
             >
@@ -367,7 +372,7 @@
                         font-size: 14px;
                         font-family: 'Libre Baskerville', serif;
                       "
-                      >{{ listGroup_3 }}</ion-card-title
+                      >{{ pickMenu_3 }}</ion-card-title
                     >
                   </ion-card-header>
                   <ion-card-content
@@ -383,10 +388,12 @@
               </div>
             </a>
           </div>
+          <!-- End: Menu Service Anjing -->
 
+          <!-- Start: Menu Service Anjing Haircut -->
           <div style="width: 50%">
             <a
-              (click)="gotoServiceAnjingLonghair()"
+              (click)="dynamicMenu('service-anjing-haircut')"
               routerDirection="forward"
               style="text-decoration: none; margin-left: 10px"
             >
@@ -399,7 +406,7 @@
                         font-size: 14px;
                         font-family: 'Libre Baskerville', serif;
                       "
-                      >{{ listGroup_4 }}</ion-card-title
+                      >{{ pickMenu_4 }}</ion-card-title
                     >
                   </ion-card-header>
                   <ion-card-content
@@ -415,6 +422,7 @@
               </div>
             </a>
           </div>
+          <!-- Start: Menu Service Anjing Haircut -->
         </div>
       </div>
       <!-- End: div menu apps -->

@@ -27,6 +27,7 @@ export class TransactionSelectpetPage implements OnInit {
   pets = [];
   jumlahArrayStorage: number;
   storageArrayPet = [];
+  pickMenu: String;
 
   getStorage() {
     this.storage.getObject('storagePet').then((data: any) => {
@@ -41,6 +42,10 @@ export class TransactionSelectpetPage implements OnInit {
       }
 
       //console.log('jumlah Array Storage OnLoad :', this.jumlahArrayStorage);
+    });
+
+    this.storage.getString('storagePickMenu').then((data: any) => {
+      this.pickMenu = data.value;
     });
   }
 
@@ -95,6 +100,6 @@ export class TransactionSelectpetPage implements OnInit {
       storagePetPickType: this.petType,
     });
 
-    this.router.navigateByUrl('/transaction');
+    this.router.navigateByUrl('/transaction-' + this.pickMenu);
   }
 }

@@ -71,19 +71,23 @@ export class HomePage implements OnInit {
   listGroup_2 = [];
   listGroup_3 = [];
   listGroup_4 = [];
+  pickMenu_1: String;
+  pickMenu_2: String;
+  pickMenu_3: String;
+  pickMenu_4: String;
 
   getStorage() {
     this.storage.getObject('storageUsers').then((data: any) => {
       this.storageUsername = data['User'][0]['userUsername'];
       this.storageEmail = data['User'][0]['userEmail'];
       this.storageImage = data['User'][0]['userImage'];
-      console.log('Sekundren  = ', data['User'][0]);
+      //console.log('Sekundren  = ', data['User'][0]);
       // this.showAlert('Your email is => ', this.storageEmail);
     });
 
     this.storage.getObject('storageProducts').then((data: any) => {
       this.storageProduct = data;
-      console.log('Array Product = ', this.storageProduct);
+      //console.log('Array Product = ', this.storageProduct);
       var a = this.storageProduct['product'].filter(function (storageProduct) {
         return storageProduct.item_group == 'Cukur Kucing';
       });
@@ -99,17 +103,17 @@ export class HomePage implements OnInit {
       var d = this.storageProduct['product'].filter(function (storageProduct) {
         return storageProduct.item_group == 'Service Anjing Haircut';
       });
-      this.listGroup_1 = a[0]['item_group'];
-      this.listGroup_2 = b[0]['item_group'];
-      this.listGroup_3 = c[0]['item_group'];
-      this.listGroup_4 = d[0]['item_group'];
-      console.log(
-        'List groupName = ',
-        this.listGroup_1,
-        ' - ' + this.listGroup_2,
-        ' - ' + this.listGroup_3,
-        ' - ' + this.listGroup_4
-      );
+      this.pickMenu_1 = a[0]['item_group'];
+      this.pickMenu_2 = b[0]['item_group'];
+      this.pickMenu_3 = c[0]['item_group'];
+      this.pickMenu_4 = d[0]['item_group'];
+      // console.log(
+      //   'List groupName = ',
+      //   this.listGroup_1,
+      //   ' - ' + this.listGroup_2,
+      //   ' - ' + this.listGroup_3,
+      //   ' - ' + this.listGroup_4
+      // );
     });
   }
 
@@ -117,28 +121,12 @@ export class HomePage implements OnInit {
 
   //_________ RouterLink _______________________________________ Start _____________
 
-  gotoCukurKucing() {
+  dynamicMenu(value: string) {
     this.storage.removeItem('storageAddressPick');
     this.storage.removeItem('storagePetPick');
-    this.router.navigateByUrl('/transaction');
-  }
-
-  gotoServiceCat() {
-    this.storage.removeItem('storageAddressPick');
-    this.storage.removeItem('storagePetPick');
-    this.router.navigateByUrl('/transaction');
-  }
-
-  gotoServiceAnjing() {
-    this.storage.removeItem('storageAddressPick');
-    this.storage.removeItem('storagePetPick');
-    this.router.navigateByUrl('/transaction');
-  }
-
-  gotoServiceAnjingLonghair() {
-    this.storage.removeItem('storageAddressPick');
-    this.storage.removeItem('storagePetPick');
-    this.router.navigateByUrl('/transaction');
+    Storage.set({ key: 'storagePickMenu', value: value });
+    this.router.navigateByUrl('/transaction-' + value);
+    //console.log(value);
   }
   //_________ RouterLink _______________________________________ End _____________
 

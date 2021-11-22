@@ -6,11 +6,11 @@ import { Router } from '@angular/router';
 import * as moment from 'moment';
 
 @Component({
-  selector: 'app-transaction',
-  templateUrl: './transaction.page.html',
-  styleUrls: ['./transaction.page.scss'],
+  selector: 'app-transaction-service-cat',
+  templateUrl: './transaction-service-cat.page.html',
+  styleUrls: ['./transaction-service-cat.page.scss'],
 })
-export class TransactionPage implements OnInit {
+export class TransactionServiceCatPage implements OnInit {
   @ViewChild('mySlider') slides: IonSlides;
   constructor(
     private platform: Platform,
@@ -19,19 +19,17 @@ export class TransactionPage implements OnInit {
     private router: Router
   ) {}
 
-  // ______Function On Load Page_____________________________________________________Start__________
+  // ______ Function On Load Page _____________________________________________________ Start __________
 
   async ngOnInit() {}
 
   ionViewWillEnter() {
-    //this.defaultForm();
-
     this.getStorage1();
     this.getStorage2();
     this.getStorage3();
   }
 
-  // ______Function On Load Page_____________________________________________________End__________
+  // ______ Function On Load Page _____________________________________________________ End ______________
 
   // ______Function Pendukung___________________________________________________________Start_________
 
@@ -91,7 +89,7 @@ export class TransactionPage implements OnInit {
       this.storageProduct = data;
       this.listProducts_category = this.storageProduct['product'].filter(
         function (storageProduct) {
-          return storageProduct.item_group == 'Cukur Kucing';
+          return storageProduct.item_group == 'Service Cat';
         }
       );
       // console.log('Array Product Cukur Kucing = ', this.listProducts_category);
@@ -201,9 +199,9 @@ export class TransactionPage implements OnInit {
         this.pickAddressPhone = data['storageAddressPickPhone'];
       }
 
-      //console.log('variabel address address :', this.pickAddressAddress);
-      //console.log('variabel address name :', this.pickAddressName);
-      //console.log('variabel address phone :', this.pickAddressPhone);
+      console.log('variabel address address :', this.pickAddressAddress);
+      console.log('variabel address name :', this.pickAddressName);
+      console.log('variabel address phone :', this.pickAddressPhone);
     });
   }
 

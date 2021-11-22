@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class TransactionSelectaddressPage implements OnInit {
   storageAddress = [];
-  keys: string;
+  pickMenu: String;
 
   constructor(
     public alertController: AlertController,
@@ -34,9 +34,11 @@ export class TransactionSelectaddressPage implements OnInit {
       } else {
         this.storageAddress = data['address'];
       }
-
-      // console.log('Isi :', this.storageAddress);
     });
+    this.storage.getString('storagePickMenu').then((data: any) => {
+      this.pickMenu = data.value;
+    });
+    //console.log('Isi :', this.pickMenu);
   }
 
   addressPickaddress: string;
@@ -56,7 +58,7 @@ export class TransactionSelectaddressPage implements OnInit {
       storageAddressPickName: this.addressPickName,
       storageAddressPickPhone: this.addressPickPhone,
     });
-
-    this.router.navigateByUrl('/transaction');
+    //console.log('/transaction-' + this.pickMenu);
+    this.router.navigateByUrl('/transaction-' + this.pickMenu);
   }
 }

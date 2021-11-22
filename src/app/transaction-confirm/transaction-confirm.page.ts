@@ -60,13 +60,13 @@ export class TransactionConfirmPage implements OnInit {
         this.dataTransaction_packagePayment +
         this.dataTransaction_servicePayment;
       this.dataTransaction_totalamount = amount;
-      console.log(
-        'Isi :',
-        this.dataTransaction_name +
-          this.dataTransaction_email +
-          this.dataTransaction_package +
-          this.dataTransaction_service
-      );
+      // console.log(
+      //   'Isi :',
+      //   this.dataTransaction_name +
+      //     this.dataTransaction_email +
+      //     this.dataTransaction_package +
+      //     this.dataTransaction_service
+      // );
     });
   }
 
