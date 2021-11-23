@@ -16,6 +16,8 @@ export class TransactionSelectpetPage implements OnInit {
     private router: Router
   ) {}
 
+  // ______ LoadPage ______________________________________________________________ Start _______
+
   ionViewWillEnter() {
     // console.log(this.marker);
     this.storage.removeItem('storagePetPick');
@@ -24,73 +26,119 @@ export class TransactionSelectpetPage implements OnInit {
 
   ngOnInit() {}
 
-  pets = [];
+  // ______ LoadPage ______________________________________________________________ End _______
+
+  // ______ LoadStorage ______________________________________________________________ Start _______
+
   jumlahArrayStorage: number;
-  storageArrayPet = [];
   pickMenu: String;
+  categoryPet: String;
+  filterPet: String;
 
   getStorage() {
+    this.storage.getObject('storageFilterPet').then((data: any) => {
+      this.pickMenu = data.name;
+      this.categoryPet = data.category;
+      // console.log('Ngaco', this.categoryPet);
+    });
+
     this.storage.getObject('storagePet').then((data: any) => {
       if (!data) {
         this.jumlahArrayStorage = 0;
         this.storageArrayPet = [];
         //console.log('jumlahArrayStorage kosong', this.jumlahArrayStorage);
       } else {
-        this.storageArrayPet = data['Pets'];
-        this.jumlahArrayStorage = this.storageArrayPet.length;
+        if (this.categoryPet == 'kucing') {
+          console.log('Kucing');
+          this.storageArrayPet = data['pets'];
+          this.jumlahArrayStorage = this.storageArrayPet.length;
+          this.storageFilterArrayPet = this.storageArrayPet.filter(function (
+            storageArrayPet
+          ) {
+            return storageArrayPet.type == 'kucing';
+          });
+        } else if (this.categoryPet == 'anjing') {
+          console.log('Anjing');
+          this.storageArrayPet = data['pets'];
+          this.jumlahArrayStorage = this.storageArrayPet.length;
+          this.storageFilterArrayPet = this.storageArrayPet.filter(function (
+            storageArrayPet
+          ) {
+            return storageArrayPet.type == 'anjing';
+          });
+        }
+
         //console.log('jumlahArrayStorage isi', this.jumlahArrayStorage);
       }
 
       //console.log('jumlah Array Storage OnLoad :', this.jumlahArrayStorage);
     });
-
-    this.storage.getString('storagePickMenu').then((data: any) => {
-      this.pickMenu = data.value;
-    });
   }
 
-  async addPet() {
-    //console.log('Add Pet Function Async');
-    const inputAlert = await this.alertController.create({
-      header: 'type your pet here',
-      inputs: [
-        { type: 'text', placeholder: 'name : simba' },
-        { type: 'text', placeholder: 'type  : kucing' },
-      ],
-      buttons: [
-        { text: 'Cancel' },
-        {
-          text: 'Ok',
-          handler: (valueNewPet) => {
-            var indexLen = this.storageArrayPet.length;
-            var newId = 1 + indexLen;
+  // ______ LoadStorage ______________________________________________________________ End _______
 
-            var dataBaru = {
-              id: newId,
-              name: valueNewPet[0],
-              type: valueNewPet[1],
-            };
-            this.storage.setObject('storagePetPick', {
-              storagePetPickName: valueNewPet[0],
-              storagePetPickType: valueNewPet[1],
-            });
+  // ______ Show/Hide Form Input ____________________________________________________ Start _______
 
-            this.storageArrayPet.push(dataBaru);
-            this.storage.setObject('storagePet', {
-              Pets: this.storageArrayPet,
-            });
+  isShowAP: boolean = false;
 
-            this.router.navigateByUrl('/transaction-' + this.pickMenu);
-            // console.log(this.storageArrayPet);
-            //this.getStorage();
-          },
-        },
-      ],
-    });
-    //console.log('Berhasil', inputAlert);
-    await inputAlert.present();
+  showAP() {
+    this.isShowAP = true;
+    var z = document.getElementById('divLabel');
+    z.style.marginTop = '310px';
+  }
+  hideAP() {
+    this.isShowAP = false;
+    var z = document.getElementById('divLabel');
+    z.style.marginTop = '70px';
   }
 
+  // ______ Show/Hide Form Input ____________________________________________________ End _______
+
+  // ______ Save New Pet __________________________________________________________ Start _______
+  newPetName: String;
+  newPetType: String;
+  storageArrayPet = [];
+  storageFilterArrayPet = [];
+  pets = [];
+
+  pickKucing() {
+    this.newPetType = 'kucing';
+    // console.log('pet type : ', this.newPetType);
+  }
+  pickAnjing() {
+    this.newPetType = 'anjing';
+    // console.log('pet type : ', this.newPetType);
+  }
+
+  saveNewPet() {
+    // console.log('New Pet Name : ', this.newPetName);
+    // console.log('New Pet Type : ', this.newPetType);
+
+    var indexLen = this.pets.length;
+    var newId = 1 + indexLen;
+    var dataNewPet = {
+      id: newId,
+      name: this.newPetName,
+      type: this.newPetType,
+    };
+
+    this.storage.setObject('storagePetPick', {
+      storagePetPickName: this.newPetName,
+      storagePetPickType: this.newPetType,
+    });
+
+    this.storageArrayPet.push(dataNewPet);
+    // console.log('panjang data', this.storageArrayPet.length);
+    this.storage.setObject('storagePet', {
+      pets: this.storageArrayPet,
+    });
+
+    this.router.navigateByUrl('/transaction-' + this.pickMenu);
+  }
+
+  // ______ Save New Pet __________________________________________________________ End _______
+
+  // ______ PickPet __________________________________________________________ Start _______
   petName: string;
   petType: string;
 
@@ -108,4 +156,6 @@ export class TransactionSelectpetPage implements OnInit {
 
     this.router.navigateByUrl('/transaction-' + this.pickMenu);
   }
+
+  // ______ PickPet __________________________________________________________ End _______
 }

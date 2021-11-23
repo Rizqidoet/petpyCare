@@ -70,7 +70,7 @@ export class TransactionServiceAnjingHaircutPage implements OnInit {
 
   closePage() {
     this.defaultForm();
-    this.storage.removeItem('storagePickMenu');
+    this.storage.removeItem('storageFilterPet');
     this.router.navigateByUrl('/home');
   }
 

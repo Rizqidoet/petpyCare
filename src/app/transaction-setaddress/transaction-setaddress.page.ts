@@ -62,10 +62,10 @@ export class TransactionSetaddressPage {
 
   setMarkertWithAnimation(lat, lng, changeLocation: boolean) {
     if (changeLocation) {
-      console.log('Lokasi masih sesuai gps device', changeLocation);
+      //console.log('Lokasi masih sesuai gps device', changeLocation);
 
       this.marker = L.marker([lat, lng]);
-      console.log('Marker first load:', this.marker);
+      // console.log('Marker first load:', this.marker);
       // this.map.addLayer(this.marker);
       this.map.setView({ lat, lng }, this.map.getZoom(), {
         animate: true,
@@ -94,9 +94,9 @@ export class TransactionSetaddressPage {
         // this.enableForm();
       });
     } else {
-      console.log('Lokasi telah diubah', this.marker);
+      // console.log('Lokasi telah diubah', this.marker);
       this.marker.remove();
-      console.log('Marker Has Updated:', this.marker);
+      // console.log('Marker Has Updated:', this.marker);
       this.map.addLayer(this.marker);
 
       this.map.setView({ lat, lng }, this.map.getZoom(), {
@@ -122,7 +122,7 @@ export class TransactionSetaddressPage {
         });
 
       this.marker.on('click', () => {
-        console.log('marker clicked');
+        // console.log('marker clicked');
         // this.enableForm();
       });
     }
@@ -198,7 +198,7 @@ export class TransactionSetaddressPage {
     this.places = [];
 
     this.setMarkertWithAnimation(lat, lng, false);
-    console.log(lat, lng);
+    // console.log(lat, lng);
     this.enableForm();
   }
 
@@ -236,6 +236,7 @@ export class TransactionSetaddressPage {
   addressName: string = '';
   addressPhone: string = '';
   pickMenu: String;
+  categoryPet: String;
   storageArrayAddress = [];
   storageArrayAddress2 = [];
   jumlahArrayStorage: number;
@@ -245,17 +246,21 @@ export class TransactionSetaddressPage {
       if (!data) {
         this.jumlahArrayStorage = 0;
         this.storageArrayAddress = [];
-        console.log('jumlahArrayStorage kosong', this.jumlahArrayStorage);
+        // console.log('jumlahArrayStorage kosong', this.jumlahArrayStorage);
       } else {
         this.storageArrayAddress = data['address'];
         this.jumlahArrayStorage = data['address'].length;
-        console.log('jumlahArrayStorage isi', this.jumlahArrayStorage);
+        // console.log('jumlahArrayStorage isi', this.jumlahArrayStorage);
       }
 
-      console.log('jumlah Array Storage OnLoad :', this.jumlahArrayStorage);
+      // console.log('jumlah Array Storage OnLoad :', this.jumlahArrayStorage);
     });
-    this.storage.getString('storagePickMenu').then((data: any) => {
-      this.pickMenu = data.value;
+    this.storage.getObject('storageFilterPet').then((data: any) => {
+      this.pickMenu = data.name;
+      this.categoryPet = data.category;
+
+      // console.log('pick menu : ', this.pickMenu);
+      // console.log('category menu : ', this.categoryPet);
     });
   }
 
@@ -293,20 +298,20 @@ export class TransactionSetaddressPage {
             {
               text: 'Okay',
               handler: () => {
-                console.log('Confirm Okay');
+                // console.log('Confirm Okay');
 
-                console.log('address :', this.storageAddress);
-                console.log('name address :', this.addressName);
-                console.log('phone address :', this.addressPhone);
+                // console.log('address :', this.storageAddress);
+                // console.log('name address :', this.addressName);
+                // console.log('phone address :', this.addressPhone);
 
                 //var indexLen = this.storageArrayAddress.length;
                 var newId = 1 + this.jumlahArrayStorage;
-                console.log(
-                  'IndexLen : ',
-                  this.jumlahArrayStorage,
-                  'NewId ; ',
-                  newId
-                );
+                // console.log(
+                //   'IndexLen : ',
+                //   this.jumlahArrayStorage,
+                //   'NewId ; ',
+                //   newId
+                // );
 
                 var dataAddress = {
                   id: newId,

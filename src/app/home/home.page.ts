@@ -121,11 +121,77 @@ export class HomePage implements OnInit {
 
   //_________ RouterLink _______________________________________ Start _____________
 
+  categoryPet: String;
+  arrayFilterPet = [];
+
   dynamicMenu(value: string) {
     this.storage.removeItem('storageAddressPick');
     this.storage.removeItem('storagePetPick');
-    Storage.set({ key: 'storagePickMenu', value: value });
+    //Storage.set({ key: 'storagePickMenu', value: value });
+
+    if (value == 'cukur-kucing') {
+      this.categoryPet = 'kucing';
+      console.log('the value is', value);
+      console.log('the category is', this.categoryPet);
+
+      if (this.arrayFilterPet.length > 0) {
+        this.arrayFilterPet.length = 0;
+      }
+      var indexLen = this.arrayFilterPet.length;
+      var newId = 1 + indexLen;
+      this.storage.setObject('storageFilterPet', {
+        id: newId,
+        name: value,
+        category: 'kucing',
+      });
+    } else if (value == 'service-cat') {
+      this.categoryPet = 'kucing';
+      console.log('the value is', value);
+      console.log('the category is', this.categoryPet);
+
+      if (this.arrayFilterPet.length > 0) {
+        this.arrayFilterPet.length = 0;
+      }
+      var indexLen = this.arrayFilterPet.length;
+      var newId = 1 + indexLen;
+      this.storage.setObject('storageFilterPet', {
+        id: newId,
+        name: value,
+        category: 'kucing',
+      });
+    } else if (value == 'service-anjing') {
+      this.categoryPet = 'anjing';
+      console.log('the value is', value);
+      console.log('the category is', this.categoryPet);
+
+      if (this.arrayFilterPet.length > 0) {
+        this.arrayFilterPet.length = 0;
+      }
+      var indexLen = this.arrayFilterPet.length;
+      var newId = 1 + indexLen;
+      this.storage.setObject('storageFilterPet', {
+        id: newId,
+        name: value,
+        category: 'anjing',
+      });
+    } else if (value == 'service-anjing-haircut') {
+      this.categoryPet = 'anjing';
+      console.log('the value is', value);
+      console.log('the category is', this.categoryPet);
+
+      if (this.arrayFilterPet.length > 0) {
+        this.arrayFilterPet.length = 0;
+      }
+      var indexLen = this.arrayFilterPet.length;
+      var newId = 1 + indexLen;
+      this.storage.setObject('storageFilterPet', {
+        id: newId,
+        name: value,
+        category: 'anjing',
+      });
+    }
     this.router.navigateByUrl('/transaction-' + value);
+
     //console.log(value);
   }
   //_________ RouterLink _______________________________________ End _____________

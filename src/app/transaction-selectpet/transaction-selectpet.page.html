@@ -1,12 +1,24 @@
-<ion-content class="ion-padding">
-  <div style="margin-top: 30px; border-radius: 10px 10px 0px 0">
+<ion-content>
+  <div
+    style="
+      background-color: #f7f7f7;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      z-index: 2;
+      position: fixed;
+    "
+    class="ion-padding"
+  >
+    <!-- Start: button back and button add pet -->
     <div
       style="
-        width: 100%;
+        width: 90%;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-top: 15px;
+        margin: 0 auto 0 auto;
+        z-index: 1;
       "
     >
       <div
@@ -16,19 +28,182 @@
       >
         <ion-icon name="arrow-back"></ion-icon>
       </div>
-      <div (click)="addPet()" routerDirection="forward">
+      <div (click)="showAP()" routerDirection="forward">
         <ion-icon name="add-circle" style="color: #1a72f8"></ion-icon> &nbsp;
         <span style="color: #1a72f8">add pet</span>
       </div>
     </div>
+    <!-- End: button back and button add pet -->
 
-    <div>
-      <div class="ion-padding">
-        <h5>your lovely pet</h5>
+    <!-- Start: form add pet -->
+    <div
+      style="
+        display: flex;
+        flex-direction: column;
+        background-color: #ffffff;
+        margin-top: 20px;
+        border-radius: 18px;
+      "
+      *ngIf="isShowAP"
+      class="ion-padding"
+    >
+      <div style="text-align: center">
+        <span
+          style="
+            font-size: 25px;
+            font-weight: 600;
+            font-family: 'Source Sans Pro', sans-serif;
+          "
+        >
+          Register your lovely pet
+        </span>
       </div>
+
+      <div
+        style="
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          padding-left: 25px;
+          padding-right: 10px;
+          border-bottom: #9a9da0 1px solid;
+          margin: 15px 20px 15px 20px;
+        "
+      >
+        <div>
+          <ion-icon
+            style="font-size: large; color: #9a9da0"
+            name="at-outline"
+          ></ion-icon>
+        </div>
+        <div style="width: 100%">
+          <ion-input
+            name="newPetName"
+            [(ngModel)]="newPetName"
+            class="ion-padding"
+            type="text"
+            placeholder="your pet name "
+            style="font-size: 12px; font-family: 'Montserrat', sans-serif"
+          ></ion-input>
+        </div>
+      </div>
+
+      <ion-radio-group>
+        <div
+          style="
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding-right: 10px;
+            margin-bottom: 15px;
+            border-bottom: #9a9da0 1px solid;
+            margin-right: 20px;
+            margin-left: 20px;
+          "
+        >
+          <div style="width: 50%">
+            <ion-item>
+              <ion-label
+                style="font-size: 12px; font-family: 'Montserrat', sans-serif"
+                >Kucing</ion-label
+              >
+              <ion-radio
+                style="height: 15px; width: 15px"
+                (click)="pickKucing()"
+                slot="start"
+                value="kucing"
+              >
+              </ion-radio>
+            </ion-item>
+          </div>
+          <div style="width: 50%">
+            <ion-item>
+              <ion-label
+                style="font-size: 12px; font-family: 'Montserrat', sans-serif"
+                >Anjing</ion-label
+              >
+              <ion-radio
+                style="height: 15px; width: 15px"
+                (click)="pickAnjing()"
+                slot="start"
+                value="anjing"
+              >
+              </ion-radio>
+            </ion-item>
+          </div>
+        </div>
+      </ion-radio-group>
+
+      <div
+        style="
+          display: flex;
+          flex-direction: row;
+
+          padding-left: 20px;
+          padding-right: 20px;
+        "
+      >
+        <div
+          style="
+            width: 30%;
+            display: flex;
+            justify-content: right;
+            align-items: center;
+          "
+        >
+          <span
+            (click)="hideAP()"
+            style="
+              color: #9a9da0;
+              font-size: 12px;
+              font-family: 'Libre Baskerville', serif;
+            "
+            >Close</span
+          >
+        </div>
+        <div style="width: 70%; padding-left: 20px; padding-right: 20px">
+          <button
+            (click)="saveNewPet()"
+            style="
+              background-color: #1a72f8;
+              color: #ffffff;
+              width: 100%;
+              height: 30px;
+              border-radius: 18px;
+              font-size: 12px;
+              font-family: 'Libre Baskerville', serif;
+            "
+            expand="block"
+          >
+            Signin
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- Start: form add pet -->
+  </div>
+
+  <!-- Start: list of dearest pets -->
+  <div style="margin-top: 70px" id="divLabel">
+    <span
+      style="
+        font-size: 25px;
+        font-weight: 600;
+        font-family: 'Source Sans Pro', sans-serif;
+        margin-left: 10px;
+      "
+      class="ion-padding"
+    >
+      list of your dearest pets
+    </span>
+  </div>
+  <!-- Start: list of dearest pets -->
+
+  <div style="display: flex; flex-direction: column; z-index: -1" id="divList">
+    <div style="margin-top: 15px">
       <ion-item
         button
-        *ngFor="let storagePet of storageArrayPet;"
+        *ngFor="let storagePet of storageFilterArrayPet;"
         (click)="tapValue(storagePet)"
       >
         <ion-label class="ion-text-wrap">

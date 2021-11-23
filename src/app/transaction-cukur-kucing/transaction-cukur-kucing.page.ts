@@ -70,7 +70,7 @@ export class TransactionCukurKucingPage implements OnInit {
 
   closePage() {
     this.defaultForm();
-    this.storage.removeItem('storagePickMenu');
+    this.storage.removeItem('storageFilterPet');
     this.router.navigateByUrl('/home');
   }
 
@@ -199,9 +199,9 @@ export class TransactionCukurKucingPage implements OnInit {
         this.pickAddressPhone = data['storageAddressPickPhone'];
       }
 
-      console.log('variabel address address :', this.pickAddressAddress);
-      console.log('variabel address name :', this.pickAddressName);
-      console.log('variabel address phone :', this.pickAddressPhone);
+      // console.log('variabel address address :', this.pickAddressAddress);
+      // console.log('variabel address name :', this.pickAddressName);
+      // console.log('variabel address phone :', this.pickAddressPhone);
     });
   }
 

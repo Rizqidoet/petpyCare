@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class TransactionSelectaddressPage implements OnInit {
   storageAddress = [];
   pickMenu: String;
+  categoryPet: String;
 
   constructor(
     public alertController: AlertController,
@@ -35,8 +36,12 @@ export class TransactionSelectaddressPage implements OnInit {
         this.storageAddress = data['address'];
       }
     });
-    this.storage.getString('storagePickMenu').then((data: any) => {
-      this.pickMenu = data.value;
+    this.storage.getObject('storageFilterPet').then((data: any) => {
+      this.pickMenu = data.name;
+      this.categoryPet = data.category;
+
+      // console.log('pick menu : ', this.pickMenu);
+      // console.log('category menu : ', this.categoryPet);
     });
     //console.log('Isi :', this.pickMenu);
   }
