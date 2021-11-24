@@ -13,13 +13,22 @@ export class TransactionConfirmPage implements OnInit {
     private platform: Platform,
     public alertController: AlertController,
     private storage: StorageCapService,
-    private router: Router
+    private router: Router,
+    private toastController: ToastController
   ) {}
 
   ionViewWillEnter() {
     this.getStorage();
   }
   ngOnInit() {}
+
+  async showToast(msg) {
+    const toast = await this.toastController.create({
+      message: msg,
+      duration: 3000,
+    });
+    toast.present();
+  }
 
   dataTransaction_name: string;
   dataTransaction_email: string;
@@ -76,9 +85,53 @@ export class TransactionConfirmPage implements OnInit {
     //this.storage.removeItem('storageAddressPick');
     this.router.navigateByUrl('/transaction');
   }
+
+  transactionfix = [];
   confirmYes() {
+    console.log('_________________HASIL___________');
+    console.log('Name : ', this.dataTransaction_name);
+    console.log('Email : ', this.dataTransaction_email);
+    console.log('Package : ', this.dataTransaction_package);
+    console.log('Service : ', this.dataTransaction_service);
+    console.log('Address : ', this.dataTransaction_addressAddress);
+    console.log('Name Address : ', this.dataTransaction_addressName);
+    console.log('Phone Address : ', this.dataTransaction_addressPhone);
+    console.log('Pet Name : ', this.dataTransaction_petname);
+    console.log('Pet Type : ', this.dataTransaction_pettype);
+    console.log('Date : ', this.dataTransaction_date);
+    console.log('Time : ', this.dataTransaction_time);
+    console.log('_________________________________');
+
+    var indexLen = this.transactionfix.length;
+    var newId = 1 + indexLen;
+    var dataTransaction = {
+      id: newId,
+      name: this.dataTransaction_name,
+      package: this.dataTransaction_email,
+      service: this.dataTransaction_package,
+      email: this.dataTransaction_service,
+      addressAddress: this.dataTransaction_addressAddress,
+      addressName: this.dataTransaction_addressName,
+      addressPhone: this.dataTransaction_addressPhone,
+      petname: this.dataTransaction_petname,
+      pettype: this.dataTransaction_pettype,
+      date: this.dataTransaction_date,
+      time: this.dataTransaction_time,
+      packagePayment: 85000,
+      servicePayment: 15000,
+    };
+    //sebelum push check ada data di this.transactions
+    if (this.transactionfix.length > 0) {
+      this.transactionfix.length = 0;
+    }
+    this.transactionfix.push(dataTransaction);
+    this.storage.setObject('storageTransactionFix', {
+      transactionFix: this.transactionfix,
+    });
+    this.showToast('order successfully made');
+
     this.storage.removeItem('storageAddressPick');
     this.storage.removeItem('storagePetPick');
-    this.router.navigateByUrl('/order-success');
+    this.router.navigateByUrl('order-success');
   }
 }

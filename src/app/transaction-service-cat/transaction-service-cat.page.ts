@@ -131,7 +131,7 @@ export class TransactionServiceCatPage implements OnInit {
     this.pickService = 'OnClinic';
     this.pickAddressAddress2 = 'Jl. Bukit duri salatan RT 8 RW 03 no 87';
     this.pickAddressName2 = 'Clinic';
-    this.pickAddressPhone2 = '081280675738 (admin petpy)';
+    this.pickAddressPhone2 = '081280675738';
     //console.log('varibale service = :', this.pickService);
     //console.log('varibale address address :', this.pickAddressAddress2);
     //console.log('varibale address name :', this.pickAddressName2);

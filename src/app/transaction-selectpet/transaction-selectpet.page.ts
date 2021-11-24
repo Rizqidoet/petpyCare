@@ -2,7 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { StorageCapService } from '../../app/services/storage-cap.service';
 import { Router } from '@angular/router';
 
-import { ModalController, AlertController } from '@ionic/angular';
+import {
+  ModalController,
+  AlertController,
+  ToastController,
+} from '@ionic/angular';
 
 @Component({
   selector: 'app-transaction-selectpet',
@@ -13,7 +17,8 @@ export class TransactionSelectpetPage implements OnInit {
   constructor(
     public alertController: AlertController,
     private storage: StorageCapService,
-    private router: Router
+    private router: Router,
+    private toastController: ToastController
   ) {}
 
   // ______ LoadPage ______________________________________________________________ Start _______
@@ -49,7 +54,7 @@ export class TransactionSelectpetPage implements OnInit {
         //console.log('jumlahArrayStorage kosong', this.jumlahArrayStorage);
       } else {
         if (this.categoryPet == 'kucing') {
-          console.log('Kucing');
+          //console.log('Kucing');
           this.storageArrayPet = data['pets'];
           this.jumlahArrayStorage = this.storageArrayPet.length;
           this.storageFilterArrayPet = this.storageArrayPet.filter(function (
@@ -58,7 +63,7 @@ export class TransactionSelectpetPage implements OnInit {
             return storageArrayPet.type == 'kucing';
           });
         } else if (this.categoryPet == 'anjing') {
-          console.log('Anjing');
+          //console.log('Anjing');
           this.storageArrayPet = data['pets'];
           this.jumlahArrayStorage = this.storageArrayPet.length;
           this.storageFilterArrayPet = this.storageArrayPet.filter(function (
@@ -90,6 +95,16 @@ export class TransactionSelectpetPage implements OnInit {
     this.isShowAP = false;
     var z = document.getElementById('divLabel');
     z.style.marginTop = '70px';
+    this.newPetName = '';
+    this.newPetType = '';
+  }
+
+  async showToast(msg) {
+    const toast = await this.toastController.create({
+      message: msg,
+      duration: 5000,
+    });
+    toast.present();
   }
 
   // ______ Show/Hide Form Input ____________________________________________________ End _______
@@ -121,19 +136,29 @@ export class TransactionSelectpetPage implements OnInit {
       name: this.newPetName,
       type: this.newPetType,
     };
-
-    this.storage.setObject('storagePetPick', {
-      storagePetPickName: this.newPetName,
-      storagePetPickType: this.newPetType,
-    });
-
     this.storageArrayPet.push(dataNewPet);
-    // console.log('panjang data', this.storageArrayPet.length);
+    //console.log('panjang data', this.storageArrayPet.length);
     this.storage.setObject('storagePet', {
       pets: this.storageArrayPet,
     });
+    this.getStorage();
 
-    this.router.navigateByUrl('/transaction-' + this.pickMenu);
+    if (this.categoryPet == this.newPetType) {
+      console.log('Sesuai nih');
+      this.storage.setObject('storagePetPick', {
+        storagePetPickName: this.newPetName,
+        storagePetPickType: this.newPetType,
+      });
+      this.showToast('new data saved!');
+      this.hideAP();
+      this.router.navigateByUrl('/transaction-' + this.pickMenu);
+    } else {
+      this.showToast(
+        'new data saved! will appear in the appropriate category menu'
+      );
+      this.hideAP();
+      this.router.navigateByUrl('/transaction-selectpet');
+    }
   }
 
   // ______ Save New Pet __________________________________________________________ End _______

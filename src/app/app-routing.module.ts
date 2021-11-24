@@ -92,6 +92,13 @@ const routes: Routes = [
         './transaction-service-anjing-haircut/transaction-service-anjing-haircut.module'
       ).then((m) => m.TransactionServiceAnjingHaircutPageModule),
   },
+  {
+    path: 'order-success',
+    loadChildren: () =>
+      import('./order-success/order-success.module').then(
+        (m) => m.OrderSuccessPageModule
+      ),
+  },
 ];
 
 @NgModule({
