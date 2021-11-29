@@ -31,6 +31,58 @@ export class TransactionServiceAnjingPage implements OnInit {
 
   // ______ Function On Load Page _____________________________________________________ End ______________
 
+  // ______ Segmenttasi _____________________________________________________________ Start ______________
+
+  slideIndex: number;
+  slideChanged(event) {
+    this.slides.getActiveIndex().then((index) => {
+      this.slideIndex = index;
+      // //console.log('Current index: ' + index);
+      if (index == 0) {
+        var a = document.getElementById('segmentID');
+        a.setAttribute('value', 'package');
+        // //console.log(a);
+        this.pickSegment = 'package';
+      } else if (index == 1) {
+        var a = document.getElementById('segmentID');
+        a.setAttribute('value', 'service');
+        // //console.log(a);
+        this.pickSegment = 'service';
+      } else if (index == 2) {
+        var a = document.getElementById('segmentID');
+        a.setAttribute('value', 'bookingpayment');
+        // //console.log(a);
+        this.pickSegment = 'bookingpayment';
+      } else {
+        var a = document.getElementById('segmentID');
+        a.setAttribute('value', 'package');
+        // //console.log(a);
+        this.pickSegment = 'package';
+      }
+    });
+  }
+
+  pickSegment: string;
+  segmentChanged(ev: any) {
+    this.pickSegment = ev['detail']['value'];
+
+    if (this.pickSegment == 'package') {
+      this.slides.slideTo(0, 400, true);
+      // //console.log('Segment changed , the value is : ', this.pickSegment);
+    } else if (this.pickSegment == 'service') {
+      this.slides.slideTo(1, 400, true);
+      // //console.log('Segment changed , the value is : ', this.pickSegment);
+    } else if (this.pickSegment == 'bookingpayment') {
+      this.slides.slideTo(2, 400, true);
+      // //console.log('Segment changed , the value is : ', this.pickSegment);
+    } else {
+      this.slides.slideTo(3, 400, true);
+      // //console.log('Segment changed , the value is : ', this.pickSegment);
+    }
+  }
+
+  // ______ Segmenttasi _____________________________________________________________ End ______________
+
   // ______Function Pendukung___________________________________________________________Start_________
 
   async showAlert(header: string, message: string) {
@@ -92,20 +144,20 @@ export class TransactionServiceAnjingPage implements OnInit {
           return storageProduct.item_group == 'Service Anjing';
         }
       );
-      // console.log('Array Product Cukur Kucing = ', this.listProducts_category);
+      // //console.log('Array Product Cukur Kucing = ', this.listProducts_category);
     });
 
     this.storage.getObject('storageUsers').then((data: any) => {
       this.pickUsername = data['User'][0]['userUsername'];
       this.pickEmail = data['User'][0]['userEmail'];
-      //console.log('Sekundren  = ', this.pickUsername);
+      ////console.log('Sekundren  = ', this.pickUsername);
     });
   }
 
   taplistProduct(listproduct) {
     //this.storage.removeItem('pickAddress');
 
-    //console.log('Detail Listproduct :', listproduct);
+    ////console.log('Detail Listproduct :', listproduct);
     this.pickPackage = listproduct['item_name'];
 
     this.swipeNext();
@@ -127,61 +179,38 @@ export class TransactionServiceAnjingPage implements OnInit {
   isShownDS: boolean = false;
 
   enabledCS() {
-    // console.log('Clinic Service Clicked');
+    // //console.log('Clinic Service Clicked');
     this.pickService = 'OnClinic';
     this.pickAddressAddress2 = 'Jl. Bukit duri salatan RT 8 RW 03 no 87';
     this.pickAddressName2 = 'Clinic';
     this.pickAddressPhone2 = '081280675738';
-    //console.log('varibale service = :', this.pickService);
-    //console.log('varibale address address :', this.pickAddressAddress2);
-    //console.log('varibale address name :', this.pickAddressName2);
-    //console.log('varibale address phone = :', this.pickAddressPhone2);
+    ////console.log('varibale service = :', this.pickService);
+    ////console.log('varibale address address :', this.pickAddressAddress2);
+    ////console.log('varibale address name :', this.pickAddressName2);
+    ////console.log('varibale address phone = :', this.pickAddressPhone2);
 
     this.isShownCS = true;
     this.isShownHS = false;
     this.isShownDS = false;
-
-    var z = document.getElementById('btnSlide2');
-    z.style.marginTop = '135px';
   }
 
   enabledHS() {
-    // console.log('Home Service Clicked');
+    // //console.log('Home Service Clicked');
     this.pickService = 'HomeService';
-    //console.log('varibale service = :', this.pickService);
+    ////console.log('varibale service = :', this.pickService);
 
     this.isShownCS = false;
     this.isShownHS = true;
     this.isShownDS = false;
-
-    // console.log('Status DS :', this.isShownDS);
-    var z = document.getElementById('btnSlide2');
-    if (this.pickAddressAddress == 'Set Address') {
-      // console.log('Kosong');
-      z.style.marginTop = '97px';
-    } else {
-      // console.log('Isi');
-      z.style.marginTop = '42px';
-    }
   }
 
   enabledDS() {
-    // console.log('Delivery Service Clicked');
+    // //console.log('Delivery Service Clicked');
     this.pickService = 'DeliveryService';
-    //console.log('varibale service = :', this.pickService);
+    ////console.log('varibale service = :', this.pickService);
     this.isShownCS = false;
     this.isShownHS = false;
     this.isShownDS = true;
-
-    // console.log('Status DS :', this.isShownDS);
-    var z = document.getElementById('btnSlide2');
-    if (this.pickAddressAddress == 'Set Address') {
-      // console.log('Kosong');
-      z.style.marginTop = '90px';
-    } else {
-      // console.log('Isi');
-      z.style.marginTop = '37px';
-    }
   }
 
   selectAddress() {
@@ -199,9 +228,9 @@ export class TransactionServiceAnjingPage implements OnInit {
         this.pickAddressPhone = data['storageAddressPickPhone'];
       }
 
-      console.log('variabel address address :', this.pickAddressAddress);
-      console.log('variabel address name :', this.pickAddressName);
-      console.log('variabel address phone :', this.pickAddressPhone);
+      //console.log('variabel address address :', this.pickAddressAddress);
+      //console.log('variabel address name :', this.pickAddressName);
+      //console.log('variabel address phone :', this.pickAddressPhone);
     });
   }
 
@@ -225,24 +254,39 @@ export class TransactionServiceAnjingPage implements OnInit {
         this.pickPetType = data['storagePetPickType'];
       }
 
-      //console.log('variabel petpick name :', this.pickPetName);
-      //console.log('variabel petpick type :', this.pickPetType);
+      ////console.log('variabel petpick name :', this.pickPetName);
+      ////console.log('variabel petpick type :', this.pickPetType);
     });
   }
 
   setDate(date) {
     this.pickPetDate = moment(date).format('MMM DD YYYY');
-    //console.log('date', this.pickPetDate);
+    ////console.log('date', this.pickPetDate);
   }
 
   setTime(time) {
     this.pickPetTime = moment(time).format('HH:mm');
-    //console.log('time', this.pickPetTime);
+    ////console.log('time', this.pickPetTime);
+  }
+
+  isShowCash: boolean = false;
+  isShowTransfer: boolean = false;
+  pickPayment: String;
+
+  enabledCash() {
+    this.pickPayment = 'cash';
+    this.isShowCash = true;
+    this.isShowTransfer = false;
+  }
+  enabledTransfer() {
+    this.pickPayment = 'transfer';
+    this.isShowCash = false;
+    this.isShowTransfer = true;
   }
 
   async onSaveTransaction() {
-    // console.log('Package : ', this.pickPackage);
-    // console.log('Service : ', this.pickService);
+    // //console.log('Package : ', this.pickPackage);
+    // //console.log('Service : ', this.pickService);
     if (this.pickPackage == '' || !this.pickPackage) {
       this.showAlert('Warning', 'Package Kosong ' + this.pickPackage);
     } else {
@@ -260,19 +304,19 @@ export class TransactionServiceAnjingPage implements OnInit {
             } else {
               // this.onSaveTransaction();
 
-              console.log('_________________HASIL___________');
-              console.log('Name : ', this.pickUsername);
-              console.log('Email : ', this.pickEmail);
-              console.log('Package : ', this.pickPackage);
-              console.log('Service : ', this.pickService);
-              console.log('Address : ', this.pickAddressAddress2);
-              console.log('Name Address : ', this.pickAddressName2);
-              console.log('Phone Address : ', this.pickAddressPhone2);
-              console.log('Pet Name : ', this.pickPetName);
-              console.log('Pet Type : ', this.pickPetType);
-              console.log('Date : ', this.pickPetDate);
-              console.log('Time : ', this.pickPetTime);
-              console.log('_________________________________');
+              //console.log('_________________HASIL___________');
+              //console.log('Name : ', this.pickUsername);
+              //console.log('Email : ', this.pickEmail);
+              //console.log('Package : ', this.pickPackage);
+              //console.log('Service : ', this.pickService);
+              //console.log('Address : ', this.pickAddressAddress2);
+              //console.log('Name Address : ', this.pickAddressName2);
+              //console.log('Phone Address : ', this.pickAddressPhone2);
+              //console.log('Pet Name : ', this.pickPetName);
+              //console.log('Pet Type : ', this.pickPetType);
+              //console.log('Date : ', this.pickPetDate);
+              //console.log('Time : ', this.pickPetTime);
+              //console.log('_________________________________');
 
               const alert = await this.alertController.create({
                 cssClass: 'my-custom-class',
@@ -284,13 +328,13 @@ export class TransactionServiceAnjingPage implements OnInit {
                     role: 'cancel',
                     cssClass: 'secondary',
                     handler: (cancel) => {
-                      console.log('Confirm Cancel');
+                      //console.log('Confirm Cancel');
                     },
                   },
                   {
                     text: 'Okay',
                     handler: () => {
-                      console.log('Confirm Okay');
+                      //console.log('Confirm Okay');
 
                       var indexLen = this.pets.length;
                       var newId = 1 + indexLen;
@@ -309,12 +353,13 @@ export class TransactionServiceAnjingPage implements OnInit {
                         time: this.pickPetTime,
                         packagePayment: 85000,
                         servicePayment: 15000,
+                        payment: this.pickPayment,
                       };
                       if (this.transactions.length > 0) {
                         this.transactions.length = 0;
                       }
                       this.transactions.push(dataTransaction);
-                      console.log('panjang data', this.transactions.length);
+                      //console.log('panjang data', this.transactions.length);
                       this.storage.setObject('storageTransactions', {
                         transactions: this.transactions,
                       });
@@ -345,19 +390,19 @@ export class TransactionServiceAnjingPage implements OnInit {
               } else {
                 // this.onSaveTransaction();
 
-                console.log('_________________HASIL___________');
-                console.log('Name : ', this.pickUsername);
-                console.log('Email : ', this.pickEmail);
-                console.log('Package : ', this.pickPackage);
-                console.log('Service : ', this.pickService);
-                console.log('Address : ', this.pickAddressAddress);
-                console.log('Name Address : ', this.pickAddressName);
-                console.log('Phone Address : ', this.pickAddressPhone);
-                console.log('Pet Name : ', this.pickPetName);
-                console.log('Pet Type : ', this.pickPetType);
-                console.log('Date : ', this.pickPetDate);
-                console.log('Time : ', this.pickPetTime);
-                console.log('_________________________________');
+                //console.log('_________________HASIL___________');
+                //console.log('Name : ', this.pickUsername);
+                //console.log('Email : ', this.pickEmail);
+                //console.log('Package : ', this.pickPackage);
+                //console.log('Service : ', this.pickService);
+                //console.log('Address : ', this.pickAddressAddress);
+                //console.log('Name Address : ', this.pickAddressName);
+                //console.log('Phone Address : ', this.pickAddressPhone);
+                //console.log('Pet Name : ', this.pickPetName);
+                //console.log('Pet Type : ', this.pickPetType);
+                //console.log('Date : ', this.pickPetDate);
+                //console.log('Time : ', this.pickPetTime);
+                //console.log('_________________________________');
 
                 const alert = await this.alertController.create({
                   cssClass: 'my-custom-class',
@@ -369,13 +414,13 @@ export class TransactionServiceAnjingPage implements OnInit {
                       role: 'cancel',
                       cssClass: 'secondary',
                       handler: (cancel) => {
-                        console.log('Confirm Cancel');
+                        //console.log('Confirm Cancel');
                       },
                     },
                     {
                       text: 'Okay',
                       handler: () => {
-                        console.log('Confirm Okay');
+                        //console.log('Confirm Okay');
 
                         var indexLen = this.pets.length;
                         var newId = 1 + indexLen;
@@ -394,6 +439,7 @@ export class TransactionServiceAnjingPage implements OnInit {
                           time: this.pickPetTime,
                           packagePayment: 85000,
                           servicePayment: 15000,
+                          payment: this.pickPayment,
                         };
                         //sebelum push check ada data di this.transactions
                         if (this.transactions.length > 0) {

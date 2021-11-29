@@ -61,6 +61,7 @@ export class TransactionConfirmPage implements OnInit {
       this.dataTransaction_service = data['transactions'][0]['service'];
       this.dataTransaction_petname = data['transactions'][0]['petname'];
       this.dataTransaction_pettype = data['transactions'][0]['pettype'];
+      this.dataTransaction_payment = data['transactions'][0]['payment'];
       this.dataTransaction_packagePayment =
         data['transactions'][0]['packagePayment'];
       this.dataTransaction_servicePayment =
@@ -77,13 +78,22 @@ export class TransactionConfirmPage implements OnInit {
       //     this.dataTransaction_service
       // );
     });
+
+    this.storage.getObject('storageFilterPet').then((data: any) => {
+      this.pickMenu = data.name;
+      this.categoryPet = data.category;
+      // console.log('Ngaco', this.categoryPet);
+    });
   }
 
+  pickMenu: String;
+  categoryPet: String;
   confirmNo() {
     this.storage.removeItem('storageTransactions');
     //this.storage.removeItem('storagePetPick');
     //this.storage.removeItem('storageAddressPick');
-    this.router.navigateByUrl('/transaction');
+
+    this.router.navigateByUrl('/transaction-' + this.pickMenu);
   }
 
   transactionfix = [];
@@ -100,6 +110,7 @@ export class TransactionConfirmPage implements OnInit {
     console.log('Pet Type : ', this.dataTransaction_pettype);
     console.log('Date : ', this.dataTransaction_date);
     console.log('Time : ', this.dataTransaction_time);
+    console.log('Payment : ', this.dataTransaction_payment);
     console.log('_________________________________');
 
     var indexLen = this.transactionfix.length;
@@ -119,6 +130,7 @@ export class TransactionConfirmPage implements OnInit {
       time: this.dataTransaction_time,
       packagePayment: 85000,
       servicePayment: 15000,
+      payment: this.dataTransaction_payment,
     };
     //sebelum push check ada data di this.transactions
     if (this.transactionfix.length > 0) {

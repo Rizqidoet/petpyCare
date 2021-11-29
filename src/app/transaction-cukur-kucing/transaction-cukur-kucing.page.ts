@@ -12,6 +12,7 @@ import * as moment from 'moment';
 })
 export class TransactionCukurKucingPage implements OnInit {
   @ViewChild('mySlider') slides: IonSlides;
+
   constructor(
     private platform: Platform,
     public alertController: AlertController,
@@ -27,9 +28,62 @@ export class TransactionCukurKucingPage implements OnInit {
     this.getStorage1();
     this.getStorage2();
     this.getStorage3();
+    // this.pickSegment = 'package';
   }
 
   // ______ Function On Load Page _____________________________________________________ End ______________
+
+  // ______ Segmenttasi _____________________________________________________________ Start ______________
+
+  slideIndex: number;
+  slideChanged(event) {
+    this.slides.getActiveIndex().then((index) => {
+      this.slideIndex = index;
+      // console.log('Current index: ' + index);
+      if (index == 0) {
+        var a = document.getElementById('segmentID');
+        a.setAttribute('value', 'package');
+        // console.log(a);
+        this.pickSegment = 'package';
+      } else if (index == 1) {
+        var a = document.getElementById('segmentID');
+        a.setAttribute('value', 'service');
+        // console.log(a);
+        this.pickSegment = 'service';
+      } else if (index == 2) {
+        var a = document.getElementById('segmentID');
+        a.setAttribute('value', 'bookingpayment');
+        // console.log(a);
+        this.pickSegment = 'bookingpayment';
+      } else {
+        var a = document.getElementById('segmentID');
+        a.setAttribute('value', 'package');
+        // console.log(a);
+        this.pickSegment = 'package';
+      }
+    });
+  }
+
+  pickSegment: string;
+  segmentChanged(ev: any) {
+    this.pickSegment = ev['detail']['value'];
+
+    if (this.pickSegment == 'package') {
+      this.slides.slideTo(0, 400, true);
+      // console.log('Segment changed , the value is : ', this.pickSegment);
+    } else if (this.pickSegment == 'service') {
+      this.slides.slideTo(1, 400, true);
+      // console.log('Segment changed , the value is : ', this.pickSegment);
+    } else if (this.pickSegment == 'bookingpayment') {
+      this.slides.slideTo(2, 400, true);
+      // console.log('Segment changed , the value is : ', this.pickSegment);
+    } else {
+      this.slides.slideTo(3, 400, true);
+      // console.log('Segment changed , the value is : ', this.pickSegment);
+    }
+  }
+
+  // ______ Segmenttasi _____________________________________________________________ End ______________
 
   // ______Function Pendukung___________________________________________________________Start_________
 
@@ -140,9 +194,6 @@ export class TransactionCukurKucingPage implements OnInit {
     this.isShownCS = true;
     this.isShownHS = false;
     this.isShownDS = false;
-
-    var z = document.getElementById('btnSlide2');
-    z.style.marginTop = '135px';
   }
 
   enabledHS() {
@@ -153,16 +204,6 @@ export class TransactionCukurKucingPage implements OnInit {
     this.isShownCS = false;
     this.isShownHS = true;
     this.isShownDS = false;
-
-    // console.log('Status DS :', this.isShownDS);
-    var z = document.getElementById('btnSlide2');
-    if (this.pickAddressAddress == 'Set Address') {
-      // console.log('Kosong');
-      z.style.marginTop = '97px';
-    } else {
-      // console.log('Isi');
-      z.style.marginTop = '42px';
-    }
   }
 
   enabledDS() {
@@ -172,16 +213,6 @@ export class TransactionCukurKucingPage implements OnInit {
     this.isShownCS = false;
     this.isShownHS = false;
     this.isShownDS = true;
-
-    // console.log('Status DS :', this.isShownDS);
-    var z = document.getElementById('btnSlide2');
-    if (this.pickAddressAddress == 'Set Address') {
-      // console.log('Kosong');
-      z.style.marginTop = '90px';
-    } else {
-      // console.log('Isi');
-      z.style.marginTop = '37px';
-    }
   }
 
   selectAddress() {
@@ -240,6 +271,21 @@ export class TransactionCukurKucingPage implements OnInit {
     //console.log('time', this.pickPetTime);
   }
 
+  isShowCash: boolean = false;
+  isShowTransfer: boolean = false;
+  pickPayment: String;
+
+  enabledCash() {
+    this.pickPayment = 'cash';
+    this.isShowCash = true;
+    this.isShowTransfer = false;
+  }
+  enabledTransfer() {
+    this.pickPayment = 'transfer';
+    this.isShowCash = false;
+    this.isShowTransfer = true;
+  }
+
   async onSaveTransaction() {
     // console.log('Package : ', this.pickPackage);
     // console.log('Service : ', this.pickService);
@@ -272,6 +318,7 @@ export class TransactionCukurKucingPage implements OnInit {
               console.log('Pet Type : ', this.pickPetType);
               console.log('Date : ', this.pickPetDate);
               console.log('Time : ', this.pickPetTime);
+              console.log('Payment : ', this.pickPayment);
               console.log('_________________________________');
 
               const alert = await this.alertController.create({
@@ -309,6 +356,7 @@ export class TransactionCukurKucingPage implements OnInit {
                         time: this.pickPetTime,
                         packagePayment: 85000,
                         servicePayment: 15000,
+                        payment: this.pickPayment,
                       };
                       if (this.transactions.length > 0) {
                         this.transactions.length = 0;
@@ -357,6 +405,7 @@ export class TransactionCukurKucingPage implements OnInit {
                 console.log('Pet Type : ', this.pickPetType);
                 console.log('Date : ', this.pickPetDate);
                 console.log('Time : ', this.pickPetTime);
+                console.log('Payment : ', this.pickPayment);
                 console.log('_________________________________');
 
                 const alert = await this.alertController.create({
@@ -394,6 +443,7 @@ export class TransactionCukurKucingPage implements OnInit {
                           time: this.pickPetTime,
                           packagePayment: 85000,
                           servicePayment: 15000,
+                          payment: this.pickPayment,
                         };
                         //sebelum push check ada data di this.transactions
                         if (this.transactions.length > 0) {

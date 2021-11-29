@@ -1,924 +1,941 @@
-<ion-content style="background-color: #0a387e">
-  <!-- Start: Header -->
+<ion-content>
+  <!-- Start: div header | username and lgout -->
   <div
     style="
-      display: flex;
-      flex-direction: row;
-      background-color: #f7f7f7;
-      width: 100%;
-      height: 120px;
       position: fixed;
-      z-index: 1;
+      width: 100%;
+      height: 70px;
+      z-index: 2;
+      background-color: #ef4b52; ;
     "
   >
-    <div style="width: 10%; margin-top: 20px; text-align: center">
-      <ion-icon
-        (click)="closePage()"
-        style="color: #000000; font-size: 20px"
-        name="close"
-      ></ion-icon>
-    </div>
-    <div
-      style="width: 90%; color: #000000; margin-top: 20px; text-align: center"
-    >
-      <span
-        style="
-          font-size: 25px;
-          font-weight: 600;
-          font-family: 'Lobster', cursive;
-          margin-left: -10px;
-        "
-      >
-        Order - Cukur Kucing
-      </span>
-    </div>
-  </div>
+    <ion-grid style="margin-bottom: 30px" class="ion-padding">
+      <ion-row style="margin-top: -8px">
+        <ion-col style="margin-top: -8px">
+          <div style="float: left">
+            <table style="width: 100%">
+              <tr>
+                <td>
+                  <ion-img
+                    routerLink="/home"
+                    src="../../assets/content/home/icon-wawaPetcareGarisPutus.png"
+                    style="width: 50px; height: 50px; margin-top: 5px"
+                  ></ion-img>
+                </td>
+              </tr>
+            </table>
 
+            <!-- <ion-item>
+           Get LocalStorage string name : {{ userName }} || {{ apiKey }} ||
+           {{ apiSc }}
+         </ion-item> -->
+          </div>
+        </ion-col>
+
+        <ion-col>
+          <div style="float: right">
+            <table style="width: 100%">
+              <tr>
+                <td>
+                  <p style="font-size: small">
+                    <a
+                      style="
+                        color: #ffffff;
+                        margin-right: 15px;
+                        text-decoration: none;
+                        font-family: 'Libre Baskerville', sans-serif;
+                      "
+                    >
+                      Order - Cukur Kucing
+                    </a>
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <!-- Start: div header | username and lgout -->
+
+  <!-- Start: segment -->
   <div
     style="
       display: flex;
       flex-direction: row;
-      background-color: #ffffff;
+      margin-top: 70px;
+      background-color: #f8f8f8;
       width: 100%;
-      height: 50px;
-      margin-top: 80px;
-      border-radius: 18px 18px 0 0;
       position: fixed;
       z-index: 2;
     "
-    class="ion-padding"
   >
-    <div style="width: 10%; text-align: center">
-      <ion-icon
-        (click)="swipePrev()"
-        style="color: #000000; font-size: 16px; margin-top: 3px"
-        name="arrow-back-outline"
-      ></ion-icon>
-    </div>
-    <div style="width: 90%; text-align: left; margin-left: 10px">
-      <span
-        style="
-          color: #000000;
-          font-size: 18px;
-          font-family: 'Source Sans Pro', sans-serif;
-        "
+    <div style="width: 350px; margin-left: 10px">
+      <ion-segment
+        (ionChange)="segmentChanged($event)"
+        value="package"
+        color="danger"
+        id="segmentID"
+        style="width: 100%"
       >
-        <b> complete your order </b>
-      </span>
+        <ion-segment-button value="package" style="height: 50px">
+          <ion-label style="color: #8c8e91; font-size: 10px; margin-left: -20px"
+            >package</ion-label
+          >
+        </ion-segment-button>
+
+        <ion-segment-button value="service" style="height: 50px">
+          <ion-label style="color: #8c8e91; font-size: 10px; margin-left: -20px"
+            >service</ion-label
+          >
+        </ion-segment-button>
+
+        <ion-segment-button value="bookingpayment" style="height: 50px">
+          <ion-label style="color: #8c8e91; font-size: 10px; margin-left: -20px"
+            >booking and payment</ion-label
+          >
+        </ion-segment-button>
+      </ion-segment>
     </div>
   </div>
-  <!-- End: Header -->
+  <!-- Start: segment -->
 
-  <!-- Start: Body -->
-  <ion-slides style="z-index: -1" [options]="slideOpts" #mySlider>
-    <!-- Start: Slide 1 -->
-    <ion-slide style="width: 100%; text-align: left">
-      <div
-        style="
-          display: flex;
-          flex-direction: column;
-          width: 100%;
-          height: auto;
-          background-color: white;
-          margin-top: 130px;
-          padding-bottom: 20px;
-          border-radius: 18px 18px 0 0;
-        "
-        class="ion-padding"
+  <!--Start: Body  -->
+  <div
+    style="
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      background-color: #f8f8f8;
+      margin-top: 120px;
+      z-index: 1;
+    "
+    class="ion-padding"
+  >
+    <div style="z-index: 0">
+      <ion-slides
+        [options]="slideOpts"
+        (ionSlideDidChange)="slideChanged($event)"
+        #mySlider
       >
-        <ion-item
-          button
-          detail
-          *ngFor="let listproduct of listProducts_category"
-          (click)="taplistProduct(listproduct)"
-          routerDirection="forward"
-          style="z-index: 0; margin-top: 10px"
-        >
-          <div style="display: flex; flex-direction: row; width: 100%">
-            <div style="width: 20%; display: flex; justify-content: center">
-              <ion-thumbnail
-                slot="start"
-                style="width: 35px; height: 35px; margin-top: 2px"
-              >
-                <img
-                  src="https://img.icons8.com/fluent/48/000000/groomig.png"
-                />
-              </ion-thumbnail>
-            </div>
-            <div
-              style="
-                width: 80%;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                padding-right: 20px;
-              "
-              class="ion-text-wrap"
+        <!-- Start: Slide 1 -->
+        <ion-slide style="width: 100%; text-align: left">
+          <div
+            style="
+              display: flex;
+              flex-direction: column;
+              width: 100%;
+              height: auto;
+              background-color: white;
+              border-radius: 18px;
+              padding-bottom: 20px;
+              padding-right: 20px;
+            "
+          >
+            <ion-item
+              button
+              detail
+              *ngFor="let listproduct of listProducts_category"
+              (click)="taplistProduct(listproduct)"
+              routerDirection="forward"
+              style="z-index: 0; margin-top: 20px"
             >
-              <div>
-                <span
-                  style="
-                    font-size: 16px;
-                    font-family: 'Source Sans Pro', sans-serif;
-                  "
-                >
-                  {{ listproduct.item_name }}
-                </span>
-              </div>
-              <div>
-                <p
-                  style="
-                    color: #686868;
-                    font-size: 14px;
-                    font-family: 'Montserrat', sans-serif;
-                    text-align: justify;
-                  "
-                >
-                  {{ listproduct.description }}
-                </p>
-              </div>
-            </div>
-          </div>
-        </ion-item>
-      </div>
-    </ion-slide>
-    <!-- End: Slide 1 -->
-
-    <!-- Start: Slide 2 -->
-    <ion-slide style="width: 100%; text-align: left">
-      <div
-        style="
-          display: flex;
-          flex-direction: column;
-          height: auto;
-          margin-top: 140px;
-          background-color: white;
-          border-radius: 18px 18px 0 0;
-        "
-        class="ion-padding"
-      >
-        <!-- Start: Radio Input -->
-        <div>
-          <ion-radio-group>
-            <!-- Start: div on clinic service -->
-            <div
-              style="
-                display: flex;
-                flex-direction: column;
-                width: 100%;
-                background-color: white;
-                border-radius: 15px;
-                border: #1a72f8 1px solid;
-                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
-                  0 6px 20px 0 rgba(0, 0, 0, 0.19);
-              "
-              class="ion-padding"
-            >
-              <ion-radio (click)="enabledCS()" slot="start" value="OnClinic">
-              </ion-radio>
-              <div
-                style="
-                  display: flex;
-                  flex-direction: row;
-                  width: 100%;
-                  margin-left: 20px;
-                "
-              >
-                <div style="width: 20%">
-                  <ion-img
-                    src="../../assets/icon/order-grooming-item2.png"
-                    style="width: 50px"
-                  ></ion-img>
-                </div>
-                <div
-                  style="
-                    text-align: left;
-                    width: 80%;
-                    margin-left: 10px;
-                    margin-left: 10px;
-                  "
-                >
-                  <span
-                    style="
-                      font-family: 'Source Sans Pro', sans-serif;
-                      font-size: 20px;
-                    "
+              <div style="display: flex; flex-direction: row; width: 100%">
+                <div style="width: 10%; display: flex; justify-content: center">
+                  <ion-thumbnail
+                    slot="start"
+                    style="margin-top: 5px; color: #ef4b52; font-size: 20px"
                   >
-                    <b> On Clinic </b> </span
-                  ><br />
-                  <span
-                    style="
-                      font-family: 'Montserrat', sans-serif;
-                      font-size: 14px;
-                      color: #686868; ;
-                    "
-                  >
-                    take your cat to the clinic yourself
-                  </span>
-                </div>
-                <div style="width: 20%">
-                  <ion-img
-                    style="width: 20px"
-                    src="../../assets/icon/transaction/info.png"
-                  ></ion-img>
-                </div>
-              </div>
-
-              <div
-                style="
-                  display: flex;
-                  flex-direction: column;
-                  width: 100%;
-                  text-align: left;
-                  margin-left: 10px;
-
-                  padding-left: 15px;
-                  padding-right: 15px;
-                "
-                class="ion-padding"
-                *ngIf="isShownCS"
-                id="divCS"
-              >
-                <div
-                  style="
-                    font-family: 'Source Sans Pro', sans-serif;
-                    font-size: 16px;
-                    margin-left: 20px;
-                  "
-                >
-                  Petpy address
+                    <ion-icon name="shield-checkmark"></ion-icon>
+                  </ion-thumbnail>
                 </div>
                 <div
                   style="
-                    font-family: 'Montserrat', sans-serif;
-                    font-size: 12px;
-                    color: #686868;
-                    margin-top: 5px;
-                    margin-left: 20px;
-                    padding-right: 30px;
+                    width: 85%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
                   "
                   class="ion-text-wrap"
                 >
-                  Jl. Bukit duri salatan RT 8 RW 03 no 87
+                  <div>
+                    <span
+                      style="
+                        font-size: 16px;
+                        font-family: 'Source Sans Pro', sans-serif;
+                      "
+                    >
+                      {{ listproduct.item_name }}
+                    </span>
+                  </div>
+                  <div>
+                    <p
+                      style="
+                        color: #686868;
+                        font-size: 14px;
+                        font-family: 'Montserrat', sans-serif;
+                        text-align: justify;
+                      "
+                    >
+                      {{ listproduct.description }}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-            <!-- End: div on clinic service -->
+            </ion-item>
+          </div>
+        </ion-slide>
+        <!-- End: Slide 1 -->
 
-            <!-- Start: div on home service -->
+        <!-- Start: Slide 2 -->
+        <ion-slide style="width: 100%; text-align: left">
+          <div
+            style="
+              display: flex;
+              flex-direction: column;
+              background-color: white;
+              border-radius: 18px;
+            "
+            class="ion-padding"
+          >
+            <!-- Start: Radio Input -->
             <div>
-              <div
-                style="
-                  display: flex;
-                  flex-direction: column;
-                  width: 100%;
-                  background-color: white;
-                  border-radius: 15px;
-                  border: #1a72f8 1px solid;
-                  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
-                    0 6px 20px 0 rgba(0, 0, 0, 0.19);
-                  margin-top: 10px;
-                "
-                class="ion-padding"
-              >
-                <ion-radio
-                  (click)="enabledHS()"
-                  slot="start"
-                  value="HomeService"
-                >
-                </ion-radio>
-                <div
-                  style="
-                    display: flex;
-                    flex-direction: row;
-                    width: 100%;
-                    margin-left: 20px;
-                  "
-                >
-                  <div style="width: 20%">
-                    <ion-img
-                      src="../../assets/icon/order-grooming-item1.png"
-                      style="width: 50px"
-                    ></ion-img>
-                  </div>
-                  <div
-                    style="
-                      text-align: left;
-                      width: 80%;
-                      margin-left: 10px;
-                      padding-right: 10px;
-                    "
-                  >
-                    <span
-                      style="
-                        font-family: 'Source Sans Pro', sans-serif;
-                        font-size: 20px;
-                      "
-                      ><b> Home Service </b></span
-                    ><br />
-                    <span
-                      style="
-                        font-family: 'Montserrat', sans-serif;
-                        font-size: 14px;
-                        color: #686868; ;
-                      "
-                      >our partners will come to your house</span
-                    >
-                  </div>
-                  <div style="width: 20%">
-                    <ion-img
-                      style="width: 20px"
-                      src="../../assets/icon/transaction/info.png"
-                    ></ion-img>
-                  </div>
-                </div>
-
+              <ion-radio-group>
+                <!-- Start: div on clinic service -->
                 <div
                   style="
                     display: flex;
                     flex-direction: column;
                     width: 100%;
-                    text-align: left;
-                    padding: 0px 15px 0px 15px;
-                    margin-top: 10px;
+                    background-color: white;
+                    border-radius: 15px;
+                    border: #1a72f8 1px solid;
+                    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+                      0 6px 20px 0 rgba(0, 0, 0, 0.19);
                   "
-                  *ngIf="isShownHS"
-                  id="divHS"
+                  class="ion-padding"
                 >
-                  <ion-item
-                    button
-                    detail
-                    class="ion-wrap-text"
-                    (click)="selectAddress()"
+                  <ion-radio
+                    (click)="enabledCS()"
+                    slot="start"
+                    value="OnClinic"
+                  >
+                  </ion-radio>
+                  <div
+                    style="
+                      display: flex;
+                      flex-direction: row;
+                      width: 100%;
+                      margin-left: 20px;
+                    "
+                  >
+                    <div style="width: 20%">
+                      <ion-img
+                        src="../../assets/icon/order-grooming-item2.png"
+                        style="width: 50px"
+                      ></ion-img>
+                    </div>
+                    <div
+                      style="
+                        text-align: left;
+                        width: 80%;
+                        margin-left: 10px;
+                        margin-left: 10px;
+                      "
+                    >
+                      <span
+                        style="
+                          font-family: 'Source Sans Pro', sans-serif;
+                          font-size: 20px;
+                        "
+                      >
+                        <b> On Clinic </b> </span
+                      ><br />
+                      <span
+                        style="
+                          font-family: 'Montserrat', sans-serif;
+                          font-size: 14px;
+                          color: #686868; ;
+                        "
+                      >
+                        take your cat to the clinic yourself
+                      </span>
+                    </div>
+                    <div style="width: 20%">
+                      <ion-img
+                        style="width: 20px"
+                        src="../../assets/icon/transaction/info.png"
+                      ></ion-img>
+                    </div>
+                  </div>
+
+                  <div
+                    style="
+                      display: flex;
+                      flex-direction: column;
+                      width: 100%;
+                      text-align: left;
+                      margin-left: 10px;
+
+                      padding-left: 15px;
+                      padding-right: 15px;
+                    "
+                    class="ion-padding"
+                    *ngIf="isShownCS"
+                    id="divCS"
                   >
                     <div
-                      class="ion-padding"
-                      style="width: 100%; display: flex; flex-direction: column"
+                      style="
+                        font-family: 'Source Sans Pro', sans-serif;
+                        font-size: 16px;
+                        margin-left: 20px;
+                      "
                     >
-                      <div>
-                        <span
-                          style="
-                            font-family: 'Source Sans Pro', sans-serif;
-                            font-size: 16px;
-                          "
-                          >Set your address</span
-                        >
+                      Petpy address
+                    </div>
+                    <div
+                      style="
+                        font-family: 'Montserrat', sans-serif;
+                        font-size: 12px;
+                        color: #686868;
+                        margin-top: 5px;
+                        margin-left: 20px;
+                        padding-right: 30px;
+                      "
+                      class="ion-text-wrap"
+                    >
+                      Jl. Bukit duri salatan RT 8 RW 03 no 87
+                    </div>
+                  </div>
+                </div>
+                <!-- End: div on clinic service -->
+
+                <!-- Start: div on home service -->
+                <div>
+                  <div
+                    style="
+                      display: flex;
+                      flex-direction: column;
+                      width: 100%;
+                      background-color: white;
+                      border-radius: 15px;
+                      border: #1a72f8 1px solid;
+                      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+                        0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                      margin-top: 10px;
+                    "
+                    class="ion-padding"
+                  >
+                    <ion-radio
+                      (click)="enabledHS()"
+                      slot="start"
+                      value="HomeService"
+                    >
+                    </ion-radio>
+                    <div
+                      style="
+                        display: flex;
+                        flex-direction: row;
+                        width: 100%;
+                        margin-left: 20px;
+                      "
+                    >
+                      <div style="width: 20%">
+                        <ion-img
+                          src="../../assets/icon/order-grooming-item1.png"
+                          style="width: 50px"
+                        ></ion-img>
                       </div>
                       <div
                         style="
-                          margin-top: 10px;
-                          font-size: small;
-                          color: #686868;
-                          text-align: justify;
-                          font-family: 'Montserrat', sans-serif;
-                          font-size: 12px;
-                          display: flex;
-                          flex-direction: row;
+                          text-align: left;
+                          width: 80%;
+                          margin-left: 10px;
+                          padding-right: 10px;
                         "
-                        class="ion-wrap-text"
                       >
-                        <div>
-                          <span>{{ pickAddressName }}</span>
-                        </div>
-                        <div>
-                          <span>- {{ pickAddressPhone }}</span>
-                        </div>
-                      </div>
-                      <div style="margin-top: 5px">
                         <span
-                          class="ion-wrap-text"
-                          style="font-size: small; color: #686868"
-                          >{{ pickAddressAddress }}</span
+                          style="
+                            font-family: 'Source Sans Pro', sans-serif;
+                            font-size: 20px;
+                          "
+                          ><b> Home Service </b></span
+                        ><br />
+                        <span
+                          style="
+                            font-family: 'Montserrat', sans-serif;
+                            font-size: 14px;
+                            color: #686868; ;
+                          "
+                          >our partners will come to your house</span
                         >
                       </div>
+                      <div style="width: 20%">
+                        <ion-img
+                          style="width: 20px"
+                          src="../../assets/icon/transaction/info.png"
+                        ></ion-img>
+                      </div>
                     </div>
-                  </ion-item>
-                </div>
-              </div>
-            </div>
-            <!-- End: div on home service -->
 
-            <!-- Start: div on delivery service -->
-            <div>
-              <div
-                style="
-                  display: flex;
-                  flex-direction: column;
-                  width: 100%;
-                  background-color: white;
-                  border-radius: 15px;
-                  border: #1a72f8 1px solid;
-                  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
-                    0 6px 20px 0 rgba(0, 0, 0, 0.19);
-                  margin-top: 10px;
-                "
-                class="ion-padding"
-              >
-                <ion-radio
-                  (click)="enabledDS()"
-                  slot="start"
-                  value="DeliveryService"
-                >
-                </ion-radio>
-                <div
-                  style="
-                    display: flex;
-                    flex-direction: row;
-                    width: 100%;
-                    margin-left: 20px;
-                  "
-                >
-                  <div style="width: 20%">
-                    <ion-img
-                      src="../../assets/icon/order-grooming-item3.png"
-                      style="width: 50px"
-                    ></ion-img>
+                    <div
+                      style="
+                        display: flex;
+                        flex-direction: column;
+                        width: 100%;
+                        text-align: left;
+                        padding: 0px 15px 0px 15px;
+                        margin-top: 10px;
+                      "
+                      *ngIf="isShownHS"
+                      id="divHS"
+                    >
+                      <ion-item
+                        button
+                        detail
+                        class="ion-wrap-text"
+                        (click)="selectAddress()"
+                      >
+                        <div
+                          class="ion-padding"
+                          style="
+                            width: 100%;
+                            display: flex;
+                            flex-direction: column;
+                          "
+                        >
+                          <div>
+                            <span
+                              style="
+                                font-family: 'Source Sans Pro', sans-serif;
+                                font-size: 16px;
+                              "
+                              >Set your address</span
+                            >
+                          </div>
+                          <div
+                            style="
+                              margin-top: 10px;
+                              font-size: small;
+                              color: #686868;
+                              text-align: justify;
+                              font-family: 'Montserrat', sans-serif;
+                              font-size: 12px;
+                              display: flex;
+                              flex-direction: row;
+                            "
+                            class="ion-wrap-text"
+                          >
+                            <div>
+                              <span>{{ pickAddressName }}</span>
+                            </div>
+                            <div>
+                              <span>- {{ pickAddressPhone }}</span>
+                            </div>
+                          </div>
+                          <div style="margin-top: 5px">
+                            <span
+                              class="ion-wrap-text"
+                              style="font-size: small; color: #686868"
+                              >{{ pickAddressAddress }}</span
+                            >
+                          </div>
+                        </div>
+                      </ion-item>
+                    </div>
                   </div>
+                </div>
+                <!-- End: div on home service -->
+
+                <!-- Start: div on delivery service -->
+                <div>
                   <div
                     style="
-                      text-align: left;
-                      width: 80%;
-                      margin-left: 10px;
-                      padding-right: 10px;
+                      display: flex;
+                      flex-direction: column;
+                      width: 100%;
+                      background-color: white;
+                      border-radius: 15px;
+                      border: #1a72f8 1px solid;
+                      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+                        0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                      margin-top: 10px;
+                    "
+                    class="ion-padding"
+                  >
+                    <ion-radio
+                      (click)="enabledDS()"
+                      slot="start"
+                      value="DeliveryService"
+                    >
+                    </ion-radio>
+                    <div
+                      style="
+                        display: flex;
+                        flex-direction: row;
+                        width: 100%;
+                        margin-left: 20px;
+                      "
+                    >
+                      <div style="width: 20%">
+                        <ion-img
+                          src="../../assets/icon/order-grooming-item3.png"
+                          style="width: 50px"
+                        ></ion-img>
+                      </div>
+                      <div
+                        style="
+                          text-align: left;
+                          width: 80%;
+                          margin-left: 10px;
+                          padding-right: 10px;
+                        "
+                      >
+                        <span
+                          style="
+                            font-family: 'Source Sans Pro', sans-serif;
+                            font-size: 20px;
+                          "
+                          ><b> Delivery Service </b> </span
+                        ><br />
+                        <span
+                          style="
+                            font-family: 'Montserrat', sans-serif;
+                            font-size: 14px;
+                            color: #686868;
+                          "
+                          >grooming at the clinic with our service pick up and
+                          return your pet</span
+                        >
+                      </div>
+                      <div style="width: 20%">
+                        <ion-img
+                          style="width: 20px"
+                          src="../../assets/icon/transaction/info.png"
+                        ></ion-img>
+                      </div>
+                    </div>
+
+                    <div
+                      style="
+                        display: flex;
+                        flex-direction: column;
+                        width: 100%;
+                        text-align: left;
+                        padding-left: 15px;
+                        padding-right: 15px;
+                        margin-top: 10px;
+                      "
+                      *ngIf="isShownDS"
+                      id="divDS"
+                    >
+                      <ion-item
+                        button
+                        detail
+                        class="ion-wrap-text"
+                        (click)="selectAddress()"
+                      >
+                        <div
+                          class="ion-padding"
+                          style="
+                            width: 100%;
+                            display: flex;
+                            flex-direction: column;
+                          "
+                        >
+                          <div>
+                            <span
+                              style="
+                                font-family: 'Source Sans Pro', sans-serif;
+                                font-size: 16px;
+                              "
+                              >Set your address</span
+                            >
+                          </div>
+                          <div
+                            style="
+                              margin-top: 15px;
+                              font-size: 12px;
+                              color: #686868;
+                              text-align: justify;
+                              font-family: 'Montserrat', sans-serif;
+                            "
+                            class="ion-wrap-text"
+                          >
+                            <span>{{ pickAddressName }}</span>
+                            -
+                            <span>{{ pickAddressPhone }}</span>
+                          </div>
+                          <div style="margin-top: 5px">
+                            <span
+                              class="ion-wrap-text"
+                              style="font-size: small; color: #686868"
+                              >{{ pickAddressAddress }}</span
+                            >
+                          </div>
+                        </div>
+                      </ion-item>
+                    </div>
+                  </div>
+                </div>
+                <!-- End: div on delivery service -->
+              </ion-radio-group>
+            </div>
+            <!-- End: Radio Input -->
+          </div>
+        </ion-slide>
+        <!-- End: Slide 2 -->
+
+        <!-- Start: Slide 3 -->
+        <ion-slide style="width: 100%; text-align: left">
+          <div
+            style="
+              display: flex;
+              flex-direction: column;
+              width: 100%;
+              margin-bottom: 100px;
+              background-color: #ffffff;
+              border-radius: 18px;
+            "
+            class="ion-padding"
+          >
+            <!-- Start: List Input -->
+            <div>
+              <ion-list style="margin-top: -10px">
+                <ion-item
+                  button
+                  detail
+                  style="margin: 15px 0 15px 0"
+                  routerLink="/transaction-selectpet"
+                  routerDirection="forward"
+                >
+                  <div
+                    style="height: 60px; display: flex; flex-direction: column"
+                  >
+                    <div>
+                      <span
+                        style="
+                          font-family: 'Source Sans Pro', sans-serif;
+                          font-size: 18px;
+                        "
+                        >select your pet</span
+                      >
+                    </div>
+                    <div
+                      style="
+                        font-family: 'Montserrat', sans-serif;
+                        font-size: 14px;
+                        color: #686868;
+                        text-align: justify;
+                        margin: 10px 0 0 15px;
+                      "
+                    >
+                      <span>{{ pickPetName }}</span>
+                      -
+                      <span>{{ pickPetType }}</span>
+                    </div>
+                  </div>
+                </ion-item>
+
+                <ion-item button detail style="margin: 15px 0 15px 0">
+                  <div
+                    style="
+                      height: 50px;
+                      display: flex;
+                      flex-direction: column;
+                      margin-bottom: 10px;
                     "
                   >
                     <span
                       style="
                         font-family: 'Source Sans Pro', sans-serif;
-                        font-size: 20px;
+                        font-size: 18px;
                       "
-                      ><b> Delivery Service </b> </span
-                    ><br />
-                    <span
+                      >select date</span
+                    >
+                    <ion-datetime
+                      [(ngModel)]="myDate"
+                      (ionChange)="setDate()"
                       style="
                         font-family: 'Montserrat', sans-serif;
                         font-size: 14px;
                         color: #686868;
                       "
-                      >grooming at the clinic with our service pick up and
-                      return your pet</span
-                    >
+                      displayFormat="D MMM YYYY"
+                      min="2020"
+                      max="2021"
+                      placeholder="- set date -"
+                      id="myDate"
+                    ></ion-datetime>
                   </div>
-                  <div style="width: 20%">
-                    <ion-img
-                      style="width: 20px"
-                      src="../../assets/icon/transaction/info.png"
-                    ></ion-img>
+                </ion-item>
+
+                <ion-item button detail style="margin: 15px 0 0 0">
+                  <div
+                    style="
+                      height: 50px;
+                      display: flex;
+                      flex-direction: column;
+                      margin-bottom: 10px;
+                    "
+                  >
+                    <span
+                      style="
+                        font-family: 'Source Sans Pro', sans-serif;
+                        font-size: 18px;
+                      "
+                      >select time</span
+                    >
+                    <ion-datetime
+                      [(ngModel)]="myTime"
+                      (ionChange)="setTime()"
+                      style="
+                        font-family: 'Montserrat', sans-serif;
+                        font-size: 14px;
+                        color: #686868;
+                      "
+                      displayFormat="HH:mm"
+                      placeholder="- set time -"
+                      id="myTime"
+                    ></ion-datetime>
+                  </div>
+                </ion-item>
+              </ion-list>
+            </div>
+            <!-- End: List Input -->
+
+            <!-- Start: Radio Input -->
+            <div>
+              <ion-radio-group>
+                <ion-list-header style="margin-bottom: 15px">
+                  <span
+                    style="
+                      font-family: 'Source Sans Pro', sans-serif;
+                      font-size: 18px;
+                    "
+                    >payment</span
+                  >
+                </ion-list-header>
+                <div
+                  style="
+                    display: flex;
+                    flex-direction: row;
+                    width: 100%;
+                    justify-content: space-between;
+                    margin-top: -20px;
+                  "
+                >
+                  <div style="width: 40%">
+                    <ion-item>
+                      <ion-label
+                        style="
+                          font-family: 'Source Sans Pro', sans-serif;
+                          font-size: 16px;
+                        "
+                        >Cash</ion-label
+                      >
+                      <ion-radio
+                        style="height: 15px; width: 15px"
+                        slot="start"
+                        value="cash"
+                        (click)="enabledCash()"
+                      ></ion-radio>
+                    </ion-item>
+                  </div>
+
+                  <div style="width: 60%">
+                    <ion-item>
+                      <ion-label
+                        style="
+                          font-family: 'Source Sans Pro', sans-serif;
+                          font-size: 16px;
+                        "
+                        >Transfer</ion-label
+                      >
+                      <ion-radio
+                        style="height: 15px; width: 15px"
+                        slot="start"
+                        value="transfer"
+                        (click)="enabledTransfer()"
+                      ></ion-radio>
+                    </ion-item>
                   </div>
                 </div>
 
                 <div
                   style="
                     display: flex;
-                    flex-direction: column;
+                    flex-direction: row;
                     width: 100%;
-                    text-align: left;
-                    padding-left: 15px;
-                    padding-right: 15px;
+                    height: 150px;
+                    border: #8c8e91 1px solid;
+                    border-radius: 18px;
                     margin-top: 10px;
                   "
-                  *ngIf="isShownDS"
-                  id="divDS"
+                  *ngIf="isShowCash"
+                  class="ion-padding"
                 >
-                  <ion-item
-                    button
-                    detail
-                    class="ion-wrap-text"
-                    (click)="selectAddress()"
+                  <div
+                    style="
+                      width: 30%;
+                      display: flex;
+                      flex-direction: column;
+                      align-items: center;
+                      justify-content: center;
+                    "
+                  >
+                    Sekundren
+                  </div>
+                  <div
+                    style="
+                      width: 70%;
+                      display: flex;
+                      flex-direction: column;
+                      align-items: center;
+                      justify-content: center;
+                      margin-left: 15px;
+                    "
                   >
                     <div
-                      class="ion-padding"
-                      style="width: 100%; display: flex; flex-direction: column"
+                      style="
+                        border-bottom: #c2c3c5 1px solid;
+                        padding-bottom: 10px;
+                      "
                     >
-                      <div>
-                        <span
-                          style="
-                            font-family: 'Source Sans Pro', sans-serif;
-                            font-size: 16px;
-                          "
-                          >Set your address</span
-                        >
-                      </div>
-                      <div
+                      <span
                         style="
-                          margin-top: 15px;
                           font-size: 12px;
-                          color: #686868;
-                          text-align: justify;
                           font-family: 'Montserrat', sans-serif;
                         "
-                        class="ion-wrap-text"
                       >
-                        <span>{{ pickAddressName }}</span>
-                        -
-                        <span>{{ pickAddressPhone }}</span>
-                      </div>
-                      <div style="margin-top: 5px">
-                        <span
-                          class="ion-wrap-text"
-                          style="font-size: small; color: #686868"
-                          >{{ pickAddressAddress }}</span
-                        >
-                      </div>
+                        Payment method <b>"CASH"</b> has been selected.
+                      </span>
                     </div>
-                  </ion-item>
+                    <div style="margin-top: 10px">
+                      <span
+                        style="
+                          font-size: 12px;
+                          font-family: 'Montserrat', sans-serif;
+                        "
+                      >
+                        Make payments at the shop offline after your pet is done
+                        grooming
+                      </span>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-            <!-- End: div on delivery service -->
-          </ion-radio-group>
-        </div>
-        <!-- End: Radio Input -->
 
-        <!-- Start: Button Next -->
-        <div style="margin-top: 207px" id="btnSlide2">
-          <button
-            (click)="swipeNext()"
-            routerDirection="forward"
-            style="
-              background-color: #1a72f8;
-              width: 100%;
-              height: 40px;
-              color: white;
-              border-radius: 18px;
-              font-family: 'Libre Baskerville', serif;
-              font-size: 14px;
-            "
-          >
-            Next
-          </button>
-        </div>
-        <!-- End: Button Next -->
-      </div>
-    </ion-slide>
-    <!-- End: Slide 2 -->
-
-    <!-- Start: Slide 3 -->
-    <ion-slide style="width: 100%; text-align: left">
-      <div
-        style="
-          display: flex;
-          flex-direction: column;
-          height: auto;
-          width: 100%;
-          margin-top: 120px;
-          background-color: white;
-        "
-        class="ion-padding"
-      >
-        <!-- Start: List Input -->
-        <div>
-          <ion-list style="margin-top: -10px">
-            <ion-item
-              button
-              detail
-              style="margin: 15px 0 15px 0"
-              routerLink="/transaction-selectpet"
-              routerDirection="forward"
-            >
-              <div style="height: 60px; display: flex; flex-direction: column">
-                <div>
-                  <span
-                    style="
-                      font-family: 'Source Sans Pro', sans-serif;
-                      font-size: 18px;
-                    "
-                    >select your pet</span
-                  >
-                </div>
                 <div
                   style="
-                    font-family: 'Montserrat', sans-serif;
-                    font-size: 14px;
-                    color: #686868;
-                    text-align: justify;
-                    margin: 10px 0 0 15px;
+                    display: flex;
+                    flex-direction: row;
+                    width: 100%;
+                    height: 150px;
+                    border: #8c8e91 1px solid;
+                    border-radius: 18px;
+                    margin-top: 10px;
                   "
+                  *ngIf="isShowTransfer"
+                  class="ion-padding"
                 >
-                  <span>{{ pickPetName }}</span>
-                  -
-                  <span>{{ pickPetType }}</span>
-                </div>
-              </div>
-            </ion-item>
-
-            <ion-item button detail style="margin: 15px 0 15px 0">
-              <div
-                style="
-                  height: 50px;
-                  display: flex;
-                  flex-direction: column;
-                  margin-bottom: 10px;
-                "
-              >
-                <span
-                  style="
-                    font-family: 'Source Sans Pro', sans-serif;
-                    font-size: 18px;
-                  "
-                  >select date</span
-                >
-                <ion-datetime
-                  [(ngModel)]="myDate"
-                  (ionChange)="setDate()"
-                  style="
-                    font-family: 'Montserrat', sans-serif;
-                    font-size: 14px;
-                    color: #686868;
-                  "
-                  displayFormat="D MMM YYYY"
-                  min="2020"
-                  max="2021"
-                  placeholder="- set date -"
-                  id="myDate"
-                ></ion-datetime>
-              </div>
-            </ion-item>
-
-            <ion-item button detail style="margin: 15px 0 15px 0">
-              <div
-                style="
-                  height: 50px;
-                  display: flex;
-                  flex-direction: column;
-                  margin-bottom: 10px;
-                "
-              >
-                <span
-                  style="
-                    font-family: 'Source Sans Pro', sans-serif;
-                    font-size: 18px;
-                  "
-                  >select time</span
-                >
-                <ion-datetime
-                  [(ngModel)]="myTime"
-                  (ionChange)="setTime()"
-                  style="
-                    font-family: 'Montserrat', sans-serif;
-                    font-size: 14px;
-                    color: #686868;
-                  "
-                  displayFormat="HH:mm"
-                  placeholder="- set time -"
-                  id="myTime"
-                ></ion-datetime>
-              </div>
-            </ion-item>
-          </ion-list>
-        </div>
-        <!-- End: List Input -->
-
-        <!-- Start: Radio Input -->
-        <div>
-          <ion-radio-group>
-            <ion-list-header style="margin-bottom: 15px; margin-top: -20px">
-              <span
-                style="
-                  font-family: 'Source Sans Pro', sans-serif;
-                  font-size: 18px;
-                "
-                >payment</span
-              >
-            </ion-list-header>
-            <!-- Start: div pembayaran cash -->
-            <div
-              style="
-                display: flex;
-                flex-direction: row;
-                margin-bottom: 20px;
-                margin-top: 20px;
-              "
-            >
-              <div style="width: 10%; margin-top: -10px">
-                <ion-radio
-                  slot="start"
-                  value="Cash"
-                  style="height: 15px; width: 15px"
-                ></ion-radio>
-              </div>
-              <div style="width: 25%; margin-top: -10px">
-                <ion-img
-                  src="../../assets/icon/transaction/IconCash.png"
-                  style="width: 60px"
-                ></ion-img>
-              </div>
-              <div
-                style="
-                  width: 65%;
-                  display: flex;
-                  flex-direction: column;
-                  text-align: left;
-                  justify-content: center;
-                  margin-top: -10px;
-                "
-              >
-                <div>
-                  <span
+                  <div
                     style="
-                      font-family: 'Source Sans Pro', sans-serif;
-                      font-size: 14px;
-                      font-weight: 600;
+                      width: 30%;
+                      display: flex;
+                      flex-direction: column;
+                      align-items: center;
+                      justify-content: center;
                     "
-                    >Cash</span
                   >
-                </div>
-                <div>
-                  <span
+                    Sekundren
+                  </div>
+                  <div
                     style="
-                      font-family: 'Montserrat', sans-serif;
-                      font-size: 11px;
-                      color: #686868;
+                      width: 70%;
+                      display: flex;
+                      flex-direction: column;
+                      align-items: flex-start;
+                      justify-content: center;
+                      margin-left: 15px;
                     "
-                    >pembayaran di toko</span
                   >
+                    <div
+                      style="
+                        border-bottom: #c2c3c5 1px solid;
+                        padding-bottom: 10px;
+                      "
+                    >
+                      <span
+                        style="
+                          font-size: 12px;
+                          font-family: 'Montserrat', sans-serif;
+                        "
+                      >
+                        Payment method <b>"TRANSFER"</b> has been selected.
+                      </span>
+                    </div>
+                    <div style="margin-top: 10px">
+                      <span
+                        style="
+                          font-size: 12px;
+                          font-family: 'Montserrat', sans-serif;
+                        "
+                      >
+                        Bank : <b>Mandiri</b>
+                      </span>
+                    </div>
+                    <div>
+                      <span
+                        style="
+                          font-size: 12px;
+                          font-family: 'Montserrat', sans-serif;
+                        "
+                      >
+                        No rek : <b>6589895595</b>
+                      </span>
+                    </div>
+                    <div>
+                      <span
+                        style="
+                          font-size: 12px;
+                          font-family: 'Montserrat', sans-serif;
+                        "
+                      >
+                        Recipient : <b>PT. WawaPetcare</b>
+                      </span>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              </ion-radio-group>
             </div>
-            <!-- End: div pembayaran cash -->
+            <!-- End: Radio Input -->
 
-            <!-- Start: div pembayaran saldo petpy -->
-            <div
-              style="
-                display: flex;
-                flex-direction: row;
-                margin-bottom: 20px;
-                margin-top: 20px;
-              "
-            >
-              <div style="width: 10%">
-                <ion-radio
-                  slot="start"
-                  value="SaldoPetpy"
-                  style="height: 15px; width: 15px"
-                ></ion-radio>
-              </div>
-              <div style="width: 25%">
-                <ion-img
-                  src="../../assets/icon/transaction/IconSaldoPetpy.png"
-                  style="width: 60px"
-                ></ion-img>
-              </div>
-              <div
+            <!-- Start: Button Finish -->
+            <div>
+              <button
+                (click)="onSaveTransaction()"
+                routerDirection="forward"
                 style="
-                  width: 65%;
-                  display: flex;
-                  flex-direction: column;
-                  text-align: left;
-                  justify-content: center;
+                  background-color: #1a72f8;
+                  width: 100%;
+                  height: 40px;
+                  color: white;
+                  border-radius: 18px;
+                  font-family: 'Libre Baskerville', serif;
+                  font-size: 14px;
+                  margin-top: 20px;
                 "
               >
-                <div>
-                  <span
-                    style="
-                      font-family: 'Source Sans Pro', sans-serif;
-                      font-size: 14px;
-                      font-weight: 600;
-                    "
-                    >Saldo Petpy</span
-                  >
-                </div>
-                <div>
-                  <span
-                    style="
-                      font-family: 'Montserrat', sans-serif;
-                      font-size: 11px;
-                      color: #686868;
-                    "
-                    >you saldo Rp. 36.000</span
-                  >
-                  <br />
-                  <span
-                    style="
-                      font-family: 'Montserrat', sans-serif;
-                      font-size: 11px;
-                      color: #686868;
-                    "
-                    >transaction amount Rp. 80.000</span
-                  >
-                  <br />
-                  <span
-                    style="
-                      font-family: 'Montserrat', sans-serif;
-                      font-size: 11px;
-                      color: #d11313;
-                    "
-                    >your balance is not enough</span
-                  >
-                </div>
-              </div>
+                Finish
+              </button>
             </div>
-            <!-- End: div pembayaran saldo petpy -->
-
-            <!-- Start: div pembayaran transfer bank -->
-            <div
-              style="
-                display: flex;
-                flex-direction: row;
-                margin-bottom: 20px;
-                margin-top: 20px;
-              "
-            >
-              <div style="width: 10%">
-                <ion-radio
-                  slot="start"
-                  value="TransferBank"
-                  style="height: 15px; width: 15px"
-                ></ion-radio>
-              </div>
-              <div style="width: 25%">
-                <ion-img
-                  src="../../assets/icon/transaction/IconTransfer.png"
-                  style="width: 60px"
-                ></ion-img>
-              </div>
-              <div
-                style="
-                  width: 65%;
-                  display: flex;
-                  flex-direction: column;
-                  text-align: left;
-                  justify-content: center;
-                "
-              >
-                <div>
-                  <span
-                    style="
-                      font-family: 'Source Sans Pro', sans-serif;
-                      font-size: 14px;
-                      font-weight: 600;
-                    "
-                    >Transfer Bank</span
-                  >
-                </div>
-                <div>
-                  <span
-                    style="
-                      font-family: 'Montserrat', sans-serif;
-                      font-size: 11px;
-                      color: #686868;
-                    "
-                    >BCA - Virtual Account</span
-                  >
-                  <br />
-                  <span
-                    style="
-                      font-family: 'Montserrat', sans-serif;
-                      font-size: 11px;
-                      color: #686868;
-                    "
-                    >Petpy.id - 1110 2525 331</span
-                  >
-                  <br />
-                  <span
-                    style="
-                      font-family: 'Montserrat', sans-serif;
-                      font-size: 11px;
-                      color: #686868;
-                    "
-                    >Mandiri - Virtual Account</span
-                  >
-                  <br />
-                  <span
-                    style="
-                      font-family: 'Montserrat', sans-serif;
-                      font-size: 11px;
-                      color: #686868;
-                    "
-                    >Petpy.id - 7889 6565 123</span
-                  >
-                  <br />
-                </div>
-              </div>
-            </div>
-            <!-- End: div pembayaran transfer bank -->
-          </ion-radio-group>
-        </div>
-        <!-- End: Radio Input -->
-
-        <!-- Start: Button Finish -->
-        <div>
-          <button
-            (click)="onSaveTransaction()"
-            routerDirection="forward"
-            style="
-              background-color: #1a72f8;
-              width: 100%;
-              height: 40px;
-              color: white;
-              border-radius: 18px;
-              font-family: 'Libre Baskerville', serif;
-              font-size: 14px;
-            "
-          >
-            Finish
-          </button>
-        </div>
-        <!-- End: Button Finish -->
-      </div>
-    </ion-slide>
-    <!-- End: Slide 3 -->
-  </ion-slides>
-
-  <!-- End: Body -->
+            <!-- End: Button Finish -->
+          </div>
+        </ion-slide>
+        <!-- End: Slide 3 -->
+      </ion-slides>
+    </div>
+  </div>
+  <!--Start: Body  -->
 </ion-content>
