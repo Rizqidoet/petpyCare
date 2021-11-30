@@ -46,6 +46,10 @@ export class TransactionSelectaddressPage implements OnInit {
     //console.log('Isi :', this.pickMenu);
   }
 
+  backPage() {
+    this.router.navigateByUrl('/transaction-' + this.pickMenu);
+  }
+
   addressPickaddress: string;
   addressPickName: string;
   addressPickPhone: string;

@@ -1,13 +1,19 @@
 <ion-header>
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
   <ion-toolbar>
-    <ion-segment>
+    <ion-segment style="background-color: #ef4b52">
       <ion-back-button
-        style="color: rgb(158, 158, 158)"
+        style="color: #ffffff"
         defaultHref="/transaction-selectaddress"
       ></ion-back-button>
       <ion-segment-button value="0">
-        <ion-label style="color: rgb(158, 158, 158)"
+        <ion-label
+          style="
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: #ffffff;
+          "
           >Set Your Location</ion-label
         >
       </ion-segment-button>
@@ -24,8 +30,8 @@
       z-index: 5;
       flex-direction: column;
       width: 80%;
-      background-color: white;
-      border: rgb(248, 248, 248) 2px solid;
+      background-color: #ffffff;
+      border: f3f3f3 2px solid;
       border-radius: 15px;
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
         0 6px 8px 0 rgba(0, 0, 0, 0.19);
@@ -42,8 +48,15 @@
 
     <div style="display: flex; flex-direction: column" class="ion-padding">
       <div>
-        <span style="font-size: small; font-weight: 600; margin-left: 10px"
-          >your address</span
+        <span
+          style="
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: #000000;
+            margin-left: 10px;
+          "
+          >Your address</span
         >
       </div>
 
@@ -66,7 +79,7 @@
         >
           <ion-img
             style="max-width: 20px"
-            src="assets/icon/dashboard-booking-location-icon.png"
+            src="../../assets/images/setaddress-1.png"
           ></ion-img>
         </div>
 
@@ -86,8 +99,15 @@
     </div>
 
     <div style="text-align: left">
-      <span style="font-size: small; font-weight: 600; margin-left: 25px"
-        >give a name for this address</span
+      <span
+        style="
+          font-family: 'Source Sans Pro', sans-serif;
+          font-size: 14px;
+          font-weight: 600;
+          color: #000000;
+          margin-left: 25px;
+        "
+        >Give a name for this address</span
       >
     </div>
 
@@ -102,8 +122,15 @@
     </div>
 
     <div style="text-align: left; margin-top: 10px">
-      <span style="font-size: small; font-weight: 600; margin-left: 25px"
-        >phone number</span
+      <span
+        style="
+          font-family: 'Source Sans Pro', sans-serif;
+          font-size: 14px;
+          font-weight: 600;
+          color: #000000;
+          margin-left: 25px;
+        "
+        >Phone number</span
       >
     </div>
 
@@ -122,24 +149,16 @@
         (click)="saveAddress()"
         routerDirection="forward"
         style="
-          background-color: #1a72f8;
+          background-color: #ef4b52;
           width: 100%;
           height: 40px;
           color: white;
           border-radius: 10px;
           margin-top: 20px;
+          font-family: 'Libre Baskerville', serif;
         "
       >
         Save
-        <ion-icon
-          style="
-            color: white;
-            font-size: small;
-            position: absolute;
-            margin-left: 100px;
-          "
-          name="checkmark-sharp"
-        ></ion-icon>
       </button>
     </div>
   </div>
@@ -149,21 +168,40 @@
       display: flex;
       flex-direction: row;
       width: 100%;
-      background-color: brown;
       justify-content: space-between;
     "
   >
     <ion-item style="width: 100%">
       <div style="width: 50%">
         <ion-button (click)="getGps()" fill="clear">
-          <ion-icon slot="start" name="map"></ion-icon>
-          Get my position
+          <ion-icon style="color: #ef4b52" slot="start" name="map"></ion-icon>
+          <span
+            style="
+              font-size: 14px;
+              color: #ef4b52;
+              font-family: 'Source Sans Pro', sans-serif;
+            "
+          >
+            Get my position
+          </span>
         </ion-button>
       </div>
       <div style="width: 50%; text-align: right">
         <ion-button (click)="enableForm()" fill="clear">
-          <ion-icon slot="end" name="clipboard"></ion-icon>
-          Show form
+          <ion-icon
+            style="color: #ef4b52"
+            slot="start"
+            name="clipboard"
+          ></ion-icon>
+          <span
+            style="
+              font-size: 14px;
+              color: #ef4b52;
+              font-family: 'Source Sans Pro', sans-serif;
+            "
+          >
+            Show form
+          </span>
         </ion-button>
       </div>
     </ion-item>

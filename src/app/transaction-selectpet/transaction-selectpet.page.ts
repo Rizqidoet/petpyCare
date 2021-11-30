@@ -80,6 +80,10 @@ export class TransactionSelectpetPage implements OnInit {
     });
   }
 
+  backPage() {
+    this.router.navigateByUrl('/transaction-' + this.pickMenu);
+  }
+
   // ______ LoadStorage ______________________________________________________________ End _______
 
   // ______ Show/Hide Form Input ____________________________________________________ Start _______
@@ -88,13 +92,13 @@ export class TransactionSelectpetPage implements OnInit {
 
   showAP() {
     this.isShowAP = true;
-    var z = document.getElementById('divLabel');
-    z.style.marginTop = '310px';
+    var z = document.getElementById('divList');
+    z.style.marginTop = '350px';
   }
   hideAP() {
     this.isShowAP = false;
-    var z = document.getElementById('divLabel');
-    z.style.marginTop = '70px';
+    var z = document.getElementById('divList');
+    z.style.marginTop = '95px';
     this.newPetName = '';
     this.newPetType = '';
   }

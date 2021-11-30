@@ -17,8 +17,8 @@
               <tr>
                 <td>
                   <ion-img
-                    routerLink="/home"
-                    src="../../assets/content/home/icon-wawaPetcareGarisPutus.png"
+                    (click)="closePage()"
+                    src="../../assets/images/home-2.png"
                     style="width: 50px; height: 50px; margin-top: 5px"
                   ></ion-img>
                 </td>
@@ -46,7 +46,7 @@
                         font-family: 'Libre Baskerville', sans-serif;
                       "
                     >
-                      Order - Cukur Kucing
+                      Order - Service Anjing Haircut
                     </a>
                   </p>
                 </td>
@@ -133,6 +133,25 @@
               padding-right: 20px;
             "
           >
+            <div
+              class="ion-padding"
+              style="
+                width: 95%;
+                border-bottom: 1px solid #bb1515;
+                margin: 18px 0 10px 20px;
+              "
+            >
+              <span
+                style="
+                  font-family: 'Source Sans Pro', sans-serif;
+                  font-size: 16px;
+                  font-weight: 600;
+                  color: #000000;
+                "
+              >
+                Available package
+              </span>
+            </div>
             <ion-item
               button
               detail
@@ -199,21 +218,38 @@
             "
             class="ion-padding"
           >
+            <div
+              class="ion-padding"
+              style="width: 100%; border-bottom: 1px solid #bb1515"
+            >
+              <span
+                style="
+                  font-family: 'Source Sans Pro', sans-serif;
+                  font-size: 16px;
+                  font-weight: 600;
+                  color: #000000;
+                "
+              >
+                Available service
+              </span>
+            </div>
+
             <!-- Start: Radio Input -->
-            <div>
-              <ion-radio-group>
+            <div style="margin-top: 20px">
+              <ion-radio-group id="clinicRadio">
                 <!-- Start: div on clinic service -->
                 <div
                   style="
                     display: flex;
                     flex-direction: column;
                     width: 100%;
-                    background-color: white;
+                    background-color: #ffffff;
                     border-radius: 15px;
-                    border: #1a72f8 1px solid;
+                    border: #ef4b52 1px solid;
                     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
                       0 6px 20px 0 rgba(0, 0, 0, 0.19);
                   "
+                  (click)="enabledCS()"
                   class="ion-padding"
                 >
                   <ion-radio
@@ -232,7 +268,7 @@
                   >
                     <div style="width: 20%">
                       <ion-img
-                        src="../../assets/icon/order-grooming-item2.png"
+                        src="../../assets/images/transactionAll-1.png"
                         style="width: 50px"
                       ></ion-img>
                     </div>
@@ -265,7 +301,7 @@
                     <div style="width: 20%">
                       <ion-img
                         style="width: 20px"
-                        src="../../assets/icon/transaction/info.png"
+                        src="../../assets/images/transactionAll-4.png"
                       ></ion-img>
                     </div>
                   </div>
@@ -318,13 +354,14 @@
                       display: flex;
                       flex-direction: column;
                       width: 100%;
-                      background-color: white;
+                      background-color: #ffffff;
                       border-radius: 15px;
-                      border: #1a72f8 1px solid;
+                      border: #ef4b52 1px solid;
                       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
                         0 6px 20px 0 rgba(0, 0, 0, 0.19);
                       margin-top: 10px;
                     "
+                    (click)="enabledHS()"
                     class="ion-padding"
                   >
                     <ion-radio
@@ -343,7 +380,7 @@
                     >
                       <div style="width: 20%">
                         <ion-img
-                          src="../../assets/icon/order-grooming-item1.png"
+                          src="../../assets/images/transactionAll-2.png"
                           style="width: 50px"
                         ></ion-img>
                       </div>
@@ -374,7 +411,7 @@
                       <div style="width: 20%">
                         <ion-img
                           style="width: 20px"
-                          src="../../assets/icon/transaction/info.png"
+                          src="../../assets/images/transactionAll-4.png"
                         ></ion-img>
                       </div>
                     </div>
@@ -455,13 +492,14 @@
                       display: flex;
                       flex-direction: column;
                       width: 100%;
-                      background-color: white;
+                      background-color: #ffffff;
                       border-radius: 15px;
-                      border: #1a72f8 1px solid;
+                      border: #ef4b52 1px solid;
                       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
                         0 6px 20px 0 rgba(0, 0, 0, 0.19);
                       margin-top: 10px;
                     "
+                    (click)="enabledDS()"
                     class="ion-padding"
                   >
                     <ion-radio
@@ -480,7 +518,7 @@
                     >
                       <div style="width: 20%">
                         <ion-img
-                          src="../../assets/icon/order-grooming-item3.png"
+                          src="../../assets/images/transactionAll-3.png"
                           style="width: 50px"
                         ></ion-img>
                       </div>
@@ -512,7 +550,7 @@
                       <div style="width: 20%">
                         <ion-img
                           style="width: 20px"
-                          src="../../assets/icon/transaction/info.png"
+                          src="../../assets/images/transactionAll-4.png"
                         ></ion-img>
                       </div>
                     </div>
@@ -600,9 +638,24 @@
             "
             class="ion-padding"
           >
+            <div
+              class="ion-padding"
+              style="width: 100%; border-bottom: 1px solid #bb1515"
+            >
+              <span
+                style="
+                  font-family: 'Source Sans Pro', sans-serif;
+                  font-size: 16px;
+                  font-weight: 600;
+                  color: #000000;
+                "
+              >
+                Complate your order
+              </span>
+            </div>
             <!-- Start: List Input -->
             <div>
-              <ion-list style="margin-top: -10px">
+              <ion-list>
                 <ion-item
                   button
                   detail
@@ -917,7 +970,7 @@
                 (click)="onSaveTransaction()"
                 routerDirection="forward"
                 style="
-                  background-color: #1a72f8;
+                  background-color: #ef4b52;
                   width: 100%;
                   height: 40px;
                   color: white;

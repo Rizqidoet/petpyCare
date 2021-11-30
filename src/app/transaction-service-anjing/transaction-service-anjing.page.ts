@@ -27,6 +27,7 @@ export class TransactionServiceAnjingPage implements OnInit {
     this.getStorage1();
     this.getStorage2();
     this.getStorage3();
+    // this.pickSegment = 'package';
   }
 
   // ______ Function On Load Page _____________________________________________________ End ______________
@@ -37,26 +38,26 @@ export class TransactionServiceAnjingPage implements OnInit {
   slideChanged(event) {
     this.slides.getActiveIndex().then((index) => {
       this.slideIndex = index;
-      // //console.log('Current index: ' + index);
+      // console.log('Current index: ' + index);
       if (index == 0) {
         var a = document.getElementById('segmentID');
         a.setAttribute('value', 'package');
-        // //console.log(a);
+        // console.log(a);
         this.pickSegment = 'package';
       } else if (index == 1) {
         var a = document.getElementById('segmentID');
         a.setAttribute('value', 'service');
-        // //console.log(a);
+        // console.log(a);
         this.pickSegment = 'service';
       } else if (index == 2) {
         var a = document.getElementById('segmentID');
         a.setAttribute('value', 'bookingpayment');
-        // //console.log(a);
+        // console.log(a);
         this.pickSegment = 'bookingpayment';
       } else {
         var a = document.getElementById('segmentID');
         a.setAttribute('value', 'package');
-        // //console.log(a);
+        // console.log(a);
         this.pickSegment = 'package';
       }
     });
@@ -68,16 +69,12 @@ export class TransactionServiceAnjingPage implements OnInit {
 
     if (this.pickSegment == 'package') {
       this.slides.slideTo(0, 400, true);
-      // //console.log('Segment changed , the value is : ', this.pickSegment);
     } else if (this.pickSegment == 'service') {
       this.slides.slideTo(1, 400, true);
-      // //console.log('Segment changed , the value is : ', this.pickSegment);
     } else if (this.pickSegment == 'bookingpayment') {
       this.slides.slideTo(2, 400, true);
-      // //console.log('Segment changed , the value is : ', this.pickSegment);
     } else {
       this.slides.slideTo(3, 400, true);
-      // //console.log('Segment changed , the value is : ', this.pickSegment);
     }
   }
 
@@ -118,6 +115,7 @@ export class TransactionServiceAnjingPage implements OnInit {
     this.pickPetType = '';
     this.pickPetDate = '';
     this.pickPetTime = '';
+    this.pickPayment = '';
   }
 
   closePage() {
@@ -144,22 +142,16 @@ export class TransactionServiceAnjingPage implements OnInit {
           return storageProduct.item_group == 'Service Anjing';
         }
       );
-      // //console.log('Array Product Cukur Kucing = ', this.listProducts_category);
     });
 
     this.storage.getObject('storageUsers').then((data: any) => {
       this.pickUsername = data['User'][0]['userUsername'];
       this.pickEmail = data['User'][0]['userEmail'];
-      ////console.log('Sekundren  = ', this.pickUsername);
     });
   }
 
   taplistProduct(listproduct) {
-    //this.storage.removeItem('pickAddress');
-
-    ////console.log('Detail Listproduct :', listproduct);
     this.pickPackage = listproduct['item_name'];
-
     this.swipeNext();
   }
 
@@ -179,15 +171,12 @@ export class TransactionServiceAnjingPage implements OnInit {
   isShownDS: boolean = false;
 
   enabledCS() {
-    // //console.log('Clinic Service Clicked');
+    var a = document.getElementById('clinicRadio');
+    a.setAttribute('value', 'OnClinic');
     this.pickService = 'OnClinic';
     this.pickAddressAddress2 = 'Jl. Bukit duri salatan RT 8 RW 03 no 87';
     this.pickAddressName2 = 'Clinic';
     this.pickAddressPhone2 = '081280675738';
-    ////console.log('varibale service = :', this.pickService);
-    ////console.log('varibale address address :', this.pickAddressAddress2);
-    ////console.log('varibale address name :', this.pickAddressName2);
-    ////console.log('varibale address phone = :', this.pickAddressPhone2);
 
     this.isShownCS = true;
     this.isShownHS = false;
@@ -195,9 +184,9 @@ export class TransactionServiceAnjingPage implements OnInit {
   }
 
   enabledHS() {
-    // //console.log('Home Service Clicked');
+    var a = document.getElementById('clinicRadio');
+    a.setAttribute('value', 'HomeService');
     this.pickService = 'HomeService';
-    ////console.log('varibale service = :', this.pickService);
 
     this.isShownCS = false;
     this.isShownHS = true;
@@ -205,9 +194,10 @@ export class TransactionServiceAnjingPage implements OnInit {
   }
 
   enabledDS() {
-    // //console.log('Delivery Service Clicked');
+    var a = document.getElementById('clinicRadio');
+    a.setAttribute('value', 'DeliveryService');
     this.pickService = 'DeliveryService';
-    ////console.log('varibale service = :', this.pickService);
+
     this.isShownCS = false;
     this.isShownHS = false;
     this.isShownDS = true;
@@ -227,10 +217,6 @@ export class TransactionServiceAnjingPage implements OnInit {
         this.pickAddressName = data['storageAddressPickName'];
         this.pickAddressPhone = data['storageAddressPickPhone'];
       }
-
-      //console.log('variabel address address :', this.pickAddressAddress);
-      //console.log('variabel address name :', this.pickAddressName);
-      //console.log('variabel address phone :', this.pickAddressPhone);
     });
   }
 
@@ -253,20 +239,17 @@ export class TransactionServiceAnjingPage implements OnInit {
         this.pickPetName = data['storagePetPickName'];
         this.pickPetType = data['storagePetPickType'];
       }
-
-      ////console.log('variabel petpick name :', this.pickPetName);
-      ////console.log('variabel petpick type :', this.pickPetType);
     });
   }
 
   setDate(date) {
     this.pickPetDate = moment(date).format('MMM DD YYYY');
-    ////console.log('date', this.pickPetDate);
+    //console.log('date', this.pickPetDate);
   }
 
   setTime(time) {
     this.pickPetTime = moment(time).format('HH:mm');
-    ////console.log('time', this.pickPetTime);
+    //console.log('time', this.pickPetTime);
   }
 
   isShowCash: boolean = false;
@@ -285,8 +268,8 @@ export class TransactionServiceAnjingPage implements OnInit {
   }
 
   async onSaveTransaction() {
-    // //console.log('Package : ', this.pickPackage);
-    // //console.log('Service : ', this.pickService);
+    // console.log('Package : ', this.pickPackage);
+    // console.log('Service : ', this.pickService);
     if (this.pickPackage == '' || !this.pickPackage) {
       this.showAlert('Warning', 'Package Kosong ' + this.pickPackage);
     } else {
@@ -296,79 +279,83 @@ export class TransactionServiceAnjingPage implements OnInit {
         if (this.pickPetName == '- set pet') {
           this.showAlert('Warning', 'Petname Kosong ' + this.pickPetName);
         } else {
-          if (this.pickPetDate == '') {
+          if (this.pickPetDate == '' || !this.pickPetDate) {
             this.showAlert('Warning', 'Date Kosong ' + this.pickPetDate);
           } else {
-            if (this.pickPetTime == '') {
+            if (this.pickPetTime == '' || !this.pickPetTime) {
               this.showAlert('Warning', 'Time Kosong ' + this.pickPetTime);
             } else {
               // this.onSaveTransaction();
+              if (this.pickPayment == '' || !this.pickPayment) {
+                this.showAlert('Warning', 'Payment Kosong ' + this.pickPayment);
+              } else {
+                console.log('_________________HASIL___________');
+                console.log('Name : ', this.pickUsername);
+                console.log('Email : ', this.pickEmail);
+                console.log('Package : ', this.pickPackage);
+                console.log('Service : ', this.pickService);
+                console.log('Address : ', this.pickAddressAddress2);
+                console.log('Name Address : ', this.pickAddressName2);
+                console.log('Phone Address : ', this.pickAddressPhone2);
+                console.log('Pet Name : ', this.pickPetName);
+                console.log('Pet Type : ', this.pickPetType);
+                console.log('Date : ', this.pickPetDate);
+                console.log('Time : ', this.pickPetTime);
+                console.log('Payment : ', this.pickPayment);
+                console.log('_________________________________');
 
-              //console.log('_________________HASIL___________');
-              //console.log('Name : ', this.pickUsername);
-              //console.log('Email : ', this.pickEmail);
-              //console.log('Package : ', this.pickPackage);
-              //console.log('Service : ', this.pickService);
-              //console.log('Address : ', this.pickAddressAddress2);
-              //console.log('Name Address : ', this.pickAddressName2);
-              //console.log('Phone Address : ', this.pickAddressPhone2);
-              //console.log('Pet Name : ', this.pickPetName);
-              //console.log('Pet Type : ', this.pickPetType);
-              //console.log('Date : ', this.pickPetDate);
-              //console.log('Time : ', this.pickPetTime);
-              //console.log('_________________________________');
-
-              const alert = await this.alertController.create({
-                cssClass: 'my-custom-class',
-                header: 'Confirm',
-                message: 'Make Transaction ?',
-                buttons: [
-                  {
-                    text: 'Cancel',
-                    role: 'cancel',
-                    cssClass: 'secondary',
-                    handler: (cancel) => {
-                      //console.log('Confirm Cancel');
+                const alert = await this.alertController.create({
+                  cssClass: 'my-custom-class',
+                  header: 'Confirm',
+                  message: 'Make Transaction ?',
+                  buttons: [
+                    {
+                      text: 'Cancel',
+                      role: 'cancel',
+                      cssClass: 'secondary',
+                      handler: (cancel) => {
+                        console.log('Confirm Cancel');
+                      },
                     },
-                  },
-                  {
-                    text: 'Okay',
-                    handler: () => {
-                      //console.log('Confirm Okay');
+                    {
+                      text: 'Okay',
+                      handler: () => {
+                        console.log('Confirm Okay');
 
-                      var indexLen = this.pets.length;
-                      var newId = 1 + indexLen;
-                      var dataTransaction = {
-                        id: newId,
-                        name: this.pickUsername,
-                        package: this.pickPackage,
-                        service: this.pickService,
-                        email: this.pickEmail,
-                        addressAddress: this.pickAddressAddress2,
-                        addressName: this.pickAddressName2,
-                        addressPhone: this.pickAddressPhone2,
-                        petname: this.pickPetName,
-                        pettype: this.pickPetType,
-                        date: this.pickPetDate,
-                        time: this.pickPetTime,
-                        packagePayment: 85000,
-                        servicePayment: 15000,
-                        payment: this.pickPayment,
-                      };
-                      if (this.transactions.length > 0) {
-                        this.transactions.length = 0;
-                      }
-                      this.transactions.push(dataTransaction);
-                      //console.log('panjang data', this.transactions.length);
-                      this.storage.setObject('storageTransactions', {
-                        transactions: this.transactions,
-                      });
-                      this.router.navigateByUrl('/transaction-confirm');
+                        var indexLen = this.pets.length;
+                        var newId = 1 + indexLen;
+                        var dataTransaction = {
+                          id: newId,
+                          name: this.pickUsername,
+                          package: this.pickPackage,
+                          service: this.pickService,
+                          email: this.pickEmail,
+                          addressAddress: this.pickAddressAddress2,
+                          addressName: this.pickAddressName2,
+                          addressPhone: this.pickAddressPhone2,
+                          petname: this.pickPetName,
+                          pettype: this.pickPetType,
+                          date: this.pickPetDate,
+                          time: this.pickPetTime,
+                          packagePayment: 85000,
+                          servicePayment: 15000,
+                          payment: this.pickPayment,
+                        };
+                        if (this.transactions.length > 0) {
+                          this.transactions.length = 0;
+                        }
+                        this.transactions.push(dataTransaction);
+                        console.log('panjang data', this.transactions.length);
+                        this.storage.setObject('storageTransactions', {
+                          transactions: this.transactions,
+                        });
+                        this.router.navigateByUrl('/transaction-confirm');
+                      },
                     },
-                  },
-                ],
-              });
-              await alert.present();
+                  ],
+                });
+                await alert.present();
+              }
             }
           }
         }
@@ -388,73 +375,80 @@ export class TransactionServiceAnjingPage implements OnInit {
               if (this.pickPetTime == '') {
                 this.showAlert('Warning', 'Time Kosong ' + this.pickPetTime);
               } else {
+                if (this.pickPayment == '' || !this.pickPayment) {
+                  this.showAlert(
+                    'Warning',
+                    'Payment Kosong ' + this.pickPayment
+                  );
+                } else {
+                  console.log('_________________HASIL___________');
+                  console.log('Name : ', this.pickUsername);
+                  console.log('Email : ', this.pickEmail);
+                  console.log('Package : ', this.pickPackage);
+                  console.log('Service : ', this.pickService);
+                  console.log('Address : ', this.pickAddressAddress);
+                  console.log('Name Address : ', this.pickAddressName);
+                  console.log('Phone Address : ', this.pickAddressPhone);
+                  console.log('Pet Name : ', this.pickPetName);
+                  console.log('Pet Type : ', this.pickPetType);
+                  console.log('Date : ', this.pickPetDate);
+                  console.log('Time : ', this.pickPetTime);
+                  console.log('Payment : ', this.pickPayment);
+                  console.log('_________________________________');
+
+                  const alert = await this.alertController.create({
+                    cssClass: 'my-custom-class',
+                    header: 'Confirm',
+                    message: 'Make Transaction ?',
+                    buttons: [
+                      {
+                        text: 'Cancel',
+                        role: 'cancel',
+                        cssClass: 'secondary',
+                        handler: (cancel) => {
+                          console.log('Confirm Cancel');
+                        },
+                      },
+                      {
+                        text: 'Okay',
+                        handler: () => {
+                          console.log('Confirm Okay');
+
+                          var indexLen = this.pets.length;
+                          var newId = 1 + indexLen;
+                          var dataTransaction = {
+                            id: newId,
+                            name: this.pickUsername,
+                            package: this.pickPackage,
+                            service: this.pickService,
+                            email: this.pickEmail,
+                            addressAddress: this.pickAddressAddress,
+                            addressName: this.pickAddressName,
+                            addressPhone: this.pickAddressPhone,
+                            petname: this.pickPetName,
+                            pettype: this.pickPetType,
+                            date: this.pickPetDate,
+                            time: this.pickPetTime,
+                            packagePayment: 85000,
+                            servicePayment: 15000,
+                            payment: this.pickPayment,
+                          };
+                          //sebelum push check ada data di this.transactions
+                          if (this.transactions.length > 0) {
+                            this.transactions.length = 0;
+                          }
+                          this.transactions.push(dataTransaction);
+                          this.storage.setObject('storageTransactions', {
+                            transactions: this.transactions,
+                          });
+                          this.router.navigateByUrl('/transaction-confirm');
+                        },
+                      },
+                    ],
+                  });
+                  await alert.present();
+                }
                 // this.onSaveTransaction();
-
-                //console.log('_________________HASIL___________');
-                //console.log('Name : ', this.pickUsername);
-                //console.log('Email : ', this.pickEmail);
-                //console.log('Package : ', this.pickPackage);
-                //console.log('Service : ', this.pickService);
-                //console.log('Address : ', this.pickAddressAddress);
-                //console.log('Name Address : ', this.pickAddressName);
-                //console.log('Phone Address : ', this.pickAddressPhone);
-                //console.log('Pet Name : ', this.pickPetName);
-                //console.log('Pet Type : ', this.pickPetType);
-                //console.log('Date : ', this.pickPetDate);
-                //console.log('Time : ', this.pickPetTime);
-                //console.log('_________________________________');
-
-                const alert = await this.alertController.create({
-                  cssClass: 'my-custom-class',
-                  header: 'Confirm',
-                  message: 'Make Transaction ?',
-                  buttons: [
-                    {
-                      text: 'Cancel',
-                      role: 'cancel',
-                      cssClass: 'secondary',
-                      handler: (cancel) => {
-                        //console.log('Confirm Cancel');
-                      },
-                    },
-                    {
-                      text: 'Okay',
-                      handler: () => {
-                        //console.log('Confirm Okay');
-
-                        var indexLen = this.pets.length;
-                        var newId = 1 + indexLen;
-                        var dataTransaction = {
-                          id: newId,
-                          name: this.pickUsername,
-                          package: this.pickPackage,
-                          service: this.pickService,
-                          email: this.pickEmail,
-                          addressAddress: this.pickAddressAddress,
-                          addressName: this.pickAddressName,
-                          addressPhone: this.pickAddressPhone,
-                          petname: this.pickPetName,
-                          pettype: this.pickPetType,
-                          date: this.pickPetDate,
-                          time: this.pickPetTime,
-                          packagePayment: 85000,
-                          servicePayment: 15000,
-                          payment: this.pickPayment,
-                        };
-                        //sebelum push check ada data di this.transactions
-                        if (this.transactions.length > 0) {
-                          this.transactions.length = 0;
-                        }
-                        this.transactions.push(dataTransaction);
-                        this.storage.setObject('storageTransactions', {
-                          transactions: this.transactions,
-                        });
-                        this.router.navigateByUrl('/transaction-confirm');
-                      },
-                    },
-                  ],
-                });
-                await alert.present();
               }
             }
           }

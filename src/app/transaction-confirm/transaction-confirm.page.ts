@@ -144,6 +144,7 @@ export class TransactionConfirmPage implements OnInit {
 
     this.storage.removeItem('storageAddressPick');
     this.storage.removeItem('storagePetPick');
+    this.storage.removeItem('storageTransactions');
     this.router.navigateByUrl('order-success');
   }
 }
