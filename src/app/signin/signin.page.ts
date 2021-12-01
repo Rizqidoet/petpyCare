@@ -46,6 +46,10 @@ export class SigninPage implements OnInit {
     } else {
       console.log('Is Web Platform :', this.isWeb);
     }
+
+    this.platform.backButton.subscribeWithPriority(10, () => {
+      this.showToast('back button clicked');
+    });
   }
 
   //_______ Onload Page _______________________________________________ Start ____________
