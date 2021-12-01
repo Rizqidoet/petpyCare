@@ -1,634 +1,424 @@
-<ion-content>
-  <div
-    style="
-      display: flex;
-      flex-direction: row;
-      background-color: rgb(238, 238, 238);
-      width: 100%;
-      height: 50px;
-      position: fixed;
-      z-index: 1;
-    "
-  >
-    <div
-      style="width: 100%; color: #0f3266; margin-top: 30px; text-align: center"
+<ion-content class="background ion-padding">
+  <!-- Start: Header -->
+  <div style="margin-top: 20px; padding-left: 15px; width: 100%">
+    <span
+      style="
+        font-family: 'Livvic', sans-serif;
+        font-size: 20px;
+        font-weight: 600;
+        color: #ffffff;
+      "
     >
-      <span style="font-size: x-large; font-weight: 600">
-        Confirm your order
-      </span>
-    </div>
+      Confirm order
+    </span>
   </div>
+  <!-- End: Header -->
 
-  <!-- Start: body -->
-  <!-- Start: Contact Information -->
+  <!-- Start: Body -->
   <div
     style="
       display: flex;
       flex-direction: column;
-      background-color: rgb(238, 238, 238);
       width: 100%;
-      margin-top: 50px;
+      background-color: #ffffff;
+      border-radius: 18px;
+      margin-top: 10px;
+      padding-bottom: 10px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+        0 6px 20px 0 rgba(0, 0, 0, 0.19);
     "
-    class="ion-padding"
   >
     <div
       style="
         display: flex;
         flex-direction: column;
-        background-color: white;
-        height: auto;
         width: 100%;
-        border-radius: 15px;
-        padding-top: 30px;
-        padding-bottom: 30px;
         margin-top: 20px;
+        padding: 10px 20px 10px 20px;
       "
-      class="ion-padding"
     >
-      <!-- Start: body | div 1 -->
-      <div>
-        <span style="font-size: medium; font-weight: 600">
-          Contact Information
-        </span>
-      </div>
-      <!-- End: body | div 1 -->
-
-      <!-- Start: body | div 2 -->
-      <div
-        style="
-          display: flex;
-          flex-direction: row;
-          width: 100%;
-          margin-top: 20px;
-        "
-      >
-        <div style="width: 10%; background-color: white; margin-right: 5px">
-          <ion-icon
-            style="color: #051d41; height: 30px; width: 30px"
-            name="person-sharp"
-          ></ion-icon>
+      <!-- Start: image, name, telp -->
+      <div style="display: flex; flex-direction: row; width: 100%">
+        <div style="width: 30%; display: flex; align-items: center">
+          <ion-img src="../../assets/images/home-1.png"></ion-img>
         </div>
-
         <div
           style="
-            width: 90%;
-            background-color: white;
-            margin-left: 10px;
+            width: 70%;
             display: flex;
             flex-direction: column;
+            padding-left: 40px;
           "
+          class="ion-padding"
         >
           <div>
-            <span style="font-size: small; font-weight: 600; color: black"
+            <span
+              style="
+                font-family: 'Livvic', sans-serif;
+                font-size: 14px;
+                font-weight: 600;
+                color: black;
+              "
               >{{ dataTransaction_name }}
             </span>
           </div>
           <div>
             <span
               style="
-                font-size: small;
-                font-weight: 600;
+                font-family: 'Livvic', sans-serif;
+                font-size: 14px;
                 font-style: italic;
-                color: rgb(192, 192, 192);
+                color: #c2c2c2;
               "
             >
-              Name
+              name
             </span>
           </div>
-        </div>
-      </div>
-      <!-- End: body | div 2 -->
 
-      <!-- Start: body | div 3 -->
-      <div
-        style="
-          display: flex;
-          flex-direction: row;
-          width: 100%;
-          margin-top: 10px;
-        "
-      >
-        <div style="width: 10%; background-color: white; margin-right: 5px">
-          <ion-icon
-            style="color: #051d41; height: 30px; width: 30px"
-            name="mail-sharp"
-          ></ion-icon>
-        </div>
-
-        <div
-          style="
-            width: 90%;
-            background-color: white;
-            margin-left: 10px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-          "
-        >
-          <div>
-            <span style="font-size: small; font-weight: 600; color: black"
-              >{{ dataTransaction_email }}
-            </span>
-          </div>
-          <div>
+          <div style="margin-top: 10px">
             <span
               style="
-                font-size: small;
+                font-family: 'Livvic', sans-serif;
+                font-size: 14px;
                 font-weight: 600;
-                font-style: italic;
-                color: rgb(192, 192, 192);
+                color: black;
               "
-            >
-              Email
-            </span>
-          </div>
-        </div>
-      </div>
-      <!-- End: body | div 3 -->
-
-      <!-- Start: body | div 4 -->
-      <div
-        style="
-          display: flex;
-          flex-direction: row;
-          width: 100%;
-          margin-top: 10px;
-        "
-      >
-        <div style="width: 10%; background-color: white; margin-right: 5px">
-          <ion-icon
-            style="color: #051d41; height: 30px; width: 30px"
-            name="phone-portrait-sharp"
-          ></ion-icon>
-        </div>
-
-        <div
-          style="
-            width: 90%;
-            background-color: white;
-            margin-left: 10px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-          "
-        >
-          <div>
-            <span style="font-size: small; font-weight: 600; color: black"
               >{{ dataTransaction_addressPhone }}
             </span>
           </div>
           <div>
             <span
               style="
-                font-size: small;
-                font-weight: 600;
+                font-family: 'Livvic', sans-serif;
+                font-size: 14px;
                 font-style: italic;
-                color: rgb(192, 192, 192);
+                color: #c2c2c2;
               "
             >
-              Phone
+              telp
             </span>
           </div>
         </div>
       </div>
-      <!-- End: body | div 4 -->
+      <!-- End: image, name, telp -->
 
-      <!-- Start: body | div 5 -->
+      <!-- Start: address -->
       <div
         style="
           display: flex;
           flex-direction: column;
           width: 100%;
           margin-top: 10px;
+          padding-bottom: 30px;
+          border-bottom: 1px solid #c2c2c2;
         "
       >
-        <div
-          style="
-            width: 100%;
-            background-color: white;
-            display: flex;
-            justify-content: center;
-          "
-        >
+        <div style="padding-left: 10px">
           <span
             style="
-              font-size: small;
-              font-weight: 600;
+              font-family: 'Livvic', sans-serif;
+              font-size: 14px;
               font-style: italic;
-              color: rgb(192, 192, 192);
+              color: #c2c2c2;
             "
           >
-            Address
+            address
           </span>
         </div>
-
-        <div
-          style="
-            width: 100%;
-            background-color: rgb(238, 238, 238);
-            padding-left: 20px;
-            padding-right: 20px;
-            margin-top: 10px;
-            display: flex;
-            flex-direction: column;
-            border-radius: 10px;
-          "
-          class="ion-padding"
-        >
-          <div
+        <div style="margin-top: 10px; padding-left: 10px">
+          <span
             style="
-              display: flex;
-              flex-direction: row;
-              padding-bottom: 10px;
-              border-bottom: rgb(192, 192, 192) 1px solid;
+              font-family: 'Livvic', sans-serif;
+              font-size: 14px;
+              font-weight: 600;
+              color: black;
+            "
+            >{{ dataTransaction_addressName }}
+          </span>
+        </div>
+        <div style="margin-top: 3px; padding-left: 10px; padding-right: 10px">
+          <span
+            style="
+              font-family: 'Livvic', sans-serif;
+              font-size: 14px;
+              color: black;
+            "
+            >{{ dataTransaction_addressAddress }} {{
+            dataTransaction_addressAddress }}
+          </span>
+        </div>
+      </div>
+      <!-- End: address -->
+
+      <!-- Start: date and pet -->
+      <div
+        style="
+          display: flex;
+          flex-direction: row;
+          width: 100%;
+          margin-top: 15px;
+        "
+      >
+        <div style="width: 50%; padding-left: 10px">
+          <span
+            style="
+              font-family: 'Livvic', sans-serif;
+              font-size: 14px;
+              font-weight: 600;
+              color: black;
+            "
+            >{{ dataTransaction_date }} / {{ dataTransaction_time }}
+          </span>
+        </div>
+        <div style="width: 50%; text-align: right; padding-right: 10px">
+          <span
+            style="
+              font-family: 'Livvic', sans-serif;
+              font-size: 14px;
+              font-weight: 600;
+              color: black;
+            "
+            >{{ dataTransaction_petname }} / {{ dataTransaction_pettype }}
+          </span>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: row; width: 100%">
+        <div style="width: 50%; padding-left: 10px">
+          <span
+            style="
+              font-family: 'Livvic', sans-serif;
+              font-size: 14px;
+              font-style: italic;
+              color: #c2c2c2;
             "
           >
-            <div style="width: 40%; display: flex; justify-content: center">
-              <span
-                style="
-                  font-size: small;
-                  font-weight: 600;
-                  font-style: italic;
-                  color: rgb(192, 192, 192);
-                "
-              >
-                Name
-              </span>
-            </div>
-            <div
-              style="
-                width: 60%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                padding-left: 10px;
-              "
-            >
-              <span
-                style="
-                  font-size: small;
-                  font-weight: 600;
-                  font-style: italic;
-                  color: rgb(192, 192, 192);
-                "
-              >
-                Detail
-              </span>
-            </div>
-          </div>
-
-          <div style="display: flex; flex-direction: row; padding-top: 10px">
-            <div style="width: 40%; display: flex; justify-content: center">
-              <span style="font-size: small; font-weight: 600; color: black"
-                >{{ dataTransaction_addressName }}
-              </span>
-            </div>
-            <div
-              style="
-                width: 60%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                padding-left: 10px;
-              "
-            >
-              <span style="font-size: small; font-weight: 600; color: black"
-                >{{ dataTransaction_addressAddress }}
-              </span>
-            </div>
-          </div>
+            date / time
+          </span>
+        </div>
+        <div style="width: 50%; text-align: right; padding-right: 10px">
+          <span
+            style="
+              font-family: 'Livvic', sans-serif;
+              font-size: 14px;
+              font-style: italic;
+              color: #c2c2c2;
+            "
+          >
+            pet name / pet type
+          </span>
         </div>
       </div>
-      <!-- End: body | div 5 -->
-    </div>
-  </div>
-  <!-- End: Contact Information -->
+      <!-- End: date and pet -->
 
-  <!-- Start: Order Information -->
-  <div
-    style="
-      display: flex;
-      flex-direction: column;
-      background-color: rgb(238, 238, 238);
-      width: 100%;
-      margin-top: -20px;
-    "
-    class="ion-padding"
-  >
-    <div
-      style="
-        display: flex;
-        flex-direction: column;
-        background-color: white;
-        height: auto;
-        width: 100%;
-        border-radius: 15px;
-        padding-top: 30px;
-        padding-bottom: 30px;
-      "
-      class="ion-padding"
-    >
-      <!-- Start: body | div 1 -->
-      <div>
-        <span style="font-size: medium; font-weight: 600">
-          Order Information
-        </span>
-      </div>
-      <!-- End: body | div 1 -->
-
-      <!-- Start: body | div 2 -->
-      <div
-        style="
-          display: flex;
-          flex-direction: row;
-          width: 100%;
-          margin-top: 20px;
-        "
-      >
-        <div style="width: 10%; background-color: white; margin-right: 5px">
-          <ion-icon
-            style="color: #051d41; height: 30px; width: 30px"
-            name="paw-sharp"
-          ></ion-icon>
-        </div>
-
-        <div
-          style="
-            width: 90%;
-            background-color: white;
-            margin-left: 10px;
-            display: flex;
-            flex-direction: column;
-          "
-        >
-          <div>
-            <span style="font-size: small; font-weight: 600; color: black"
-              >{{ dataTransaction_petname }} / {{ dataTransaction_pettype }}
-            </span>
-          </div>
-          <div>
-            <span
-              style="
-                font-size: small;
-                font-weight: 600;
-                font-style: italic;
-                color: rgb(192, 192, 192);
-              "
-            >
-              Pet Name / Pet Type
-            </span>
-          </div>
-        </div>
-      </div>
-      <!-- End: body | div 2 -->
-
-      <!-- Start: body | div 3 -->
-      <div
-        style="
-          display: flex;
-          flex-direction: row;
-          width: 100%;
-          margin-top: 10px;
-        "
-      >
-        <div style="width: 10%; background-color: white; margin-right: 5px">
-          <ion-icon
-            style="color: #051d41; height: 30px; width: 30px"
-            name="calendar-sharp"
-          ></ion-icon>
-        </div>
-
-        <div
-          style="
-            width: 90%;
-            background-color: white;
-            margin-left: 10px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-          "
-        >
-          <div>
-            <span style="font-size: small; font-weight: 600; color: black"
-              >{{ dataTransaction_date }} / {{ dataTransaction_time }}
-            </span>
-          </div>
-          <div>
-            <span
-              style="
-                font-size: small;
-                font-weight: 600;
-                font-style: italic;
-                color: rgb(192, 192, 192);
-              "
-            >
-              Date / Time
-            </span>
-          </div>
-        </div>
-      </div>
-      <!-- End: body | div 3 -->
-
-      <!-- Start: body | div 4 -->
+      <!-- Start: total amount and payment method -->
       <div
         style="
           display: flex;
           flex-direction: column;
+          justify-content: center;
+          align-items: center;
           width: 100%;
           margin-top: 30px;
         "
       >
-        <!-- Start: Detail Transaction -->
-        <div
-          style="
-            width: 100%;
-            background-color: white;
-            display: flex;
-            justify-content: center;
-          "
-        >
+        <div>
           <span
             style="
-              font-size: small;
-              font-weight: 600;
+              font-family: 'Livvic', sans-serif;
+              font-size: 14px;
               font-style: italic;
-              color: rgb(192, 192, 192);
+              color: #c2c2c2;
             "
           >
-            Detail Transaction
+            total amount
           </span>
         </div>
-        <!-- End: Detail Transaction -->
 
-        <!-- Start: Mandi Basah -->
-        <div
+        <div>
+          <span
+            style="
+              font-family: 'Livvic', sans-serif;
+              font-size: 38px;
+              font-weight: 600;
+              color: black;
+            "
+            >Rp. {{ dataTransaction_totalamount }}
+          </span>
+        </div>
+
+        <div>
+          <span
+            style="
+              font-family: 'Livvic', sans-serif;
+              font-size: 14px;
+              font-style: italic;
+              color: #c2c2c2;
+            "
+          >
+            payment method :
+            <b style="color: #000000">{{ dataTransaction_payment }}</b>
+          </span>
+        </div>
+      </div>
+      <!-- End: total amount and payment method -->
+
+      <!-- End: caption detail order -->
+      <div
+        style="display: flex; width: 100%; padding-left: 10px; margin-top: 30px"
+      >
+        <span
           style="
-            width: 100%;
-            background-color: white;
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            margin: 20px 0 0 0;
+            font-family: 'Livvic', sans-serif;
+            font-size: 14px;
+            font-style: italic;
+            color: #c2c2c2;
           "
         >
+          detail order
+        </span>
+      </div>
+      <!-- End: caption detail order -->
+
+      <!-- Start: Detail Order -->
+      <div
+        style="
+          width: 100%;
+          background-color: white;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          background-color: #f3f3f3;
+          border-radius: 8px;
+          padding: 10px;
+          margin-top: 5px;
+        "
+      >
+        <!-- Start: Detail Order | package -->
+        <div style="display: flex; flex-direction: row">
           <div style="width: 70%; text-align: justify; padding-left: 20px">
-            <span style="font-size: small; font-weight: 600; color: black"
+            <span
+              style="
+                font-family: 'Livvic', sans-serif;
+                font-size: 14px;
+                font-weight: 600;
+                color: black;
+              "
               >{{ dataTransaction_package }}
             </span>
           </div>
           <div style="width: 30%; text-align: center">
-            <span style="font-size: small; font-weight: 600; color: black"
+            <span
+              style="
+                font-family: 'Livvic', sans-serif;
+                font-size: 14px;
+                font-weight: 600;
+                color: black;
+              "
               >Rp. {{ dataTransaction_packagePayment }}
             </span>
           </div>
         </div>
-        <!-- End: Mandi Basah -->
-
-        <!-- Start: Delivery Service -->
-        <div
-          style="
-            width: 100%;
-            background-color: white;
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            margin: 10px 0 0 0;
-            border-bottom: rgb(192, 192, 192) 1px solid;
-            padding-bottom: 10px;
-          "
-        >
+        <div style="display: flex; flex-direction: row">
           <div style="width: 70%; text-align: justify; padding-left: 20px">
-            <span style="font-size: small; font-weight: 600; color: black"
+            <span
+              style="
+                font-family: 'Livvic', sans-serif;
+                font-size: 14px;
+                font-style: italic;
+                color: #c2c2c2;
+              "
+            >
+              package
+            </span>
+          </div>
+        </div>
+        <!-- End: Detail Order | package -->
+
+        <!-- Start: Detail Order | service -->
+        <div style="display: flex; flex-direction: row; margin-top: 10px">
+          <div style="width: 70%; text-align: justify; padding-left: 20px">
+            <span
+              style="
+                font-family: 'Livvic', sans-serif;
+                font-size: 14px;
+                font-weight: 600;
+                color: black;
+              "
               >{{ dataTransaction_service }}
             </span>
           </div>
           <div style="width: 30%; text-align: center">
-            <span style="font-size: small; font-weight: 600; color: black"
+            <span
+              style="
+                font-family: 'Livvic', sans-serif;
+                font-size: 14px;
+                font-weight: 600;
+                color: black;
+              "
               >Rp. {{ dataTransaction_servicePayment }}
             </span>
           </div>
         </div>
-        <!-- End: Delivery Service -->
-
-        <!-- Start: Payment - Total Amount -->
-        <div
-          style="
-            width: 100%;
-            background-color: white;
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            margin: 10px 0 0 0;
-          "
-        >
-          <div style="width: 50%; text-align: center">
+        <div style="display: flex; flex-direction: row">
+          <div style="width: 70%; text-align: justify; padding-left: 20px">
             <span
               style="
-                font-size: small;
-                font-weight: 600;
+                font-family: 'Livvic', sans-serif;
+                font-size: 14px;
                 font-style: italic;
-                color: rgb(192, 192, 192);
+                color: #c2c2c2;
               "
             >
-              Payment
-            </span>
-          </div>
-          <div style="width: 50%; text-align: center">
-            <span
-              style="
-                font-size: small;
-                font-weight: 600;
-                font-style: italic;
-                color: rgb(192, 192, 192);
-              "
-            >
-              Total Amount
+              service
             </span>
           </div>
         </div>
-        <!-- End: Payment - Total Amount -->
-
-        <!-- Start: Cash - Nominal -->
-        <div
-          style="
-            width: 100%;
-            background-color: white;
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            margin: 5px 0 0 0;
-          "
-        >
-          <div style="width: 50%; text-align: center">
-            <span style="font-size: large; font-weight: 600">
-              {{ dataTransaction_payment }}
-            </span>
-          </div>
-          <div style="width: 50%; text-align: center">
-            <span style="font-size: large; font-weight: 600">
-              Rp. {{ dataTransaction_totalamount }}
-            </span>
-          </div>
-        </div>
-        <!-- End: Cash - Nominal -->
+        <!-- End: Detail Order | service -->
       </div>
-      <!-- End: body | div 4 -->
-    </div>
-  </div>
-  <!-- End: Order Information -->
+      <!-- End: Detail Order -->
 
-  <!-- Start: Button Back - Yes -->
-  <div
-    style="
-      display: flex;
-      flex-direction: row;
-      background-color: rgb(238, 238, 238);
-      width: 100%;
-      margin-top: 0px;
-      padding-bottom: 50px;
-    "
-    class="ion-padding"
-  >
-    <div
-      (click)="confirmNo()"
-      style="
-        width: 30%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: 30px;
-      "
-    >
-      <span style="font-size: medium; font-weight: 600; color: #0f3266">
-        back
-      </span>
-    </div>
-    <div style="width: 70%; margin-top: 30px">
-      <button
-        (click)="confirmYes()"
-        routerDirection="forward"
+      <!-- Start: Button Back - Yes -->
+      <div
         style="
-          background-color: #1a72f8;
+          display: flex;
+          flex-direction: row;
           width: 100%;
-          height: 40px;
-          color: white;
-          border-radius: 15px;
+          margin-top: 30px;
         "
+        class="ion-padding"
       >
-        yes, i'm sure
-        <ion-icon
+        <div
+          (click)="confirmNo()"
           style="
-            color: white;
-            font-size: small;
-            position: absolute;
-            margin-left: 65px;
+            width: 30%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
           "
-          name="checkmark-sharp"
-        ></ion-icon>
-      </button>
+        >
+          <span style="font-size: medium; font-weight: 600; color: #c2c2c2">
+            back
+          </span>
+        </div>
+        <div style="width: 70%">
+          <button
+            (click)="confirmYes()"
+            routerDirection="forward"
+            style="
+              background-color: #ef4b52;
+              width: 100%;
+              height: 40px;
+              color: white;
+              border-radius: 12px;
+            "
+          >
+            yes, i'm sure
+          </button>
+        </div>
+      </div>
+      <!-- End: Button Back - Yes -->
     </div>
   </div>
-  <!-- End: Button Back - Yes -->
-
-  <!-- Start: body -->
+  <!-- End: Body -->
 </ion-content>

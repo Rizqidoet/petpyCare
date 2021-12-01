@@ -116,11 +116,11 @@ export class TransactionConfirmPage implements OnInit {
     var indexLen = this.transactionfix.length;
     var newId = 1 + indexLen;
     var dataTransaction = {
-      id: newId,
+      id: 'TID-00' + newId,
       name: this.dataTransaction_name,
-      package: this.dataTransaction_email,
+      email: this.dataTransaction_email,
       service: this.dataTransaction_package,
-      email: this.dataTransaction_service,
+      package: this.dataTransaction_service,
       addressAddress: this.dataTransaction_addressAddress,
       addressName: this.dataTransaction_addressName,
       addressPhone: this.dataTransaction_addressPhone,
