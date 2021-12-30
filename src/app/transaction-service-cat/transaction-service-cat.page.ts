@@ -107,6 +107,7 @@ export class TransactionServiceCatPage implements OnInit {
 
   defaultForm() {
     this.pickPackage = '';
+    this.pickPackageItemCode = '';
     this.pickService = '';
     this.pickAddressAddress = 'Set Address';
     this.pickAddressName = '';
@@ -130,7 +131,9 @@ export class TransactionServiceCatPage implements OnInit {
 
   listProducts_category = [];
   storageProduct = [];
+  storageItemPrice = [];
   pickPackage: string;
+  pickPackageItemCode: string;
   pickUsername: string;
   pickEmail: string;
 
@@ -139,9 +142,14 @@ export class TransactionServiceCatPage implements OnInit {
       this.storageProduct = data;
       this.listProducts_category = this.storageProduct['product'].filter(
         function (storageProduct) {
-          return storageProduct.item_group == 'Service Cat';
+          return storageProduct.item_group == 'Grooming Kucing';
         }
       );
+    });
+
+    this.storage.getObject('storageItemPrice').then((data: any) => {
+      this.storageItemPrice = data;
+      console.log("Storage Price List : ", this.storageItemPrice);
     });
 
     this.storage.getObject('storageUsers').then((data: any) => {
@@ -152,7 +160,9 @@ export class TransactionServiceCatPage implements OnInit {
 
   taplistProduct(listproduct) {
     this.pickPackage = listproduct['item_name'];
-    this.swipeNext();
+    this.pickPackageItemCode = listproduct['item_code'];
+    console.log(this.pickPackage, this.pickPackageItemCode);
+    //this.swipeNext();
   }
 
   // ______Slide_1______________________________________________________________End_______

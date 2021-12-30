@@ -65,28 +65,28 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'transaction-cukur-kucing',
+    path: 'transaction-haircut-kucing',
     loadChildren: () =>
       import('./transaction-cukur-kucing/transaction-cukur-kucing.module').then(
         (m) => m.TransactionCukurKucingPageModule
       ),
   },
   {
-    path: 'transaction-service-cat',
+    path: 'transaction-grooming-kucing',
     loadChildren: () =>
       import('./transaction-service-cat/transaction-service-cat.module').then(
         (m) => m.TransactionServiceCatPageModule
       ),
   },
   {
-    path: 'transaction-service-anjing',
+    path: 'transaction-grooming-anjing',
     loadChildren: () =>
       import(
         './transaction-service-anjing/transaction-service-anjing.module'
       ).then((m) => m.TransactionServiceAnjingPageModule),
   },
   {
-    path: 'transaction-service-anjing-haircut',
+    path: 'transaction-haircut-anjing',
     loadChildren: () =>
       import(
         './transaction-service-anjing-haircut/transaction-service-anjing-haircut.module'

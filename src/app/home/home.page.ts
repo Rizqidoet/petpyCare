@@ -87,21 +87,21 @@ export class HomePage implements OnInit {
 
     this.storage.getObject('storageProducts').then((data: any) => {
       this.storageProduct = data;
-      //console.log('Array Product = ', this.storageProduct);
+      console.log('Array Product = ', this.storageProduct);
       var a = this.storageProduct['product'].filter(function (storageProduct) {
-        return storageProduct.item_group == 'Cukur Kucing';
+        return storageProduct.item_group == 'Grooming Kucing';
       });
 
       var b = this.storageProduct['product'].filter(function (storageProduct) {
-        return storageProduct.item_group == 'Service Cat';
+        return storageProduct.item_group == 'Haircut Kucing';
       });
 
       var c = this.storageProduct['product'].filter(function (storageProduct) {
-        return storageProduct.item_group == 'Service Anjing';
+        return storageProduct.item_group == 'Grooming Anjing';
       });
 
       var d = this.storageProduct['product'].filter(function (storageProduct) {
-        return storageProduct.item_group == 'Service Anjing Haircut';
+        return storageProduct.item_group == 'Haircut Anjing';
       });
       this.pickMenu_1 = a[0]['item_group'];
       this.pickMenu_2 = b[0]['item_group'];
@@ -129,7 +129,7 @@ export class HomePage implements OnInit {
     this.storage.removeItem('storagePetPick');
     //Storage.set({ key: 'storagePickMenu', value: value });
 
-    if (value == 'cukur-kucing') {
+    if (value == 'haircut-kucing') {
       this.categoryPet = 'kucing';
       console.log('the value is', value);
       console.log('the category is', this.categoryPet);
@@ -144,7 +144,7 @@ export class HomePage implements OnInit {
         name: value,
         category: 'kucing',
       });
-    } else if (value == 'service-cat') {
+    } else if (value == 'grooming-kucing') {
       this.categoryPet = 'kucing';
       console.log('the value is', value);
       console.log('the category is', this.categoryPet);
@@ -159,7 +159,7 @@ export class HomePage implements OnInit {
         name: value,
         category: 'kucing',
       });
-    } else if (value == 'service-anjing') {
+    } else if (value == 'grooming-anjing') {
       this.categoryPet = 'anjing';
       console.log('the value is', value);
       console.log('the category is', this.categoryPet);
@@ -174,7 +174,7 @@ export class HomePage implements OnInit {
         name: value,
         category: 'anjing',
       });
-    } else if (value == 'service-anjing-haircut') {
+    } else if (value == 'haircut-anjing') {
       this.categoryPet = 'anjing';
       console.log('the value is', value);
       console.log('the category is', this.categoryPet);

@@ -139,7 +139,7 @@ export class TransactionServiceAnjingPage implements OnInit {
       this.storageProduct = data;
       this.listProducts_category = this.storageProduct['product'].filter(
         function (storageProduct) {
-          return storageProduct.item_group == 'Service Anjing';
+          return storageProduct.item_group == 'Grooming Anjing';
         }
       );
     });

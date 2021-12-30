@@ -160,21 +160,20 @@
               routerDirection="forward"
               style="z-index: 0; margin-top: 20px"
             >
-              <div style="display: flex; flex-direction: row; width: 100%">
-                <div style="width: 10%; display: flex; justify-content: center">
+              <div style="display: flex; flex-direction: row; width: 100%; justify-content: center; align-items: center;">
+                <div style="width: 20%;">
                   <ion-thumbnail
                     slot="start"
-                    style="margin-top: 5px; color: #ef4b52; font-size: 20px"
+                    style="width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #ef4b52;"
                   >
-                    <ion-icon name="shield-checkmark"></ion-icon>
+                    <ion-icon name="shield-checkmark" style="width: 25px; height: 25px;"></ion-icon>
                   </ion-thumbnail>
                 </div>
                 <div
                   style="
-                    width: 85%;
+                    width: 80%;
                     display: flex;
                     flex-direction: column;
-                    justify-content: center;
                   "
                   class="ion-text-wrap"
                 >
@@ -188,7 +187,7 @@
                       {{ listproduct.item_name }}
                     </span>
                   </div>
-                  <div>
+                  <!-- <div>
                     <p
                       style="
                         color: #686868;
@@ -199,7 +198,7 @@
                     >
                       {{ listproduct.description }}
                     </p>
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </ion-item>

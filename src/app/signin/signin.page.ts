@@ -186,6 +186,10 @@ export class SigninPage implements OnInit {
           product: response['message']['products'],
         });
 
+        this.storage.setObject('storageItemPrice', {
+          product: response['message']['item_price'],
+        });
+
         // var dataAll = {
         //   User: this.storageUsers,
         //   product: response['message']['products'],

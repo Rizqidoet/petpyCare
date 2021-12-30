@@ -57,6 +57,7 @@ export class TransactionSetaddressPage {
       })
       .on('locationfound', (e) => {
         this.setMarkertWithAnimation(e.latitude, e.longitude, true);
+        
       });
   }
 
@@ -79,7 +80,7 @@ export class TransactionSetaddressPage {
           `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&addressdetails=1`
         )
         .subscribe((data: any) => {
-          //console.log('Address Data', data);
+          // console.log('Address Data', data);
           this.addressComponent = data.address;
           this.storageAddress = data.display_name;
 
