@@ -8,6 +8,8 @@ import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { Storage } from '@capacitor/storage';
 import { StorageCapService } from '../../app/services/storage-cap.service';
 
+// import * as JSONdata from "../../assets/data"; //You can name 'JSONdata' as you want
+
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.page.html',
@@ -29,7 +31,8 @@ export class SigninPage implements OnInit {
   storageSc: string;
   storageUsers = [];
   storageProducts = [];
-  //storageAll = [];
+  storageProductNormal = [];
+  storageProductDiskon = [];
 
   constructor(
     private platform: Platform,
@@ -57,6 +60,7 @@ export class SigninPage implements OnInit {
   ionViewWillEnter() {
     this.clearVariable();
     this.clearStorage();
+    // this.readJsonData();
   }
   ngOnInit() {}
 
@@ -141,6 +145,14 @@ export class SigninPage implements OnInit {
     this.callServer(this.apiUserinfo);
   }
 
+  // readJsonData(){    
+  //   fetch("../../assets/data.json").then(res=>res.json()).then(json=>{
+  //     this.storageAll = json;
+  //     console.log("OUTPUT: ", this.storageAll);
+  //       //DO YOUR STAFF
+  //   });
+  // }
+
   async callServer(apiUserinfo) {
     console.log('Pinging Server');
     var url = 'https://qalb.petpy.id/api/method/petpy.api.login';
@@ -159,7 +171,59 @@ export class SigninPage implements OnInit {
       (response) => {
         console.log(' KONEKSI KE SERVER BERHASIL --> Data Log :', response);
         var a = response['message']['products'].length;
-        console.log('lenght a = ', a);
+        var b = response['message']['products'];
+        var c = response['message']['item_price'];
+        // console.log('lenght a = ', a);
+        //console.log('lenght a = ', response['message']);
+        b.forEach((value) => {
+          //console.log(value['item_code']
+          var d =  c.filter(function(e) {
+            return e.item_code == value['item_code']; 
+            
+          });
+
+          console.log("D = ", d);
+
+          for (let i = 0; i < d.length; i++) {
+            const element = d[i];
+            // console.log("Elemet = ", element);
+
+            var dataProductDiskon = {
+              item_code: value['item_code'],
+              item_group: value['item_group'],
+              item_name: value['item_name'],
+              item_price: d[0]['price_list'],
+              item_priceRate: d[0]['price_list_rate'],
+              item_desc: value['description'],
+            };
+
+            this.storageProductDiskon.push(dataProductDiskon);
+            this.storage.setObject('storageProductDiskon', {
+              products: this.storageProductDiskon,
+            });
+
+            var dataProductNormal = {
+              item_code: value['item_code'],
+              item_group: value['item_group'],
+              item_name: value['item_name'],
+              item_price: d[1]['price_list'],
+              item_priceRate: d[1]['price_list_rate'],
+              item_desc: value['description'],
+            };
+            
+            this.storageProductNormal.push(dataProductNormal);
+            this.storage.setObject('storageProductNormal', {
+              products: this.storageProductNormal,
+            });
+
+          }
+          
+          
+
+          console.log("Normal = ", dataProductNormal)
+          console.log("Diskon = ", dataProductDiskon);
+
+        });
 
         this.storageUsername = this.apiUsername;
         this.storageEmail = this.apiEmail;
@@ -186,21 +250,8 @@ export class SigninPage implements OnInit {
           product: response['message']['products'],
         });
 
-        this.storage.setObject('storageItemPrice', {
-          product: response['message']['item_price'],
-        });
-
-        // var dataAll = {
-        //   User: this.storageUsers,
-        //   product: response['message']['products'],
-        // };
-        // this.storageAll.push(dataAll);
-        // this.storage.setObject(this.storageKey, {
-        //   dataAll: this.storageAll,
-        // });
-
-        this.showAlert('Login Success ', this.storageUsername);
-        this.router.navigate(['/home']);
+        // this.showAlert('Login Success ', this.storageUsername);
+        // this.router.navigate(['/home']);
       },
       (error) => {
         console.log('ada Error', error);
@@ -237,7 +288,7 @@ export class SigninPage implements OnInit {
     signInWithEmailAndPassword(auth, this.email, this.password)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log('user login = ', user.email);
+        // console.log('user login = ', user.email);
         this.email = '';
         this.password = '';
         this.router.navigateByUrl('/home');

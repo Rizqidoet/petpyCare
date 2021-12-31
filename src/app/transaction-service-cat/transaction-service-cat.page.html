@@ -186,8 +186,22 @@
                     >
                       {{ listproduct.item_name }}
                     </span>
+                   
                   </div>
-                  <!-- <div>
+                  <div>
+                    <a
+                      style="
+                        font-size: 12px;
+                        font-family: 'Source Sans Pro', sans-serif;
+                        color: gray;
+                      "
+                    >
+                      see details
+                    </a>
+                   
+                  </div>
+                  <div *ngIf="isShowDetails"
+                  id="divDetails">
                     <p
                       style="
                         color: #686868;
@@ -198,7 +212,7 @@
                     >
                       {{ listproduct.description }}
                     </p>
-                  </div> -->
+                  </div>
                 </div>
               </div>
             </ion-item>

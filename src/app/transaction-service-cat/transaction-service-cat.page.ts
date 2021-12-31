@@ -131,11 +131,12 @@ export class TransactionServiceCatPage implements OnInit {
 
   listProducts_category = [];
   storageProduct = [];
-  storageItemPrice = [];
   pickPackage: string;
   pickPackageItemCode: string;
+  // pickPackageItemCodeCompare: string;
   pickUsername: string;
   pickEmail: string;
+  isShowDetails: boolean = false;
 
   getStorage1() {
     this.storage.getObject('storageProducts').then((data: any) => {
@@ -145,11 +146,6 @@ export class TransactionServiceCatPage implements OnInit {
           return storageProduct.item_group == 'Grooming Kucing';
         }
       );
-    });
-
-    this.storage.getObject('storageItemPrice').then((data: any) => {
-      this.storageItemPrice = data;
-      console.log("Storage Price List : ", this.storageItemPrice);
     });
 
     this.storage.getObject('storageUsers').then((data: any) => {
@@ -162,7 +158,16 @@ export class TransactionServiceCatPage implements OnInit {
     this.pickPackage = listproduct['item_name'];
     this.pickPackageItemCode = listproduct['item_code'];
     console.log(this.pickPackage, this.pickPackageItemCode);
+    this.seeDetails();
     //this.swipeNext();
+  }
+
+  seeDetails(){
+    if(this.isShowDetails == true){
+      this.isShowDetails = false;
+    }else{
+      this.isShowDetails = true;
+    }
   }
 
   // ______Slide_1______________________________________________________________End_______

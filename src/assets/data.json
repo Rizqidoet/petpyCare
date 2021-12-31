@@ -1,0 +1,36 @@
+{
+    "productAll": [
+        {
+            "item_code": "Kode001",
+            "item_group": "Mode001",
+            "item_name": "-Sekundren1",
+            "item_priceList": "diskon1",
+            "item_priceListRate": "100001",
+            "item_desc": "Sekundren Malakundren1"
+        },
+        {
+            "item_code": "Kode002",
+            "item_group": "Mode002",
+            "item_name": "-Sekundren2",
+            "item_priceList": "diskon2",
+            "item_priceListRate": "100002",
+            "item_desc": "Sekundren Malakundren2"
+        },
+        {
+            "item_code": "Kode003",
+            "item_group": "Mode001",
+            "item_name": "-Sekundren3",
+            "item_priceList": "diskon3",
+            "item_priceListRate": "100003",
+            "item_desc": "Sekundren Malakundren3"
+        },
+        {
+            "item_code": "Kode004",
+            "item_group": "Mode002",
+            "item_name": "-Sekundren4",
+            "item_priceList": "diskon4",
+            "item_priceListRate": "100004",
+            "item_desc": "Sekundren Malakundren4"
+        }
+    ]
+}

@@ -107,13 +107,13 @@ export class HomePage implements OnInit {
       this.pickMenu_2 = b[0]['item_group'];
       this.pickMenu_3 = c[0]['item_group'];
       this.pickMenu_4 = d[0]['item_group'];
-      // console.log(
-      //   'List groupName = ',
-      //   this.listGroup_1,
-      //   ' - ' + this.listGroup_2,
-      //   ' - ' + this.listGroup_3,
-      //   ' - ' + this.listGroup_4
-      // );
+      console.log(
+        'List groupName = ',
+        this.listGroup_1,
+        ' - ' + this.listGroup_2,
+        ' - ' + this.listGroup_3,
+        ' - ' + this.listGroup_4
+      );
     });
   }
 
