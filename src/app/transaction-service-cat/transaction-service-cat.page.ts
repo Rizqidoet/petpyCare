@@ -139,9 +139,9 @@ export class TransactionServiceCatPage implements OnInit {
   isShowDetails: boolean = false;
 
   getStorage1() {
-    this.storage.getObject('storageProducts').then((data: any) => {
+    this.storage.getObject('storageProductNormal').then((data: any) => {
       this.storageProduct = data;
-      this.listProducts_category = this.storageProduct['product'].filter(
+      this.listProducts_category = this.storageProduct['products'].filter(
         function (storageProduct) {
           return storageProduct.item_group == 'Grooming Kucing';
         }
@@ -158,8 +158,8 @@ export class TransactionServiceCatPage implements OnInit {
     this.pickPackage = listproduct['item_name'];
     this.pickPackageItemCode = listproduct['item_code'];
     console.log(this.pickPackage, this.pickPackageItemCode);
-    this.seeDetails();
-    //this.swipeNext();
+    // this.seeDetails();
+    this.swipeNext();
   }
 
   seeDetails(){

@@ -136,9 +136,9 @@ export class TransactionCukurKucingPage implements OnInit {
   pickEmail: string;
 
   getStorage1() {
-    this.storage.getObject('storageProducts').then((data: any) => {
+    this.storage.getObject('storageProductNormal').then((data: any) => {
       this.storageProduct = data;
-      this.listProducts_category = this.storageProduct['product'].filter(
+      this.listProducts_category = this.storageProduct['products'].filter(
         function (storageProduct) {
           return storageProduct.item_group == 'Haircut Kucing';
         }

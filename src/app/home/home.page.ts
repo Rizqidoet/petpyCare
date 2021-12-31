@@ -85,22 +85,22 @@ export class HomePage implements OnInit {
       // this.showAlert('Your email is => ', this.storageEmail);
     });
 
-    this.storage.getObject('storageProducts').then((data: any) => {
+    this.storage.getObject('storageProductNormal').then((data: any) => {
       this.storageProduct = data;
       console.log('Array Product = ', this.storageProduct);
-      var a = this.storageProduct['product'].filter(function (storageProduct) {
+      var a = this.storageProduct['products'].filter(function (storageProduct) {
         return storageProduct.item_group == 'Grooming Kucing';
       });
 
-      var b = this.storageProduct['product'].filter(function (storageProduct) {
+      var b = this.storageProduct['products'].filter(function (storageProduct) {
         return storageProduct.item_group == 'Haircut Kucing';
       });
 
-      var c = this.storageProduct['product'].filter(function (storageProduct) {
+      var c = this.storageProduct['products'].filter(function (storageProduct) {
         return storageProduct.item_group == 'Grooming Anjing';
       });
 
-      var d = this.storageProduct['product'].filter(function (storageProduct) {
+      var d = this.storageProduct['products'].filter(function (storageProduct) {
         return storageProduct.item_group == 'Haircut Anjing';
       });
       this.pickMenu_1 = a[0]['item_group'];

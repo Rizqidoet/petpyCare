@@ -246,12 +246,12 @@ export class SigninPage implements OnInit {
           User: this.storageUsers,
         });
 
-        this.storage.setObject('storageProducts', {
-          product: response['message']['products'],
-        });
+        // this.storage.setObject('storageProducts', {
+        //   product: response['message']['products'],
+        // });
 
-        // this.showAlert('Login Success ', this.storageUsername);
-        // this.router.navigate(['/home']);
+        this.showAlert('Login Success ', this.storageUsername);
+        this.router.navigate(['/home']);
       },
       (error) => {
         console.log('ada Error', error);
