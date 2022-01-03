@@ -137,12 +137,13 @@ export class SigninPage implements OnInit {
     console.log('SIGNIN BERHASIL ---> Ini Isi GoogleUser = ', googleUser);
     this.apiUserinfo = googleUser;
     this.apiUsername =
-      this.apiUserinfo.givenName + ' ' + this.apiUserinfo.familyName;
+    this.apiUserinfo.givenName + ' ' + this.apiUserinfo.familyName;
     this.apiEmail = this.apiUserinfo.email;
     this.apiID = this.apiUserinfo.id;
     this.apiImage = this.apiUserinfo.imageUrl;
-
-    this.callServer(this.apiUserinfo);
+    
+    this.showAlert("Berhasil", "Silahkan Masuk");
+    // this.callServer(this.apiUserinfo);
   }
 
   // readJsonData(){    
@@ -214,46 +215,6 @@ export class SigninPage implements OnInit {
           this.storage.setObject('storageProductDiskon', {
             products: this.storageProductDiskon,
           });
-         
-
-          // for (let i = 0; i < d.length; i++) {
-          //   const element = d[i];
-          //   console.log("Elemet = ", element);
-           
-          //   // var dataProductDiskon = {
-          //   //   item_code: value['item_code'],
-          //   //   item_group: value['item_group'],
-          //   //   item_name: value['item_name'],
-          //   //   item_price: d[1]['price_list'],
-          //   //   item_priceRate: d[1]['price_list_rate'],
-          //   //   item_desc: value['description'],
-          //   // };
-
-          //   // this.storageProductDiskon.push(dataProductDiskon);
-          //   // this.storage.setObject('storageProductDiskon', {
-          //   //   products: this.storageProductDiskon,
-          //   // });
-
-          //   // var dataProductNormal = {
-          //   //   item_code: value['item_code'],
-          //   //   item_group: value['item_group'],
-          //   //   item_name: value['item_name'],
-          //   //   item_price: d[0]['price_list'],
-          //   //   item_priceRate: d[0]['price_list_rate'],
-          //   //   item_desc: value['description'],
-          //   // };
-            
-          //   // this.storageProductNormal.push(dataProductNormal);
-          //   // this.storage.setObject('storageProductNormal', {
-          //   //   products: this.storageProductNormal,
-          //   // });
-
-          // }
-          
-          
-
-          // console.log("Normal = ", dataProductNormal)
-          // console.log("Diskon = ", dataProductDiskon);
 
         });
 
@@ -277,10 +238,6 @@ export class SigninPage implements OnInit {
         this.storage.setObject('storageUsers', {
           User: this.storageUsers,
         });
-
-        // this.storage.setObject('storageProducts', {
-        //   product: response['message']['products'],
-        // });
 
         this.showAlert('Login Success ', this.storageUsername);
         this.router.navigate(['/home']);
