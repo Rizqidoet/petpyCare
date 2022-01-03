@@ -182,46 +182,78 @@ export class SigninPage implements OnInit {
             
           });
 
-          console.log("D = ", d);
+          // console.log("item_name product = ", value['item_name']);
+          // console.log("D = ", d);
 
-          for (let i = 0; i < d.length; i++) {
-            const element = d[i];
-            // console.log("Elemet = ", element);
+          var dataProductNormal = {
+            item_code: value['item_code'],
+            item_group: value['item_group'],
+            item_name: value['item_name'],
+            item_price: d[0]['price_list'],
+            item_priceRate: d[0]['price_list_rate'],
+            item_desc: value['description'],
+          };
 
-            var dataProductDiskon = {
-              item_code: value['item_code'],
-              item_group: value['item_group'],
-              item_name: value['item_name'],
-              item_price: d[0]['price_list'],
-              item_priceRate: d[0]['price_list_rate'],
-              item_desc: value['description'],
-            };
+          this.storageProductNormal.push(dataProductNormal);
+          console.log("Storage Product Normal = ", this.storageProductNormal)
+          this.storage.setObject('storageProductNormal', {
+            products: this.storageProductNormal,
+          });
 
-            this.storageProductDiskon.push(dataProductDiskon);
-            this.storage.setObject('storageProductDiskon', {
-              products: this.storageProductDiskon,
-            });
+          var dataProductDiskon = {
+            item_code: value['item_code'],
+            item_group: value['item_group'],
+            item_name: value['item_name'],
+            item_price: d[1]['price_list'],
+            item_priceRate: d[1]['price_list_rate'],
+            item_desc: value['description'],
+          };
 
-            var dataProductNormal = {
-              item_code: value['item_code'],
-              item_group: value['item_group'],
-              item_name: value['item_name'],
-              item_price: d[1]['price_list'],
-              item_priceRate: d[1]['price_list_rate'],
-              item_desc: value['description'],
-            };
+          this.storageProductDiskon.push(dataProductDiskon);
+          console.log("Storage Product Diskon = ", this.storageProductDiskon)
+          this.storage.setObject('storageProductDiskon', {
+            products: this.storageProductDiskon,
+          });
+         
+
+          // for (let i = 0; i < d.length; i++) {
+          //   const element = d[i];
+          //   console.log("Elemet = ", element);
+           
+          //   // var dataProductDiskon = {
+          //   //   item_code: value['item_code'],
+          //   //   item_group: value['item_group'],
+          //   //   item_name: value['item_name'],
+          //   //   item_price: d[1]['price_list'],
+          //   //   item_priceRate: d[1]['price_list_rate'],
+          //   //   item_desc: value['description'],
+          //   // };
+
+          //   // this.storageProductDiskon.push(dataProductDiskon);
+          //   // this.storage.setObject('storageProductDiskon', {
+          //   //   products: this.storageProductDiskon,
+          //   // });
+
+          //   // var dataProductNormal = {
+          //   //   item_code: value['item_code'],
+          //   //   item_group: value['item_group'],
+          //   //   item_name: value['item_name'],
+          //   //   item_price: d[0]['price_list'],
+          //   //   item_priceRate: d[0]['price_list_rate'],
+          //   //   item_desc: value['description'],
+          //   // };
             
-            this.storageProductNormal.push(dataProductNormal);
-            this.storage.setObject('storageProductNormal', {
-              products: this.storageProductNormal,
-            });
+          //   // this.storageProductNormal.push(dataProductNormal);
+          //   // this.storage.setObject('storageProductNormal', {
+          //   //   products: this.storageProductNormal,
+          //   // });
 
-          }
+          // }
           
           
 
-          console.log("Normal = ", dataProductNormal)
-          console.log("Diskon = ", dataProductDiskon);
+          // console.log("Normal = ", dataProductNormal)
+          // console.log("Diskon = ", dataProductDiskon);
 
         });
 

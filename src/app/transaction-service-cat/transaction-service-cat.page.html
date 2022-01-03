@@ -156,7 +156,6 @@
               button
               detail
               *ngFor="let listproduct of listProducts_category"
-              (click)="taplistProduct(listproduct)"
               routerDirection="forward"
               style="z-index: 0; margin-top: 20px"
             >
@@ -177,7 +176,7 @@
                   "
                   class="ion-text-wrap"
                 >
-                  <div>
+                  <div (click)="taplistProduct(listproduct)">
                     <span
                       style="
                         font-size: 16px;
@@ -190,28 +189,15 @@
                   </div>
                   <div>
                     <a
+                      (click)="seeDetails(listproduct)"
                       style="
+                        color: gray;
                         font-size: 12px;
                         font-family: 'Source Sans Pro', sans-serif;
-                        color: gray;
                       "
                     >
-                      see details
+                    see details
                     </a>
-                   
-                  </div>
-                  <div *ngIf="isShowDetails"
-                  id="divDetails">
-                    <p
-                      style="
-                        color: #686868;
-                        font-size: 14px;
-                        font-family: 'Montserrat', sans-serif;
-                        text-align: justify;
-                      "
-                    >
-                      {{ listproduct.description }}
-                    </p>
                   </div>
                 </div>
               </div>

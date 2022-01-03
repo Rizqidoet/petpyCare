@@ -108,6 +108,8 @@ export class TransactionCukurKucingPage implements OnInit {
 
   defaultForm() {
     this.pickPackage = '';
+    this.pickPackageItemCode = '';
+    this.pickPackageItemPriceRate = 0;
     this.pickService = '';
     this.pickAddressAddress = 'Set Address';
     this.pickAddressName = '';
@@ -132,6 +134,8 @@ export class TransactionCukurKucingPage implements OnInit {
   listProducts_category = [];
   storageProduct = [];
   pickPackage: string;
+  pickPackageItemCode: string;
+  pickPackageItemPriceRate: number;
   pickUsername: string;
   pickEmail: string;
 
@@ -153,7 +157,27 @@ export class TransactionCukurKucingPage implements OnInit {
 
   taplistProduct(listproduct) {
     this.pickPackage = listproduct['item_name'];
+    this.pickPackageItemCode = listproduct['item_code'];
+    this.pickPackageItemPriceRate = listproduct['item_priceRate'];
+    console.log(this.pickPackage, this.pickPackageItemCode, this.pickPackageItemPriceRate);
+    // this.seeDetails();
     this.swipeNext();
+  }
+
+  async seeDetails(listproduct) {
+    var itemCode = listproduct['item_code'];
+    var itemPriceRate = listproduct['item_priceRate'];
+    var itemDesc = listproduct['item_desc'];
+    var itemName = listproduct['item_name'];
+    // this.showAlert("Sekundren", "Malakundren nih guys");
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: "Detail Package",
+      message: "<div>Name : " + itemName + "</div><div>Code : " + itemCode + "</div><div>Price : " + itemPriceRate + "</div><div>Desc : " + itemDesc + "</div>",
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 
   // ______Slide_1______________________________________________________________End_______
@@ -302,6 +326,7 @@ export class TransactionCukurKucingPage implements OnInit {
                 console.log('Pet Type : ', this.pickPetType);
                 console.log('Date : ', this.pickPetDate);
                 console.log('Time : ', this.pickPetTime);
+                console.log('Price : ', this.pickPackageItemPriceRate);
                 console.log('Payment : ', this.pickPayment);
                 console.log('_________________________________');
 
@@ -338,7 +363,7 @@ export class TransactionCukurKucingPage implements OnInit {
                           pettype: this.pickPetType,
                           date: this.pickPetDate,
                           time: this.pickPetTime,
-                          packagePayment: 85000,
+                          packagePayment: this.pickPackageItemPriceRate,
                           servicePayment: 15000,
                           payment: this.pickPayment,
                         };
@@ -394,6 +419,7 @@ export class TransactionCukurKucingPage implements OnInit {
                   console.log('Pet Type : ', this.pickPetType);
                   console.log('Date : ', this.pickPetDate);
                   console.log('Time : ', this.pickPetTime);
+                  console.log('Price : ', this.pickPackageItemPriceRate);
                   console.log('Payment : ', this.pickPayment);
                   console.log('_________________________________');
 
@@ -430,7 +456,7 @@ export class TransactionCukurKucingPage implements OnInit {
                             pettype: this.pickPetType,
                             date: this.pickPetDate,
                             time: this.pickPetTime,
-                            packagePayment: 85000,
+                            packagePayment: this.pickPackageItemPriceRate,
                             servicePayment: 15000,
                             payment: this.pickPayment,
                           };
