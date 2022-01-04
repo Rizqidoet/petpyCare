@@ -1,5 +1,15 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import * as L from 'leaflet';
+// import {
+//   latLng,
+//   tileLayer,
+//   Icon,
+//   icon,
+//   Marker
+// } from 'leaflet';
+// import 'leaflet';
+// import 'leaflet-routing-machine';
+// declare let L;
 import { HttpClient } from '@angular/common/http';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { IonSlides, Platform } from '@ionic/angular';
@@ -32,7 +42,26 @@ export class TransactionSetaddressPage {
     this.getStorage();
     this.loadMap();
     this.mapClick();
+    // this.drawMap();
   }
+
+  // drawMap(): void {
+  //   this.map = L.map('map').fitWorld();
+  //   // console.log('This Map', this.map);
+  //   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  //     attribution: 'contributor',
+  //     maxZoom: 15,
+  //   }).addTo(this.map);
+
+  //   L.Routing.control({
+  //     waypoints: [
+  //       L.latLng(-6.224543, 106.855140),
+  //       L.latLng(-6.273377, 106.855009)
+  //     ],
+  //   }).addTo(this.map);
+  // }
+
+
 
   // _____ Onload _________________________________________________ Start ________
 
@@ -48,6 +77,8 @@ export class TransactionSetaddressPage {
       attribution: 'contributor',
       maxZoom: 15,
     }).addTo(this.map);
+
+    
 
     // For Web
     this.map

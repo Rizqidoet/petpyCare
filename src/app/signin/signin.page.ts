@@ -143,7 +143,7 @@ export class SigninPage implements OnInit {
     this.apiImage = this.apiUserinfo.imageUrl;
     
     this.showAlert("Berhasil", "Silahkan Masuk");
-    // this.callServer(this.apiUserinfo);
+    this.callServer(this.apiUserinfo);
   }
 
   // readJsonData(){    
