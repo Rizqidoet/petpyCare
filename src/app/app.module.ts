@@ -11,6 +11,7 @@ import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import {NativeGeocoder,NativeGeocoderOptions} from "@ionic-native/native-geocoder/ngx";
 
 const firebaseConfig = {
   apiKey: 'AIzaSyA29cHl697Uvfsd70ioQVZcJB5CgBT9p8U',
@@ -37,6 +38,7 @@ const analytics = getAnalytics(app);
   ],
   providers: [
     Geolocation,
+    NativeGeocoder,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
   bootstrap: [AppComponent],
