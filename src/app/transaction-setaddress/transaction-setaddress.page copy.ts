@@ -1,15 +1,15 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-// import * as L from 'leaflet';
-import {
-  latLng,
-  tileLayer,
-  Icon,
-  icon,
-  Marker
-} from 'leaflet';
-import 'leaflet';
-import 'leaflet-routing-machine';
-declare let L;
+import * as L from 'leaflet';
+// import {
+//   latLng,
+//   tileLayer,
+//   Icon,
+//   icon,
+//   Marker
+// } from 'leaflet';
+// import 'leaflet';
+// import 'leaflet-routing-machine';
+// declare let L;
 import { HttpClient } from '@angular/common/http';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { IonSlides, Platform } from '@ionic/angular';
@@ -69,7 +69,6 @@ export class TransactionSetaddressPage {
   marker: L.Marker;
   addressComponent: any;
   storageAddress: string;
-  sekundren = null;
 
   loadMap() {
     this.map = L.map('map').fitWorld();
@@ -78,7 +77,9 @@ export class TransactionSetaddressPage {
       attribution: 'contributor',
       maxZoom: 15,
     }).addTo(this.map);
+
     
+
     // For Web
     this.map
       .locate({
@@ -86,23 +87,18 @@ export class TransactionSetaddressPage {
         maxZoom: 15,
       })
       .on('locationfound', (e) => {
-        console.log("E =", e);
-        this.sekundren = L.Routing.control({
-          waypoints: [
-            // L.latLng(-6.2207745, 106.8536878),
-            L.latLng(-6.226373, 106.858261),
-            L.latLng(e.latitude, e.longitude),
-          ]
-        }).addTo(this.map);
-        
-        this.marker.remove();
         this.setMarkertWithAnimation(e.latitude, e.longitude, true);
+        
       });
   }
 
   setMarkertWithAnimation(lat, lng, changeLocation: boolean) {
+    if (changeLocation) {
+      //console.log('Lokasi masih sesuai gps device', changeLocation);
 
-    this.marker = L.marker([lat, lng]);
+      this.marker = L.marker([lat, lng]);
+      // console.log('Marker first load:', this.marker);
+      // this.map.addLayer(this.marker);
       this.map.setView({ lat, lng }, this.map.getZoom(), {
         animate: true,
         pan: {
@@ -110,156 +106,61 @@ export class TransactionSetaddressPage {
         },
       });
 
-      if(this.marker != null){
-        console.log("Marker terisi");
-      }else{
-        console.log("Marker Kosong");
-      }
       this.http
         .get(
           `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&addressdetails=1`
         )
         .subscribe((data: any) => {
-          console.log('Address Data', data);
-          console.log("Sekundren = ", this.sekundren);
-         
-          if(this.sekundren !== null){
-            this.map.removeControl(this.sekundren);
-            this.sekundren = null;
-           
-
-            this.sekundren = L.Routing.control({
-              waypoints: [
-                // L.latLng(-6.2207745, 106.8536878),
-                L.latLng(-6.226373, 106.858261),
-                L.latLng(lat, lng),
-              ]
-            }).addTo(this.map);
-          }
-
-        //   this.sekundren.on('routesfound', function(e) {
-        //     var routes = e.routes;
-        //     var summary = routes[0].summary;
-        //     // alert distance and time in km and minutes
-        //     console.log('Total distance is ' + summary.totalDistance / 1000 + "Pembulatan = " + Math.round(summary.totalDistance / 1000) + ' km and total time is ' + Math.round(summary.totalTime % 3600 / 60) + ' minutes');
-        //  });
-         
-
-         this.addressComponent = data.address;
-         this.storageAddress = data.display_name;
+          // console.log('Address Data', data);
+          this.addressComponent = data.address;
+          this.storageAddress = data.display_name;
 
           this.marker = L.marker([lat, lng])
             .addTo(this.map)
             .bindPopup(data.display_name)
             .openPopup();
         });
-        
 
-    // if (changeLocation) {
-    //   // console.log('Lokasi masih sesuai gps device', changeLocation);
+      this.marker = L.marker([lat, lng]).on('click', () => {
+        console.log('marker clicked');
+        // this.enableForm();
+      });
+    } else {
+      // console.log('Lokasi telah diubah', this.marker);
+      this.marker.remove();
+      // console.log('Marker Has Updated:', this.marker);
+      this.map.addLayer(this.marker);
 
-    //   this.marker = L.marker([lat, lng]);
-    //   this.map.setView({ lat, lng }, this.map.getZoom(), {
-    //     animate: true,
-    //     pan: {
-    //       duration: 4,
-    //     },
-    //   });
+      this.map.setView({ lat, lng }, this.map.getZoom(), {
+        animate: true,
+        pan: {
+          duration: 4,
+        },
+      });
+      this.http
+        .get(
+          `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&addressdetails=1`
+        )
+        .subscribe((data: any) => {
+          this.marker.remove();
+          // console.log('Address Data',data)
+          this.addressComponent = data.address;
+          this.storageAddress = data.display_name;
 
-    //   this.http
-    //     .get(
-    //       `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&addressdetails=1`
-    //     )
-    //     .subscribe((data: any) => {
-    //       console.log('Address Data', data);
+          this.marker = L.marker([lat, lng])
+            .addTo(this.map)
+            .bindPopup(data.display_name)
+            .openPopup();
+        });
 
-    //       var sekundren = L.Routing.control({
-    //         waypoints: [
-    //           // L.latLng(-6.2207745, 106.8536878),
-    //           L.latLng(-6.226373, 106.858261),
-    //           L.latLng(lat, lng),
-    //         ]
-    //       }).addTo(this.map);
-
-    //       sekundren.on('routesfound', function(e) {
-    //         var routes = e.routes;
-    //         var summary = routes[0].summary;
-    //         // alert distance and time in km and minutes
-    //         console.log('Total distance is ' + summary.totalDistance / 1000 + "Pembulatan = " + Math.round(summary.totalDistance / 1000) + ' km and total time is ' + Math.round(summary.totalTime % 3600 / 60) + ' minutes');
-    //      });
-         
-
-    //      this.addressComponent = data.address;
-    //      this.storageAddress = data.display_name;
-
-    //       this.marker = L.marker([lat, lng])
-    //         .addTo(this.map)
-    //         .bindPopup(data.display_name)
-    //         .openPopup();
-    //     });
-
-    //   // this.marker = L.marker([lat, lng]).on('click', () => {
-    //   //   console.log('marker clicked');
-    //   //   // this.enableForm();
-    //   // });
-    // } else {
-    //   // console.log('Lokasi telah diubah', this.marker);
-    //   this.marker.remove();
-    //   this.map.addLayer(this.marker);
-
-    //   this.map.setView({ lat, lng }, this.map.getZoom(), {
-    //     animate: true,
-    //     pan: {
-    //       duration: 4,
-    //     },
-    //   });
-    //   this.http
-    //     .get(
-    //       `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&addressdetails=1`
-    //     )
-    //     .subscribe((data: any) => {
-    //       this.marker.remove();
-    //       // console.log('Address Data baru',data)
-    //       this.map.removeLayer(this.marker)
-    //       if(sekundren){
-    //         console.log("Sekundren True")
-    //         sekundren.spliceWaypoints(0, 2);
-    //       }else{
-    //         console.log("Sekundren False")
-    //       }
-
-         
-
-    //       var sekundren = L.Routing.control({
-    //         waypoints: [
-    //           L.latLng(-6.2207745, 106.8536878),
-    //           L.latLng(lat, lng),
-    //         ]
-    //       }).addTo(this.map);
-
-    //       sekundren.on('routesfound', function(e) {
-    //         var routes = e.routes;
-    //         var summary = routes[0].summary;
-    //         // alert distance and time in km and minutes
-    //         console.log('Total distance is ' + summary.totalDistance / 1000 + "Pembulatan = " + Math.round(summary.totalDistance / 1000) + ' km and total time is ' + Math.round(summary.totalTime % 3600 / 60) + ' minutes');
-    //      });
-
-    //      this.addressComponent = data.address;
-    //      this.storageAddress = data.display_name;
-    //       // this.marker = L.marker([data['lat'], data['lon']])
-    //       //   .addTo(this.map)
-    //       //   .bindPopup(data.display_name)
-    //       //   .openPopup();
-    //     });
-
-    //   this.marker.on('click', () => {
-    //     // console.log('marker clicked');
-    //     // this.enableForm();
-    //   });
-    // }
-    // setTimeout(() => {
-    //   this.map.invalidateSize();
-    // }, 500);
+      this.marker.on('click', () => {
+        // console.log('marker clicked');
+        // this.enableForm();
+      });
+    }
+    setTimeout(() => {
+      this.map.invalidateSize();
+    }, 500);
   }
 
   mapClick() {
