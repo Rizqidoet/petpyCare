@@ -137,16 +137,16 @@ export class SigninPage implements OnInit {
     console.log('SIGNIN BERHASIL ---> Ini Isi GoogleUser = ', googleUser);
     this.apiUserinfo = googleUser;
     this.apiUsername =
-    this.apiUserinfo.givenName + ' ' + this.apiUserinfo.familyName;
+      this.apiUserinfo.givenName + ' ' + this.apiUserinfo.familyName;
     this.apiEmail = this.apiUserinfo.email;
     this.apiID = this.apiUserinfo.id;
     this.apiImage = this.apiUserinfo.imageUrl;
-    
-    this.showAlert("Berhasil", "Silahkan Masuk");
+
+    // this.showAlert("Berhasil", "Silahkan Masuk");
     this.callServer(this.apiUserinfo);
   }
 
-  // readJsonData(){    
+  // readJsonData(){
   //   fetch("../../assets/data.json").then(res=>res.json()).then(json=>{
   //     this.storageAll = json;
   //     console.log("OUTPUT: ", this.storageAll);
@@ -178,9 +178,8 @@ export class SigninPage implements OnInit {
         //console.log('lenght a = ', response['message']);
         b.forEach((value) => {
           //console.log(value['item_code']
-          var d =  c.filter(function(e) {
-            return e.item_code == value['item_code']; 
-            
+          var d = c.filter(function (e) {
+            return e.item_code == value['item_code'];
           });
 
           // console.log("item_name product = ", value['item_name']);
@@ -196,7 +195,7 @@ export class SigninPage implements OnInit {
           };
 
           this.storageProductNormal.push(dataProductNormal);
-          console.log("Storage Product Normal = ", this.storageProductNormal)
+          console.log('Storage Product Normal = ', this.storageProductNormal);
           this.storage.setObject('storageProductNormal', {
             products: this.storageProductNormal,
           });
@@ -211,11 +210,10 @@ export class SigninPage implements OnInit {
           };
 
           this.storageProductDiskon.push(dataProductDiskon);
-          console.log("Storage Product Diskon = ", this.storageProductDiskon)
+          console.log('Storage Product Diskon = ', this.storageProductDiskon);
           this.storage.setObject('storageProductDiskon', {
             products: this.storageProductDiskon,
           });
-
         });
 
         this.storageUsername = this.apiUsername;

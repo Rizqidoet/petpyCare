@@ -35,7 +35,6 @@ export class TransactionSetaddressPage {
     this.getStorage();
     this.loadMap();
     this.mapClick();
-
   }
 
   // _____ Onload _________________________________________________ Start ________
@@ -54,7 +53,7 @@ export class TransactionSetaddressPage {
       attribution: 'contributor',
       maxZoom: 15,
     }).addTo(this.map);
-    
+
     // For Web
     this.map
       .locate({
@@ -64,67 +63,67 @@ export class TransactionSetaddressPage {
       .on('locationfound', (e) => {
         this.sekundren = L.Routing.control({
           waypoints: [
-            // L.latLng(-6.2207745, 106.8536878),
-            L.latLng(-6.226373, 106.858261),
+            L.latLng(-6.2207745, 106.8536878),
+            // L.latLng(-6.226373, 106.858261),
             L.latLng(e.latitude, e.longitude),
-          ]
+          ],
         }).addTo(this.map);
         this.setMarkertWithAnimation(e.latitude, e.longitude, true);
       });
   }
 
   setMarkertWithAnimation(lat, lng, changeLocation: boolean) {
-
     this.marker = L.marker([lat, lng]);
-      this.map.setView({ lat, lng }, this.map.getZoom(), {
-        animate: true,
-        pan: {
-          duration: 4,
-        },
-      });
+    this.map.setView({ lat, lng }, this.map.getZoom(), {
+      animate: true,
+      pan: {
+        duration: 4,
+      },
+    });
 
-      this.http
-        .get(
-          `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&addressdetails=1`
-        )
-        .subscribe((data: any) => {         
-          if(this.sekundren !== null){
-            this.map.removeControl(this.sekundren);
-            this.sekundren = null;
-           
+    this.http
+      .get(
+        `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&addressdetails=1`
+      )
+      .subscribe((data: any) => {
+        if (this.sekundren !== null) {
+          this.map.removeControl(this.sekundren);
+          this.sekundren = null;
 
-            this.sekundren = L.Routing.control({
-              waypoints: [
-                // L.latLng(-6.2207745, 106.8536878),
-                L.latLng(-6.226373, 106.858261),
-                L.latLng(lat, lng),
-              ]
-            }).addTo(this.map);
-          }
+          this.sekundren = L.Routing.control({
+            waypoints: [
+              // L.latLng(-6.2207745, 106.8536878),
+              L.latLng(-6.226373, 106.858261),
+              L.latLng(lat, lng),
+            ],
+          }).addTo(this.map);
+        }
+        // var a = this.sekundren['i']; //gak bisa
+        // var a = this.sekundren.i; //gak bisa
 
-          this.sekundren.on('routesfound', function(e) {
-            // var routes = e.routes;
-            var summary = e.routes[0].summary.totalDistance;
-            this.storageAddressArgo = Math.round(summary / 1000);
-            console.log("Argo di summary= ", summary);
-            console.log("Argo di luar= ", this.storageAddressArgo);
-            // console.log('T otal distance is ' + summary.totalDistance / 1000 + "Pembulatan = " + b + ' km and total time is ' + Math.round(summary.totalTime % 3600 / 60) + ' minutes');
-            
-          });
+        // console.log('Sekundren Waypoint = ', this.sekundren);
 
-         console.log("Argo di luar= ", this.storageAddressArgo);
-         
-
-         this.addressComponent = data.address;
-         this.storageAddress = data.display_name;
-         console.log("address componen : ", this.addressComponent);
-         console.log("address : ", this.storageAddress);
-
-          this.marker = L.marker([lat, lng])
-            .addTo(this.map)
-            .bindPopup(data.display_name)
-            .openPopup();
+        this.sekundren.on('routesfound', (e) => {
+          // var routes = e.routes;
+          var summary = e.routes[0].summary.totalDistance;
+          this.storageAddressArgo = Math.round(summary / 1000);
+          console.log('Argo di summary = ', summary);
+          console.log('Argo di dalem = ', this.storageAddressArgo);
+          // console.log('T otal distance is ' + summary.totalDistance / 1000 + "Pembulatan = " + b + ' km and total time is ' + Math.round(summary.totalTime % 3600 / 60) + ' minutes');
         });
+
+        console.log('Argo di luar = ', this.storageAddressArgo);
+
+        this.addressComponent = data.address;
+        this.storageAddress = data.display_name;
+        // console.log('address componen : ', this.addressComponent);
+        // console.log('address : ', this.storageAddress);
+
+        this.marker = L.marker([lat, lng])
+          .addTo(this.map)
+          .bindPopup(data.display_name)
+          .openPopup();
+      });
   }
 
   mapClick() {
@@ -141,6 +140,7 @@ export class TransactionSetaddressPage {
   // _____ getGps _________________________________________________ Start ________
 
   getGps() {
+    this.marker.remove();
     var ini = this;
     navigator.geolocation.getCurrentPosition(
       function (p) {
@@ -148,10 +148,11 @@ export class TransactionSetaddressPage {
           lat: p.coords.latitude,
           lng: p.coords.longitude,
         });
+
         ini.setMarkertWithAnimation(
           p.coords.latitude,
           p.coords.longitude,
-          false
+          null
         );
       },
       function (err) {
@@ -197,7 +198,7 @@ export class TransactionSetaddressPage {
 
     this.setMarkertWithAnimation(lat, lng, false);
     // console.log(lat, lng);
-    this.enableForm();
+    //this.enableForm();
   }
 
   // _____ Search address _________________________________________________ End ________
@@ -291,13 +292,12 @@ export class TransactionSetaddressPage {
               cssClass: 'secondary',
               handler: (cancel) => {
                 console.log('Confirm Cancel');
-                console.log("Argo = ", this.storageAddressArgo);
+                console.log('Argo = ', this.storageAddressArgo);
               },
             },
             {
               text: 'Okay',
               handler: () => {
-               
                 // console.log('Confirm Okay');
 
                 // console.log('address :', this.storageAddress);
@@ -317,13 +317,13 @@ export class TransactionSetaddressPage {
                   storageAddressPickName: this.addressName,
                   storageAddressPickPhone: this.addressPhone,
                 });
-                
+
                 var dataAddress = {
                   id: newId,
                   address: this.storageAddress,
                   addressName: this.addressName,
                   addressPhone: this.addressPhone,
-                  argo: this.storageAddressArgo
+                  argo: this.storageAddressArgo,
                 };
                 this.storageArrayAddress.push(dataAddress);
                 this.storage.setObject('storageAddress', {
