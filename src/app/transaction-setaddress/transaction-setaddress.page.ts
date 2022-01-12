@@ -43,7 +43,8 @@ export class TransactionSetaddressPage {
   marker: L.Marker;
   addressComponent: any;
   storageAddress: string;
-  storageAddressArgo: any;
+  argo: number;
+  storageAddressArgo: string;
   sekundren = null;
 
   loadMap() {
@@ -98,18 +99,15 @@ export class TransactionSetaddressPage {
             ],
           }).addTo(this.map);
         }
-        // var a = this.sekundren['i']; //gak bisa
-        // var a = this.sekundren.i; //gak bisa
-
-        // console.log('Sekundren Waypoint = ', this.sekundren);
 
         this.sekundren.on('routesfound', (e) => {
           // var routes = e.routes;
           var summary = e.routes[0].summary.totalDistance;
-          this.storageAddressArgo = Math.round(summary / 1000);
+          this.argo = Math.round(summary / 1000);
           console.log('Argo di dalem = ', this.storageAddressArgo);
+          this.storageAddressArgo = this.argo + ' km';
 
-          this.storage.setString('distance', this.storageAddressArgo + ' km');
+          this.storage.setString('distance', this.storageAddressArgo);
 
           // console.log('T otal distance is ' + summary.totalDistance / 1000 + "Pembulatan = " + b + ' km and total time is ' + Math.round(summary.totalTime % 3600 / 60) + ' minutes');
         });
@@ -118,8 +116,6 @@ export class TransactionSetaddressPage {
 
         this.addressComponent = data.address;
         this.storageAddress = data.display_name;
-        // console.log('address componen : ', this.addressComponent);
-        // console.log('address : ', this.storageAddress);
 
         this.marker = L.marker([lat, lng])
           .addTo(this.map)
@@ -129,8 +125,6 @@ export class TransactionSetaddressPage {
   }
 
   mapClick() {
-    // Adding Map Click Event
-    // console.log("Map Clicked");
     this.map.on('click', (e) => {
       this.marker.remove();
       this.setMarkertWithAnimation(e.latlng.lat, e.latlng.lng, false);
@@ -174,8 +168,6 @@ export class TransactionSetaddressPage {
       // console.log("Empty Keyword");
       this.places = [];
     } else if (this.storageAddress.length >= 3) {
-      // console.log("Has a keyword");
-      // console.log(this.storageAddress);
       this.marker.remove();
       let url =
         'https://nominatim.openstreetmap.org/search?format=json&q=' +
@@ -189,9 +181,7 @@ export class TransactionSetaddressPage {
 
   keywordChanged(event) {
     setTimeout(() => {
-      // console.log('changed', event);
       this.storageAddress = event;
-      //this.search();
     });
   }
 
@@ -199,8 +189,6 @@ export class TransactionSetaddressPage {
     this.places = [];
 
     this.setMarkertWithAnimation(lat, lng, false);
-    // console.log(lat, lng);
-    //this.enableForm();
   }
 
   // _____ Search address _________________________________________________ End ________
@@ -307,19 +295,6 @@ export class TransactionSetaddressPage {
             {
               text: 'Okay',
               handler: () => {
-                // console.log('Confirm Okay');
-
-                // console.log('address :', this.storageAddress);
-                // console.log('name address :', this.addressName);
-                // console.log('phone address :', this.addressPhone);
-
-                //var indexLen = this.storageArrayAddress.length;
-                // console.log(
-                //   'IndexLen : ',
-                //   this.jumlahArrayStorage,
-                //   'NewId ; ',
-                //   newId
-                // );
                 var newId = 1 + this.jumlahArrayStorage;
                 this.storage.setObject('storageAddressPick', {
                   storageAddressPickAddress: this.storageAddress,
