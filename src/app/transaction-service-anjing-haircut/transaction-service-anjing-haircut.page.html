@@ -46,7 +46,7 @@
                         font-family: 'Libre Baskerville', sans-serif;
                       "
                     >
-                      Order - Service Anjing Haircut
+                      Order - Service Anjing Haircuta
                     </a>
                   </p>
                 </td>
@@ -116,7 +116,7 @@
     <div style="z-index: 0">
       <ion-slides
         [options]="slideOpts"
-        (ionSlideDidChange)="slideChanged($event)"
+        (ionSlideDidChange)="slideChanged()"
         #mySlider
       >
         <!-- Start: Slide 1 -->
@@ -155,25 +155,39 @@
             <ion-item
               button
               detail
-              *ngFor="let listproduct of listProducts_category"
+              *ngFor="let listproduct of storageProduct_item"
               routerDirection="forward"
               style="z-index: 0; margin-top: 20px"
             >
-              <div style="display: flex; flex-direction: row; width: 100%; justify-content: center; align-items: center;">
-                <div style="width: 20%;">
+              <div
+                style="
+                  display: flex;
+                  flex-direction: row;
+                  width: 100%;
+                  justify-content: center;
+                  align-items: center;
+                "
+              >
+                <div style="width: 20%">
                   <ion-thumbnail
                     slot="start"
-                    style="width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #ef4b52;"
+                    style="
+                      width: 100%;
+                      display: flex;
+                      flex-direction: column;
+                      justify-content: center;
+                      align-items: center;
+                      color: #ef4b52;
+                    "
                   >
-                    <ion-icon name="shield-checkmark" style="width: 25px; height: 25px;"></ion-icon>
+                    <ion-icon
+                      name="shield-checkmark"
+                      style="width: 25px; height: 25px"
+                    ></ion-icon>
                   </ion-thumbnail>
                 </div>
                 <div
-                  style="
-                    width: 80%;
-                    display: flex;
-                    flex-direction: column;
-                  "
+                  style="width: 80%; display: flex; flex-direction: column"
                   class="ion-text-wrap"
                 >
                   <div (click)="taplistProduct(listproduct)">
@@ -185,7 +199,6 @@
                     >
                       {{ listproduct.item_name }}
                     </span>
-                   
                   </div>
                   <div>
                     <a
@@ -196,7 +209,7 @@
                         font-family: 'Source Sans Pro', sans-serif;
                       "
                     >
-                    see details
+                      see details
                     </a>
                   </div>
                 </div>
@@ -317,7 +330,7 @@
                       padding-right: 15px;
                     "
                     class="ion-padding"
-                    *ngIf="isShownCS"
+                    *ngIf="isShowCS"
                     id="divCS"
                   >
                     <div
@@ -424,7 +437,7 @@
                         padding: 0px 15px 0px 15px;
                         margin-top: 10px;
                       "
-                      *ngIf="isShownHS"
+                      *ngIf="isShowHS"
                       id="divHS"
                     >
                       <ion-item
@@ -452,29 +465,24 @@
                           </div>
                           <div
                             style="
-                              margin-top: 10px;
-                              font-size: small;
+                              margin-top: 15px;
+                              font-size: 12px;
                               color: #686868;
                               text-align: justify;
                               font-family: 'Montserrat', sans-serif;
-                              font-size: 12px;
-                              display: flex;
-                              flex-direction: row;
                             "
                             class="ion-wrap-text"
                           >
-                            <div>
-                              <span>{{ pickAddressName }}</span>
-                            </div>
-                            <div>
-                              <span>- {{ pickAddressPhone }}</span>
-                            </div>
+                            <span>{{ storageAddressPick_nameAddress }}</span>
+                            -
+                            <span>{{ storageAddressPick_argo }}</span>
                           </div>
                           <div style="margin-top: 5px">
                             <span
                               class="ion-wrap-text"
                               style="font-size: small; color: #686868"
-                              >{{ pickAddressAddress }}</span
+                              >alamat <br />{{ storageAddressPick_address
+                              }}</span
                             >
                           </div>
                         </div>
@@ -564,7 +572,7 @@
                         padding-right: 15px;
                         margin-top: 10px;
                       "
-                      *ngIf="isShownDS"
+                      *ngIf="isShowDS"
                       id="divDS"
                     >
                       <ion-item
@@ -600,15 +608,16 @@
                             "
                             class="ion-wrap-text"
                           >
-                            <span>{{ pickAddressName }}</span>
+                            <span>{{ storageAddressPick_nameAddress }}</span>
                             -
-                            <span>{{ pickAddressPhone }}</span>
+                            <span>{{ storageAddressPick_argo }}</span>
                           </div>
                           <div style="margin-top: 5px">
                             <span
                               class="ion-wrap-text"
                               style="font-size: small; color: #686868"
-                              >{{ pickAddressAddress }}</span
+                              >alamat <br />{{ storageAddressPick_address
+                              }}</span
                             >
                           </div>
                         </div>
@@ -683,9 +692,9 @@
                         margin: 10px 0 0 15px;
                       "
                     >
-                      <span>{{ pickPetName }}</span>
+                      <span>{{ storagePetPick_name }}</span>
                       -
-                      <span>{{ pickPetType }}</span>
+                      <span>{{ storagePetPick_type }}</span>
                     </div>
                   </div>
                 </ion-item>

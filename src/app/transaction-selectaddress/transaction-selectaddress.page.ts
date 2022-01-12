@@ -36,6 +36,7 @@ export class TransactionSelectaddressPage implements OnInit {
         this.storageAddress = data['address'];
       }
     });
+
     this.storage.getObject('storageFilterPet').then((data: any) => {
       this.pickMenu = data.name;
       this.categoryPet = data.category;
@@ -43,7 +44,6 @@ export class TransactionSelectaddressPage implements OnInit {
       // console.log('pick menu : ', this.pickMenu);
       // console.log('category menu : ', this.categoryPet);
     });
-    //console.log('Isi :', this.pickMenu);
   }
 
   backPage() {
@@ -53,11 +53,13 @@ export class TransactionSelectaddressPage implements OnInit {
   addressPickaddress: string;
   addressPickName: string;
   addressPickPhone: string;
+  addressPickArgo: number;
 
   tapValue(dataAddress) {
     this.addressPickaddress = dataAddress.address;
     this.addressPickName = dataAddress.addressName;
     this.addressPickPhone = dataAddress.addressPhone;
+    this.addressPickArgo = dataAddress.argo;
     // console.log('address :', this.addressPickaddress);
     // console.log('address name :', this.addressPickName);
     // console.log('address phone :', this.addressPickPhone);
@@ -66,6 +68,7 @@ export class TransactionSelectaddressPage implements OnInit {
       storageAddressPickAddress: this.addressPickaddress,
       storageAddressPickName: this.addressPickName,
       storageAddressPickPhone: this.addressPickPhone,
+      storageAddressPickArgo: this.addressPickArgo,
     });
     //console.log('/transaction-' + this.pickMenu);
     this.router.navigateByUrl('/transaction-' + this.pickMenu);

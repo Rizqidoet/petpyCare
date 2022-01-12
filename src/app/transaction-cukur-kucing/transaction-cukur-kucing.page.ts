@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { StorageCapService } from '../../app/services/storage-cap.service';
-import { Platform, ToastController, AlertController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 import { IonSlides } from '@ionic/angular';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
@@ -14,7 +14,6 @@ export class TransactionCukurKucingPage implements OnInit {
   @ViewChild('mySlider') slides: IonSlides;
 
   constructor(
-    private platform: Platform,
     public alertController: AlertController,
     private storage: StorageCapService,
     private router: Router
@@ -114,6 +113,7 @@ export class TransactionCukurKucingPage implements OnInit {
     this.pickAddressAddress = 'Set Address';
     this.pickAddressName = '';
     this.pickAddressPhone = '';
+    this.pickAddressArgo = 0;
     this.pickPetName = '- set pet';
     this.pickPetType = '';
     this.pickPetDate = '';
@@ -159,7 +159,11 @@ export class TransactionCukurKucingPage implements OnInit {
     this.pickPackage = listproduct['item_name'];
     this.pickPackageItemCode = listproduct['item_code'];
     this.pickPackageItemPriceRate = listproduct['item_priceRate'];
-    console.log(this.pickPackage, this.pickPackageItemCode, this.pickPackageItemPriceRate);
+    console.log(
+      this.pickPackage,
+      this.pickPackageItemCode,
+      this.pickPackageItemPriceRate
+    );
     // this.seeDetails();
     this.swipeNext();
   }
@@ -172,9 +176,18 @@ export class TransactionCukurKucingPage implements OnInit {
     // this.showAlert("Sekundren", "Malakundren nih guys");
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
-      header: "Detail Package",
-      message: "<div>Name : " + itemName + "</div><div>Code : " + itemCode + "</div><div>Price : " + itemPriceRate + "</div><div>Desc : " + itemDesc + "</div>",
-      buttons: ['OK']
+      header: 'Detail Package',
+      message:
+        '<div>Name : ' +
+        itemName +
+        '</div><div>Code : ' +
+        itemCode +
+        '</div><div>Price : ' +
+        itemPriceRate +
+        '</div><div>Desc : ' +
+        itemDesc +
+        '</div>',
+      buttons: ['OK'],
     });
 
     await alert.present();
@@ -188,9 +201,11 @@ export class TransactionCukurKucingPage implements OnInit {
   pickAddressAddress: string;
   pickAddressName: string;
   pickAddressPhone: string;
+  pickAddressArgo: number;
   pickAddressAddress2: string;
   pickAddressName2: string;
   pickAddressPhone2: string;
+  pickAddressArgo2: number;
   isShownCS: boolean = false;
   isShownHS: boolean = false;
   isShownDS: boolean = false;
@@ -202,6 +217,7 @@ export class TransactionCukurKucingPage implements OnInit {
     this.pickAddressAddress2 = 'Jl. Bukit duri salatan RT 8 RW 03 no 87';
     this.pickAddressName2 = 'Clinic';
     this.pickAddressPhone2 = '081280675738';
+    this.pickAddressArgo2 = 0;
 
     this.isShownCS = true;
     this.isShownHS = false;
@@ -241,6 +257,16 @@ export class TransactionCukurKucingPage implements OnInit {
         this.pickAddressAddress = data['storageAddressPickAddress'];
         this.pickAddressName = data['storageAddressPickName'];
         this.pickAddressPhone = data['storageAddressPickPhone'];
+        const a = data['storageAddressPickArgo'];
+
+        if (a <= 10) {
+          this.pickAddressArgo = a * 5000;
+        } else {
+          this.pickAddressArgo = a * 7000;
+        }
+        console.log(
+          'Harga untuk argo ' + a + 'km adalah ' + this.pickAddressArgo
+        );
       }
     });
   }
@@ -364,7 +390,7 @@ export class TransactionCukurKucingPage implements OnInit {
                           date: this.pickPetDate,
                           time: this.pickPetTime,
                           packagePayment: this.pickPackageItemPriceRate,
-                          servicePayment: 15000,
+                          servicePayment: this.pickAddressArgo2,
                           payment: this.pickPayment,
                         };
                         if (this.transactions.length > 0) {
@@ -457,7 +483,7 @@ export class TransactionCukurKucingPage implements OnInit {
                             date: this.pickPetDate,
                             time: this.pickPetTime,
                             packagePayment: this.pickPackageItemPriceRate,
-                            servicePayment: 15000,
+                            servicePayment: this.pickAddressArgo,
                             payment: this.pickPayment,
                           };
                           //sebelum push check ada data di this.transactions

@@ -89,7 +89,7 @@ export class TransactionConfirmPage implements OnInit {
   pickMenu: String;
   categoryPet: String;
   confirmNo() {
-    this.storage.removeItem('storageTransactions');
+    // this.storage.removeItem('storageTransactions');
     //this.storage.removeItem('storagePetPick');
     //this.storage.removeItem('storageAddressPick');
 

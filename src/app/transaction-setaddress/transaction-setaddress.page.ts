@@ -107,8 +107,10 @@ export class TransactionSetaddressPage {
           // var routes = e.routes;
           var summary = e.routes[0].summary.totalDistance;
           this.storageAddressArgo = Math.round(summary / 1000);
-          console.log('Argo di summary = ', summary);
           console.log('Argo di dalem = ', this.storageAddressArgo);
+
+          this.storage.setString('distance', this.storageAddressArgo + ' km');
+
           // console.log('T otal distance is ' + summary.totalDistance / 1000 + "Pembulatan = " + b + ' km and total time is ' + Math.round(summary.totalTime % 3600 / 60) + ' minutes');
         });
 
@@ -209,6 +211,7 @@ export class TransactionSetaddressPage {
     var x = (document.getElementById('FormDetail').style.display = 'none');
     this.addressName = '';
     this.addressPhone = '';
+    this.addressArgo = 0;
   }
 
   enableForm() {
@@ -217,6 +220,11 @@ export class TransactionSetaddressPage {
     x.style.animation = 'animatetop 0.8s';
     x.style.marginTop = '480px';
     x.style.marginLeft = '25px';
+
+    var a = this.storage.getString('distance').then((data) => {
+      this.storageAddressArgo = data['value'];
+    });
+    console.log('data argo is = ', this.storageAddressArgo);
   }
 
   async showAlert(header: string, message: string) {
@@ -234,6 +242,7 @@ export class TransactionSetaddressPage {
 
   addressName: string = '';
   addressPhone: string = '';
+  addressArgo: number = 0;
   pickMenu: String;
   categoryPet: String;
   storageArrayAddress = [];
@@ -305,17 +314,18 @@ export class TransactionSetaddressPage {
                 // console.log('phone address :', this.addressPhone);
 
                 //var indexLen = this.storageArrayAddress.length;
-                var newId = 1 + this.jumlahArrayStorage;
                 // console.log(
                 //   'IndexLen : ',
                 //   this.jumlahArrayStorage,
                 //   'NewId ; ',
                 //   newId
                 // );
+                var newId = 1 + this.jumlahArrayStorage;
                 this.storage.setObject('storageAddressPick', {
                   storageAddressPickAddress: this.storageAddress,
                   storageAddressPickName: this.addressName,
                   storageAddressPickPhone: this.addressPhone,
+                  storageAddressPickArgo: this.storageAddressArgo,
                 });
 
                 var dataAddress = {
@@ -332,6 +342,7 @@ export class TransactionSetaddressPage {
 
                 this.defaultForm();
                 this.getStorage();
+                this.storage.removeItem('distance');
                 this.router.navigateByUrl('/transaction-' + this.pickMenu);
               },
             },
