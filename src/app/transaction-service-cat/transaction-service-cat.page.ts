@@ -34,8 +34,21 @@ export class TransactionServiceCatPage implements OnInit {
 
   // ______ Segmenttasi _____________________________________________________________ Start ______________
 
+  slideOpts = {
+    initialSlide: 0,
+    speed: 400,
+  };
+
+  swipeNext() {
+    this.slides.slideNext();
+  }
+
+  swipePrev() {
+    this.slides.slidePrev();
+  }
+
   slideIndex: number;
-  slideChanged(event) {
+  slideChanged() {
     this.slides.getActiveIndex().then((index) => {
       this.slideIndex = index;
       // console.log('Current index: ' + index);
@@ -66,7 +79,7 @@ export class TransactionServiceCatPage implements OnInit {
   pickSegment: string;
   segmentChanged(ev: any) {
     this.pickSegment = ev['detail']['value'];
-
+    console.log('pick segment', this.pickSegment);
     if (this.pickSegment == 'package') {
       this.slides.slideTo(0, 400, true);
     } else if (this.pickSegment == 'service') {
@@ -80,7 +93,7 @@ export class TransactionServiceCatPage implements OnInit {
 
   // ______ Segmenttasi _____________________________________________________________ End ______________
 
-  // ______Function Pendukung___________________________________________________________Start_________
+  // _____ Function Pendukung ________________________________________________________ Start ________
 
   async showAlert(header: string, message: string) {
     const alert = await this.alertController.create({
@@ -92,32 +105,20 @@ export class TransactionServiceCatPage implements OnInit {
     await alert.present();
   }
 
-  slideOpts = {
-    initialSlide: 0,
-    speed: 400,
-  };
-
-  swipeNext() {
-    this.slides.slideNext();
-  }
-
-  swipePrev() {
-    this.slides.slidePrev();
-  }
-
   defaultForm() {
-    this.pickPackage = '';
-    this.pickPackageItemCode = '';
-    this.pickPackageItemPriceRate = 0;
+    this.storageProduct_pickPackage = '';
+    this.storageProduct_pickItemCode = '';
+    this.storageProduct_pickPriceRate = 0;
     this.pickService = '';
-    this.pickAddressAddress = 'Set Address';
-    this.pickAddressName = '';
-    this.pickAddressPhone = '';
-    this.pickPetName = '- set pet';
-    this.pickPetType = '';
+    this.storageAddressPick_address = 'Set Address';
+    this.storageAddressPick_nameAddress = '';
+    this.storageAddressPick_phoneAddress = '';
+    this.storagePetPick_name = '- set pet';
+    this.storagePetPick_type = '';
     this.pickPetDate = '';
     this.pickPetTime = '';
     this.pickPayment = '';
+    this.slideOpts;
   }
 
   closePage() {
@@ -126,47 +127,45 @@ export class TransactionServiceCatPage implements OnInit {
     this.router.navigateByUrl('/home');
   }
 
-  // ______Function Pendukung___________________________________________________________End_________
+  // ______ Function Pendukung ________________________________________________________ End ________
 
-  // ______Slide_1______________________________________________________________Start_______
+  // _____ Slide_1 _____________________________________________________________ Start ______
 
-  listProducts_category = [];
   storageProduct = [];
-  pickPackage: string;
-  pickPackageItemCode: string;
-  pickPackageItemPriceRate: number;
-  pickUsername: string;
-  pickEmail: string;
-  isShowDetails: boolean = false;
+  storageProduct_item = [];
+  storageUser_username: string;
+  storageUser_email: string;
+  storageProduct_pickPackage: string;
+  storageProduct_pickItemCode: string;
+  storageProduct_pickPriceRate: number;
 
   getStorage1() {
     this.storage.getObject('storageProductNormal').then((data: any) => {
       this.storageProduct = data;
-      
-      this.listProducts_category = this.storageProduct['products'].filter(
+      this.storageProduct_item = this.storageProduct['products'].filter(
         function (storageProduct) {
           return storageProduct.item_group == 'Grooming Kucing';
-          
         }
       );
-      
-      console.log("list category = ", this.listProducts_category);
-      
     });
-    
 
     this.storage.getObject('storageUsers').then((data: any) => {
-      this.pickUsername = data['User'][0]['userUsername'];
-      this.pickEmail = data['User'][0]['userEmail'];
+      this.storageUser_username = data['User'][0]['userUsername'];
+      this.storageUser_email = data['User'][0]['userEmail'];
     });
   }
 
   taplistProduct(listproduct) {
-    this.pickPackage = listproduct['item_name'];
-    this.pickPackageItemCode = listproduct['item_code'];
-    this.pickPackageItemPriceRate = listproduct['item_priceRate'];
-    console.log(this.pickPackage, this.pickPackageItemCode, this.pickPackageItemPriceRate);
+    this.storageProduct_pickPackage = listproduct['item_name'];
+    this.storageProduct_pickItemCode = listproduct['item_code'];
+    this.storageProduct_pickPriceRate = listproduct['item_priceRate'];
+    // console.log(
+    //   this.storageProduct_pickPackage,
+    //   this.storageProduct_pickItemCode,
+    //   this.storageProduct_pickPriceRate
+    // );
     // this.seeDetails();
+
     this.swipeNext();
   }
 
@@ -178,41 +177,66 @@ export class TransactionServiceCatPage implements OnInit {
     // this.showAlert("Sekundren", "Malakundren nih guys");
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
-      header: "Detail Package",
-      message: "<div>Name : " + itemName + "</div><div>Code : " + itemCode + "</div><div>Price : " + itemPriceRate + "</div><div>Desc : " + itemDesc + "</div>",
-      buttons: ['OK']
+      header: 'Detail Package',
+      message:
+        '<div>Name : ' +
+        itemName +
+        '</div><div>Code : ' +
+        itemCode +
+        '</div><div>Price : ' +
+        itemPriceRate +
+        '</div><div>Desc : ' +
+        itemDesc +
+        '</div>',
+      buttons: ['OK'],
     });
 
     await alert.present();
   }
 
+  // ______ Slide_1 _____________________________________________________________ End ______
 
-  // ______Slide_1______________________________________________________________End_______
+  // ______ Slide_2 _____________________________________________________________ Start ______
 
-  // ______ Slide 2 ______________________________________________________________ Start _______
-
+  storageAddressPick_address: string;
+  storageAddressPick_nameAddress: string;
+  storageAddressPick_phoneAddress: string;
+  storageAddressPick_argo2: number;
   pickService: string;
-  pickAddressAddress: string;
-  pickAddressName: string;
-  pickAddressPhone: string;
-  pickAddressAddress2: string;
-  pickAddressName2: string;
-  pickAddressPhone2: string;
-  isShownCS: boolean = false;
-  isShownHS: boolean = false;
-  isShownDS: boolean = false;
+  storageAddressPick_address2: string;
+  storageAddressPick_nameAddress2: string;
+  storageAddressPick_phoneAddress2: string;
+  storageAddressPick_argo: string;
+  isShowCS: boolean = false;
+  isShowHS: boolean = false;
+  isShowDS: boolean = false;
+
+  getStorage2() {
+    this.storage.getObject('storageAddressPick').then((data: any) => {
+      if (!data) {
+        this.storageAddressPick_address = 'Set Address';
+      } else {
+        this.storageAddressPick_address = data['storageAddressPickAddress'];
+        this.storageAddressPick_nameAddress = data['storageAddressPickName'];
+        this.storageAddressPick_phoneAddress = data['storageAddressPickPhone'];
+        this.storageAddressPick_argo = data['storageAddressPickArgo'];
+      }
+    });
+  }
 
   enabledCS() {
     var a = document.getElementById('clinicRadio');
     a.setAttribute('value', 'OnClinic');
     this.pickService = 'OnClinic';
-    this.pickAddressAddress2 = 'Jl. Bukit duri salatan RT 8 RW 03 no 87';
-    this.pickAddressName2 = 'Clinic';
-    this.pickAddressPhone2 = '081280675738';
+    this.storageAddressPick_address2 =
+      'Jl. Bukit duri salatan RT 8 RW 03 no 87';
+    this.storageAddressPick_nameAddress2 = 'Clinic';
+    this.storageAddressPick_phoneAddress2 = '081280675738';
+    this.storageAddressPick_argo2 = 0;
 
-    this.isShownCS = true;
-    this.isShownHS = false;
-    this.isShownDS = false;
+    this.isShowCS = true;
+    this.isShowHS = false;
+    this.isShowDS = false;
   }
 
   enabledHS() {
@@ -220,9 +244,9 @@ export class TransactionServiceCatPage implements OnInit {
     a.setAttribute('value', 'HomeService');
     this.pickService = 'HomeService';
 
-    this.isShownCS = false;
-    this.isShownHS = true;
-    this.isShownDS = false;
+    this.isShowCS = false;
+    this.isShowHS = true;
+    this.isShowDS = false;
   }
 
   enabledDS() {
@@ -230,46 +254,37 @@ export class TransactionServiceCatPage implements OnInit {
     a.setAttribute('value', 'DeliveryService');
     this.pickService = 'DeliveryService';
 
-    this.isShownCS = false;
-    this.isShownHS = false;
-    this.isShownDS = true;
+    this.isShowCS = false;
+    this.isShowHS = false;
+    this.isShowDS = true;
   }
 
   selectAddress() {
     this.storage.removeItem('storageAddressPick');
     this.router.navigateByUrl('/transaction-selectaddress');
   }
+  // ______ Slide_2 _____________________________________________________________ End ______
 
-  getStorage2() {
-    this.storage.getObject('storageAddressPick').then((data: any) => {
-      if (!data) {
-        this.pickAddressAddress = 'Set Address';
-      } else {
-        this.pickAddressAddress = data['storageAddressPickAddress'];
-        this.pickAddressName = data['storageAddressPickName'];
-        this.pickAddressPhone = data['storageAddressPickPhone'];
-      }
-    });
-  }
+  // ______ Slide_3 _____________________________________________________________ Start ______
 
-  // ______ Slide 2 ______________________________________________________________ End _______
-
-  // ______ Slide 3 ______________________________________________________________ Start _______
-
-  pickPetName: string;
-  pickPetType: string;
+  storagePetPick_name: string;
+  storagePetPick_type: string;
   pickPetDate: string;
   pickPetTime: string;
+  isShowCash: boolean = false;
+  isShowTransfer: boolean = false;
+  pickPayment: String;
   pets = [];
   transactions = [];
+  servicePrice: number;
 
   getStorage3() {
     this.storage.getObject('storagePetPick').then((data: any) => {
       if (!data) {
-        this.pickPetName = '- set pet';
+        this.storagePetPick_name = '- set pet';
       } else {
-        this.pickPetName = data['storagePetPickName'];
-        this.pickPetType = data['storagePetPickType'];
+        this.storagePetPick_name = data['storagePetPickName'];
+        this.storagePetPick_type = data['storagePetPickType'];
       }
     });
   }
@@ -284,15 +299,12 @@ export class TransactionServiceCatPage implements OnInit {
     //console.log('time', this.pickPetTime);
   }
 
-  isShowCash: boolean = false;
-  isShowTransfer: boolean = false;
-  pickPayment: String;
-
   enabledCash() {
     this.pickPayment = 'cash';
     this.isShowCash = true;
     this.isShowTransfer = false;
   }
+
   enabledTransfer() {
     this.pickPayment = 'transfer';
     this.isShowCash = false;
@@ -300,43 +312,33 @@ export class TransactionServiceCatPage implements OnInit {
   }
 
   async onSaveTransaction() {
-    // console.log('Package : ', this.pickPackage);
-    // console.log('Service : ', this.pickService);
-    if (this.pickPackage == '' || !this.pickPackage) {
-      this.showAlert('Warning', 'Package Kosong ' + this.pickPackage);
+    if (
+      this.storageProduct_pickPackage == '' ||
+      !this.storageProduct_pickPackage
+    ) {
+      this.showAlert(
+        'Warning',
+        'Package Kosong ' + this.storageProduct_pickPackage
+      );
     } else {
       if (this.pickService == '') {
         this.showAlert('Warning', 'Service Kosong ' + this.pickService);
       } else if (this.pickService == 'OnClinic') {
-        if (this.pickPetName == '- set pet') {
-          this.showAlert('Warning', 'Petname Kosong ' + this.pickPetName);
+        if (this.storagePetPick_name == '- set pet') {
+          this.showAlert(
+            'Warning',
+            'Petname Kosong ' + this.storagePetPick_name
+          );
         } else {
-          if (this.pickPetDate == '' || !this.pickPetDate) {
+          if (this.pickPetDate == '') {
             this.showAlert('Warning', 'Date Kosong ' + this.pickPetDate);
           } else {
-            if (this.pickPetTime == '' || !this.pickPetTime) {
+            if (this.pickPetTime == '') {
               this.showAlert('Warning', 'Time Kosong ' + this.pickPetTime);
             } else {
-              // this.onSaveTransaction();
               if (this.pickPayment == '' || !this.pickPayment) {
                 this.showAlert('Warning', 'Payment Kosong ' + this.pickPayment);
               } else {
-                console.log('_________________HASIL___________');
-                console.log('Name : ', this.pickUsername);
-                console.log('Email : ', this.pickEmail);
-                console.log('Package : ', this.pickPackage);
-                console.log('Service : ', this.pickService);
-                console.log('Address : ', this.pickAddressAddress2);
-                console.log('Name Address : ', this.pickAddressName2);
-                console.log('Phone Address : ', this.pickAddressPhone2);
-                console.log('Pet Name : ', this.pickPetName);
-                console.log('Pet Type : ', this.pickPetType);
-                console.log('Date : ', this.pickPetDate);
-                console.log('Time : ', this.pickPetTime);
-                console.log('Price : ', this.pickPackageItemPriceRate);
-                console.log('Payment : ', this.pickPayment);
-                console.log('_________________________________');
-
                 const alert = await this.alertController.create({
                   cssClass: 'my-custom-class',
                   header: 'Confirm',
@@ -356,29 +358,29 @@ export class TransactionServiceCatPage implements OnInit {
                         console.log('Confirm Okay');
 
                         var indexLen = this.pets.length;
-                        var newId = 1 + indexLen;
+                        var newId = indexLen + 1;
                         var dataTransaction = {
                           id: newId,
-                          name: this.pickUsername,
-                          package: this.pickPackage,
+                          name: this.storageUser_username,
+                          package: this.storageProduct_pickPackage,
                           service: this.pickService,
-                          email: this.pickEmail,
-                          addressAddress: this.pickAddressAddress2,
-                          addressName: this.pickAddressName2,
-                          addressPhone: this.pickAddressPhone2,
-                          petname: this.pickPetName,
-                          pettype: this.pickPetType,
+                          email: this.storageUser_email,
+                          addressAddress: this.storageAddressPick_address2,
+                          addressName: this.storageAddressPick_nameAddress2,
+                          addressPhone: this.storageAddressPick_phoneAddress2,
+                          petname: this.storagePetPick_name,
+                          pettype: this.storagePetPick_type,
                           date: this.pickPetDate,
                           time: this.pickPetTime,
-                          packagePayment: this.pickPackageItemPriceRate,
-                          servicePayment: 15000,
+                          packagePayment: this.storageProduct_pickPriceRate,
+                          servicePayment: this.storageAddressPick_argo2,
                           payment: this.pickPayment,
                         };
+
                         if (this.transactions.length > 0) {
                           this.transactions.length = 0;
                         }
                         this.transactions.push(dataTransaction);
-                        console.log('panjang data', this.transactions.length);
                         this.storage.setObject('storageTransactions', {
                           transactions: this.transactions,
                         });
@@ -393,96 +395,94 @@ export class TransactionServiceCatPage implements OnInit {
           }
         }
       } else {
-        if (this.pickAddressAddress == 'Set Address') {
+        if (this.storagePetPick_name == '- set pet') {
           this.showAlert(
             'Warning',
-            'Address Kosong ' + this.pickAddressAddress
+            'Petname Kosong ' + this.storagePetPick_name
           );
         } else {
-          if (this.pickPetName == '- set pet') {
-            this.showAlert('Warning', 'Petname Kosong ' + this.pickPetName);
+          if (this.pickPetDate == '') {
+            this.showAlert('Warning', 'Date Kosong ' + this.pickPetDate);
           } else {
-            if (this.pickPetDate == '') {
-              this.showAlert('Warning', 'Date Kosong ' + this.pickPetDate);
+            if (this.pickPetTime == '') {
+              this.showAlert('Warning', 'Time Kosong ' + this.pickPetTime);
             } else {
-              if (this.pickPetTime == '') {
-                this.showAlert('Warning', 'Time Kosong ' + this.pickPetTime);
+              if (this.pickPayment == '' || !this.pickPayment) {
+                this.showAlert('Warning', 'Payment Kosong ' + this.pickPayment);
               } else {
-                if (this.pickPayment == '' || !this.pickPayment) {
-                  this.showAlert(
-                    'Warning',
-                    'Payment Kosong ' + this.pickPayment
-                  );
-                } else {
-                  console.log('_________________HASIL___________');
-                  console.log('Name : ', this.pickUsername);
-                  console.log('Email : ', this.pickEmail);
-                  console.log('Package : ', this.pickPackage);
-                  console.log('Service : ', this.pickService);
-                  console.log('Address : ', this.pickAddressAddress);
-                  console.log('Name Address : ', this.pickAddressName);
-                  console.log('Phone Address : ', this.pickAddressPhone);
-                  console.log('Pet Name : ', this.pickPetName);
-                  console.log('Pet Type : ', this.pickPetType);
-                  console.log('Date : ', this.pickPetDate);
-                  console.log('Time : ', this.pickPetTime);
-                  console.log('Price : ', this.pickPackageItemPriceRate);
-                  console.log('Payment : ', this.pickPayment);
-                  console.log('_________________________________');
-
-                  const alert = await this.alertController.create({
-                    cssClass: 'my-custom-class',
-                    header: 'Confirm',
-                    message: 'Make Transaction ?',
-                    buttons: [
-                      {
-                        text: 'Cancel',
-                        role: 'cancel',
-                        cssClass: 'secondary',
-                        handler: (cancel) => {
-                          console.log('Confirm Cancel');
-                        },
+                const alert = await this.alertController.create({
+                  cssClass: 'my-custom-class',
+                  header: 'Confirm',
+                  message: 'Make Transaction ?',
+                  buttons: [
+                    {
+                      text: 'Cancel',
+                      role: 'cancel',
+                      cssClass: 'secondary',
+                      handler: (cancel) => {
+                        console.log('Confirm Cancel');
                       },
-                      {
-                        text: 'Okay',
-                        handler: () => {
-                          console.log('Confirm Okay');
+                    },
+                    {
+                      text: 'Okay',
+                      handler: () => {
+                        console.log('Confirm Okay');
 
-                          var indexLen = this.pets.length;
-                          var newId = 1 + indexLen;
-                          var dataTransaction = {
-                            id: newId,
-                            name: this.pickUsername,
-                            package: this.pickPackage,
-                            service: this.pickService,
-                            email: this.pickEmail,
-                            addressAddress: this.pickAddressAddress,
-                            addressName: this.pickAddressName,
-                            addressPhone: this.pickAddressPhone,
-                            petname: this.pickPetName,
-                            pettype: this.pickPetType,
-                            date: this.pickPetDate,
-                            time: this.pickPetTime,
-                            packagePayment: this.pickPackageItemPriceRate,
-                            servicePayment: 15000,
-                            payment: this.pickPayment,
-                          };
-                          //sebelum push check ada data di this.transactions
-                          if (this.transactions.length > 0) {
-                            this.transactions.length = 0;
-                          }
-                          this.transactions.push(dataTransaction);
-                          this.storage.setObject('storageTransactions', {
-                            transactions: this.transactions,
-                          });
-                          this.router.navigateByUrl('/transaction-confirm');
-                        },
+                        if (this.storageAddressPick_argo == '1 Km') {
+                          this.servicePrice = 10000;
+                        } else if (this.storageAddressPick_argo == '2 km') {
+                          this.servicePrice = 10000;
+                        } else if (this.storageAddressPick_argo == '3 km') {
+                          this.servicePrice = 10000;
+                        } else if (this.storageAddressPick_argo == '4 km') {
+                          this.servicePrice = 10000;
+                        } else if (this.storageAddressPick_argo == '5 km') {
+                          this.servicePrice = 10000;
+                        } else if (this.storageAddressPick_argo == '6 km') {
+                          this.servicePrice = 20000;
+                        } else if (this.storageAddressPick_argo == '7 km') {
+                          this.servicePrice = 20000;
+                        } else if (this.storageAddressPick_argo == '8 km') {
+                          this.servicePrice = 20000;
+                        } else if (this.storageAddressPick_argo == '9 km') {
+                          this.servicePrice = 20000;
+                        } else {
+                          this.servicePrice = 30000;
+                        }
+
+                        var indexLen = this.pets.length;
+                        var newId = indexLen + 1;
+                        var dataTransaction = {
+                          id: newId,
+                          name: this.storageUser_username,
+                          package: this.storageProduct_pickPackage,
+                          service: this.pickService,
+                          email: this.storageUser_email,
+                          addressAddress: this.storageAddressPick_address,
+                          addressName: this.storageAddressPick_nameAddress,
+                          addressPhone: this.storageAddressPick_phoneAddress,
+                          petname: this.storagePetPick_name,
+                          pettype: this.storagePetPick_type,
+                          date: this.pickPetDate,
+                          time: this.pickPetTime,
+                          packagePayment: this.storageProduct_pickPriceRate,
+                          servicePayment: this.servicePrice,
+                          payment: this.pickPayment,
+                        };
+
+                        if (this.transactions.length > 0) {
+                          this.transactions.length = 0;
+                        }
+                        this.transactions.push(dataTransaction);
+                        this.storage.setObject('storageTransactions', {
+                          transactions: this.transactions,
+                        });
+                        this.router.navigateByUrl('/transaction-confirm');
                       },
-                    ],
-                  });
-                  await alert.present();
-                }
-                // this.onSaveTransaction();
+                    },
+                  ],
+                });
+                await alert.present();
               }
             }
           }
@@ -491,5 +491,5 @@ export class TransactionServiceCatPage implements OnInit {
     }
   }
 
-  // ______ Slide 3 ______________________________________________________________ End _______
+  // ______ Slide_3 _____________________________________________________________ End ______
 }
