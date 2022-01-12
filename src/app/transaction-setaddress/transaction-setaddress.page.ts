@@ -64,8 +64,7 @@ export class TransactionSetaddressPage {
       .on('locationfound', (e) => {
         this.sekundren = L.Routing.control({
           waypoints: [
-            L.latLng(-6.2207745, 106.8536878),
-            // L.latLng(-6.226373, 106.858261),
+            L.latLng(-6.220818, 106.853582),
             L.latLng(e.latitude, e.longitude),
           ],
         }).addTo(this.map);
@@ -94,7 +93,7 @@ export class TransactionSetaddressPage {
           this.sekundren = L.Routing.control({
             waypoints: [
               // L.latLng(-6.2207745, 106.8536878),
-              L.latLng(-6.226373, 106.858261),
+              L.latLng(-6.220818, 106.853582),
               L.latLng(lat, lng),
             ],
           }).addTo(this.map);
