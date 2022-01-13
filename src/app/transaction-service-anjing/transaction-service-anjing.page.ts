@@ -201,12 +201,13 @@ export class TransactionServiceAnjingPage implements OnInit {
   storageAddressPick_address: string;
   storageAddressPick_nameAddress: string;
   storageAddressPick_phoneAddress: string;
-  storageAddressPick_argo2: number;
+  storageAddressPick_argo: any;
+  storageAddressPick_argoPush: any;
   pickService: string;
   storageAddressPick_address2: string;
   storageAddressPick_nameAddress2: string;
   storageAddressPick_phoneAddress2: string;
-  storageAddressPick_argo: string;
+  storageAddressPick_argo2: number;
   isShowCS: boolean = false;
   isShowHS: boolean = false;
   isShowDS: boolean = false;
@@ -220,6 +221,7 @@ export class TransactionServiceAnjingPage implements OnInit {
         this.storageAddressPick_nameAddress = data['storageAddressPickName'];
         this.storageAddressPick_phoneAddress = data['storageAddressPickPhone'];
         this.storageAddressPick_argo = data['storageAddressPickArgo'] + ' Km';
+        this.storageAddressPick_argoPush = data['storageAddressPickArgo'];
       }
     });
   }
@@ -428,26 +430,20 @@ export class TransactionServiceAnjingPage implements OnInit {
                       handler: () => {
                         console.log('Confirm Okay');
 
-                        if (this.storageAddressPick_argo == '1 Km') {
-                          this.servicePrice = 10000;
-                        } else if (this.storageAddressPick_argo == '2 km') {
-                          this.servicePrice = 10000;
-                        } else if (this.storageAddressPick_argo == '3 km') {
-                          this.servicePrice = 10000;
-                        } else if (this.storageAddressPick_argo == '4 km') {
-                          this.servicePrice = 10000;
-                        } else if (this.storageAddressPick_argo == '5 km') {
-                          this.servicePrice = 10000;
-                        } else if (this.storageAddressPick_argo == '6 km') {
+                        if (this.storageAddressPick_argoPush <= 10) {
+                          this.servicePrice = 0;
+                        } else if (
+                          this.storageAddressPick_argoPush > 10 &&
+                          this.storageAddressPick_argoPush <= 20
+                        ) {
                           this.servicePrice = 20000;
-                        } else if (this.storageAddressPick_argo == '7 km') {
-                          this.servicePrice = 20000;
-                        } else if (this.storageAddressPick_argo == '8 km') {
-                          this.servicePrice = 20000;
-                        } else if (this.storageAddressPick_argo == '9 km') {
-                          this.servicePrice = 20000;
-                        } else {
+                        } else if (
+                          this.storageAddressPick_argoPush > 20 &&
+                          this.storageAddressPick_argoPush <= 30
+                        ) {
                           this.servicePrice = 30000;
+                        } else {
+                          this.servicePrice = 40000;
                         }
 
                         var indexLen = this.pets.length;
