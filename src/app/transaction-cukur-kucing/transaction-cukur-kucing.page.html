@@ -717,7 +717,7 @@
                     >
                     <ion-datetime
                       [(ngModel)]="myDate"
-                      (ionChange)="setDate()"
+                      (ionChange)="setDate(date)"
                       style="
                         font-family: 'Montserrat', sans-serif;
                         font-size: 14px;
@@ -762,6 +762,8 @@
                     ></ion-datetime>
                   </div>
                 </ion-item>
+
+                
               </ion-list>
             </div>
             <!-- End: List Input -->

@@ -249,73 +249,57 @@ export class SigninPage implements OnInit {
 
   //_______ login google _______________________________________________ End ____________
 
-  //_______ login Facebook _______________________________________________ Start ____________
-
-  onSignInFacebook() {
-    this.showAlert('INFO', 'this feature will be ready soon');
-  }
-
-  //_______ login Facebook _______________________________________________ End ____________
-
-  //_______ login Telp _______________________________________________ Start ____________
-
-  onSignInTelp() {
-    this.showAlert('INFO', 'this feature will be ready soon');
-  }
-
-  //_______ login Telp _______________________________________________ End ____________
-
   //_______ login Email _______________________________________________ Start ____________
 
-  email: string = '';
-  password: string = '';
+  // email: string = '';
+  // password: string = '';
 
-  async onSignIn() {
-    const auth = getAuth();
-    signInWithEmailAndPassword(auth, this.email, this.password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        // console.log('user login = ', user.email);
-        this.email = '';
-        this.password = '';
-        this.router.navigateByUrl('/home');
-        this.showAlert('Login Success', 'Welcome ' + user.email);
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(
-          'Username Atau Password Salah, Periksa Kembali!',
-          'Code :',
-          error.code,
-          'message :',
-          error.message
-        );
+  // async onSignIn() {
+  //   const auth = getAuth();
+  //   signInWithEmailAndPassword(auth, this.email, this.password)
+  //     .then((userCredential) => {
+  //       const user = userCredential.user;
+  //       // console.log('user login = ', user.email);
+  //       this.email = '';
+  //       this.password = '';
+  //       this.router.navigateByUrl('/home');
+  //       this.showAlert('Login Success', 'Welcome ' + user.email);
+  //     })
+  //     .catch((error) => {
+  //       const errorCode = error.code;
+  //       const errorMessage = error.message;
+  //       console.log(
+  //         'Username Atau Password Salah, Periksa Kembali!',
+  //         'Code :',
+  //         error.code,
+  //         'message :',
+  //         error.message
+  //       );
 
-        var errMsg = '';
-        if (errorCode === 'auth/invalid-email') {
-          errMsg = 'email does not match!';
-          console.log(errMsg);
-          this.showAlert('Login Error', errMsg);
-        } else if (errorCode === 'auth/wrong-password') {
-          errMsg = 'Wrong Password!';
-          console.log(errMsg);
-          this.showAlert('Login Error', errMsg);
-        } else if (errorCode === 'auth/user-not-found') {
-          errMsg = 'email not registered!';
-          console.log(errMsg);
-          this.showAlert('Login Error', errMsg);
-        } else if (errorCode === 'auth/internal-error') {
-          errMsg = 'password cannot be empty!';
-          console.log(errMsg);
-          this.showAlert('Login Error', errMsg);
-        } else {
-          errMsg = 'Internal Error! please restart this Apps';
-          console.log(errMsg);
-          this.showAlert('Login Error', errMsg);
-        }
-      });
-  }
+  //       var errMsg = '';
+  //       if (errorCode === 'auth/invalid-email') {
+  //         errMsg = 'email does not match!';
+  //         console.log(errMsg);
+  //         this.showAlert('Login Error', errMsg);
+  //       } else if (errorCode === 'auth/wrong-password') {
+  //         errMsg = 'Wrong Password!';
+  //         console.log(errMsg);
+  //         this.showAlert('Login Error', errMsg);
+  //       } else if (errorCode === 'auth/user-not-found') {
+  //         errMsg = 'email not registered!';
+  //         console.log(errMsg);
+  //         this.showAlert('Login Error', errMsg);
+  //       } else if (errorCode === 'auth/internal-error') {
+  //         errMsg = 'password cannot be empty!';
+  //         console.log(errMsg);
+  //         this.showAlert('Login Error', errMsg);
+  //       } else {
+  //         errMsg = 'Internal Error! please restart this Apps';
+  //         console.log(errMsg);
+  //         this.showAlert('Login Error', errMsg);
+  //       }
+  //     });
+  // }
 
   //_______ login Email _______________________________________________ End ____________
 }
