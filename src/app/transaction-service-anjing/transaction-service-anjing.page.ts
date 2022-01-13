@@ -219,7 +219,7 @@ export class TransactionServiceAnjingPage implements OnInit {
         this.storageAddressPick_address = data['storageAddressPickAddress'];
         this.storageAddressPick_nameAddress = data['storageAddressPickName'];
         this.storageAddressPick_phoneAddress = data['storageAddressPickPhone'];
-        this.storageAddressPick_argo = data['storageAddressPickArgo'];
+        this.storageAddressPick_argo = data['storageAddressPickArgo'] + ' Km';
       }
     });
   }

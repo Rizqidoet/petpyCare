@@ -134,7 +134,7 @@ export class SigninPage implements OnInit {
 
   async onSignInGoogle() {
     let googleUser = await GoogleAuth.signIn();
-    console.log('SIGNIN BERHASIL ---> Ini Isi GoogleUser = ', googleUser);
+    //console.log('SIGNIN BERHASIL ---> Ini Isi GoogleUser = ', googleUser);
     this.apiUserinfo = googleUser;
     this.apiUsername =
       this.apiUserinfo.givenName + ' ' + this.apiUserinfo.familyName;
@@ -175,7 +175,7 @@ export class SigninPage implements OnInit {
         var b = response['message']['products'];
         var c = response['message']['item_price'];
         // console.log('lenght a = ', a);
-        //console.log('lenght a = ', response['message']);
+        console.log('lenght a = ', response['message']);
         b.forEach((value) => {
           //console.log(value['item_code']
           var d = c.filter(function (e) {
@@ -195,7 +195,7 @@ export class SigninPage implements OnInit {
           };
 
           this.storageProductNormal.push(dataProductNormal);
-          console.log('Storage Product Normal = ', this.storageProductNormal);
+          //console.log('Storage Product Normal = ', this.storageProductNormal);
           this.storage.setObject('storageProductNormal', {
             products: this.storageProductNormal,
           });
@@ -210,7 +210,7 @@ export class SigninPage implements OnInit {
           };
 
           this.storageProductDiskon.push(dataProductDiskon);
-          console.log('Storage Product Diskon = ', this.storageProductDiskon);
+          //console.log('Storage Product Diskon = ', this.storageProductDiskon);
           this.storage.setObject('storageProductDiskon', {
             products: this.storageProductDiskon,
           });

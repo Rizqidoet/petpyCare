@@ -1,0 +1,297 @@
+<ion-content>
+  <!-- Start: header -->
+  <div
+    style="
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      background-color: #ffd4c8;
+      justify-content: center;
+      align-items: center;
+      padding-top: 50px;
+    "
+  >
+    <ion-img src="../../assets/images/signin-1.png" style="width: 100%">
+    </ion-img>
+  </div>
+  <!-- End: header -->
+
+  <!-- Start: Body -->
+  <div
+    class="ion-padding"
+    style="
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 300px;
+      background-color: #ffffff;
+    "
+  >
+    <!-- Start: Judul -->
+    <div>
+      <h1
+        style="
+          font-size: x-large;
+          font-weight: 600;
+          margin-left: 20px;
+          margin-bottom: 20px;
+          color: #000000;
+          font-family: 'Lobster', cursive;
+        "
+      >
+        Signin
+      </h1>
+    </div>
+    <!-- End: Judul -->
+
+    <!-- Start: Input Email -->
+    <div
+      style="
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding-right: 10px;
+        margin-bottom: 15px;
+        border-bottom: #8c8e91 1px solid;
+        margin-right: 20px;
+        margin-left: 20px;
+      "
+    >
+      <div>
+        <ion-icon
+          style="font-size: large; color: #8c8e91"
+          name="at-outline"
+        ></ion-icon>
+      </div>
+      <div style="width: 100%">
+        <ion-input
+          name="email"
+          [(ngModel)]="email"
+          class="ion-padding"
+          type="text"
+          placeholder="Email ID"
+          style="font-size: smaller; font-family: 'Montserrat', sans-serif"
+        ></ion-input>
+      </div>
+    </div>
+    <!-- End: Input Email -->
+
+    <!-- Start: Input Password -->
+    <div
+      style="
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding-right: 10px;
+        margin-bottom: 15px;
+        border-bottom: #8c8e91 1px solid;
+        margin-right: 20px;
+        margin-left: 20px;
+      "
+    >
+      <div>
+        <ion-icon
+          style="font-size: large; color: #8c8e91"
+          name="key-outline"
+        ></ion-icon>
+      </div>
+      <div style="width: 100%">
+        <ion-input
+          name="password"
+          [(ngModel)]="password"
+          class="ion-padding"
+          type="password"
+          placeholder="Password"
+          style="font-size: smaller; font-family: 'Montserrat', sans-serif"
+        ></ion-input>
+      </div>
+    </div>
+    <!-- End: Input Password -->
+
+    <!-- Start: Button signin -->
+    <div
+      style="
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding-left: 10px;
+        padding-right: 10px;
+        margin-bottom: 25px; ;
+      "
+    >
+      <button
+        (click)="onSignIn()"
+        style="
+          width: 100%;
+          height: 50px;
+          background-color: #ef4b52;
+          color: #ffffff;
+          font-size: small;
+          border-radius: 18px;
+          font-family: 'Libre Baskerville', serif;
+        "
+      >
+        Signin
+      </button>
+    </div>
+    <!-- End: Button signin -->
+
+    <!-- Start: label continue -->
+    <div
+      style="
+        display: flex;
+        justify-content: center;
+        font-size: small;
+        color: #8c8e91;
+        font-weight: 700;
+        margin-bottom: 25px;
+        font-family: 'Montserrat', sans-serif;
+      "
+    >
+      <span> or continue with </span>
+    </div>
+    <!-- End: label continue -->
+
+    <!-- Start: signin with social media -->
+    <div
+      style="display: flex;"
+    >
+    <div
+      style="
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding-left: 10px;
+        padding-right: 10px;
+        margin-bottom: 25px; ;
+        width: 100%;
+      "
+    >
+      <button
+        (click)="onSignInGoogle()"
+        style="
+          width: 100%;
+          height: 50px;
+          background-color: #ef4b52;
+          color: #ffffff;
+          font-size: small;
+          border-radius: 18px;
+          font-family: 'Libre Baskerville', serif;
+        "
+      >
+        Your google account
+      </button>
+    </div>
+      <!-- <div
+        style="
+          display: flex;
+          height: 45px;
+          width: 70px;
+          background-color: aqua;
+          justify-content: center;
+          border-radius: 10px;
+
+          margin-bottom: 35px;
+        "
+        (click)="onSignInGoogle()"
+      >
+        <ion-img src="../../assets/images/signin-3.png" style="width: 35px">
+        </ion-img>
+      </div> -->
+<!-- 
+      <div
+        style="
+          display: flex;
+          height: 45px;
+          width: 70px;
+          background-color: #ffffff;
+          justify-content: center;
+          border-radius: 10px;
+        "
+        (click)="onSignInFacebook()"
+      >
+        <ion-img src="../../assets/images/signin-4.png" style="width: 35px">
+        </ion-img>
+      </div>
+
+      <div
+        style="
+          display: flex;
+          height: 45px;
+          width: 70px;
+          background-color: #ffffff;
+          justify-content: left;
+          border-radius: 10px;
+        "
+        (click)="onSignInTelp()"
+      >
+        <ion-img src="../../assets/images/signin-5.png" style="width: 35px">
+        </ion-img>
+      </div> -->
+    </div>
+    <!-- End: signin with social media -->
+
+    <!-- Start: label signup -->
+    <div
+      style="
+        display: flex;
+        justify-content: center;
+        font-size: small;
+        color: #8c8e91;
+        margin-bottom: 25px;
+        font-family: 'Montserrat', sans-serif;
+      "
+    >
+      <!-- <span>
+        new in <b>Petpy</b> app ?
+        <a
+          routerDirection="forward"
+          routerLink="/signup"
+          style="text-decoration: none; color: #f47b5c"
+          >signup here!</a
+        ></span
+      > -->
+      <span>
+        Powered by 
+        <b>
+          Petpy.id
+        </b>
+        </span
+      >
+    </div>
+    <!-- End: label signup -->
+
+    <!-- <div>
+      <ion-card>
+        <ion-card-content>
+          <ion-label>Username API : {{ apiUsername }}</ion-label>
+          <br />
+          <ion-label>Email API : {{ apiEmail }}</ion-label>
+          <br />
+          <ion-label>ID API : {{ apiID }}</ion-label>
+          <br />
+          <ion-label>Image API : {{ apiImage }}</ion-label>
+          <ion-img
+            src="{{ apiImage }}"
+            style="height: 200px; width: 200px"
+          ></ion-img>
+          <br />
+
+          <ion-label>Username Storage : {{ storageUsername }}</ion-label>
+          <br />
+          <ion-label>ApiKey Storage : {{ storageKey }}</ion-label>
+          <br />
+          <ion-label>ApiSecret Storage : {{ storageSc }}</ion-label>
+          <br />
+           <ion-label>Photo : {{ userPhoto }}</ion-label>
+          <br />
+          <ion-img
+            src="{{ userPhoto }}"
+            style="height: 200px; width: 200px"
+          ></ion-img>
+        </ion-card-content>
+      </ion-card>
+    </div> -->
+  </div>
+  <!-- End: Body -->
+</ion-content>

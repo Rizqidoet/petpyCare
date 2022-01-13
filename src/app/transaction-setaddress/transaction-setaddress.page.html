@@ -83,7 +83,7 @@
             ></ion-img>
           </div>
           <div style="width: 5%">:</div>
-          <div style="width: 75%">{{ storageAddressArgo }}</div>
+          <div style="width: 75%">{{ storageGetAddressArgo }}</div>
         </div>
         <div style="display: flex; flex-direction: row">
           <div
@@ -119,7 +119,7 @@
             "
             class="ion-padding"
           >
-            {{ storageAddress }}
+            {{ reqAddressName }}
           </div>
         </div>
       </div>
@@ -242,7 +242,7 @@
         placeholder="Search Here"
         (ionChange)="search()"
         (ngModelChange)="keywordChanged($event)"
-        [(ngModel)]="storageAddress"
+        [(ngModel)]="reqAddressName"
       ></ion-searchbar>
       <ion-list
         *ngIf="places.length > 0"

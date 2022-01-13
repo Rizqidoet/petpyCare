@@ -25,6 +25,9 @@
       width: 100%;
       height: 300px;
       background-color: #ffffff;
+      margin-top: 30px;
+      padding-right: 24px;
+      padding-left: 24px;
     "
   >
     <!-- Start: Judul -->
@@ -33,138 +36,42 @@
         style="
           font-size: x-large;
           font-weight: 600;
-          margin-left: 20px;
           margin-bottom: 20px;
           color: #000000;
           font-family: 'Lobster', cursive;
         "
       >
-        Signin
+        Petcare On Demand
       </h1>
     </div>
     <!-- End: Judul -->
 
-    <!-- Start: Input Email -->
-    <div
-      style="
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        padding-right: 10px;
-        margin-bottom: 15px;
-        border-bottom: #8c8e91 1px solid;
-        margin-right: 20px;
-        margin-left: 20px;
-      "
-    >
-      <div>
-        <ion-icon
-          style="font-size: large; color: #8c8e91"
-          name="at-outline"
-        ></ion-icon>
-      </div>
-      <div style="width: 100%">
-        <ion-input
-          name="email"
-          [(ngModel)]="email"
-          class="ion-padding"
-          type="text"
-          placeholder="Email ID"
-          style="font-size: smaller; font-family: 'Montserrat', sans-serif"
-        ></ion-input>
-      </div>
-    </div>
-    <!-- End: Input Email -->
-
-    <!-- Start: Input Password -->
-    <div
-      style="
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        padding-right: 10px;
-        margin-bottom: 15px;
-        border-bottom: #8c8e91 1px solid;
-        margin-right: 20px;
-        margin-left: 20px;
-      "
-    >
-      <div>
-        <ion-icon
-          style="font-size: large; color: #8c8e91"
-          name="key-outline"
-        ></ion-icon>
-      </div>
-      <div style="width: 100%">
-        <ion-input
-          name="password"
-          [(ngModel)]="password"
-          class="ion-padding"
-          type="password"
-          placeholder="Password"
-          style="font-size: smaller; font-family: 'Montserrat', sans-serif"
-        ></ion-input>
-      </div>
-    </div>
-    <!-- End: Input Password -->
-
-    <!-- Start: Button signin -->
-    <div
-      style="
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        padding-left: 10px;
-        padding-right: 10px;
-        margin-bottom: 25px; ;
-      "
-    >
-      <button
-        (click)="onSignIn()"
+    <!-- Start: Sub-judul -->
+    <div>
+      <p
         style="
-          width: 100%;
-          height: 50px;
-          background-color: #ef4b52;
-          color: #ffffff;
-          font-size: small;
-          border-radius: 18px;
-          font-family: 'Libre Baskerville', serif;
+          font-size: medium;
+          font-weight: 300;
+          margin-bottom: 20px;
+          color: #b8b8b8;
+          text-align: justify;
+          font-family: 'Source Sans Pro', sans-serif;
         "
       >
-        Signin
-      </button>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Non quas odio
+        blanditiis laudantium maxime culpa debitis cum voluptates accusantium
+        vero, saepe laboriosam nisi exercitationem ea perspiciatis praesentium
+        odit, nihil animi!
+      </p>
     </div>
-    <!-- End: Button signin -->
+    <!-- End: Sub-judul -->
 
-    <!-- Start: label continue -->
+    <!-- Start: Login Button -->
     <div
       style="
         display: flex;
-        justify-content: center;
-        font-size: small;
-        color: #8c8e91;
-        font-weight: 700;
-        margin-bottom: 25px;
-        font-family: 'Montserrat', sans-serif;
-      "
-    >
-      <span> or continue with </span>
-    </div>
-    <!-- End: label continue -->
-
-    <!-- Start: signin with social media -->
-    <div
-      style="display: flex;"
-    >
-    <div
-      style="
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        padding-left: 10px;
-        padding-right: 10px;
-        margin-bottom: 25px; ;
-        width: 100%;
+        flex-direction: column;
+        padding: 40px 24px 12px 24px;
       "
     >
       <button
@@ -172,64 +79,36 @@
         style="
           width: 100%;
           height: 50px;
-          background-color: #ef4b52;
-          color: #ffffff;
+          background-color: rgb(255, 227, 227);
+          color: #000000;
+          border: #ef4b52 1px solid;
           font-size: small;
           border-radius: 18px;
           font-family: 'Libre Baskerville', serif;
         "
-      >
-        Your google account
-      </button>
-    </div>
-      <!-- <div
-        style="
-          display: flex;
-          height: 45px;
-          width: 70px;
-          background-color: aqua;
-          justify-content: center;
-          border-radius: 10px;
-
-          margin-bottom: 35px;
-        "
         (click)="onSignInGoogle()"
       >
-        <ion-img src="../../assets/images/signin-3.png" style="width: 35px">
-        </ion-img>
-      </div> -->
-<!-- 
-      <div
-        style="
-          display: flex;
-          height: 45px;
-          width: 70px;
-          background-color: #ffffff;
-          justify-content: center;
-          border-radius: 10px;
-        "
-        (click)="onSignInFacebook()"
-      >
-        <ion-img src="../../assets/images/signin-4.png" style="width: 35px">
-        </ion-img>
-      </div>
-
-      <div
-        style="
-          display: flex;
-          height: 45px;
-          width: 70px;
-          background-color: #ffffff;
-          justify-content: left;
-          border-radius: 10px;
-        "
-        (click)="onSignInTelp()"
-      >
-        <ion-img src="../../assets/images/signin-5.png" style="width: 35px">
-        </ion-img>
-      </div> -->
+        <div
+          style="
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+          "
+        >
+          <div>
+            <ion-img
+              src="../../assets/images/signin-3.png"
+              style="width: 15px"
+            ></ion-img>
+          </div>
+          <div style="margin-top: 6px; margin-left: 12px">
+            Continue with google
+          </div>
+        </div>
+      </button>
     </div>
-    <!-- End: signin with social media -->
+    <!-- End: Login Button -->
 
     <!-- Start: label signup -->
     <div
@@ -237,61 +116,18 @@
         display: flex;
         justify-content: center;
         font-size: small;
-        color: #8c8e91;
+        color: #b8b8b8;
+        margin-top: 16px;
         margin-bottom: 25px;
         font-family: 'Montserrat', sans-serif;
       "
     >
-      <!-- <span>
-        new in <b>Petpy</b> app ?
-        <a
-          routerDirection="forward"
-          routerLink="/signup"
-          style="text-decoration: none; color: #f47b5c"
-          >signup here!</a
-        ></span
-      > -->
       <span>
-        Powered by 
-        <b>
-          Petpy.id
-        </b>
-        </span
-      >
+        Powered by
+        <b> Petpy.id </b>
+      </span>
     </div>
     <!-- End: label signup -->
-
-    <!-- <div>
-      <ion-card>
-        <ion-card-content>
-          <ion-label>Username API : {{ apiUsername }}</ion-label>
-          <br />
-          <ion-label>Email API : {{ apiEmail }}</ion-label>
-          <br />
-          <ion-label>ID API : {{ apiID }}</ion-label>
-          <br />
-          <ion-label>Image API : {{ apiImage }}</ion-label>
-          <ion-img
-            src="{{ apiImage }}"
-            style="height: 200px; width: 200px"
-          ></ion-img>
-          <br />
-
-          <ion-label>Username Storage : {{ storageUsername }}</ion-label>
-          <br />
-          <ion-label>ApiKey Storage : {{ storageKey }}</ion-label>
-          <br />
-          <ion-label>ApiSecret Storage : {{ storageSc }}</ion-label>
-          <br />
-           <ion-label>Photo : {{ userPhoto }}</ion-label>
-          <br />
-          <ion-img
-            src="{{ userPhoto }}"
-            style="height: 200px; width: 200px"
-          ></ion-img>
-        </ion-card-content>
-      </ion-card>
-    </div> -->
   </div>
   <!-- End: Body -->
 </ion-content>

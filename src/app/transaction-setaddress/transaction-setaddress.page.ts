@@ -37,15 +37,57 @@ export class TransactionSetaddressPage {
     this.mapClick();
   }
 
-  // _____ Onload _________________________________________________ Start ________
-
   map: any;
   marker: L.Marker;
-  addressComponent: any;
-  storageAddress: string;
+  reqAddress: any;
+  reqAddressName: string;
   argo: number;
-  storageAddressArgo: string;
-  sekundren = null;
+  storageAddressArgo: any;
+  storageGetAddressArgo: string;
+  reqWayPoint = null;
+  places = [];
+  addressName: string = '';
+  addressPhone: string = '';
+  addressArgo: number = 0;
+  pickMenu: String;
+  categoryPet: String;
+  storageArrayAddress = [];
+  jumlahArrayStorage: number;
+
+  // _____ Load Storage _________________________________________________ Start ________
+
+  getStorage() {
+    this.storage.getObject('storageAddress').then((data: any) => {
+      if (!data) {
+        this.jumlahArrayStorage = 0;
+        this.storageArrayAddress = [];
+        // console.log('jumlahArrayStorage kosong', this.jumlahArrayStorage);
+      } else {
+        this.storageArrayAddress = data['address'];
+        this.jumlahArrayStorage = data['address'].length;
+        // console.log('jumlahArrayStorage isi', this.jumlahArrayStorage);
+      }
+    });
+    this.storage.getObject('storageFilterPet').then((data: any) => {
+      this.pickMenu = data.name;
+      this.categoryPet = data.category;
+    });
+
+    var a = this.storage.getString('distance').then((data) => {
+      console.log('data is = ', data.value);
+      if (data.value == 0) {
+        this.storageGetAddressArgo = '0 Km';
+      } else if (data.value == null) {
+        this.storageGetAddressArgo = '0 Km';
+      } else {
+        this.storageGetAddressArgo = data['value'] + ' Km';
+      }
+    });
+  }
+
+  // _____ Load Storage _________________________________________________ End ________
+
+  // _____ Load Map _________________________________________________ Start ________
 
   loadMap() {
     this.map = L.map('map').fitWorld();
@@ -62,7 +104,7 @@ export class TransactionSetaddressPage {
         maxZoom: 15,
       })
       .on('locationfound', (e) => {
-        this.sekundren = L.Routing.control({
+        this.reqWayPoint = L.Routing.control({
           waypoints: [
             L.latLng(-6.220818, 106.853582),
             L.latLng(e.latitude, e.longitude),
@@ -71,6 +113,10 @@ export class TransactionSetaddressPage {
         this.setMarkertWithAnimation(e.latitude, e.longitude, true);
       });
   }
+
+  // _____ Load Map _________________________________________________ End ________
+
+  // _____ Req Custom Address` _________________________________________________ End ________
 
   setMarkertWithAnimation(lat, lng, changeLocation: boolean) {
     this.marker = L.marker([lat, lng]);
@@ -86,11 +132,13 @@ export class TransactionSetaddressPage {
         `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&addressdetails=1`
       )
       .subscribe((data: any) => {
-        if (this.sekundren !== null) {
-          this.map.removeControl(this.sekundren);
-          this.sekundren = null;
+        if (this.reqWayPoint !== null) {
+          this.map.removeControl(this.reqWayPoint);
+          this.reqAddress = data.address;
+          this.reqAddressName = data.display_name;
 
-          this.sekundren = L.Routing.control({
+          this.reqWayPoint = null;
+          this.reqWayPoint = L.Routing.control({
             waypoints: [
               // L.latLng(-6.2207745, 106.8536878),
               L.latLng(-6.220818, 106.853582),
@@ -99,22 +147,17 @@ export class TransactionSetaddressPage {
           }).addTo(this.map);
         }
 
-        this.sekundren.on('routesfound', (e) => {
+        this.reqWayPoint.on('routesfound', (e) => {
           // var routes = e.routes;
           var summary = e.routes[0].summary.totalDistance;
           this.argo = Math.round(summary / 1000);
-          console.log('Argo di dalem = ', this.storageAddressArgo);
-          this.storageAddressArgo = this.argo + ' km';
+          this.storageAddressArgo = this.argo;
 
           this.storage.setString('distance', this.storageAddressArgo);
+          this.getStorage();
 
           // console.log('T otal distance is ' + summary.totalDistance / 1000 + "Pembulatan = " + b + ' km and total time is ' + Math.round(summary.totalTime % 3600 / 60) + ' minutes');
         });
-
-        console.log('Argo di luar = ', this.storageAddressArgo);
-
-        this.addressComponent = data.address;
-        this.storageAddress = data.display_name;
 
         this.marker = L.marker([lat, lng])
           .addTo(this.map)
@@ -130,7 +173,7 @@ export class TransactionSetaddressPage {
     });
   }
 
-  // _____ Onload _________________________________________________ End ________
+  // _____ Req Custom Address` _________________________________________________ End ________
 
   // _____ getGps _________________________________________________ Start ________
 
@@ -160,17 +203,15 @@ export class TransactionSetaddressPage {
 
   // _____ Search address _________________________________________________ Start ________
 
-  places = [];
-
   search() {
-    if (this.storageAddress === '') {
+    if (this.reqAddressName === '') {
       // console.log("Empty Keyword");
       this.places = [];
-    } else if (this.storageAddress.length >= 3) {
+    } else if (this.reqAddressName.length >= 3) {
       this.marker.remove();
       let url =
         'https://nominatim.openstreetmap.org/search?format=json&q=' +
-        this.storageAddress;
+        this.reqAddressName;
       this.http.get(url).subscribe((data: any) => {
         // console.log(data);
         this.places = data;
@@ -180,84 +221,21 @@ export class TransactionSetaddressPage {
 
   keywordChanged(event) {
     setTimeout(() => {
-      this.storageAddress = event;
+      this.reqAddressName = event;
     });
   }
 
   onClickPickAddress(lat, lng) {
     this.places = [];
 
+    this.getStorage();
     this.setMarkertWithAnimation(lat, lng, false);
-  }
 
-  // _____ Search address _________________________________________________ End ________
-
-  // _____ Function Pembantu _________________________________________________ Start ________
-
-  defaultForm() {
-    var x = (document.getElementById('FormDetail').style.display = 'none');
-    this.addressName = '';
-    this.addressPhone = '';
-    this.addressArgo = 0;
-  }
-
-  enableForm() {
-    var x = document.getElementById('FormDetail');
-    x.style.display = 'block';
-    x.style.animation = 'animatetop 0.8s';
-    x.style.marginTop = '480px';
-    x.style.marginLeft = '25px';
-
-    var a = this.storage.getString('distance').then((data) => {
-      this.storageAddressArgo = data['value'];
-    });
     console.log('data argo is = ', this.storageAddressArgo);
   }
-
-  async showAlert(header: string, message: string) {
-    const alert = await this.alertController.create({
-      header,
-      message,
-      buttons: ['OK'],
-    });
-    await alert.present();
-  }
-
-  // _____ Function Pembantu _________________________________________________ End ________
+  // _____ Search address _________________________________________________ End ________
 
   // _____ Save Address _________________________________________________ Start ________
-
-  addressName: string = '';
-  addressPhone: string = '';
-  addressArgo: number = 0;
-  pickMenu: String;
-  categoryPet: String;
-  storageArrayAddress = [];
-  storageArrayAddress2 = [];
-  jumlahArrayStorage: number;
-
-  getStorage() {
-    this.storage.getObject('storageAddress').then((data: any) => {
-      if (!data) {
-        this.jumlahArrayStorage = 0;
-        this.storageArrayAddress = [];
-        // console.log('jumlahArrayStorage kosong', this.jumlahArrayStorage);
-      } else {
-        this.storageArrayAddress = data['address'];
-        this.jumlahArrayStorage = data['address'].length;
-        // console.log('jumlahArrayStorage isi', this.jumlahArrayStorage);
-      }
-
-      // console.log('jumlah Array Storage OnLoad :', this.jumlahArrayStorage);
-    });
-    this.storage.getObject('storageFilterPet').then((data: any) => {
-      this.pickMenu = data.name;
-      this.categoryPet = data.category;
-
-      // console.log('pick menu : ', this.pickMenu);
-      // console.log('category menu : ', this.categoryPet);
-    });
-  }
 
   async saveAddress() {
     if (this.addressName === '' || this.addressName.length < 4) {
@@ -296,7 +274,7 @@ export class TransactionSetaddressPage {
               handler: () => {
                 var newId = 1 + this.jumlahArrayStorage;
                 this.storage.setObject('storageAddressPick', {
-                  storageAddressPickAddress: this.storageAddress,
+                  storageAddressPickAddress: this.reqAddressName,
                   storageAddressPickName: this.addressName,
                   storageAddressPickPhone: this.addressPhone,
                   storageAddressPickArgo: this.storageAddressArgo,
@@ -304,7 +282,7 @@ export class TransactionSetaddressPage {
 
                 var dataAddress = {
                   id: newId,
-                  address: this.storageAddress,
+                  address: this.reqAddressName,
                   addressName: this.addressName,
                   addressPhone: this.addressPhone,
                   argo: this.storageAddressArgo,
@@ -329,4 +307,32 @@ export class TransactionSetaddressPage {
   }
 
   // _____ Save Address _________________________________________________ End ________
+
+  // _____ Function Pembantu _________________________________________________ Start ________
+
+  defaultForm() {
+    var x = (document.getElementById('FormDetail').style.display = 'none');
+    this.addressName = '';
+    this.addressPhone = '';
+    this.addressArgo = 0;
+  }
+
+  enableForm() {
+    var x = document.getElementById('FormDetail');
+    x.style.display = 'block';
+    x.style.animation = 'animatetop 0.8s';
+    x.style.marginTop = '480px';
+    x.style.marginLeft = '25px';
+  }
+
+  async showAlert(header: string, message: string) {
+    const alert = await this.alertController.create({
+      header,
+      message,
+      buttons: ['OK'],
+    });
+    await alert.present();
+  }
+
+  // _____ Function Pembantu _________________________________________________ End ________
 }
